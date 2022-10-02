@@ -22,7 +22,8 @@
 外食時に自分の持っているアレルゲンを除いた料理を提供しているお店を検索できる。
 
 ## 設計書
-<...>
+<実装機能リスト>
+https://docs.google.com/spreadsheets/d/1c1plTJPb2j6k2-AaX04OWm5qOMwGdbi1InjZtcchCZY/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
