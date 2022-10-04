@@ -23,13 +23,14 @@
 <顧客>
 * 食物アレルギー対策をしている飲食店に行きたい時
 * 特定の地域の飲食店を探したい時
+
 <飲食店>
 * 食物アレルギー対策のお店だと世間に認知してほしい時
 * 新規メニューを登録したい時
 * お店の情報を伝えたい時
 
 ## 設計書
-<実装機能リスト>
+[実装機能リスト]
 https://docs.google.com/spreadsheets/d/1c1plTJPb2j6k2-AaX04OWm5qOMwGdbi1InjZtcchCZY/edit?usp=sharing
 
 ## 開発環境
