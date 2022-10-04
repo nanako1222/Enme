@@ -30,8 +30,7 @@
 * お店の情報を伝えたい時
 
 ## 設計書
-[実装機能リスト]
-(https://docs.google.com/spreadsheets/d/1c1plTJPb2j6k2-AaX04OWm5qOMwGdbi1InjZtcchCZY/edit?usp=sharing)
+[実装機能リスト](https://docs.google.com/spreadsheets/d/1c1plTJPb2j6k2-AaX04OWm5qOMwGdbi1InjZtcchCZY/edit?usp=sharing)
 
 ## 開発環境
 - OS：Linux(CentOS)
