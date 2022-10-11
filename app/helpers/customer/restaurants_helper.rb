@@ -1,0 +1,2 @@
+module Customer::RestaurantsHelper
+end

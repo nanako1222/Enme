@@ -1,0 +1,2 @@
+class MenuHavingAllergy < ApplicationRecord
+end
