@@ -1,50 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-  end
-  namespace :admin do
-    get 'areas/index'
-  end
-  namespace :admin do
-    get 'allergys/index'
-    get 'allergys/create'
-    get 'allergys/edit'
-    get 'allergys/update'
-  end
-  namespace :admin do
-    get 'restaurants/edit'
-    get 'restaurants/update'
-    get 'restaurants/show'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :restaurant do
-    get 'menus/index'
-    get 'menus/edit'
-    get 'menus/update'
-    get 'menus/new'
-    get 'menus/create'
-    get 'menus/show'
-    get 'menus/destroy'
-  end
-  namespace :restaurant do
-    get 'homes/top'
-    get 'homes/edit'
-    get 'homes/update'
-  end
-  namespace :customer do
-    get 'restaurant_menu/index'
-    get 'restaurant_menu/show'
-  end
-  namespace :customer do
-    get 'restaurants/show'
-    get 'restaurants/index'
-    get 'restaurants/create'
-  end
   devise_for :customers, controllers: {
     registrations: "customer/registrations",
     sessions: 'customer/sessions'
@@ -58,6 +12,38 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  root to: 'homes#top'
+
+  root :to  => 'customer/homes#top'
+  get '/about' => 'customer/homes#about'
+
+  namespace :admin do
+    resources :customers, only: [:show, :index, :edit, :update]
+    get '/areas' => "areas#index"
+    resources :allergies, only: [:create, :index, :edit, :update]
+    resources :restaurants, only: [:show, :edit, :update]
+    get '/' => 'homes#top'
+  end
+  namespace :restaurant do
+    resources :menus, only: [:create, :index, :show, :new, :edit, :update, :destroy]
+    get '/' => 'homes#top'
+    get "information/edit" => "homes#edit"
+    patch "/information" => "homes#update"
+    get "/confirm" => "homes#confirm"
+    patch '/out' => 'homes#out'
+    resources :restaurants, only: [:update, :edit]
+  end
+  scope module: :customer do
+    resources :restaurant_menus, only: [:show, :index]
+    get "/restaurants/serch" => "restaurants#serch"
+    resources :restaurants, only: [:create, :index, :show]
+    patch "/customers/information" => "customers#update"
+    get "/customers/information/edit" => "customers#edit"
+    get "/customers/my_page" => "customers#show"
+    get "/customers/confirm" => "customers#confirm"
+    patch '/customers/out' => 'customers#out'
+    get "/customers/favorite/index" => "customers#index"
+
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

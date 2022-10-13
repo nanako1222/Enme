@@ -1,4 +1,4 @@
-class Admin::AllergysController < ApplicationController
+class Admin::AllergiesController < ApplicationController
   def index
   end
 

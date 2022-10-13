@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+h4, h6 {
+  color: maroon;
+  border-radius: 4px;
+  background-color: #d8e698 ;
+}
+
+h1{
+  color: maroon;
+}
+
+.about{
+  color: maroon;
+}
+
+.table-secondary {
+  background-color: #ffffe0 ;
+}
+
+th {
+  color: #cd853f;
+}
+
+.navbar-expand-lg {
+  background-color: #556b2f ;
+}
+
+.wrapper{
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 120px;
+  box-sizing: border-box;
+}
+
+footer {
+  background-color: #556b2f ;
+  width: 100% ;
+  color: white ;
+}
