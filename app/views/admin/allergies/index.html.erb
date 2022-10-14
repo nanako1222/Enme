@@ -1,2 +1,25 @@
-<h1>アレルギー管理画面(一覧・追加を兼ねる)</h1>
-<p>Find me in app/views/admin/allergys/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class='col-10 offset-1'>
+      <h4 class="col-3 mt-5">アレルゲン一覧・追加</h4>
+
+
+      <div class="row">
+        <div class='col-4'>
+          <%= form_with model: @allergy, url: admin_allergies_path, method: :post do |f| %>
+
+            <div class="field d-grid col-8 text-center mt-4">
+              <%= f.label :アレルゲン, class: "w-25" %>
+              <%= f.text_field :allergen, class: "col-6" %>
+            </div>
+            <div class="row form-group mt-4 ml-35">
+              <%= f.submit '新規登録', class:"btn btn-success col-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
