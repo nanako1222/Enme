@@ -1,29 +1,73 @@
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-11 offset-1">
+      <h4 class="col-3 mt-5">新規飲食店登録</h4>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "restaurant/shared/error_messages", resource: resource %>
+      <%= form_with model: @restaurant, url: restaurant_registration_path, id: 'new_restaurant', class: 'new_restaurant', local: true do  |f| %>
+        <%= render "restaurant/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="row field d-grid text-center mt-3 mt-4">
+          <%= f.label :店名, class: "col-md-1" %>
+          <%= f.text_field :name, required: true, class: "col-md-3" %>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :メールアドレス, class: "col-md-4 text-left" %>
+          <%= f.email_field :email, required: true, class: "col-md-3" %>
+        </div>
+        
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :店舗住所(都道府県), class: "col-md-4 text-left" %>
+          <%= f.email_field :state, required: true, class: "col-md-3" %>
+        </div>
+        
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :店舗住所(地域エリア）, class: "col-md-4 text-left" %>
+          <%= f.email_field :area, required: true, class: "col-md-3" %>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :それ以降の住所, class: "col-md-4 text-left" %>
+          <%= f.text_field :address, required: true class: "col-md-3" %>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :電話番号（ハイフンなし）, class: "col-md-4 text-left" %><br />
+          <%= f.number_field :telephone_number, required: true, class: "col-md-3" %>
+        </div>
+        
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :定休日, class: "col-md-4 text-left" %>
+          <%= f.text_field :regular_holiday, required: true, class: "col-md-7" %>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <div class="col-md-4 text-left">
+            <%= f.label :パスワード %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> 文字以上)</em>
+            <% end %>
+          </div>
+          <%= f.password_field :password, class: "col-md-3" %>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :パスワード（確認用）, class: "col-md-4 text-left" %><br />
+          <%= f.password_field :password_confirmation, class: "col-md-3" %>
+        </div>
+
+        <div class="actions2 mt-4 offset-4">
+          <%= f.submit "新規登録", class: "btn btn-success mx-auto btn-lg" %>
+        </div>
+
+        <h6 class="col-2 mt-4">既に登録済み方</h6>
+        <div class="row offset-1">
+          <a class ="member_registration" href = "/restaurants/sign_in">こちら</a>
+          <span>からログインしてください。</span>
+        </div>
+      <% end %>
+
+      <%= render "restaurant/shared/links" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "restaurant/shared/links" %>
+</div>

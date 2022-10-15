@@ -1,7 +1,7 @@
 class Admin::AreasController < ApplicationController
   def index
     @area = Area.new
-    @areas = Area.page(params[:page])
+    @areas = Area.all.page(params[:page])
   end
   private
     def area_params
