@@ -1,4 +1,4 @@
 class CustomerHavingAllergy < ApplicationRecord
-  has_many :customers, dependent: :destroy
-  has_many :allergies, dependent: :destroy
+  belongs_to :customer
+  belongs_to :allergy
 end

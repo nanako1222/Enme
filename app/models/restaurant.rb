@@ -6,4 +6,5 @@ class Restaurant < ApplicationRecord
 
   has_one_attached :image
   has_many :menus, dependent: :destroy
+  belongs_to :area
 end
