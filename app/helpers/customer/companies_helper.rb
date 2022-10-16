@@ -1,0 +1,2 @@
+module Customer::CompaniesHelper
+end

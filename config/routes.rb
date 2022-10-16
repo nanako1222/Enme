@@ -15,6 +15,12 @@ Rails.application.routes.draw do
 
   root :to  => 'customer/homes#top'
   get '/about' => 'customer/homes#about'
+  
+  resources :companies do
+    collection do
+      get :cities_select
+    end
+  end
 
   namespace :admin do
     resources :customers, only: [:show, :index, :edit, :update]
