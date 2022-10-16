@@ -5,10 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-admin = Admin.find_or_create_by!(
+admin = Admin.find_or_initialize_by(
    email: 'aaa@www'
 )
-admin.update!(password: "testtest")
+if admin.new_record?
+    admin.password = "testtest"
+    admin.save!
+end
+
+#Admin.create!(password: "testtest")
+# admin.update!(password: "testtest")
 
 osaka = State.create!(state: "大阪府")
 osaka.areas.create!([{area: "大阪市"}, {area: "北河内"}, {area: "中河内"}, {area: "豊能"}, {area: "三島"},

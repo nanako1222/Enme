@@ -6,36 +6,36 @@
       <%= form_with model: @restaurant, url: restaurant_registration_path, id: 'new_restaurant', class: 'new_restaurant', local: true do  |f| %>
         <%= render "restaurant/shared/error_messages", resource: resource %>
 
-        <div class="row field d-grid text-center mt-3 mt-4">
-          <%= f.label :店名, class: "col-md-1" %>
-          <%= f.text_field :name, required: true, class: "col-md-3" %>
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :店名, class: "col-md-4 text-left" %>
+          <%= f.email_field :name, required: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :メールアドレス, class: "col-md-4 text-left" %>
           <%= f.email_field :email, required: true, class: "col-md-3" %>
         </div>
-        
+
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :店舗住所(都道府県), class: "col-md-4 text-left" %>
-          <%= f.email_field :state, required: true, class: "col-md-3" %>
+          <%= f.label :店舗住所（都道府県）, class: "col-md-4 text-left" %>
+          <%= f.text_field :state, autofocus: true, class: "col-md-3" %>
         </div>
-        
+
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :店舗住所(地域エリア）, class: "col-md-4 text-left" %>
+          <%= f.label :店舗住所（地域エリア）, class: "col-md-4 text-left" %>
           <%= f.email_field :area, required: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :それ以降の住所, class: "col-md-4 text-left" %>
-          <%= f.text_field :address, required: true class: "col-md-3" %>
+          <%= f.text_field :address, autofocus: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :電話番号（ハイフンなし）, class: "col-md-4 text-left" %><br />
           <%= f.number_field :telephone_number, required: true, class: "col-md-3" %>
         </div>
-        
+
         <div class="row field d-grid text-center mt-3">
           <%= f.label :定休日, class: "col-md-4 text-left" %>
           <%= f.text_field :regular_holiday, required: true, class: "col-md-7" %>
