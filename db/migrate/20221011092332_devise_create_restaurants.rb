@@ -16,6 +16,7 @@ class DeviseCreateRestaurants < ActiveRecord::Migration[6.1]
       t.boolean :parking,           default: "true"
       t.string :business_hours,     null: false
       t.string :address,            null: false
+      t.references :area, null: false, foreign_key: true
 
       ## Recoverable
       t.string   :reset_password_token

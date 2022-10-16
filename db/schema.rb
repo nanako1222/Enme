@@ -67,8 +67,12 @@ ActiveRecord::Schema.define(version: 2022_10_16_043559) do
   end
 
   create_table "customer_having_allergies", force: :cascade do |t|
+    t.integer "allergy_id", null: false
+    t.integer "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["allergy_id"], name: "index_customer_having_allergies_on_allergy_id"
+    t.index ["customer_id"], name: "index_customer_having_allergies_on_customer_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -90,16 +94,22 @@ ActiveRecord::Schema.define(version: 2022_10_16_043559) do
   end
 
   create_table "menu_having_allergies", force: :cascade do |t|
+    t.integer "menu_id", null: false
+    t.integer "allergy_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["allergy_id"], name: "index_menu_having_allergies_on_allergy_id"
+    t.index ["menu_id"], name: "index_menu_having_allergies_on_menu_id"
   end
 
   create_table "menus", force: :cascade do |t|
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price", null: false
+    t.integer "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -115,11 +125,13 @@ ActiveRecord::Schema.define(version: 2022_10_16_043559) do
     t.boolean "parking", default: true
     t.string "business_hours", null: false
     t.string "address", null: false
+    t.integer "area_id", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["area_id"], name: "index_restaurants_on_area_id"
     t.index ["email"], name: "index_restaurants_on_email", unique: true
     t.index ["reset_password_token"], name: "index_restaurants_on_reset_password_token", unique: true
   end
@@ -133,4 +145,10 @@ ActiveRecord::Schema.define(version: 2022_10_16_043559) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "areas", "states"
+  add_foreign_key "customer_having_allergies", "allergies"
+  add_foreign_key "customer_having_allergies", "customers"
+  add_foreign_key "menu_having_allergies", "allergies"
+  add_foreign_key "menu_having_allergies", "menus"
+  add_foreign_key "menus", "restaurants"
+  add_foreign_key "restaurants", "areas"
 end

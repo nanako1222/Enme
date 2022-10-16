@@ -1,22 +1,21 @@
 <div class="container">
   <div class="row">
     <div class='col-12'>
-      <h4 class="col-3 mt-5 offset-2">地域エリア一覧</h4>
+      <h4 class="col-3 mt-5 offset-2"><%= @state.state %></h4>
 
       <div class="row">
         <table class="table table-hover col-8 mt-3 offset-2">
           <thead class="table-secondary">
-            <th>都道府県</th>
+            <th>地域エリア</th>
           </thead>
-          <% @states.each do |state| %>
+          <% @areas.each do |area| %>
             <tr>
               <td>
-                <%= link_to state.state, admin_areas_path(state.id) %>
+                  <%= area.area %>
               </td>
             </tr>
           <% end %>
         </table>
-
 
       </div>
     </div>

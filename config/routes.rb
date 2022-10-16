@@ -18,7 +18,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :customers, only: [:show, :index, :edit, :update]
-    get '/areas' => "areas#index"
+    get '/areas/index' => "areas#index"
+    get '/areas/:id' => "areas#show",as: "areas"
     resources :allergies, only: [:create, :index, :edit, :update]
     resources :restaurants, only: [:show, :edit, :update]
     get '/' => 'homes#top'
