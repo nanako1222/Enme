@@ -1,19 +1,81 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-10 offset-1">
-      <% if flash[:notice] %>
-        <%= notice %>
-      <% end %>
-      <div class="title_image">
-        <div class="row title_image2 align-items-end">
-          <p class="ml-3">ようこそ、ながのCAKEへ！<br>
-          このサイトは、ケーキ販売のECサイトになります。<br>
-          会員でない方も商品の閲覧はできますが、<br>
-          購入には会員登録が必要になります。</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-8 px-5 px-sm-0 mx-auto text-center">
+
+        <h1 class="mt-4"><strong>About</strong></h1>
+        <div>
+          <h4>このサイトについて</h4>
+          <p class="about">
+            Enme（エンミー）は食物アレルギーにより外食に不安を持っている方々にも</br>
+            楽しい食事（Enjoyable meal）をしていただける様、</br>
+            アレルギー対策を行なっている関西の飲食店にご協力いただき</br>
+            アレルゲンや地域からメニューや飲食店を検索できるサイトになります。</br>
+            会員でない方でも検索はできますが、</br>
+            飲食店のお気に入り登録やご自身のアレルゲンを登録し、</br>
+            より簡易的に利用したい場合にはご登録が必要になります。
+          </p>
+          <%= image_tag 'about_image.jpeg', class: "col-sm-10 col-md-8" %>
         </div>
+
+        <h4 class="mt-5">地域エリアについて</h4>
+        <div class="row mt-4">
+        　<p class="about">
+        　   このサイトでは都道府県ごとに地域エリアを分けており、</br>
+        　   店舗を絞り込む際に活用します。
+            地域エリアの詳細は下記をご覧ください。
+        　</p>
+        　<div class="area_image row">
+          　<div>
+            　<%= link_to 'osaka.jpeg', "data-lightbox" => 'osaka.jpeg' do %>
+                <%= image_tag 'osaka.jpeg', height: '250', :style=>"width:300;"%>
+              <% end %>
+              <p class="about"><strong>大阪府</strong></p>
+            </div>
+            <div class="ml-4">
+            　<%= link_to 'kyoto.jpeg', "data-lightbox" => 'kyoto.jpeg' do %>
+                <%= image_tag 'kyoto.jpeg', height: '250', :style=>"width:300;"%>
+              <% end %>
+              <p class="about"><strong>京都府</strong></p>
+            </div>
+            <div class="ml-4">
+            　<%= link_to 'hyogo.jpeg', "data-lightbox" => 'hyogo.jpeg' do %>
+                <%= image_tag 'hyogo.jpeg', height: '250', :style=>"width:300;"%>
+              <% end %>
+              <p class="about"><strong>兵庫県</strong></p>
+            </div>
+            <div class="ml-3">
+            　<%= link_to 'nara.jpeg', "data-lightbox" => 'nara.jpeg' do %>
+                <%= image_tag 'nara.jpeg', height: '250', :style=>"width:300;"%>
+              <% end %>
+              <p class="about"><strong>奈良県</strong></p>
+            </div>
+            <div class="ml-5">
+            　<%= link_to 'wakayama.jpeg', "data-lightbox" => 'wakayama.jpeg' do %>
+                <%= image_tag 'wakayama.jpeg', height: '250', :style=>"width:300;"%>
+              <% end %>
+              <p class="about"><strong>和歌山県</strong></p>
+            </div>
+            <div class="ml-4">
+            　<%= link_to 'shiga.jpeg', "data-lightbox" => 'shiga.jpeg' do %>
+                <%= image_tag 'shiga.jpeg', height: '250', :style=>"width:300;"%>
+              <% end %>
+              <p class="about"><strong>滋賀県</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <h4 class="mt-5">飲食店経営者の皆様へ</h4>
+          <p class="about mt-4">
+            Enme（エンミー）は飲食店経営者の皆様のご協力により、</br>
+            アレルギーを持っている方に外食を楽しんで頂くことが出来ます。</br>
+            外国ではアレルギー表記をしている飲食店が普及していますが、</br>
+            日本ではまだまだ数が少ないのが現状です。</br>
+            アレルギーに困っている人の数は年々増えている為、</br>
+            アレルギー表記をおこなっている飲食店の需要は</br>
+            今後拡大していくと予想されます。</br>
+            どうかEnmeにご登録いただき、</br>
+            皆様に幸せを届けるご協力をしていただけないでしょうか？
+          </p>
       </div>
-
-
     </div>
   </div>
-</div>

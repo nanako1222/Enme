@@ -112,3 +112,8 @@ footer {
   color: white;
   font-size: 85%;
 }
+
+.area_image{
+  display: flex;
+  justify-content: center; 
+}
