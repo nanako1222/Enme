@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-1">
-      <h4 class="col-2 mt-5">ログイン</h4>
+      <h4 class="col-3 mt-5">店舗ログイン</h4>
       <% if flash[:notice] %>
         <%= notice %>
       <% end %>
 
-      <h6 class="col-4 mt-5 ml-4">店舗会員の方はこちらからログイン</h6>
+      <h6 class="col-5 mt-5 ml-4">店舗会員の方はこちらからログイン</h6>
 
       <%= form_with model: @restaurant, url: restaurant_session_path, id: 'in_restaurant', class: 'in_restaurant', local: true do |f| %>
         <div class="row field d-grid text-center mt-3">
@@ -25,12 +25,12 @@
 
         <h6 class="col-4 mt-5 ml-4">会員登録がお済みでない方</h6>
         <div class="row offset-2">
-          <a class ="member_registration" href = "/ress/sign_up">こちら</a>
+          <a class ="member_registration" href = "/restaurants/sign_up">こちら</a>
           <span>から新規登録を行ってください。</span>
         </div>
       <% end %>
 
-      <%= render "restaurant/shared/links" %>
+      <!--<%= render "restaurant/shared/links" %>-->
     </div>
   </div>
 </div>

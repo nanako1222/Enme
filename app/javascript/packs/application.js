@@ -16,7 +16,7 @@ import "bootstrap";
 import "../stylesheets/application";
 
 import '@fortawesome/fontawesome-free/js/all';
-import './test.js';
+import './area.js'
 
 Rails.start()
 Turbolinks.start()

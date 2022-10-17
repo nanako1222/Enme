@@ -30,14 +30,14 @@
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :住所（都道府県）, class: "col-md-4 text-left" %>
-          <!--<%= f.select :states_id, options_from_collection_for_select(State.all, :id, :state) %>-->
-          <%= f.collection_select :farm_states , State.all,:state,:state, id: 'stateSelect'%>
+          <%= f.collection_select :farm_states , State.all,:id,:state %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :住所（地域エリア）, class: "col-md-4 text-left" %>
-          <!--<%= f.select :areas_id, options_from_collection_for_select(Area.all, :id, :area) %>-->
-          <%= f.collection_select :farm_area , Area.all,:area,:area,id: 'areaSelect' %>
+          <div id="areas_select" >
+            <%= render partial: 'shared/areas', locals: { areas: Area.all } %>
+          </div>
         </div>
 
         <div class="row field d-grid text-center mt-3">
@@ -64,7 +64,7 @@
           <%= f.submit "新規登録", class: "btn btn-success mx-auto btn-lg" %>
         </div>
 
-        <h6 class="col-2 mt-4">既に登録済みの方</h6>
+        <h6 class="col-3 mt-4">既に登録済みの方</h6>
         <div class="row offset-1">
           <a class ="member_registration" href = "/customers/sign_in">こちら</a>
           <span>からログインしてください。</span>
