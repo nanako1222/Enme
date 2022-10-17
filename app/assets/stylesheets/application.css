@@ -14,6 +14,22 @@
  *= require_self
  */
 
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
 h4, h6 {
   color: maroon;
   border-radius: 4px;
@@ -37,7 +53,10 @@ th {
 }
 
 .navbar-expand-lg {
-  background-color: #556b2f ;
+  height: 80px;
+  background-image: url('navbar.jpeg');
+  background-size:cover;
+  background-position:center;
 }
 
 .wrapper{
@@ -45,10 +64,51 @@ th {
   position: relative;
   padding-bottom: 120px;
   box-sizing: border-box;
+  background-color: #ede4e1;
 }
 
 footer {
-  background-color: #556b2f ;
+  background-image: url('navbar.jpeg');
+  background-size:cover;
+  background-position:center;
   width: 100% ;
   color: white ;
+}
+
+.top_image{
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.top_image::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: inset 0 0 10px 15px #ede4e1;
+}
+
+.top_image img {
+  width: 150%;
+}
+
+.icon{
+  border-radius: 5px;
+}
+
+.restaurant_contents{
+  width: 300px;
+}
+
+.p_2{
+  margin: 0;
+  color: white;
+  font-size: 85%;
 }

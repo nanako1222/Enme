@@ -17,6 +17,9 @@
 
 
           <% if customer_signed_in? %>
+            <a class="navbar-brand" href="/">
+              <%= image_tag('logo.png', size:'200x60') %>
+            </a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -46,6 +49,9 @@
               </ul>
             </div>
           <% elsif admin_signed_in? %>
+            <a class="navbar-brand" href="/admin">
+              <%= image_tag('logo.png', size:'200x60') %>
+            </a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -79,6 +85,9 @@
               </ul>
             </div>
           <% elsif restaurant_signed_in? %>
+            <a class="navbar-brand" href="/restaurant">
+              <%= image_tag('logo.png', size:'200x60') %>
+            </a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -108,6 +117,9 @@
               </ul>
             </div>
           <% else %>
+            <a class="navbar-brand" href="/">
+              <%= image_tag('logo.png', size:'200x60') %>
+            </a>
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -143,9 +155,44 @@
     <body>
       <%= yield %>
     </body>
-
-    <footer class="fixed-bottom">
-      <p class="text-center"></p>
-    </footer>
   </div>
+
+    <footer class="text-white pt-5 pb-4">
+      <div class="row no-gutters">
+        <div class="col-ms-4">
+          <%= link_to new_restaurant_registration_path, class:"nav-link text-light" do %>
+            <strong>店舗新規会員登録</strong>
+          <% end %>
+          <%= link_to new_admin_session_path, class:"nav-link text-light" do %>
+            <strong>店舗ログイン</strong>
+          <% end %>
+        </div>
+        <div class="col-md-9">
+          <!--<div class="navbar-collapse collapse" id="navbarNavDropdown" style>-->
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <%= link_to new_restaurant_registration_path, class:"nav-link2 text-right" do %>
+                  <p class="p_2">お問合せ</p>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_admin_session_path, class:"nav-link2 text-right" do %>
+                  <p class="p_2">利用規約</p>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_restaurant_registration_path, class:"nav-link2 text-right" do %>
+                  <p class="p_2">プライバシーポリシー</p>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_restaurant_registration_path, class:"nav-link2 text-right" do %>
+                  <p class="p_2">運営者情報</p>
+                <% end %>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </footer>
+
 </html>

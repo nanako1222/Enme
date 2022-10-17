@@ -1,1 +1,21 @@
-<h1>TOPページ</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <% if flash[:notice] %>
+        <%= notice %>
+      <% end %>
+      <div class="top_image">
+        <%= image_tag 'top.jpg' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 mx-auto text-center">
+    <p class="about"><strong>Welcome to Enme!</strong></br>
+      ご覧頂きありがとうございます。</br>
+      Enme（エンミー）は食物アレルギー対策を行なっている</br>
+      関西の飲食店の検索サイトになります。</br>
+      地域検索やアレルギー検索をぜひご活用し</br>
+      アレルギーをお持ちの方でも楽しい食事の時間にして頂けたら幸いです。
+    </p>
+  </div>
+</div>
