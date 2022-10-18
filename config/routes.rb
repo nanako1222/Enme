@@ -41,18 +41,16 @@ Rails.application.routes.draw do
     resources :restaurants, only: [:update, :edit]
   end
   scope module: :customer do
+    resources :restaurant_menus, only: [:show, :index]
+    get "/restaurants/serch" => "restaurants#serch"
+    resources :restaurants, only: [:create, :index, :show]
+    patch "/customers/information" => "customers#update"
+    get "/customers/information/edit" => "customers#edit"
+    get "/customers/my_page" => "customers#show"
+    get "/customers/confirm" => "customers#confirm"
+    patch '/customers/out' => 'customers#out'
+    get "/customers/favorite/index" => "customers#index"
   end
-
-  resources :restaurant_menus, only: [:show, :index]
-  get "/restaurants/serch" => "restaurants#serch"
-  resources :restaurants, only: [:create, :index, :show]
-  patch "/customers/information" => "customers#update"
-  get "/customers/information/edit" => "customers#edit"
-  get "/customers/my_page" => "customers#show"
-  get "/customers/confirm" => "customers#confirm"
-  patch '/customers/out' => 'customers#out'
-  get "/customers/favorite/index" => "customers#index"
-
 end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

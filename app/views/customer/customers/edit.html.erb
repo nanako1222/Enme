@@ -1,1 +1,49 @@
-<h1>顧客の登録情報編集画面</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h4 class="col-3 mt-5">会員情報編集</h4>
+
+      <div class="mt-4">
+        <%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
+          <div class="row field d-grid text-center mt-3">
+            <%= f.label :氏名, class: "col-md-3 text-left" %>
+            <%= f.text_field :first_name, autofocus: true, required: true, class: "col-md-3" %>
+            <%= f.text_field :last_name, autofocus: true, required: true, class: "col-md-3 ml-2" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :フリガナ, class: "col-md-3 text-left" %>
+            <%= f.text_field :first_name_kana, autofocus: true, required: true, class: "col-md-3" %>
+            <%= f.text_field :last_name_kana, autofocus: true, required: true, class: "col-md-3 ml-2" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :メールアドレス, class: "col-md-3 text-left" %>
+            <%= f.email_field :email, autofocus: true, class: "col-md-6" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :都道府県, class: "col-md-3 text-left" %>
+            <%= f.collection_select :state_id , State.all,:id,:state %>
+          </div>
+
+          <div class="row field d-grid text-center mt-3">
+            <%= f.label :地域エリア, class: "col-md-3 text-left" %>
+            <%= render partial: 'shared/areas', locals: { areas: Area.all } %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :電話番号（ハイフンなし）, class: "col-md-3 text-left" %>
+            <%= f.number_field :telephone_number, autofocus: true, class: "col-md-6" %>
+          </div>
+
+          <div class="row field d-grid offset-3 mt-4">
+            <%= f.submit '編集内容を保存', class:"btn btn-success" %>
+            <%= link_to "退会する", customers_confirm_path(@customer), class:"btn btn-danger ml-5"%>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

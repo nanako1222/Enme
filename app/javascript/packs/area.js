@@ -1,6 +1,6 @@
 /*global $*/
 $(document).ready(function(){
-  $('#customer_farm_states').change(function() {
+  $('#customer_states_id').change(function() {
     $.ajax('/areas', {
       type: 'GET',
       data: {

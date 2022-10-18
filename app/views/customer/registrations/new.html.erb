@@ -30,7 +30,7 @@
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :住所（都道府県）, class: "col-md-4 text-left" %>
-          <%= f.collection_select :farm_states , State.all,:id,:state %>
+          <%= f.collection_select :state_id , State.all,:id,:state %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
