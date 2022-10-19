@@ -6,5 +6,5 @@ class Customer < ApplicationRecord
 
   has_many :customer_having_allergys, dependent: :destroy
   belongs_to :state
-  belongs_to :are
+  belongs_to :area
 end
