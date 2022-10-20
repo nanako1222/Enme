@@ -25,7 +25,8 @@
 
         <h6 class="col-4 mt-5 ml-4">会員登録がお済みでない方</h6>
         <div class="row offset-2">
-          <a class ="member_registration" href = "/customers/sign_up">こちら</a>
+          <!--<a class ="member_registration" href = "/customers/sign_up"></a>-->
+          <%= link_to 'こちら', new_customer_registration_path, class: "member_registration", data: {"turbolinks": false} %>
           <span>から新規登録を行ってください。</span>
         </div>
       <% end %>
