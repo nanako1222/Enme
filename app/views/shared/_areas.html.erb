@@ -1,1 +1,5 @@
-<%= collection_select :customer, :area_id, areas, :id, :area %>
+<%# if current_page?(new_customer_registration_path) %>
+ <%= collection_select :customer, :area_id, areas, :id, :area %>
+<%# elsif current_page?(new_restaurant_registration_path) %>
+ <%#= collection_select :restaurant, :area_id, areas, :id, :area %>
+<%# end %>

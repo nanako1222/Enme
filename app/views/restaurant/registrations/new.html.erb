@@ -18,12 +18,12 @@
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :店舗住所（都道府県）, class: "col-md-4 text-left" %>
-          <%= f.collection_select :farm_states , State.all,:state,:state, id: 'stateSelect'%>
+          <%= f.collection_select :state_id , State.all,:id,:state %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :店舗住所（地域エリア）, class: "col-md-4 text-left" %>
-          <%= f.collection_select :farm_area , Area.all,:area,:area,id: 'areaSelect' %>
+          <%= render partial: 'shared/areas', locals: { areas: Area.all } %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
@@ -33,12 +33,12 @@
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :電話番号（ハイフンなし）, class: "col-md-4 text-left" %><br />
-          <%= f.number_field :telephone_number, required: true, class: "col-md-3" %>
+          <%= f.text_field :telephone_number, required: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :定休日, class: "col-md-4 text-left" %>
-          <%= f.text_field :regular_holiday, required: true, class: "col-md-7" %>
+          <%= f.text_field :regular_holiday, required: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
@@ -67,7 +67,7 @@
         </div>
       <% end %>
 
-      <!--<%= render "restaurant/shared/links" %>-->
+      <%#= render "restaurant/shared/links" %>
     </div>
   </div>
 </div>
