@@ -8,12 +8,12 @@
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :店名, class: "col-md-4 text-left" %>
-          <%= f.email_field :name, required: true, class: "col-md-3" %>
+          <%= f.text_field :name, required: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :メールアドレス, class: "col-md-4 text-left" %>
-          <%= f.email_field :email, required: true, class: "col-md-3" %>
+          <%= f.text_field :email, required: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
@@ -23,7 +23,12 @@
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :店舗住所（地域エリア）, class: "col-md-4 text-left" %>
-          <%= render partial: 'shared/areas', locals: { areas: Area.all } %>
+          <%= f.collection_select :area_id , get_areas,:id,:area %>
+         <!--
+         <div id="areas_select" >
+            <%#= render partial: 'shared/restaurant_areas', locals: { areas: Area.all } %>
+          </div>  
+          -->
         </div>
 
         <div class="row field d-grid text-center mt-3">
@@ -39,6 +44,11 @@
         <div class="row field d-grid text-center mt-3">
           <%= f.label :定休日, class: "col-md-4 text-left" %>
           <%= f.text_field :regular_holiday, required: true, class: "col-md-3" %>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :営業時間, class: "col-md-4 text-left" %>
+          <%= f.text_field :business_hours, required: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">

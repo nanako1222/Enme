@@ -9,3 +9,8 @@ class Restaurant < ApplicationRecord
   belongs_to :state
   belongs_to :area
 end
+
+
+def get_areas 
+    return  Area.all
+end

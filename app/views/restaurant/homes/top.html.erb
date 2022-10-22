@@ -1,2 +1,69 @@
-<h1>トップページ(店舗詳細）</h1>
-<p>Find me in app/views/restaurant/homes/top.html.erb</p>
+<div class="container col-10 offset-1">
+  <% if flash[:notice] %>
+    <%= notice %>
+  <% end %>
+  <h4 class="col-4 mt-5">店舗詳細</h4>
+
+  <h5 class="mt-4">
+    <%= @restaurant.name %>
+    <%= link_to "編集する", restaurant_information_edit_path, class:"btn btn-success ml-4"%>
+  </h5>
+  <div class= "row">
+    <div class= "restaurant_image col-4 mt-4">
+      <% if @restaurant.image.attached? %>
+        <%= image_tag @restaurant.get_image(200,200) %>
+      <% else %>
+        <%= image_tag 'default-image.jpg', size: "200x200" %>
+      <% end %>
+    </div>
+    <div class= "col-8">
+      <%= @restaurant.introduction %>
+    </div>
+  </div>
+  <div class= "row">
+    <table class="table table-hover table-inverse col-5 mt-4 ">
+      <div>
+        <tr>
+          <th>都道府県</th>
+          <td><%= @state %></td>
+        </tr>
+        <tr>
+          <th>地域エリア</th>
+          <td><%= @area %></td>
+        </tr>
+        <tr>
+          <th>それ以降の住所</th>
+          <td><%= @restaurant.address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @restaurant.telephone_number %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @restaurant.email %></td>
+        </tr>
+        <tr>
+          <th>定休日</th>
+          <td><%= @restaurant.regular_holiday %></td>
+        </tr>
+        <tr>
+          <th>営業時間</th>
+          <td><%= @restaurant.business_hours %></td>
+        </tr>
+        <tr>
+          <th>ホームページURL</th>
+          <td><%= @restaurant.home_page %></td>
+        </tr>
+        <tr>
+          <th>駐車場</th>
+          <td><%= @restaurant.parking %></td>
+        </tr>
+      </div>
+    </table>
+    <div class= "col-7">
+      <h5>NEWS</h5>
+      <%= @restaurant.news %>
+    </div>
+  </div>
+</div>
