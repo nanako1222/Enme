@@ -1,2 +1,77 @@
-<h1>店舗の登録情報編集画面</h1>
-<p>Find me in app/views/restaurant/homes/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h4 class="col-3 mt-5">店舗情報編集</h4>
+
+      <div class="mt-4">
+        <%= form_with model: @restaurant, url: restaurant_information_path, method: :patch do |f| %>
+          <div class="row field d-grid text-center mt-3">
+            <%= f.label :商品画像, class: "col-md-3 text-left" %>
+            <%= f.file_field :image, accept: "image/*", class: "col-md-6" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-3">
+            <%= f.label :店名, class: "col-md-3 text-left" %>
+            <%= f.text_field :name, autofocus: true, required: true, class: "col-md-3" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :店舗紹介文, class: "col-md-3 text-left" %>
+            <%= f.text_area :introduction, autofocus: true, required: true, class: "col-md-8" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :都道府県, class: "col-md-3 text-left" %>
+            <%= f.collection_select :state_id , State.all,:id,:state %>
+          </div>
+
+          <div class="row field d-grid text-center mt-3">
+            <%= f.label :地域エリア, class: "col-md-3 text-left" %>
+            <%= render partial: 'shared/areas', locals: { areas: Area.all } %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :それ以降の住所, class: "col-md-3 text-left" %>
+            <%= f.text_field :address, autofocus: true, required: true, class: "col-md-8" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :電話番号（ハイフンなし）, class: "col-md-3 text-left" %>
+            <%= f.text_field :telephone_number, autofocus: true, class: "col-md-6" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :メールアドレス, class: "col-md-3 text-left" %>
+            <%= f.email_field :email, autofocus: true, class: "col-md-6" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :定休日, class: "col-md-3 text-left" %>
+            <%= f.text_field :regular_holiday, autofocus: true, class: "col-md-6" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :営業時間, class: "col-md-3 text-left" %>
+            <%= f.text_field :business_hours, autofocus: true, class: "col-md-6" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :ホームページURL, class: "col-md-3 text-left" %>
+            <%= f.text_field :home_page, autofocus: true, class: "col-md-6" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :駐車場, class: "col-md-3 text-left" %>
+            <%= f.text_field :parking, autofocus: true, class: "col-md-6" %>
+          </div>
+
+          <div class="row field d-grid offset-3 mt-4">
+            <%= f.submit '編集内容を保存', class:"btn btn-success" %>
+            <%= link_to "退会する", customers_confirm_path(@customer), class:"btn btn-danger ml-5"%>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
