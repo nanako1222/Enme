@@ -18,6 +18,8 @@ class Restaurant::MenusController < ApplicationController
   end
 
   def new
+    @allergies = Allergy.all
+    
     @menu = Menu.new
   end
 
@@ -40,6 +42,6 @@ class Restaurant::MenusController < ApplicationController
   
   private
   def menu_params
-    params.require(:menu).permit(:image, :name, :introduction, :price, :allergen)
+    params.require(:menu).permit(:image, :name, :introduction, :price, :allergen, :aller)
   end
 end
