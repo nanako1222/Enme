@@ -12,7 +12,7 @@ class Restaurant::HomesController < ApplicationController
   def update
     @restaurant = current_restaurant
     if @restaurant.update(restaurant_params)
-      redirect_to restaurants_my_page_path, notice: 'ユーザー情報の変更に成功しました'
+      redirect_to restaurant_path, notice: 'ユーザー情報の変更に成功しました'
     else
       render :edit
     end
@@ -32,6 +32,6 @@ class Restaurant::HomesController < ApplicationController
   private
     def restaurant_params
       params.require(:restaurant).permit(:name, :email, :state_id, :area_id, :telephone_number, :introduction, :news, :home_page,
-      :regular_holiday, :parking, :business_hours, :address)
+      :regular_holiday, :parking, :business_hours, :address, :image)
     end
 end

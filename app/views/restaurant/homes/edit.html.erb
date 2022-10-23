@@ -5,8 +5,9 @@
 
       <div class="mt-4">
         <%= form_with model: @restaurant, url: restaurant_information_path, method: :patch do |f| %>
+
           <div class="row field d-grid text-center mt-3">
-            <%= f.label :商品画像, class: "col-md-3 text-left" %>
+            <%= f.label :店舗画像, class: "col-md-3 text-left" %>
             <%= f.file_field :image, accept: "image/*", class: "col-md-6" %>
           </div>
 
@@ -63,6 +64,11 @@
           <div class="row field d-grid text-center mt-4">
             <%= f.label :駐車場, class: "col-md-3 text-left" %>
             <%= f.text_field :parking, autofocus: true, class: "col-md-6" %>
+          </div>
+
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :News, class: "col-md-3 text-left" %>
+            <%= f.text_area :news, autofocus: true, required: true, class: "col-md-8" %>
           </div>
 
           <div class="row field d-grid offset-3 mt-4">

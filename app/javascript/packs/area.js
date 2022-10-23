@@ -4,6 +4,7 @@ $(document).ready(function(){
     $.ajax('/areas', {
       type: 'GET',
       data: {
+        type: "customer",
         state_id: $(this).val()
       }
     }).done(function(data){
@@ -17,6 +18,7 @@ $(document).ready(function(){
     $.ajax('/areas', {
       type: 'GET',
       data: {
+        type: "restaurant",
         state_id: $(this).val()
       }
     }).done(function(data){

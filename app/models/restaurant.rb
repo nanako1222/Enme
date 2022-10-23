@@ -11,6 +11,6 @@ class Restaurant < ApplicationRecord
 end
 
 
-def get_areas 
+def get_areas
     return  Area.all
 end

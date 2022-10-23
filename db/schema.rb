@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_18_120041) do
+ActiveRecord::Schema.define(version: 2022_10_23_070037) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -124,7 +124,6 @@ ActiveRecord::Schema.define(version: 2022_10_18_120041) do
     t.text "news"
     t.string "home_page"
     t.string "regular_holiday", null: false
-    t.boolean "parking", default: true
     t.string "business_hours", null: false
     t.string "address", null: false
     t.integer "area_id", null: false
@@ -134,6 +133,7 @@ ActiveRecord::Schema.define(version: 2022_10_18_120041) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "state_id"
+    t.string "parking"
     t.index ["area_id"], name: "index_restaurants_on_area_id"
     t.index ["email"], name: "index_restaurants_on_email", unique: true
     t.index ["reset_password_token"], name: "index_restaurants_on_reset_password_token", unique: true

@@ -1,1 +1,6 @@
-<%= render "shared/areas", areas: @areas %>
+<% if @type == "customer" %>
+  <%= render "shared/areas", areas: @areas %>
+<% elsif @type == "restaurant" %>
+  <%= render "shared/restaurant_areas", areas: @areas %>
+<% end %>
+
