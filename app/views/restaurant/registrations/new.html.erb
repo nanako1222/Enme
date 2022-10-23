@@ -25,7 +25,7 @@
           <%= f.label :店舗住所（地域エリア）, class: "col-md-4 text-left" %>
           <%#= f.collection_select :area_id , get_areas,:id,:area %>
           <div id="areas_select" >
-            <%#= render partial: 'shared/restaurant_areas', locals: { areas: Area.all } %>
+            <%= render partial: 'shared/restaurant_areas', locals: { areas: Area.all } %>
           </div>
         </div>
 
