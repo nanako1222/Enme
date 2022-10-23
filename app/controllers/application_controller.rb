@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     if resource == :admin
       admin_path
     elsif resource == :restaurant
-      restaurant_path
+      root_path
     elsif resource == :customer
       root_path
     end
