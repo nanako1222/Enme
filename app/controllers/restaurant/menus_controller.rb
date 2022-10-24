@@ -19,15 +19,16 @@ class Restaurant::MenusController < ApplicationController
 
   def new
     @allergies = Allergy.all
-    
+
     @menu = Menu.new
   end
 
   def create
-    @menu = Menu.new(menu_params)
+    @menu = current_restaurant.menus.new(menu_params)
     if @menu.save
       redirect_to restaurant_menus_path(@menu.id), notice: 'Product was successfully created'
     else
+      @allergies = Allergy.all
       render :new
     end
   end
@@ -39,9 +40,9 @@ class Restaurant::MenusController < ApplicationController
 
   def destroy
   end
-  
+
   private
   def menu_params
-    params.require(:menu).permit(:image, :name, :introduction, :price, :allergen, :aller)
+    params.require(:menu).permit(:image, :name, :introduction, :price, :allergen)
   end
 end

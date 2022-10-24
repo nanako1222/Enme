@@ -13,7 +13,12 @@ if admin.new_record?
     admin.save!
 end
 
-Allergy.create!([{allergen: "卵"}, {allergen:"えび"}, {allergen: "かに"}, {allergen:"鮑"}, {allergen: "イカ"}, {allergen:"いくら"}])
+Allergy.create!([{allergen: "なし"}, {allergen: "卵"}, {allergen:"えび"}, {allergen: "かに"}, {allergen:"そば"}, {allergen: "落花生"}, {allergen:"小麦"},
+{allergen: "乳"}, {allergen:"あわび"}, {allergen: "イカ"}, {allergen:"いくら"}, {allergen: "オレンジ"}, {allergen:"キウイ"}, {allergen:"牛肉"},
+{allergen: "くるみ"}, {allergen:"サケ"}, {allergen: "りんご"}, {allergen:"サバ"}, {allergen: "大豆"}, {allergen:"鶏肉"}, {allergen:"バナナ"},
+{allergen: "豚肉"}, {allergen:"まつたけ"}, {allergen: "もも"}, {allergen:"やまいも"}, {allergen: "ゼラチン"}, {allergen:"ごま"}, {allergen:"カシューナッツ"},
+{allergen:"アーモンド"}
+])
 # egg: 1, shrimp: 2, crab: 3, buckwheat: 4, peanuts: 5, wheat: 6, milk: 7,
   # abalone: 8, squid: 9, salmon_roe: 10, orange: 11, kiwi: 12, beef: 13, walnut: 14, salmon: 15, apple: 16,
   # mackerel: 17, soy: 18, chicken: 19, banana: 20, pork: 21, matsutake_mushroom: 22, peach: 23, yam: 24, gelatin: 25,

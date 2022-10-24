@@ -33,14 +33,8 @@
               <%#= allergy.allergen %>
             <!--</label>-->
           <%# end %>
-          <%= f.collection_check_boxes :allergies, @allergies, :id, :allergen %>
+          <%= f.collection_check_boxes :allergies, @allergies, :id, :allergen, include_hidden: false %>
 
-          <!--<%# 配列.each.with_index do |配列の要素,i| %>-->
-          <!--  <label>-->
-          <!--    <%#= check_box_tag 'モデル名[チェックボックスの格納先のカラム名][]', 配列の要素,false,id:"id_contents_#{i}"%>-->
-          <!--    <%#= ラベル名 %>-->
-          <!--  </label>-->
-          <!--<%# end %>-->
         </div>
 
         <div class="row field d-grid text-center mt-3">
