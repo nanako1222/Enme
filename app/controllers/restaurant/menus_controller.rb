@@ -2,15 +2,17 @@ class Restaurant::MenusController < ApplicationController
   def index
     @menu = Menu.new
     @menus = Menu.page(params[:page])
+    @menu_count = Menu.count
   end
 
   def edit
     @menu = Menu.find(params[:id])
+    @allergies = Allergy.all
   end
 
   def update
     @menu = Menu.find(params[:id])
-    if @item.update(menu_params)
+    if @menu.update(menu_params)
       redirect_to restaurant_menus_path(@menu.id), notice: 'Product was successfully updated'
     else
       render :show
@@ -19,7 +21,6 @@ class Restaurant::MenusController < ApplicationController
 
   def new
     @allergies = Allergy.all
-
     @menu = Menu.new
   end
 
