@@ -41,6 +41,10 @@ Rails.application.routes.draw do
     resources :restaurants, only: [:update, :edit]
   end
   scope module: :customer do
+    #root to: 'restaurants#index'
+    # resources :restaurants
+    # get 'restaurants/search'
+
     resources :restaurant_menus, only: [:show, :index]
     get "/restaurants/serch" => "restaurants#serch"
     resources :restaurants, only: [:create, :index, :show]
