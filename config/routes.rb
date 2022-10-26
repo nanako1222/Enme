@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     # get 'restaurants/search'
 
     resources :restaurant_menus, only: [:show, :index]
-    get "/restaurants/serch" => "restaurants#serch"
+    get "/restaurants/search" => "restaurants#search"
     resources :restaurants, only: [:create, :index, :show]
     patch "/customers/information" => "customers#update"
     get "/customers/information/edit" => "customers#edit"

@@ -1,5 +1,4 @@
 class Customer::RestaurantsController < ApplicationController
-  before_action :search_demo, only: [:index, :search]
   def show
   end
 
@@ -8,16 +7,18 @@ class Customer::RestaurantsController < ApplicationController
   end
 
   def create
+    menu_ids = Menu.joins(:allergies).where(allergis: {id: params[:allergy_id]}).distinct.pluck(:id)
+    @restaurant.joins (:menus).where.not(menus:{id:menu_ids})
   end
 
   def search
-    @results = @d.result
-    # @allergies = Allergy.all
-    # @allergy = Allergy.find(params[:id])
+    @allergies = Allergy.all
+    @customer = Customer.new
   end
-  
-  private
-  def search_demo
-    @d = Demo.ransack(params[:q])  # 検索オブジェクトを生成
+
+  def customer_farm_area
+    if request.xhr?
+      render partial: 'areas', locals: {ms_pref_id: params[:ms_pref_id]}
+    end
   end
 end
