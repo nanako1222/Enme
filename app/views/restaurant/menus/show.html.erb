@@ -16,8 +16,8 @@
           <h5><strong><%= @menu.name %></strong></h5>
           <div class="mt-3"><%= @menu.introduction %></div>
           <div class="mt-3">
-            <% @menu.allergies.each do |allergen| %>
-              <td><%= menu.allergen %></td>
+            <% @menu.menu_having_allergies.each do |e| %>
+              <td><%= e.allergy.allergen %></td>
             <% end %>
           </div>
             <!--<th>税込価格</th>-->
