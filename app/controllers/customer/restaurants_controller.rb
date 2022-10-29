@@ -1,3 +1,5 @@
+
+
 class Customer::RestaurantsController < ApplicationController
   def show
   end
@@ -6,7 +8,12 @@ class Customer::RestaurantsController < ApplicationController
     #indexアクション内で検索画面のチェックボックスで検索を行いたい.
     #検索画面のアレルギーにチェックがついていないかつ顧客が持つアレルギーのチェックがないメニューを持つレストランを検索したい
     #1こでもアレルギーが入っているメニューが存在したらそれをはぶいて検索する
-    @restaurants = Restaurant.all
+    params = ["卵", "大豆"]
+    menus = Menu.all.reject do |menu|
+      menu.allergies.pluck(:allergen).any? { |allergen| allergen.in?(params) }
+    end
+
+    @restaurants = Restaurant.where(id: menus.pluck(:restaurant_ids))
   end
 
   def create

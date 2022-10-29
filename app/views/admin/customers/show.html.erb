@@ -1,2 +1,46 @@
 <h1>顧客詳細画面</h1>
 <p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class='col-10 offset-1 customer_show'>
+      <% if flash[:notice] %>
+        <%= notice %>
+      <% end %>
+      <h4 class="col-4 mt-5"><%= "#{@customer.full_name}さんの会員詳細" %></h4>
+      <table class="table table-hover table-inverse mt-4">
+        <tr>
+          <th>会員ID</th>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <td><%= @customer.full_name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= @customer.full_name_kana %></td>
+        </tr>
+        <tr>
+
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <th>退会ステーサス</th>
+          <td>
+            <% if @customer.is_valid == false %>
+              <p class="customer_valid">退会</p>
+            <% else %>
+              <p class="customer_valid2">有効</p>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <span class = "customer_edit">
+        <%= link_to "編集する", edit_admin_customer_path(@customer), class:"btn btn-success"%>
+      </span>
+
+    </div>
+  </div>
+</div>
