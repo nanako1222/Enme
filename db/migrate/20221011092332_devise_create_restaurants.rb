@@ -13,10 +13,12 @@ class DeviseCreateRestaurants < ActiveRecord::Migration[6.1]
       t.text :news
       t.string :home_page
       t.string :regular_holiday,    null: false
-      t.boolean :parking,           default: "true"
+      t.string :parking
       t.string :business_hours,     null: false
       t.string :address,            null: false
       t.references :area, null: false, foreign_key: true
+      t.references :state, null: false, foreign_key: true
+
 
       ## Recoverable
       t.string   :reset_password_token

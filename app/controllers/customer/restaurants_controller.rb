@@ -3,6 +3,9 @@ class Customer::RestaurantsController < ApplicationController
   end
 
   def index
+    #indexアクション内で検索画面のチェックボックスで検索を行いたい.
+    #検索画面のアレルギにチェックがついていないかつ顧客が持つアレルギのチェックがないメニュを持つレストランを検索したい
+    #1こでもアレルギが入っているメニュが存在したらそれをはぶいて啓作する
     @restaurants = Restaurant.all
   end
 

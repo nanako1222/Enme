@@ -23,8 +23,7 @@
                   <%#= allergy.allergen %>
                 <!--</label>-->
               <%# end %>
-              <% binding.pry %>
-              <%= f.collection_check_boxes :allergies, @allergies, :id, :allergen, include_hidden: false %>
+              <%= f.collection_check_boxes :allergy_ids, @allergies, :id, :allergen,checked:@menu.allergy_ids ,include_hidden: false %>
             </div>
 
             <div class="row field d-grid text-center mt-3">

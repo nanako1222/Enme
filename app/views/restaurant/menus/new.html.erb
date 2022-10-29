@@ -33,7 +33,7 @@
               <%#= allergy.allergen %>
             <!--</label>-->
           <%# end %>
-          <%= f.collection_check_boxes :allergies, @allergies, :id, :allergen, include_hidden: false %>
+          <%= f.collection_check_boxes :allergy_ids, @allergies, :id, :allergen, include_hidden: false %>
 
         </div>
 

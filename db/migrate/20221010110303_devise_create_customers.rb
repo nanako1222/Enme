@@ -11,6 +11,8 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.string :last_name_kana,     null: false
       t.string :first_name_kana,    null: false
       t.string :telephone_number,   null: false
+      t.references :area, null: false, foreign_key: true
+      t.references :state, null: false, foreign_key: true
       t.boolean :is_valid,         null: false, default: "true"
 
       ## Recoverable

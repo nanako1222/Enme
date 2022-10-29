@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_27_135513) do
+ActiveRecord::Schema.define(version: 2022_10_11_121841) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -83,16 +83,18 @@ ActiveRecord::Schema.define(version: 2022_10_27_135513) do
     t.string "last_name_kana", null: false
     t.string "first_name_kana", null: false
     t.string "telephone_number", null: false
+    t.integer "area_id", null: false
+    t.integer "state_id", null: false
     t.boolean "is_valid", default: true, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "state_id"
-    t.integer "area_id"
+    t.index ["area_id"], name: "index_customers_on_area_id"
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+    t.index ["state_id"], name: "index_customers_on_state_id"
   end
 
   create_table "menu_having_allergies", force: :cascade do |t|
@@ -124,19 +126,20 @@ ActiveRecord::Schema.define(version: 2022_10_27_135513) do
     t.text "news"
     t.string "home_page"
     t.string "regular_holiday", null: false
+    t.string "parking"
     t.string "business_hours", null: false
     t.string "address", null: false
     t.integer "area_id", null: false
+    t.integer "state_id", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "state_id"
-    t.string "parking"
     t.index ["area_id"], name: "index_restaurants_on_area_id"
     t.index ["email"], name: "index_restaurants_on_email", unique: true
     t.index ["reset_password_token"], name: "index_restaurants_on_reset_password_token", unique: true
+    t.index ["state_id"], name: "index_restaurants_on_state_id"
   end
 
   create_table "states", force: :cascade do |t|
@@ -150,8 +153,11 @@ ActiveRecord::Schema.define(version: 2022_10_27_135513) do
   add_foreign_key "areas", "states"
   add_foreign_key "customer_having_allergies", "allergies"
   add_foreign_key "customer_having_allergies", "customers"
+  add_foreign_key "customers", "areas"
+  add_foreign_key "customers", "states"
   add_foreign_key "menu_having_allergies", "allergies"
   add_foreign_key "menu_having_allergies", "menus"
   add_foreign_key "menus", "restaurants"
   add_foreign_key "restaurants", "areas"
+  add_foreign_key "restaurants", "states"
 end
