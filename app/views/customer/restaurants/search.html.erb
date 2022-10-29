@@ -1,23 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11 offset-1">
-      <!--<h4 class="col-3 mt-5">飲食店検索</h4>-->
+
       <div class="search-data">
         <h4 class="col-3 mt-5">飲食店検索</h4>
-        <%#= search_form_for @d, url: restaurants_search_path do |f| %>
-          <%#= f.label :アレルゲン, class: "col-md-2" %>
-          <%#= f.collection_select :menu.name_eq, @restaurants, :sample_product_name, :sample_product_name,  include_blank: '指定なし' %>
-          <%#= f.submit '検索' %>
-        <%# end %>
+
         <%= form_with model: @restaurant, url: restaurants_path,method: :get, id: 'search_restaurant', class: 'search_restaurant' do |f| %>
           <div class="row field d-grid text-center mt-3">
-            <p>アレルゲン選択</p>
-            <%# @allergies.each do |allergy| %>
-              <!--<label>-->
-                <%#= check_box_tag 'Allergy[]' %>
-                <%#= allergy.allergen %>
-              <!--</label>-->
-            <%# end %>
+            <%= f.label :アレルゲン選択, class: "col-md-4 text-left" %>
             <%= f.collection_check_boxes :allergies, @allergies, :id, :allergen, include_hidden: false %>
           </div>
 
@@ -36,10 +26,16 @@
           <div class="actions2 mt-4 offset-4">
             <%= f.submit "検索", class: "btn btn-success mx-auto btn-lg" %>
           </div>
-          <% if customer_signed_in? %>
-            <h4>登録アレルゲンで簡易検索</h4>
 
-          <% end %>
+          <div class="actions2 col-6 mt-4">
+            <% if customer_signed_in? %>
+              <h4>登録アレルゲンで簡易検索</h4>
+              <div class="text-center mt-3">
+                <%= f.submit "都道府県で検索", class: "btn btn-primary" %>
+                <%= f.submit "地域エリアで検索", class: "btn btn-primary ml-3" %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>

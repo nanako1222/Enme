@@ -37,11 +37,17 @@
             <%= f.number_field :telephone_number, autofocus: true, class: "col-md-6" %>
           </div>
 
+          <div class="row field d-grid text-center mt-3">
+            <p>含まれるアレルゲン</p>
+            <%= f.collection_check_boxes :allergy_ids, @allergies, :id, :allergen, include_hidden: false %>
+          </div>
+
           <div class="row field d-grid offset-3 mt-4">
             <%= f.submit '編集内容を保存', class:"btn btn-success" %>
             <%= link_to "退会する", customers_confirm_path(@customer), class:"btn btn-danger ml-5"%>
           </div>
         <% end %>
+
 
       </div>
     </div>

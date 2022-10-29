@@ -8,6 +8,7 @@ class Customer::CustomersController < ApplicationController
 
   def edit
     @customer = current_customer
+    @allergies = Allergy.all
   end
 
   def update
@@ -35,6 +36,6 @@ class Customer::CustomersController < ApplicationController
 
     private
     def customer_params
-      params.require(:customer).permit(:last_name, :first_name, :first_name_kana, :last_name_kana, :email, :state_id, :area_id, :telephone_number)
+      params.require(:customer).permit(:last_name, :first_name, :first_name_kana, :last_name_kana, :email, :state_id, :area_id, :telephone_number, allergy_ids: [])
     end
 end

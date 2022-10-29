@@ -4,7 +4,8 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :customer_having_allergys, dependent: :destroy
+  has_many :customer_having_allergies, dependent: :destroy
+  has_many :allergies, through: :customer_having_allergies, source: :allergy
   belongs_to :state
   belongs_to :area
 
