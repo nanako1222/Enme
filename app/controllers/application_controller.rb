@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    before_action :configure_permitted_parameters, if: :devise_controller?
+    # before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
     # byebug
@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
+    binding.irb
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana, :state_id, :area_id, :telephone_number, :name, :address, :regular_holiday, :business_hours])
   end
 end

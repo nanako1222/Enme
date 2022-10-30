@@ -1,2 +1,34 @@
 <h1>管理者トップページ(店舗一覧)</h1>
 <p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1">
+      <h4 class="col-2 mt-5">会員一覧</h4>
+      <table class="table table-hover mt-4">
+        <thead class="table-secondary">
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>退会ステーサス</th>
+        </thead>
+        <tbody>
+          <% @restaurants.each do |restaurant| %>
+            <tr>
+              <td><%= restaurant.id %></td>
+              <td><%= link_to restaurant.name, admin_restaurant_path(restaurant.id) %></td>
+              <td><%= restaurant.email %></td>
+              <td>
+                <% if restaurant.is_valid == false %>
+                  <p class="restaurant_valid">退会</p>
+                <% else %>
+                  <p class="restaurant_valid2">有効</p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          <%= paginate @restaurants %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,42 @@
 <h1>管理者飲食店詳細画面</h1>
 <p>Find me in app/views/admin/restaurants/show.html.erb</p>
+
+<div class="container">
+  <div class="row">
+    <div class='col-10 offset-1 customer_show'>
+      <% if flash[:notice] %>
+        <%= notice %>
+      <% end %>
+      <h4 class="col-4 mt-5"><%= "#{@restaurant.name}の店舗詳細" %></h4>
+      <table class="table table-hover table-inverse mt-4">
+        <tr>
+          <th>会員ID</th>
+          <td><%= @restaurant.id %></td>
+        </tr>
+        <tr>
+          <th>店名</th>
+          <td><%= @restaurant.name %></td>
+        </tr>
+
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @restaurant.email %></td>
+        </tr>
+        <tr>
+          <th>退会ステーサス</th>
+          <td>
+            <% if @restaurant.is_valid == false %>
+              <p class="restaurant_valid">退会</p>
+            <% else %>
+              <p class="restaurant_valid2">有効</p>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <span class = "restaurant_edit">
+        <%= link_to "編集する", edit_admin_restaurant_path(@restaurant), class:"btn btn-success"%>
+      </span>
+
+    </div>
+  </div>
+</div>
