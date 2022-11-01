@@ -5,10 +5,13 @@ class Customer::RestaurantsController < ApplicationController
   before_action :set_search_query, only: :index
 
   def show
+    @restaurant = Restaurant.find(params[:id])
+    @state = State.find(@restaurant.state_id).state
+    @area = Area.find(@restaurant.area_id).area
+    @restaurant.image
   end
 
   def index
-    #indexアクション内で検索画面のチェックボックスで検索を行いたい.
     #検索画面のアレルギーにチェックがついていないかつ顧客が持つアレルギーのチェックがないメニューを持つレストランを検索したい
     #1こでもアレルギーが入っているメニューが存在したらそれをはぶいて検索する
 
@@ -26,8 +29,8 @@ class Customer::RestaurantsController < ApplicationController
 
   def create
     @allergy_id = params[:allergy_id]
-    #menu_ids = Menu.joins(:allergies).where(allergis: {id: params[:allergy_id]}).distinct.pluck(:id)
-    menu_ids = Menu.joins(:allergies).where(allergis: {id: @allergy_id}).distinct.pluck(:id)
+    menu_ids = Menu.joins(:allergies).where(allergis: {id: params[:allergy_id]}).distinct.pluck(:id)
+    # menu_ids = Menu.joins(:allergies).where(allergis: {id: @allergy_id}).distinct.pluck(:id)
     @restaurant.joins (:menus).where.not(menus:{id:menu_ids})
   end
 
