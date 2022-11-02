@@ -32,20 +32,27 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
   end
   namespace :restaurant do
-    resources :menus, only: [:create, :index, :show, :new, :edit, :update, :destroy]
+    # resources :menus, only: [:create, :index, :show, :new, :edit, :update, :destroy]
     get '/' => 'homes#top', as: 'homes'
     get "information/edit" => "homes#edit"
     patch "/information" => "homes#update"
     get "/confirm" => "homes#confirm"
     patch '/out' => 'homes#out'
-    resources :restaurants, only: [:update, :edit]
+    resources :restaurants, only: [:update, :edit] do
+      resources :menus, only: [:create, :index, :show, :new, :edit, :update, :destroy]
+    end
   end
 
   scope module: :customer do
 
-    resources :restaurant_menus, only: [:index, :show]
-    get "/restaurants/search" => "restaurants#search"
-    resources :restaurants, only: [:create, :index, :show]
+    # resources :restaurant_menus, only: [:index, :show]
+    # get "/restaurants/search" => "restaurants#search"
+    resources :restaurants, only: [:create, :index, :show] do
+      collection do
+        get "search"
+      end
+      resources :menus, only: [:index, :show]
+    end
     patch "/customers/information" => "customers#update"
     get "/customers/information/edit" => "customers#edit"
     get "/customers/my_page" => "customers#show"
