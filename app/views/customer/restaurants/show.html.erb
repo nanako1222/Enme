@@ -1,5 +1,4 @@
-<h1>飲食店詳細</h1>
-<p>Find me in app/views/customer/restaurants/show.html.erb</p>
+
 <div class="container col-10 offset-1">
   <% if flash[:notice] %>
     <%= notice %>
@@ -8,19 +7,10 @@
 
   <h5 class="mt-4">
     <%= @restaurant.name %>
-    <%= link_to "メニュー一覧", restaurant_menus_path, class:"btn btn-success ml-4"%>
+    <%= link_to "メニュー一覧", restaurant_menus_path(@restaurant.id), class:"btn btn-success ml-4"%>
   </h5>
   <div class= "row">
     <div class= "restaurant_image col-4 mt-4 text-center">
-      <%# if @restaurant.image.attached? %>
-        <%#= link_to restaurant_path(@restaurant) do %>
-          <%#= image_tag @restaurant.get_image(200,200) %>
-        <%# end %>
-      <%# else %>
-        <%#= link_to restaurant_path(@restaurant) do %>
-          <%#= image_tag 'default-image.jpg', size: "200x200" %>
-        <%# end %>
-      <%# end %>
       <%# if @restaurant.image.attached? %>
         <%#= image_tag @restaurant.get_image(200,200) %>
       <%# else %>

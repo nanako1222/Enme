@@ -14,7 +14,7 @@ class Customer::RestaurantsController < ApplicationController
   def index
     #検索画面のアレルギーにチェックがついていないかつ顧客が持つアレルギーのチェックがないメニューを持つレストランを検索したい
     #1こでもアレルギーが入っているメニューが存在したらそれをはぶいて検索する
-
+    
     menus = if @allergy_ids.blank?
               Menu.all
             else

@@ -1,6 +1,7 @@
-class Customer::RestaurantMenusController < ApplicationController
+class Customer::MenusController < ApplicationController
     before_action :authenticate_restaurant!
   def index
+    @restaurants = Restaurant.all
   end
 
   def show
@@ -8,4 +9,5 @@ class Customer::RestaurantMenusController < ApplicationController
     @state = State.find(@customer.state_id).state
     @area = Area.find(@customer.area_id).area
   end
+
 end
