@@ -3,8 +3,6 @@ class Restaurant::HomesController < ApplicationController
     @restaurant = current_restaurant
     @state = State.find(@restaurant.state_id).state
     @area = Area.find(@restaurant.area_id).area
-    @restaurant_image = current_restaurant
-    @restaurant_image.image
   end
 
   def edit

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     # byebug
     case resource
     when Restaurant
-      restaurants_path
+      restaurant_homes_path
     when Admin
       admin_path
     when Customer
