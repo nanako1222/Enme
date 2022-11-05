@@ -23,7 +23,7 @@
             <!--<th>税込価格</th>-->
           <div class="mt-5"><span>税抜価格（税込価格）</span><br><strong class="price"><%= "#{@menu.price}円" %>(<%= "#{@menu.with_tax_price}円" %>)　</strong></div>
           <div class="col-3 mt-5">
-            <%= link_to "編集する", edit_restaurant_menu_path(@menu), class:"btn btn-success"%>
+            <%= link_to "編集する", edit_restaurant_restaurant_menu_path(@menu), class:"btn btn-success"%>
           </div>
         </div>
       </div>
