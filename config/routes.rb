@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     get "/confirm" => "homes#confirm"
     patch '/out' => 'homes#out'
     resources :restaurants, only: [:update, :edit] do
-      resources :menus, only: [:create, :index, :show, :new, :edit, :update, :destroy]
+      resources :menus, only: [:index, :show, :new, :create, :edit, :update, :destroy]
     end
   end
 

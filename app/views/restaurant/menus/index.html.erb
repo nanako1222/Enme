@@ -10,18 +10,18 @@
             <p class ="p_1">
               <div class="item_image">
                 <% if menu.image.attached? %>
-                  <%= link_to restaurant_menu_path(menu) do %>
+                  <%= link_to restaurant_restaurant_menu_path(@restaurant, menu) do %>
                     <%= image_tag menu.get_image(100,100) %>
                   <% end %>
                 <% else %>
-                  <%= link_to restaurant_menu_path(menu) do %>
+                  <%= link_to restaurant_restaurant_menu_path(@restaurant, menu) do %>
                     <%= image_tag 'default-image.jpg', size: "100x100" %>
                   <% end %>
                 <% end %>
 
               </div>
             </p>
-            <p class ="p_1"><%= link_to menu.name, restaurant_menu_path(menu.id) %></p>
+            <p class ="p_1"><%= link_to menu.name, restaurant_restaurant_menu_path(@restaurant, menu) %></p>
             <p class ="p_1"><%= "¥#{menu.price}" %></p>
             </div>
           <% end %>
@@ -31,3 +31,4 @@
 
     </div>
   </div>
+</div>

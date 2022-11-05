@@ -1,7 +1,8 @@
 class Restaurant::MenusController < ApplicationController
   def index
+    @restaurant = current_restaurant
     @menu = Menu.new
-    @menus = Menu.page(params[:page])
+    @menus = @restaurant.menus.page(params[:page])
     @menu_count = Menu.count
   end
 
@@ -20,6 +21,7 @@ class Restaurant::MenusController < ApplicationController
   end
 
   def new
+    @restaurant = current_restaurant
     @allergies = Allergy.all
     @menu = Menu.new
   end
