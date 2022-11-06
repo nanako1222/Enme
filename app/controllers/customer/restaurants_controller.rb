@@ -38,6 +38,10 @@ class Customer::RestaurantsController < ApplicationController
     @allergies = Allergy.all
     @customer = Customer.new
   end
+  
+  def member_search
+    
+  end
 
   def customer_farm_area
     if request.xhr?

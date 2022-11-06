@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     resources :restaurants, only: [:create,:index, :show] do
       collection do
         get "search"
+        get "member_search"
       end
       resources :menus, only: [:index, :show]
     end
