@@ -19,7 +19,6 @@ class Customer::RestaurantsController < ApplicationController
               Menu.all
             else
               Menu.all.reject do |menu|
-
                 menu.allergies.pluck(:id).any? { |allergen| allergen.in?(@allergy_ids) }
               end
             end

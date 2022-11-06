@@ -69,6 +69,16 @@
           <th>駐車場</th>
           <td><%= @restaurant.parking %></td>
         </tr>
+        <tr>
+          <th>アレルギー一覧</th>
+          <td>
+            <% @restaurant.menus.each do |menu| %>
+              <% menu.allergies.each do |allergy| %>
+                <%= allergy.allergen %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
       </div>
     </table>
     <div class= "col-7 mt-4">

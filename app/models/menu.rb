@@ -1,7 +1,7 @@
 class Menu < ApplicationRecord
   has_one_attached :image
   has_many :menu_having_allergies, dependent: :destroy
-  has_many :allergies, through: :menu_having_allergies
+  has_many :allergies, through: :menu_having_allergies, dependent: :destroy
   belongs_to :restaurant
 
   validates :price, presence: true

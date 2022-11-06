@@ -1,4 +1,4 @@
 class MenuHavingAllergy < ApplicationRecord
-  belongs_to :menu, dependent: :destroy
-  belongs_to :allergy, dependent: :destroy
+  belongs_to :menu
+  belongs_to :allergy
 end

@@ -1,5 +1,5 @@
 /*global $*/
-$(document).ready(function(){
+$(document).on('turbolinks:load',function(){
   $('#customer_state_id').change(function() {
     $.ajax('/areas', {
       type: 'GET',
@@ -13,7 +13,7 @@ $(document).ready(function(){
   })
 });
 
-$(document).ready(function(){
+$(document).on('turbolinks:load',function(){
   $('#restaurant_state_id').change(function() {
     $.ajax('/areas', {
       type: 'GET',

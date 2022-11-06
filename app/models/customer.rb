@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :customer_having_allergies, dependent: :destroy
-  has_many :allergies, through: :customer_having_allergies, source: :allergy
+  has_many :allergies, through: :customer_having_allergies, dependent: :destroy
   belongs_to :state
   belongs_to :area
 
