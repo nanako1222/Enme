@@ -12,7 +12,7 @@ class Restaurant::HomesController < ApplicationController
   def update
     @restaurant = current_restaurant
     if @restaurant.update(restaurant_params)
-      redirect_to restaurant_path, notice: 'ユーザー情報の変更に成功しました'
+      redirect_to restaurant_homes_path, notice: 'ユーザー情報の変更に成功しました'
     else
       render :edit
     end

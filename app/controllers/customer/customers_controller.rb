@@ -20,9 +20,6 @@ class Customer::CustomersController < ApplicationController
     end
   end
 
-  def index
-  end
-
   def confirm
     @customer = current_customer
   end
@@ -38,4 +35,5 @@ class Customer::CustomersController < ApplicationController
     def customer_params
       params.require(:customer).permit(:last_name, :first_name, :first_name_kana, :last_name_kana, :email, :state_id, :area_id, :telephone_number, allergy_ids: [])
     end
+
 end

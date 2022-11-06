@@ -11,11 +11,11 @@
   </h5>
   <div class= "row">
     <div class= "restaurant_image col-4 mt-4 text-center">
-      <%# if @restaurant.image.attached? %>
-        <%#= image_tag @restaurant.get_image(200,200) %>
-      <%# else %>
-        <%#= image_tag 'default-image.jpg', size: "200x200" %>
-      <%# end %>
+      <% if @restaurant.image.attached? %>
+        <%= image_tag @restaurant.get_image(200,200) %>
+      <% else %>
+        <%= image_tag 'default-image.jpg', size: "200x200" %>
+      <% end %>
     </div>
     <div class= "col-8 mt-4">
       <%= @restaurant.introduction %>

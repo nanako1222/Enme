@@ -14,11 +14,11 @@
           <% @restaurants.each do |restaurant| %>
             <tr>
               <td>
-                <%# if restaurant.image.attached? %>
-                  <%#= image_tag restaurant.get_image(60,50) %>
-                <%# else %>
-                  <%#= image_tag 'default-image.jpg', size: "60x50" %>
-                <%# end %>
+                <% if restaurant.image.attached? %>
+                  <%= image_tag restaurant.get_image(60,50) %>
+                <% else %>
+                  <%= image_tag 'default-image.jpg', size: "60x50" %>
+                <% end %>
                 <%= link_to restaurant.name, restaurant_path(restaurant.id) %>
               </td>
               <td><%= restaurant.address %></td>

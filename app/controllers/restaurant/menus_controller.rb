@@ -7,14 +7,16 @@ class Restaurant::MenusController < ApplicationController
   end
 
   def edit
+    @restaurant = current_restaurant
     @menu = Menu.find(params[:id])
     @allergies = Allergy.all
   end
 
   def update
+    @restaurant = current_restaurant
     @menu = Menu.find(params[:id])
     if @menu.update(menu_params)
-      redirect_to restaurant_menus_path(@menu.id), notice: 'Product was successfully updated'
+      redirect_to restaurant_restaurant_menu_path(@restaurant, @menu), notice: 'Product was successfully updated'
     else
       render :show
     end
@@ -29,7 +31,7 @@ class Restaurant::MenusController < ApplicationController
   def create
     @menu = current_restaurant.menus.new(menu_params)
     if @menu.save
-      redirect_to restaurant_menus_path(@menu.id), notice: 'Product was successfully created'
+      redirect_to restaurant_restaurant_menus_path(@menu.id), notice: 'Product was successfully created'
     else
       @allergies = Allergy.all
       render :new
@@ -37,6 +39,7 @@ class Restaurant::MenusController < ApplicationController
   end
 
   def show
+    @restaurant = current_restaurant
     @menu = Menu.find(params[:id])
     @menu.image
   end

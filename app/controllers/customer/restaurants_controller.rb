@@ -43,9 +43,6 @@ class Customer::RestaurantsController < ApplicationController
     if request.xhr?
       render partial: 'areas', locals: {ms_pref_id: params[:ms_pref_id]}
     end
-    # if request.xhr?
-    #   render partial: 'areas', locals: {ms_pref_id: @ms_pref_id}
-    # end
   end
 
   private

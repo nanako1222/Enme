@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
     # resources :restaurant_menus, only: [:index, :show]
     # get "/restaurants/search" => "restaurants#search"
-    resources :restaurants, only: [:create, :index, :show] do
+    resources :restaurants, only: [:create,:index, :show] do
       collection do
         get "search"
       end
