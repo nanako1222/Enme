@@ -14,7 +14,7 @@ class Customer::RestaurantsController < ApplicationController
   def index
     #検索画面のアレルギーにチェックがついていないかつ顧客が持つアレルギーのチェックがないメニューを持つレストランを検索したい
     #1こでもアレルギーが入っているメニューが存在したらそれをはぶいて検索する
-    
+
     menus = if @allergy_ids.blank?
               Menu.all
             else
@@ -24,7 +24,15 @@ class Customer::RestaurantsController < ApplicationController
               end
             end
 
-    @restaurants = Restaurant.where(id: menus.pluck(:restaurant_id) ,state_id: @state_id, area_id: @area_id )
+    if @state_id && @area_id
+      @restaurants = Restaurant.where(id: menus.pluck(:restaurant_id), state_id: @state_id, area_id: @area_id )
+    elsif @state_id
+      @restaurants = Restaurant.where(id: menus.pluck(:restaurant_id), state_id: @state_id)
+    elsif @area_id
+      @restaurants = Restaurant.where(id: menus.pluck(:restaurant_id), area_id: @area_id)
+    else
+      @restaurants = Restaurant.all
+    end
   end
 
   def create
@@ -38,9 +46,10 @@ class Customer::RestaurantsController < ApplicationController
     @allergies = Allergy.all
     @customer = Customer.new
   end
-  
+
   def member_search
-    
+    @customer = current_customer
+    @allergies = Allergy.all
   end
 
   def customer_farm_area
@@ -59,9 +68,12 @@ class Customer::RestaurantsController < ApplicationController
   # end
 
   def set_search_query
-    @allergy_ids = params[:allergies].map(&:to_i)
+    @allergy_ids = (params[:allergies] || []).map(&:to_i)
     @state_id = params[:state_id]
     @area_id = params.dig(:customer, :area_id)
   end
 
 end
+
+#https://2fa50ee19e8141c384c19facfdbf4b5d.vfs.cloud9.ap-northeast-1.amazonaws.com
+#/restaurants?allergies[]=2&allergies[]=3&state_id=1&customer[area_id]=1&commit=%E6%A4%9C%E7%B4%A2

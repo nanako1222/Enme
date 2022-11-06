@@ -5,10 +5,12 @@
       <div class="search-data">
         <h4 class="col-3 mt-5">会員検索</h4>
 
-
-        <%= form_with url: restaurants_path,method: :get, id: 'member_search_restaurant', class: 'member_search_restaurant', local: true do |f| %>
-          
+        <%= form_with url: restaurants_path(state_id: 1), method: :get, id: 'member_search_restaurant', class: 'member_search_restaurant', local: true do |f| %>
+          <%= f.submit "都道府県で検索" %>
+          <%= f.submit "地域エリアで検索" %>
         <% end %>
+        <%= @customer.allergy_ids %>
+        <%= link_to "都道府県で検索", restaurants_path(customer: { area_id: @customer.area_id }, state_id: @customer.state_id, allergies: @customer.allergy_ids) %>
       </div>
     </div>
   </div>
