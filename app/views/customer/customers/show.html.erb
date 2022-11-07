@@ -39,7 +39,11 @@
         </tr>
         <tr>
           <th>アレルギー</th>
-          <td><%= @customer.allergy_ids %></td>
+          <td>
+            <% @customer.allergies.each do |allergy| %>
+              <%= allergy.allergen %>
+            <% end %>
+          </td>
         </tr>
       </table>
     </div>
