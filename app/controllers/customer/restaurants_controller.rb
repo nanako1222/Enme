@@ -22,7 +22,7 @@ class Customer::RestaurantsController < ApplicationController
                 menu.allergies.pluck(:id).any? { |allergen| allergen.in?(@allergy_ids) }
               end
             end
-
+#byebug
     if @state_id && @area_id
       @restaurants = Restaurant.where(id: menus.pluck(:restaurant_id), state_id: @state_id, area_id: @area_id )
     elsif @state_id
@@ -67,7 +67,7 @@ class Customer::RestaurantsController < ApplicationController
   # end
 
   def set_search_query
-    @allergy_ids = (params[:allergies] || []).map(&:to_i)
+    @allergy_ids = (params[:customer][:allergies] || []).map(&:to_i)
     @state_id = params[:state_id]
     @area_id = params.dig(:customer, :area_id)
   end
