@@ -13,21 +13,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def after_sign_out_path_for(resource)
-    # byebug binding.pry
-    if resource == :admin
-      admin_path
-    elsif resource == :restaurant
-      root_path
-    elsif resource == :customer
-      root_path
-    end
-  end
+  # def after_sign_out_path_for(resource)
+  #   # byebug binding.pry
+  #   if resource == :admin
+  #     admin_path
+  #   elsif resource == :restaurant
+  #     root_path
+  #   elsif resource == :customer
+  #     root_path
+  #   end
+  # end
 
-  protected
-  def configure_permitted_parameters
-    binding.irb
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana, :state_id, :area_id, :telephone_number, :name, :address, :regular_holiday, :business_hours])
-  end
+  # protected
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :first_name_kana, :last_name_kana, :state_id, :area_id, :telephone_number, :name, :address, :regular_holiday, :business_hours])
+  # end
 end
 
