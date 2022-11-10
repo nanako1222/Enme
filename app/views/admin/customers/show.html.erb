@@ -26,16 +26,7 @@
           <th>メールアドレス</th>
           <td><%= @customer.email %></td>
         </tr>
-        <tr>
-          <th>退会ステーサス</th>
-          <td>
-            <% if @customer.is_valid == false %>
-              <p class="customer_valid">退会</p>
-            <% else %>
-              <p class="customer_valid2">有効</p>
-            <% end %>
-          </td>
-        </tr>
+
         <tr>
           <th>都道府県</th>
           <td><%= @state %></td>
@@ -47,6 +38,16 @@
         <tr>
           <th>電話番号</th>
           <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <th>退会ステーサス</th>
+          <td>
+            <% if @customer.is_valid == false %>
+              <p class="customer_valid">退会</p>
+            <% else %>
+              <p class="customer_valid2">有効</p>
+            <% end %>
+          </td>
         </tr>
       </table>
       <span class = "customer_edit">
