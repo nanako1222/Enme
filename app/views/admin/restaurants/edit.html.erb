@@ -18,9 +18,41 @@
           <%= f.text_field :name, autofocus: true, required: true, class: "col-md-3" %>
         </div>
 
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :住所（都道府県）, class: "col-md-4 text-left" %>
+          <%= f.collection_select :state_id , State.all,:id,:state %>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :住所（地域エリア）, class: "col-md-4 text-left" %>
+          <div id="areas_select" >
+            <%= render partial: 'shared/restaurant_areas', locals: { areas: Area.all } %>
+          </div>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :それ以降の住所, class: "col-md-4 text-left" %>
+          <%= f.text_field :address, autofocus: true, class: "col-md-3" %>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :電話番号（ハイフンなし）, class: "col-md-4 text-left" %><br />
+          <%= f.text_field :telephone_number, required: true, class: "col-md-3" %>
+        </div>
+
         <div class="row field d-grid text-center mt-4">
           <%= f.label :メールアドレス, class: "col-md-3 text-left" %>
           <%= f.email_field :email, autofocus: true, class: "col-md-6" %>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :定休日, class: "col-md-4 text-left" %>
+          <%= f.text_field :regular_holiday, required: true, class: "col-md-3" %>
+        </div>
+
+        <div class="row field d-grid text-center mt-3">
+          <%= f.label :営業時間, class: "col-md-4 text-left" %>
+          <%= f.text_field :business_hours, required: true, class: "col-md-3" %>
         </div>
 
         <div class="row form-group mt-4 ml-26">

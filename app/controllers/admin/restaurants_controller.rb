@@ -7,6 +7,8 @@ class Admin::RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    @state = State.find(@restaurant.state_id).state
+    @area = Area.find(@restaurant.area_id).area
   end
 
   def edit
