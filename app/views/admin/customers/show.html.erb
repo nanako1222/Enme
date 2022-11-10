@@ -36,6 +36,18 @@
             <% end %>
           </td>
         </tr>
+        <tr>
+          <th>都道府県</th>
+          <td><%= @state %></td>
+        </tr>
+        <tr>
+          <th>地域エリア</th>
+          <td><%= @area %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
       </table>
       <span class = "customer_edit">
         <%= link_to "編集する", edit_admin_customer_path(@customer), class:"btn btn-success"%>

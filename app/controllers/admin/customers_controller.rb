@@ -7,6 +7,8 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @state = State.find(@customer.state_id).state
+    @area = Area.find(@customer.area_id).area
   end
 
   def edit
