@@ -14,7 +14,7 @@
             <% end %>
           </div>
         </div>
-        <div class="col-7 mt-5 item_show">
+        <div class="col-7 mt-5 menu_show">
           <h5><strong><%= @menu.name %></strong></h5>
           <div class="mt-3"><%= @menu.introduction %></div>
           <div class="mt-3">
@@ -24,6 +24,9 @@
           </div>
             <!--<th>税込価格</th>-->
           <div class="mt-5"><span>税抜価格（税込価格）</span><br><strong class="price"><%= "#{@menu.price}円" %>(<%= "#{@menu.with_tax_price}円" %>)　</strong></div>
+        </div>
+        <div class = "row mt-4">
+          <p class ="p_1"><%= link_to ">>メニュー一覧に戻る", restaurant_menus_path(@restaurant) %></p>
         </div>
       </div>
     </div>

@@ -14,7 +14,8 @@ class Customer::RestaurantsController < ApplicationController
   def index
     #検索画面のアレルギーにチェックがついていないかつ顧客が持つアレルギーのチェックがないメニューを持つレストランを検索したい
     #1こでもアレルギーが入っているメニューが存在したらそれをはぶいて検索する
-
+    #ここにある記述は会員じゃない人の条件検索のため、会員のアレルギー情報はとってきていない
+    #会員情報をもとに検索して表示させるindexページを分けた方がいいのか？
     menus = if @allergy_ids.blank?
               Menu.all
             else
