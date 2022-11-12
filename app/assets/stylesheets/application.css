@@ -116,11 +116,21 @@ footer {
 
 .area_image{
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .navbar{
   position: fixed;
   z-index: 2;
+}
+
+.lb-image{
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.lb-outerContainer{
+  width: 90% !important;
+  height: 100% !important;
 }
 
