@@ -54,6 +54,16 @@
           <td><%= @restaurant.parking %></td>
         </tr>
         <tr>
+          <th>アレルギー一覧</th>
+          <td>
+            <% @restaurant.menus.each do |menu| %>
+              <% menu.allergies.each do |allergy| %>
+                <%= allergy.allergen %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
           <th>退会ステーサス</th>
           <td>
             <% if @restaurant.is_valid == false %>
