@@ -11,8 +11,8 @@ class Customer::MenusController < ApplicationController
   def show
     @restaurant = current_customer
     @menu = Menu.find(params[:id])
-    @state = State.find(@customer.state_id).state
-    @area = Area.find(@customer.area_id).area
+    # @state = State.find(@customer.state_id).state
+    # @area = Area.find(@customer.area_id).area
   end
 
   private

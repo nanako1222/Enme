@@ -23,7 +23,7 @@
 
               </div>
             </p>
-            <p class ="p_1"><%= link_to menu.name, restaurant_restaurant_menu_path(@restaurant, menu) %></p>
+            <p class ="p_1"><%= link_to menu.name, restaurant_menu_path(@restaurant, menu) %></p>
             <p class ="p_1"><%= "¥#{menu.price}" %></p>
             </div>
           <% end %>
