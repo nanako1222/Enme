@@ -11,8 +11,14 @@
             <%= allergy.allergen %>
           <% end %>
         </div>
-        <%= link_to "都道府県で検索", restaurants_path(customer: { state_id: @customer.state_id }, allergies: @customer.allergy_ids) %>
-        <%= link_to "地域エリアで検索", restaurants_path(customer: { area_id: @customer.area_id }, state_id: @customer.state_id, allergies: @customer.allergy_ids) %>
+        <%= link_to restaurants_path(customer: { state_id: @customer.state_id }, allergies: @customer.allergy_ids), class: "btn btn-outline-primary" do %>
+          <i class="far fa-map"></i>
+          都道府県で検索
+        <% end %>
+        <%= link_to restaurants_path(customer: { area_id: @customer.area_id }, state_id: @customer.state_id, allergies: @customer.allergy_ids), class: "btn btn-outline-success ml-3" do%>
+          <i class="fas fa-map-marked-alt"></i>
+          地域エリアで検索
+        <% end %>
       </div>
     </div>
   </div>

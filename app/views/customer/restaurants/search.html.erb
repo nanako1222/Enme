@@ -25,7 +25,9 @@
           </div>
 
           <div class="actions2 mt-4 offset-4">
-            <%= f.submit "検索", class: "btn btn-success mx-auto btn-lg" %>
+            <%= button_tag type: :submit, class: "btn btn-success active mx-auto btn-lg" do %>
+              <i class="fas fa-search"></i> 検索
+            <% end %>
           </div>
 
           <div class="actions2 col-6 mt-4">
@@ -33,7 +35,7 @@
               <h4>登録アレルゲンで簡易検索</h4>
               <div class="text-center mt-3">
                 <p>アレルゲンを登録した会員の方は</br>
-                  <%= link_to "こちら", member_search_restaurants_path %>
+                  <%= link_to "こちら", member_search_restaurants_path, class: "btn btn-outline-primary btn-sm" %>
                   で簡単に検索する事ができます。
                 </p>
               </div>
