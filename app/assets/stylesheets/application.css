@@ -137,3 +137,15 @@ footer {
 .customer_allergen{
   background-color: #dcd6d2;
 }
+
+input[type="checkbox"]{
+  position: relative;
+  transform: scale(2);
+	margin: 10px 20px 0 20px;
+}
+
+.allergies_check_boxes{
+  text-align: left;
+  margin-left: -15px;
+  padding-left: 0 !important;
+}
