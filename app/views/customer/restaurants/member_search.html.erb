@@ -3,19 +3,22 @@
     <div class="col-md-11 offset-1">
 
       <div class="search-data">
-        <h4 class="col-3 mt-5">会員検索</h4>
+        <div></div>
+          <h4 class="col-3 mt-5">会員検索</h4>
+          <p>会員登録したアレルゲン情報を元に簡単検索します</p>
+        </div>
 
-        <div>
-          <p>会員アレルゲン</p>
+        <div class="customer_allergen col-5 mt-5">
+          <h5>会員アレルゲン</h5>
           <% @customer.allergies.each do |allergy| %>
             <%= allergy.allergen %>
           <% end %>
         </div>
-        <%= link_to restaurants_path(customer: { state_id: @customer.state_id }, allergies: @customer.allergy_ids), class: "btn btn-outline-primary" do %>
+        <%= link_to restaurants_path(customer: { allergies: @customer.allergy_ids }, state_id: @customer.state_id), class: "btn btn-primary active mt-5" do %>
           <i class="far fa-map"></i>
           都道府県で検索
         <% end %>
-        <%= link_to restaurants_path(customer: { area_id: @customer.area_id }, state_id: @customer.state_id, allergies: @customer.allergy_ids), class: "btn btn-outline-success ml-3" do%>
+        <%= link_to restaurants_path(customer: { area_id: @customer.area_id, allergies: @customer.allergy_ids }, state_id: @customer.state_id), class: "btn btn-success active ml-3 mt-5" do%>        <%#= link_to restaurants_path(customer: { area_id: @customer.area_id }, state_id: @customer.state_id, allergies: @customer.allergy_ids), class: "btn btn-success active ml-3 mt-5" do%>
           <i class="fas fa-map-marked-alt"></i>
           地域エリアで検索
         <% end %>
