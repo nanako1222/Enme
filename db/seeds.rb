@@ -13,7 +13,7 @@ if admin.new_record?
     admin.save!
 end
 
-Allergy.create!([{allergen: "なし"}, {allergen: "卵"}, {allergen:"えび"}, {allergen: "かに"}, {allergen:"そば"}, {allergen: "落花生"}, {allergen:"小麦"},
+Allergy.create!([{allergen: "卵"}, {allergen:"えび"}, {allergen: "かに"}, {allergen:"そば"}, {allergen: "落花生"}, {allergen:"小麦"},
 {allergen: "乳"}, {allergen:"あわび"}, {allergen: "イカ"}, {allergen:"いくら"}, {allergen: "オレンジ"}, {allergen:"キウイ"}, {allergen:"牛肉"},
 {allergen: "くるみ"}, {allergen:"サケ"}, {allergen: "りんご"}, {allergen:"サバ"}, {allergen: "大豆"}, {allergen:"鶏肉"}, {allergen:"バナナ"},
 {allergen: "豚肉"}, {allergen:"まつたけ"}, {allergen: "もも"}, {allergen:"やまいも"}, {allergen: "ゼラチン"}, {allergen:"ごま"}, {allergen:"カシューナッツ"},

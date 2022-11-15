@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class='col-10 offset-1'>
-      <h4 class="col-3 mt-5"><strong>管理者</strong>ログイン</h4>
+      <h4 class="col-4 mt-5"><strong>管理者</strong>ログイン</h4>
 
 
         <%= form_with model: @admin, url: admin_session_path do |f| %>
@@ -24,7 +24,9 @@
           <!--<% end %>-->
 
           <div class="actions mt-4 offset-4">
-            <input type="submit" name="commit" value="ログイン" class="btn btn-sm btn-primary col-3" data-disable-with="Log in">
+            <%= button_tag type: :submit, class: "btn btn-success active" do %>
+              <i class="fas fa-sign-in-alt"></i> ログイン
+            <% end %>
           </div>
         <% end %>
       <%= render "admin/shared/links" %>

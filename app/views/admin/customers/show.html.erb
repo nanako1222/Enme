@@ -1,21 +1,26 @@
-<h1>顧客詳細画面</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
 <div class="container">
   <div class="row">
     <div class='col-10 offset-1 customer_show'>
       <% if flash[:notice] %>
         <%= notice %>
       <% end %>
-      <h4 class="col-4 mt-5"><%= "#{@customer.full_name}さんの会員詳細" %></h4>
+      <h4 class="col-6 mt-5"><%= "#{@customer.full_name}さんの会員詳細" %></h4>
+
+      <div class='flashing mt-2'>
+        <p>※現在登録されているデータは架空です</p>
+      </div>
+
       <table class="table table-hover table-inverse mt-4">
         <tr>
           <th>会員ID</th>
           <td><%= @customer.id %></td>
         </tr>
+
         <tr>
           <th>氏名</th>
           <td><%= @customer.full_name %></td>
         </tr>
+
         <tr>
           <th>フリガナ</th>
           <td><%= @customer.full_name_kana %></td>
@@ -31,14 +36,17 @@
           <th>都道府県</th>
           <td><%= @state %></td>
         </tr>
+
         <tr>
           <th>地域エリア</th>
           <td><%= @area %></td>
         </tr>
+
         <tr>
           <th>電話番号</th>
           <td><%= @customer.telephone_number %></td>
         </tr>
+
         <tr>
           <th>アレルギー一覧</th>
           <td>
@@ -47,6 +55,7 @@
             <% end %>
           </td>
         </tr>
+
         <tr>
           <th>退会ステーサス</th>
           <td>
@@ -58,7 +67,7 @@
           </td>
         </tr>
       </table>
-      <span class = "customer_edit">
+      <span class = "customer_edit offset-3">
         <%= link_to "編集する", edit_admin_customer_path(@customer), class:"btn btn-success"%>
       </span>
 

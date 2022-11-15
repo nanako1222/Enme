@@ -1,34 +1,36 @@
-<h1>顧客編集画面</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
 <div class="container">
   <div class="row">
     <div class="col-10 offset-1">
       <h4 class="col-6 mt-5"><%= "#{@customer.full_name}さんの会員情報編集" %></h4>
 
+      <div class='flashing mt-2'>
+        <p>※現在登録されているデータは架空です</p>
+      </div>
+
       <%= form_with model: @customer, url:admin_customer_path, method: :patch do |f| %>
 
       　<div class="row field d-grid text-center mt-3">
-          <%= f.label :会員ID, class: "col-md-3" %>
-          <div class="col-md-2">
+          <%= f.label :会員ID, class: "col-md-3 text-left" %>
+          <div class="col-md-2 ml-2">
             <%= @customer.id %>
           </div>
         </div>
 
 
         <div class="row field d-grid text-center">
-          <%= f.label :氏名, class: "col-md-3 text-left" %>
+          <%= f.label :氏名, class: "col-md-4 text-left" %>
           <%= f.text_field :first_name, autofocus: true, required: true, class: "col-md-3" %>
           <%= f.text_field :last_name, autofocus: true, required: true, class: "col-md-3 ml-2" %>
         </div>
 
         <div class="row field d-grid text-center mt-4">
-          <%= f.label :フリガナ, class: "col-md-3 text-left" %>
+          <%= f.label :フリガナ, class: "col-md-4 text-left" %>
           <%= f.text_field :first_name_kana, autofocus: true, required: true, class: "col-md-3" %>
           <%= f.text_field :last_name_kana, autofocus: true, required: true, class: "col-md-3 ml-2" %>
         </div>
 
         <div class="row field d-grid text-center mt-4">
-          <%= f.label :メールアドレス, class: "col-md-3 text-left" %>
+          <%= f.label :メールアドレス, class: "col-md-4 text-left" %>
           <%= f.email_field :email, autofocus: true, class: "col-md-6" %>
         </div>
 
@@ -50,17 +52,14 @@
         </div>
 
         <div class="row field d-grid text-center mt-3">
+          <p class="col-md-4 text-left">会員状況</p>
           <%= f.radio_button :is_valid, true %>
-          <%= f.label :is_valid, "有効" %>
-          <%= f.radio_button :is_valid, false %>
-          <%= f.label :is_valid, "退会" %>
-          <%#= f.radio_button :payment, Order.payments.key(0) %>
-          <%#= f.label :payment, Order.payments_i18n[:credit_card] %>
-          <%#= f.radio_button :payment, Order.payments.key(1) %>
-          <%#= f.label :payment, Order.payments_i18n[:transfer]%>
+          <%= f.label :is_valid, "有効", class: "valid ml-1" %>
+          <%= f.radio_button :is_valid, false, class: "ml-4" %>
+          <%= f.label :is_valid, "退会", class: "valid ml-1" %>
         </div>
 
-        <div class="row form-group mt-4 ml-26">
+        <div class="row form-group offset-4 mt-4 ml-26">
           <%= f.submit '変更を保存', class:"btn btn-success" %>
         </div>
       <% end %>

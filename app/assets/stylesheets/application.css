@@ -163,3 +163,23 @@ input[type="checkbox"]{
   0%   {opacity: 0;}
   100% {opacity: 1;}
 }
+
+.restaurant_valid{
+  color: gray;
+}
+
+.restaurant_valid2{
+  color: green;
+}
+
+.valid{
+  margin-top: 7px;
+}
+
+.customer_valid{
+  color: gray;
+}
+
+.customer_valid2{
+  color: green;
+}

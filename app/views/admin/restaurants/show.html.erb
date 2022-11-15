@@ -1,68 +1,71 @@
-<h1>管理者飲食店詳細画面</h1>
-<p>Find me in app/views/admin/restaurants/show.html.erb</p>
-
 <div class="container">
   <div class="row">
     <div class='col-10 offset-1 customer_show'>
       <% if flash[:notice] %>
         <%= notice %>
       <% end %>
-      <h4 class="col-4 mt-5"><%= "#{@restaurant.name}の店舗詳細" %></h4>
+      <h4 class="col-6 mt-5"><%= "#{@restaurant.name}の店舗詳細" %></h4>
+
+      <div class='flashing mt-2'>
+        <p>※現在登録されているデータは架空です</p>
+      </div>
+
       <table class="table table-hover table-inverse mt-4">
         <tr>
           <th>会員ID</th>
           <td><%= @restaurant.id %></td>
         </tr>
+
         <tr>
           <th>店名</th>
           <td><%= @restaurant.name %></td>
         </tr>
+
         <tr>
           <th>都道府県</th>
           <td><%= @state %></td>
         </tr>
+
         <tr>
           <th>地域エリア</th>
           <td><%= @area %></td>
         </tr>
+
         <tr>
           <th>それ以降の住所</th>
           <td><%= @restaurant.address %></td>
         </tr>
+
         <tr>
           <th>電話番号</th>
           <td><%= @restaurant.telephone_number %></td>
         </tr>
+
         <tr>
           <th>メールアドレス</th>
           <td><%= @restaurant.email %></td>
         </tr>
+
         <tr>
           <th>定休日</th>
           <td><%= @restaurant.regular_holiday %></td>
         </tr>
+
         <tr>
           <th>営業時間</th>
           <td><%= @restaurant.business_hours %></td>
         </tr>
+
         <tr>
           <th>ホームページURL</th>
           <td><%= @restaurant.home_page %></td>
         </tr>
+
         <tr>
           <th>駐車場</th>
           <td><%= @restaurant.parking %></td>
         </tr>
-        <tr>
-          <th>アレルギー一覧</th>
-          <td>
-            <% @restaurant.menus.each do |menu| %>
-              <% menu.allergies.each do |allergy| %>
-                <%= allergy.allergen %>
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
+
         <tr>
           <th>退会ステーサス</th>
           <td>
@@ -74,7 +77,7 @@
           </td>
         </tr>
       </table>
-      <span class = "restaurant_edit">
+      <span class = "restaurant_edit offset-3">
         <%= link_to "編集する", edit_admin_restaurant_path(@restaurant), class:"btn btn-success"%>
       </span>
 
