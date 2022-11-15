@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     get "information/edit" => "homes#edit"
     patch "/information" => "homes#update"
     get "/confirm" => "homes#confirm"
+    get '/about' => 'homes#about'
     patch '/out' => 'homes#out'
     resources :restaurants, only: [:update, :edit] do
       resources :menus, only: [:index, :show, :new, :create, :edit, :update, :destroy]

@@ -18,6 +18,10 @@ class Restaurant::HomesController < ApplicationController
     end
   end
 
+  def about
+    @restaurant = current_restaurant
+  end
+
   def confirm
     @restaurant = current_restaurant
   end

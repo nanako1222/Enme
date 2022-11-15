@@ -31,11 +31,13 @@
             <div id="areas_select" >
               <%= render partial: 'shared/restaurant_areas', locals: { areas: Area.all } %>
             </div>
-            <%#= f.collection_select :area_id , get_areas,:id,:area %>
-            <!--<div id="areas_select" >-->
-              <%#= render partial: 'shared/areas', locals: { areas: Area.all } %>
-            <!--</div>-->
           </div>
+
+          <p class="offset-3 mt-2">
+            ※エリア分け詳細は
+            <%= link_to "こちら", restaurant_about_path, class: "btn btn-outline-info btn-sm" %>
+            をご参考ください
+          </p>
 
           <div class="row field d-grid text-center mt-4">
             <%= f.label :それ以降の住所, class: "col-md-3 text-left" %>

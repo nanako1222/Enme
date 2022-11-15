@@ -32,6 +32,12 @@
             <%= render partial: 'shared/areas', locals: { areas: Area.all } %>
           </div>
 
+          <p class="offset-3 mt-2">
+            ※エリア分け詳細は
+            <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm" %>
+            をご参考ください
+          </p>
+
           <div class="row mt-4">
             <%= f.label :電話番号（ハイフンなし）, class: "col-md-3 text-left" %>
             <%= f.number_field :telephone_number, autofocus: true, class: "col-md-6" %>
@@ -48,8 +54,13 @@
           </div>
 
           <div class="row field d-grid offset-3 mt-4">
-            <%= f.submit '編集内容を保存', class:"btn btn-success" %>
-            <%= link_to "退会する", customers_confirm_path(@customer), class:"btn btn-danger ml-5"%>
+            <%= button_tag type: :submit, class: "btn btn-success active" do %>
+              <i class="fas fa-save"></i> 編集内容を保存
+            <% end %>
+            <%= link_to customers_confirm_path(@customer), class:"btn btn-danger active ml-5" do %>
+              <i class="fas fa-user-slash"></i>
+              退会する
+            <% end %>
           </div>
         <% end %>
 

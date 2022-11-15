@@ -67,13 +67,17 @@
         </div>
 
         <div class="actions2 mt-4 offset-4">
-          <%= f.submit "新規登録", class: "btn btn-success mx-auto btn-lg" %>
+          <%= button_tag type: :submit, class: "btn btn-success active" do %>
+            <i class="fas fa-user-plus"></i> 新規登録
+          <% end %>
         </div>
 
         <h6 class="col-3 mt-4">既に登録済みの方</h6>
         <div class="row offset-1">
-          <a class ="member_registration" href = "/customers/sign_in">こちら</a>
-          <span>からログインしてください。</span>
+          <p>
+            <%= link_to "こちら", new_customer_session_path, class: "btn btn-outline-primary btn-sm" %>
+            からログインしてください。
+          </p>
         </div>
       <% end %>
     </div>

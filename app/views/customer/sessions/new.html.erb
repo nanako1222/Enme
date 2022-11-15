@@ -20,14 +20,17 @@
         </div>
 
         <div class="mt-4 offset-4">
-          <%= f.submit "ログイン", class: "btn btn-success mx-auto" %>
+          <%= button_tag type: :submit, class: "btn btn-success active" do %>
+            <i class="fas fa-sign-in-alt"></i> ログイン
+          <% end %>
         </div>
 
         <h6 class="col-4 mt-5 ml-4">会員登録がお済みでない方</h6>
         <div class="row offset-2">
-          <!--<a class ="member_registration" href = "/customers/sign_up"></a>-->
-          <%= link_to 'こちら', new_customer_registration_path, class: "member_registration", data: {"turbolinks": false} %>
-          <span>から新規登録を行ってください。</span>
+          <p>
+            <%= link_to "こちら", new_customer_registration_path, class: "btn btn-outline-primary btn-sm", data: {"turbolinks": false} %>
+            から新規登録を行ってください。
+          </p>
         </div>
       <% end %>
 
