@@ -5,6 +5,10 @@
   <% end %>
   <h4 class="col-4 mt-5">店舗詳細</h4>
 
+  <div class='flashing mt-2'>
+    <p>※現在登録されているデータは架空です</p>
+  </div>
+
   <h5 class="mt-4">
     <%= @restaurant.name %>
     <%= link_to restaurant_menus_path(@restaurant.id), class:"btn btn-success active ml-4" do %>

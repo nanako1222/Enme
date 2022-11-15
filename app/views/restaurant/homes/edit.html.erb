@@ -3,6 +3,10 @@
     <div class="col-10 offset-1">
       <h4 class="col-3 mt-5">店舗情報編集</h4>
 
+      <div class='flashing mt-2'>
+        <p>※現在登録されているデータは架空です</p>
+      </div>
+
       <div class="mt-4">
         <%= form_with model: @restaurant, url: restaurant_information_path, method: :patch do |f| %>
 
@@ -83,7 +87,7 @@
             <%= button_tag type: :submit, class: "btn btn-success active" do %>
               <i class="fas fa-save"></i> 編集内容を保存
             <% end %>
-            <%= link_to customers_confirm_path(@customer), class:"btn btn-danger active ml-5" do %>
+            <%= link_to restaurant_confirm_path, class:"btn btn-danger active ml-5" do %>
               <i class="fas fa-store-alt-slash"></i>
               退会する
             <% end %>

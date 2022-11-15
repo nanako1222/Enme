@@ -4,6 +4,11 @@
       <div class ="row mt-5">
         <h4 class="col-3"><p class="p_1">検索結果<span style="font-size: 15px"><%= "(全#{@menu_count}件)"%></span></p></h4>
       </div>
+
+      <div class='flashing mt-2'>
+        <p>※現在登録されているデータは架空です</p>
+      </div>
+
       <div class = "row mt-4">
         <h5>メニュー一覧</h5>
         <%= link_to restaurant_path(@restaurant), class:"btn btn-info active btn-sm ml-3" do %>
@@ -11,6 +16,7 @@
           店舗詳細に戻る
         <% end %>
       </div>
+
         <div class = "row mt-4">
           <% @menus.each do |menu| %>
           <div class="col-4">

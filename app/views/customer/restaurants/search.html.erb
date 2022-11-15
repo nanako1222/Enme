@@ -4,7 +4,7 @@
 
       <div class="search-data">
         <h4 class="col-3 mt-5">飲食店検索</h4>
-        <p><strong>選択したアレルゲンを除いたメニューを提供するお店の絞り込みをします。</strong></p>
+        <p><strong>アレルゲンを含まないメニューを提供するお店の絞り込みをします。</strong></p>
 
         <%= form_with model: @customer, url: restaurants_path,method: :get, id: 'search_restaurant', class: 'search_restaurant', local: true do |f| %>
           <div class="row field d-grid text-center  mt-3">

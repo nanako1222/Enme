@@ -1,6 +1,10 @@
 <div class= "container">
   <div class='row mb-3 mt-5'>
     <div class='col-10 offset-1'>
+      <div class='flashing offset-4 mt-2'>
+        <p>※現在登録されているデータは架空です</p>
+      </div>
+
       <h5 class="mt-5 text-center"><strong>本当に退会しますか</strong></h5>
       <p class="mt-4 text-center">
         退会すると、会員登録情報や<br>
@@ -9,8 +13,14 @@
       </p>
 
       <div class="mt-4 text-center">
-        <%= link_to "退会しない", restaurants_my_page_path(@restaurant), class:"btn btn-primary"%>
-        <%= link_to "退会する", restaurants_out_path(@restaurant),"data-confirm" => "本当に退会しますか？", method: :patch, class:"btn btn-danger ml-5"%>
+        <%= link_to restaurant_homes_path, class:"btn btn-primary active ml-5" do %>
+          <i class="fa-solid fa-shop"></i>
+          退会しない
+        <% end %>
+        <%= link_to restaurant_out_path,"data-confirm" => "本当に退会しますか？", method: :patch, class:"btn btn-danger active ml-5" do %>
+          <i class="fa-solid fa-shop-slash"></i>
+          退会する
+        <% end %>
       </div>
     </div>
   </div>
