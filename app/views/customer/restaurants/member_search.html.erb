@@ -14,7 +14,7 @@
             <%= allergy.allergen %>
           <% end %>
         </div>
-        <%= link_to restaurants_path(customer: { allergies: @customer.allergy_ids }, state_id: @customer.state_id), class: "btn btn-primary active mt-5" do %>
+        <%= link_to restaurants_path(customer: { allergies: @customer.allergy_ids }, state_id: @customer.state_id), class: "btn btn-info active mt-5" do %>
           <i class="far fa-map"></i>
           都道府県で検索
         <% end %>
