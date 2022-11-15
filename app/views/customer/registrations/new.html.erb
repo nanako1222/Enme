@@ -40,6 +40,12 @@
           </div>
         </div>
 
+        <p style="text-align:center;">
+          ※エリア分け詳細は
+          <%= link_to "こちら", about_path, class: "btn btn-outline-primary btn-sm" %>
+          をご参考ください
+        </p>
+
         <div class="row field d-grid text-center mt-3">
           <%= f.label :電話番号（ハイフンなし）, class: "col-md-4 text-left" %><br />
           <%= f.text_field :telephone_number, autofocus: true, class: "col-md-3" %>

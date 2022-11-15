@@ -23,8 +23,14 @@
             <!--<th>税込価格</th>-->
           <div class="mt-5"><span>税抜価格（税込価格）</span><br><strong class="price"><%= "#{@menu.price}円" %>(<%= "#{@menu.with_tax_price}円" %>)　</strong></div>
           <div class="mt-5">
-            <%= link_to "編集する", edit_restaurant_restaurant_menu_path(@menu), class:"btn btn-success"%>
-            <%= link_to "削除する", restaurant_restaurant_menu_path(@restaurant, @menu), method: :delete, class:"btn btn-danger ml-5"%>
+            <%= link_to edit_restaurant_restaurant_menu_path(@menu), class:"btn btn-success active" do %>
+              <i class="fas fa-pen-nib"></i>
+              編集する
+            <% end %>
+            <%= link_to restaurant_restaurant_menu_path(@restaurant, @menu), method: :delete,  class:"btn btn-danger active ml-5" do %>
+              <i class="fas fa-trash"></i>
+              削除する
+            <% end %>
           </div>
         </div>
       </div>

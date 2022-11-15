@@ -28,6 +28,11 @@
             <%= render partial: 'shared/restaurant_areas', locals: { areas: Area.all } %>
           </div>
         </div>
+        <p style="text-align:center;">
+          ※エリア分け詳細は
+          <%= link_to "こちら", about_path, class: "btn btn-outline-primary btn-sm" %>
+          をご参考ください
+        </p>
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :それ以降の住所, class: "col-md-4 text-left" %>
@@ -65,13 +70,17 @@
         </div>
 
         <div class="actions2 mt-4 offset-4">
-          <%= f.submit "新規登録", class: "btn btn-success mx-auto btn-lg" %>
+          <%= button_tag type: :submit, class: "btn btn-success active mx-auto" do %>
+            <i class="fas fa-store-alt"></i> 新規登録
+          <% end %>
         </div>
 
         <h6 class="col-3 mt-4">既に登録済みの方</h6>
         <div class="row offset-1">
-          <a class ="member_registration" href = "/restaurants/sign_in">こちら</a>
-          <span>からログインしてください。</span>
+          <!--<a class ="member_registration" href = "/restaurants/sign_in">こちら</a>-->
+          <p>
+            <%= link_to "こちら", new_restaurant_session_path, class: "btn btn-outline-primary btn-sm mr-2" %>
+            からログインしてください。</p>
         </div>
       <% end %>
 

@@ -4,7 +4,7 @@
 
       <div class="search-data">
         <h4 class="col-3 mt-5">飲食店検索</h4>
-
+        <p><strong>選択したアレルゲンを除いたメニューを提供するお店の絞り込みをします。</strong></p>
 
         <%= form_with model: @customer, url: restaurants_path,method: :get, id: 'search_restaurant', class: 'search_restaurant', local: true do |f| %>
           <div class="row field d-grid text-center  mt-3">
@@ -28,9 +28,15 @@
               <%= render partial: 'shared/areas', locals: { areas: Area.all } %>
             </div>
           </div>
+          
+          <p style="text-align:center;">
+            ※エリア分け詳細は
+            <%= link_to "こちら", about_path, class: "btn btn-outline-primary btn-sm" %>
+            をご参考ください
+          </p>
 
           <div class="actions2 mt-4 offset-4">
-            <%= button_tag type: :submit, class: "btn btn-success active mx-auto btn-lg" do %>
+            <%= button_tag type: :submit, class: "btn btn-success active mx-auto" do %>
               <i class="fas fa-search"></i> 検索
             <% end %>
           </div>

@@ -1,48 +1,47 @@
 <div class="container">
   <div class="row">
-    <div class="col-10 offset-1">
-      <div class="row">
+    <div class="col-md-11 offset-1">
+
+      <div class="menu_edit">
         <h4 class="col-4 mt-5">メニュー編集</h4>
-        <div class="mt-4">
-          <%= form_with model: @menu ,url: restaurant_restaurant_menu_path, method: :patch do |f| %>
-            <div class="row field d-grid text-center mt-4">
-              <%= f.label :料理画像, class: "col-md-2" %>
-              <%= f.file_field :image, accept: "image/*", class: "col-md-6" %>
-            </div>
 
-            <div class="row field d-grid text-center mt-3">
-              <%= f.label :メニュー名, class: "col-md-2" %>
-              <%= f.text_field :name, class: "col-md-6" %>
-            </div>
+        <%= form_with model: @menu ,url: restaurant_restaurant_menu_path, method: :patch do |f| %>
+          <div class="row field d-grid text-center mt-4">
+            <%= f.label :料理画像, class: "col-md-4 text-left" %>
+            <%= f.file_field :image, accept: "image/*", class: "col-md-6" %>
+          </div>
 
-            <div class="row field d-grid text-center mt-3">
-　　　　　　　<%= f.label :含まれるアレルゲン, class: "col-md-4 text-left" %>
-              <div class="allergies_check_boxes col-md-7">
-                <%= f.collection_check_boxes(:allergies, @allergies, :id, :allergen,checked:@menu.allergy_ids, include_hidden: false) do |a| %>
-                  <%= a.label { a.check_box + a.text } %>
-                <% end %>
-                <%#= f.collection_check_boxes :allergies, @allergies, :id, :allergen, include_hidden: false %>
-              </div>
-              <%#= f.collection_check_boxes :allergy_ids, @allergies, :id, :allergen,checked:@menu.allergy_ids ,include_hidden: false %>
-            </div>
+          <div class="row field d-grid text-center mt-3">
+            <%= f.label :メニュー名, class: "col-md-4 text-left" %>
+            <%= f.text_field :name, class: "col-md-6" %>
+          </div>
 
-            <div class="row field d-grid text-center mt-3">
-              <%= f.label :税抜価格, class: "col-md-2" %>
-              <%= f.text_field :price, class: "col-md-3" %>円
-            </div>
-
-            <div class="row field d-grid text-center mt-3">
-              <%= f.label :メニュー説明, class: "col-md-2" %>
-              <%= f.text_area :introduction, class: "col-md-6" %>
-            </div>
-
-            <div class="actions2 mt-4 offset-4">
-              <%= button_tag type: :submit, class: "btn btn-success active mx-auto btn-lg" do %>
-                <i class="fas fa-edit"></i> 編集する
+          <div class="row field d-grid text-center mt-3">
+            <%= f.label :含まれるアレルゲン, class: "col-md-4 text-left" %>
+            <div class="allergies_check_boxes col-md-6">
+              <%= f.collection_check_boxes(:allergies, @allergies, :id, :allergen,checked:@menu.allergy_ids, include_hidden: false) do |a| %>
+                <%= a.label { a.check_box + a.text } %>
               <% end %>
             </div>
-          <% end %>
-        </div>
+            <%#= f.collection_check_boxes :allergy_ids, @allergies, :id, :allergen,checked:@menu.allergy_ids ,include_hidden: false %>
+          </div>
+
+          <div class="row field d-grid text-center mt-3">
+            <%= f.label :税抜価格, class: "col-md-4 text-left" %>
+            <%= f.text_field :price, class: "col-md-3" %>円
+          </div>
+
+          <div class="row field d-grid text-center mt-3">
+            <%= f.label :メニュー説明, class: "col-md-4 text-left" %>
+            <%= f.text_area :introduction, class: "col-md-6" %>
+          </div>
+
+          <div class="actions2 mt-4 offset-4">
+            <%= button_tag type: :submit, class: "btn btn-success active mx-auto" do %>
+              <i class="fas fa-save"></i> 編集内容を保存
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
