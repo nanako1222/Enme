@@ -5,7 +5,7 @@
         <p>※現在登録されているデータは架空です</p>
       </div>
       <div class="row mt-5">
-        <div class="col-5 mt-5 text-center">
+        <div class="col-md-5 mt-5 text-center">
           <div class="menu_image">
             <% if @menu.image.attached? %>
               <%= image_tag @menu.get_image(200,200) %>
@@ -15,7 +15,7 @@
           </div>
         </div>
 
-        <div class="col-7 mt-5 menu_show">
+        <div class="col-md-7 mt-5 menu_show">
           <h5><strong><%= @menu.name %></strong></h5>
           <div class="mt-3"><%= @menu.introduction %></div>
           <div class="mt-3">

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11 offset-1">
-      <h4 class="col-3 mt-5">新規会員登録</h4>
+      <h4 class="col-md-3 mt-5">新規会員登録</h4>
 
       <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do  |f| %>
         <%= render "customer/shared/error_messages", resource: resource %>
@@ -42,7 +42,7 @@
 
         <p style="text-align:center;">
           ※エリア分け詳細は
-          <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm" %>
+          <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
           をご参考ください
         </p>
 
@@ -72,7 +72,7 @@
           <% end %>
         </div>
 
-        <h6 class="col-3 mt-4">既に登録済みの方</h6>
+        <h6 class="col-md-3 mt-4">既に登録済みの方</h6>
         <div class="row offset-1">
           <p>
             <%= link_to "こちら", new_customer_session_path, class: "btn btn-outline-info btn-sm" %>

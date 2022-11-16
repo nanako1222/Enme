@@ -1,7 +1,7 @@
 <div class= "container">
   <div class='row mb-3 mt-5'>
     <div class='col-10 offset-1'>
-      <div class='flashing offset-4 mt-2'>
+      <div class='flashing offset-md-4 mt-2'>
         <p>※現在登録されているデータは架空です</p>
       </div>
       <h5 class="mt-5 text-center"><strong>本当に退会しますか？</strong></h5>
@@ -11,14 +11,14 @@
         退会する場合は「退会する」をクリックしてください
       </p>
 
-      <div class="mt-4 text-center">
+      <div class="text-center">
         <%#= link_to "退会しない", customers_my_page_path(@customer), class:"btn btn-primary"%>
-        <%= link_to customers_my_page_path(@customer), class:"btn btn-primary active ml-5" do %>
+        <%= link_to customers_my_page_path(@customer), class:"btn btn-primary active ml-md-5 mt-4" do %>
           <i class="fas fa-user-circle"></i>
           退会しない
         <% end %>
         <%#= link_to "退会する", customers_out_path(@customer),"data-confirm" => "本当に退会しますか？", method: :patch, class:"btn btn-danger ml-5"%>
-        <%= link_to customers_confirm_path(@customer), method: :patch, class:"btn btn-danger active ml-5" do %>
+        <%= link_to customers_confirm_path(@customer), method: :patch, class:"btn btn-danger active ml-md-5 mt-4" do %>
           <i class="fas fa-user-slash"></i>
           退会する
         <% end %>

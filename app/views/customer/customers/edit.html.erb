@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-10 offset-1">
-      <h4 class="col-3 mt-5">会員情報編集</h4>
+      <h4 class="col-md-3 mt-5">会員情報編集</h4>
 
       <div class='flashing mt-2'>
         <p>※現在登録されているデータは架空です</p>
@@ -36,9 +36,9 @@
             <%= render partial: 'shared/areas', locals: { areas: Area.all } %>
           </div>
 
-          <p class="offset-3 mt-2">
+          <p class="offset-md-3 mt-2">
             ※エリア分け詳細は
-            <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm" %>
+            <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
             をご参考ください
           </p>
 
@@ -57,11 +57,11 @@
             </div>
           </div>
 
-          <div class="row field d-grid offset-3 mt-4">
-            <%= button_tag type: :submit, class: "btn btn-success active" do %>
+          <div class="row field d-grid offset-md-3">
+            <%= button_tag type: :submit, class: "btn btn-success active mt-4" do %>
               <i class="fas fa-save"></i> 編集内容を保存
             <% end %>
-            <%= link_to customers_confirm_path(@customer), class:"btn btn-danger active ml-5" do %>
+            <%= link_to customers_confirm_path(@customer), class:"btn btn-danger active ml-md-5 mt-4" do %>
               <i class="fas fa-user-slash"></i>
               退会する
             <% end %>

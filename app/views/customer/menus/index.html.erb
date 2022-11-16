@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-10 offset-1">
       <div class ="row mt-5">
-        <h4 class="col-3"><p class="p_1">検索結果<span style="font-size: 15px"><%= "(全#{@menu_count}件)"%></span></p></h4>
+        <h4 class="col-md-3"><p class="p_1">検索結果<span style="font-size: 15px"><%= "(全#{@menu_count}件)"%></span></p></h4>
       </div>
 
       <div class='flashing mt-2'>
@@ -19,7 +19,7 @@
 
         <div class = "row mt-4">
           <% @menus.each do |menu| %>
-          <div class="col-4">
+          <div class="col-md-4">
             <p class ="p_1">
               <div class="item_image">
                 <% if menu.image.attached? %>

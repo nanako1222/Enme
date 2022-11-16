@@ -2,7 +2,7 @@
   <% if flash[:notice] %>
     <%= notice %>
   <% end %>
-  <h4 class="col-4 mt-5">店舗詳細</h4>
+  <h4 class="col-md-4 mt-5">店舗詳細</h4>
 
   <div class='flashing mt-2'>
     <p>※現在登録されているデータは架空です</p>
@@ -10,7 +10,7 @@
 
   <h5 class="mt-4">
     <%= @restaurant.name %>
-    <%= link_to restaurant_information_edit_path(@restaurant.id), class:"btn btn-info active ml-4" do %>
+    <%= link_to restaurant_information_edit_path(@restaurant.id), class:"btn btn-info active ml-4 mt-2" do %>
       <i class="fas fa-pen-nib"></i>
       編集する
     <% end %>
@@ -33,12 +33,12 @@
         <%= image_tag 'default-image.jpg', size: "200x200" %>
       <% end %>
     </div>
-    <div class= "col-8 mt-4">
+    <div class= "col-md-8 mt-4">
       <%= @restaurant.introduction %>
     </div>
   </div>
-  <div class= "row">
-    <table class="table table-hover table-inverse col-5 mt-4 ">
+  <div class="table-responsive-sm">
+    <table class="table table-hover table-inverse col-md-5 mt-4 ">
       <div>
         <tr>
           <th>都道府県</th>
@@ -76,21 +76,21 @@
           <th>駐車場</th>
           <td><%= @restaurant.parking %></td>
         </tr>
-        <tr>
-          <th>アレルギー一覧</th>
-          <td>
-            <% @restaurant.menus.each do |menu| %>
-              <% menu.allergies.each do |allergy| %>
-                <%= allergy.allergen %>
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
+        <!--<tr>-->
+        <!--  <th>アレルギー一覧</th>-->
+        <!--  <td>-->
+        <!--    <%# @restaurant.menus.each do |menu| %>-->
+        <!--      <%# menu.allergies.each do |allergy| %>-->
+        <!--        <%#= allergy.allergen %>-->
+        <!--      <%# end %>-->
+        <!--    <%# end %>-->
+        <!--  </td>-->
+        <!--</tr>-->
       </div>
     </table>
-    <div class= "col-7 mt-4">
-      <h5>NEWS</h5>
-      <%= @restaurant.news %>
-    </div>
+  </div>
+  <div class= "col-7 mt-4">
+    <h5>NEWS</h5>
+    <%= @restaurant.news %>
   </div>
 </div>

@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 offset-1">
-      <h4 class="col-2 mt-5">ログイン</h4>
+      <h4 class="col-md-2 mt-5">ログイン</h4>
       <% if flash[:notice] %>
         <%= notice %>
       <% end %>
 
-      <h6 class="col-4 mt-5 ml-4">会員の方はこちらからログイン</h6>
+      <h6 class="col-md-4 mt-5 ml-md-4">会員の方はこちらからログイン</h6>
 
       <%= form_with model: @customer, url: customer_session_path, id: 'in_customer', class: 'in_customer', local: true do |f| %>
         <div class="row field d-grid text-center mt-3">
@@ -25,8 +25,8 @@
           <% end %>
         </div>
 
-        <h6 class="col-4 mt-5 ml-4">会員登録がお済みでない方</h6>
-        <div class="row offset-2">
+        <h6 class="col-md-4 mt-5 ml-md-4">会員登録がお済みでない方</h6>
+        <div class="row offset-md-2">
           <p>
             <%= link_to "こちら", new_customer_registration_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks": false} %>
             から新規登録を行ってください。

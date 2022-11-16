@@ -3,7 +3,7 @@
     <div class="col-md-11 offset-1">
 
       <div class="search-data">
-        <h4 class="col-3 mt-5">飲食店検索</h4>
+        <h4 class="col-md-3 mt-5">飲食店検索</h4>
         <p><strong>アレルゲンを含まないメニューを提供するお店の絞り込みをします。</strong></p>
 
         <%= form_with model: @customer, url: restaurants_path,method: :get, id: 'search_restaurant', class: 'search_restaurant', local: true do |f| %>
@@ -29,9 +29,9 @@
             </div>
           </div>
 
-          <p style="text-align:center;">
+          <p class="mt-2", style="text-align:center;" >
             ※エリア分け詳細は
-            <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm" %>
+            <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
             をご参考ください
           </p>
 
@@ -41,7 +41,7 @@
             <% end %>
           </div>
 
-          <div class="actions2 col-6 mt-5">
+          <div class="actions2 col-md-6 mt-5">
             <% if customer_signed_in? %>
               <h4>登録アレルゲンで簡易検索</h4>
               <div class="text-center mt-3">

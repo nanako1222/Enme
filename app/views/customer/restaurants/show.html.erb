@@ -3,7 +3,7 @@
   <% if flash[:notice] %>
     <%= notice %>
   <% end %>
-  <h4 class="col-4 mt-5">店舗詳細</h4>
+  <h4 class="col-md-4 mt-5">店舗詳細</h4>
 
   <div class='flashing mt-2'>
     <p>※現在登録されているデータは架空です</p>
@@ -11,25 +11,25 @@
 
   <h5 class="mt-4">
     <%= @restaurant.name %>
-    <%= link_to restaurant_menus_path(@restaurant.id), class:"btn btn-success active ml-4" do %>
+    <%= link_to restaurant_menus_path(@restaurant.id), class:"btn btn-success active ml-md-4 mt-2" do %>
       <i class="fas fa-clipboard-list"></i>
       メニュー一覧
     <% end %>
   </h5>
   <div class= "row">
-    <div class= "restaurant_image col-4 mt-4 text-center">
+    <div class= "restaurant_image col-md-4 mt-4 text-center">
       <% if @restaurant.image.attached? %>
         <%= image_tag @restaurant.get_image(200,200) %>
       <% else %>
         <%= image_tag 'default-image.jpg', size: "200x200" %>
       <% end %>
     </div>
-    <div class= "col-8 mt-4">
+    <div class= "col-md-8 mt-4">
       <%= @restaurant.introduction %>
     </div>
   </div>
   <div class= "row">
-    <table class="table table-hover table-inverse col-5 mt-4 ">
+    <table class="table table-hover table-inverse col-md-5 mt-4 ">
       <div>
         <tr>
           <th>都道府県</th>
@@ -79,7 +79,7 @@
         </tr>
       </div>
     </table>
-    <div class= "col-7 mt-4">
+    <div class= "col-md-7 mt-4">
       <h5>NEWS</h5>
       <%= @restaurant.news %>
     </div>
