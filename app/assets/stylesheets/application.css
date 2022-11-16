@@ -59,6 +59,10 @@ th {
   background-position:center;
 }
 
+.navbar-toggler{
+  background-color: #000000;
+}
+
 .wrapper{
   min-height: 100vh;
   position: relative;
