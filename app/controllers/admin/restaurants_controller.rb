@@ -18,7 +18,7 @@ class Admin::RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
     if @restaurant.update(restaurant_params)
-      redirect_to admin_restaurant_path, notice: 'Customer was successfully updated'
+      redirect_to admin_restaurant_path, notice: '飲食店情報を編集しました！'
     else
       render :edit
     end

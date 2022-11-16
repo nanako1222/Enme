@@ -16,7 +16,7 @@ class Restaurant::MenusController < ApplicationController
     @restaurant = current_restaurant
     @menu = Menu.find(params[:id])
     if @menu.update(menu_params)
-      redirect_to restaurant_restaurant_menu_path(@restaurant, @menu), notice: 'Product was successfully updated'
+      redirect_to restaurant_restaurant_menu_path(@restaurant, @menu), notice: 'メニュー情報を編集しました！'
     else
       render :show
     end
@@ -31,7 +31,7 @@ class Restaurant::MenusController < ApplicationController
   def create
     @menu = current_restaurant.menus.new(menu_params)
     if @menu.save
-      redirect_to restaurant_restaurant_menus_path(@menu.id), notice: 'Product was successfully created'
+      redirect_to restaurant_restaurant_menus_path(@menu.id), notice: 'メニューを新規作成しました！'
     else
       @allergies = Allergy.all
       render :new

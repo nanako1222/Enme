@@ -3,7 +3,7 @@
     <div class="col-md-11 offset-1">
 
       <div class="menu_edit">
-        <h4 class="col-4 mt-5">メニュー編集</h4>
+        <h4 class="col-md-4 mt-5">メニュー編集</h4>
 
         <div class='flashing mt-2'>
           <p>※現在登録されているデータは架空です</p>
@@ -40,8 +40,8 @@
             <%= f.text_area :introduction, class: "col-md-6" %>
           </div>
 
-          <div class="actions2 mt-4 offset-4">
-            <%= button_tag type: :submit, class: "btn btn-success active mx-auto" do %>
+          <div class="actions2 mt-4 offset-md-4">
+            <%= button_tag type: :submit, class: "btn btn-success active" do %>
               <i class="fas fa-save"></i> 編集内容を保存
             <% end %>
           </div>
