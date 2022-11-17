@@ -28,7 +28,7 @@
         <div class="row field d-grid text-center mt-3">
           <%= f.label :含まれるアレルゲン, class: "col-md-4 text-left" %>
           <div class="allergies_check_boxes col-md-7">
-            <%= f.collection_check_boxes(:allergies, @allergies, :id, :allergen, include_hidden: false) do |a| %>
+            <%= f.collection_check_boxes(:allergy_ids, @allergies, :id, :allergen, include_hidden: false) do |a| %>
               <%= a.label { a.check_box + a.text } %>
             <% end %>
           </div>

@@ -51,7 +51,7 @@
             <%= f.label :アレルゲン情報登録, class: "col-md-3 text-left" %>
             <%#= f.collection_check_boxes :allergy_ids, @allergies, :id, :allergen, include_hidden: false %>
             <div class="allergies_check_boxes col-md-7">
-              <%= f.collection_check_boxes(:allergies, @allergies, :id, :allergen, include_hidden: false) do |a| %>
+              <%= f.collection_check_boxes(:allergy_ids, @allergies, :id, :allergen, include_hidden: false) do |a| %>
                 <%= a.label { a.check_box + a.text } %>
               <% end %>
             </div>

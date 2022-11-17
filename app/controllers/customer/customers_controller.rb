@@ -28,6 +28,7 @@ class Customer::CustomersController < ApplicationController
     @customer = current_customer
     @customer.update(is_valid: false)
     reset_session
+    flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
   end
 

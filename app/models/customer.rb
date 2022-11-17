@@ -16,4 +16,8 @@ class Customer < ApplicationRecord
   def full_name_kana
     "#{first_name_kana} #{last_name_kana}"
   end
+
+  def active_for_authentication?
+    super && (is_valid == true)
+  end
 end

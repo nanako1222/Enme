@@ -18,7 +18,7 @@
           退会しない
         <% end %>
         <%#= link_to "退会する", customers_out_path(@customer),"data-confirm" => "本当に退会しますか？", method: :patch, class:"btn btn-danger ml-5"%>
-        <%= link_to customers_confirm_path(@customer), method: :patch, class:"btn btn-danger active ml-md-5 mt-4" do %>
+        <%= link_to customers_out_path,"data-confirm" => "本当に退会しますか？", method: :patch, class:"btn btn-danger active ml-md-5 mt-4" do %>
           <i class="fas fa-user-slash"></i>
           退会する
         <% end %>
