@@ -36,9 +36,11 @@
             </p>
             <p class ="p_1"><%= link_to menu.name, restaurant_menu_path(@restaurant, menu) %></p>
             <p class ="p_1"><%= "¥#{menu.price}" %></p>
-            <% @menu.menu_having_allergies.each do |e| %>
-              <td><%= e.allergy.allergen %></td>
-            <% end %>
+            <%# @restaurant.menus.each do |menu| %>
+              <%# menu.allergies.each do |e| %>
+                <td><%#= e.allergen %></td>
+              <%# end %>
+            <%# end %>
             </div>
           <% end %>
         </div>

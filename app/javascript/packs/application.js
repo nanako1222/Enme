@@ -21,3 +21,4 @@ import './area.js'
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
