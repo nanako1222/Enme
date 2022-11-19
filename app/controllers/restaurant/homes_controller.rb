@@ -7,6 +7,7 @@ class Restaurant::HomesController < ApplicationController
 
   def edit
     @restaurant = current_restaurant
+    @area = Area.where(state_id: @restaurant.state_id)
   end
 
   def update

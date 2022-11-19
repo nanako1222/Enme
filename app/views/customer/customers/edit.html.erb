@@ -30,15 +30,20 @@
             <%= f.label :都道府県, class: "col-md-3 text-left" %>
             <%= f.collection_select :state_id , State.all,:id,:state %>
           </div>
+          <p class="offset-md-3 mt-2">
+            ※変更される場合は都道府県から選択し直してください
+          </P>
 
           <div class="row mt-3">
             <%= f.label :地域エリア, class: "col-md-3 text-left" %>
-            <%= render partial: 'shared/areas', locals: { areas: Area.all } %>
+            <div id="areas_select_customer" >
+              <%= render partial: 'shared/areas', locals: { areas: @area  } %>
+            </div>
           </div>
 
           <p class="offset-md-3 mt-2">
             ※エリア分け詳細は
-            <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
+            <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm" %>
             をご参考ください
           </p>
 
@@ -73,3 +78,8 @@
     </div>
   </div>
 </div>
+<script>
+  window.addEventListener('pageshow',()=>{
+  	if(window.performance.navigation.type==2) location.reload();
+  });
+</script>

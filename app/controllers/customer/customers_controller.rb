@@ -9,6 +9,7 @@ class Customer::CustomersController < ApplicationController
   def edit
     @customer = current_customer
     @allergies = Allergy.all
+    @area = Area.where(state_id: @customer.state_id)
   end
 
   def update

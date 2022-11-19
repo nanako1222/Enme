@@ -1,5 +1,6 @@
 /*global $*/
-$(document).on('turbolinks:load',function(){
+//$(document).on('turbolinks:load',function(){
+$(function(){
   $('#customer_state_id').change(function() {
     $.ajax('/areas', {
       type: 'GET',
@@ -8,12 +9,12 @@ $(document).on('turbolinks:load',function(){
         state_id: $(this).val()
       }
     }).done(function(data){
-      $('#areas_select').html(data)
+      $('#areas_select_customer').html(data)
     })
   })
-});
+//});
 
-$(document).on('turbolinks:load',function(){
+//$(document).on('turbolinks:load',function(){
   $('#restaurant_state_id').change(function() {
     $.ajax('/areas', {
       type: 'GET',

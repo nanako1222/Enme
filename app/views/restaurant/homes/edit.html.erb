@@ -29,11 +29,13 @@
             <%= f.label :都道府県, class: "col-md-3 text-left" %>
             <%= f.collection_select :state_id , State.all,:id,:state %>
           </div>
-
+          <p class="offset-md-3 mt-2">
+            ※変更される場合は都道府県から選択し直してください
+          </P>
           <div class="row field d-grid text-center mt-3">
             <%= f.label :地域エリア, class: "col-md-3 text-left" %>
             <div id="areas_select" >
-              <%= render partial: 'shared/restaurant_areas', locals: { areas: Area.all } %>
+              <%= render partial: 'shared/restaurant_areas', locals: { areas: @area } %>
             </div>
           </div>
 
@@ -98,3 +100,9 @@
     </div>
   </div>
 </div>
+
+<script>
+  window.addEventListener('pageshow',()=>{
+  	if(window.performance.navigation.type==2) location.reload();
+  });
+</script>

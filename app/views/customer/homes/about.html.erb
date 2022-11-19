@@ -79,13 +79,3 @@
       </div>
     </div>
   </div>
-
-<script>
-
-  $(document).on('turbolinks:load',function(){
-
-    window.addEventListener('pageshow',()=>{
-    	if(window.performance.navigation.type==2) location.reload();
-    });
-  });
-</script>
