@@ -60,13 +60,13 @@ th {
 }
 
 #global_nav .navbar-toggler{
-  background-color: rgba(2, 100, 100, 1);
+  background-color: rgba( 237, 228, 225, 0.5);
   border-color: rgba(0, 0, 0, 0);
 }
 
-#global_nav .navbar-brand{
-  /* サイトタイトル */
-  color: rgba(212, 108, 228, 1);
+.navbar-nav li a{
+  color: #800000 !important;
+  background-color: rgba( 237, 228, 225, 0.5);
 }
 
 .wrapper{
@@ -192,8 +192,4 @@ input[type="checkbox"]{
 
 .customer_valid2{
   color: green;
-}
-
-.navbar-nav li a{
-  color: #800000 !important;
 }
