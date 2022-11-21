@@ -30,7 +30,7 @@
             <div class="navbar-collapse collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto" id="nav_links", style="color: #800000;">
                 <li>
-                  <%= link_to customers_my_page_path, class:"nav-link text-light" do %>
+                  <%= link_to customer_path(current_customer), class:"nav-link text-light" do %>
                     <strong>マイページ</strong>
                   <% end %>
                 </li>

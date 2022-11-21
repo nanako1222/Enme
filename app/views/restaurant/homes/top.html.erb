@@ -1,11 +1,13 @@
 <div class="container col-10 offset-1">
-  <% if flash[:notice] %>
-    <%= notice %>
-  <% end %>
   <h4 class="col-md-4 mt-5">店舗詳細</h4>
 
   <div class='flashing mt-2'>
     <p>※現在登録されているデータは架空です</p>
+  </div>
+  <div class='mt-5'>
+    <% if flash[:notice] %>
+      <%= notice %>
+    <% end %>
   </div>
 
   <h5 class="mt-4">

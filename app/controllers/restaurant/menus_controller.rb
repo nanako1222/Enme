@@ -48,7 +48,7 @@ class Restaurant::MenusController < ApplicationController
     @restaurant = current_restaurant
     @menu = current_restaurant.menus.find(params[:id])
     if @menu.destroy
-      redirect_to restaurant_restaurant_menus_path(@restaurant)
+      redirect_to restaurant_restaurant_menus_path(@restaurant), notice: 'メニューを削除しました！'
     end
   end
 

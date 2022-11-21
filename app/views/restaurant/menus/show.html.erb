@@ -4,6 +4,11 @@
       <div class='flashing mt-5 offset-md-2'>
         <p>※現在登録されているデータは架空です</p>
       </div>
+      <div class='mt-5 offset-md-2'>
+        <% if flash[:notice] %>
+          <%= notice %>
+        <% end %>
+      </div>
 
       <div class="row mt-5">
         <div class="col-md-5 mt-5 text-center">

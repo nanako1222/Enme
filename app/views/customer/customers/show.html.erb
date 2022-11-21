@@ -1,19 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col-10 offset-1">
-      <% if flash[:notice] %>
-        <%= notice %>
-      <% end %>
       <h4 class="col-md-4 mt-5">マイページ</h4>
 
       <div class='flashing mt-2'>
         <p>※現在登録されているデータは架空です</p>
       </div>
+      <div class='mt-5'>
+        <% if flash[:notice] %>
+          <%= notice %>
+        <% end %>
+      </div>
 
       <table class="table table-hover table-inverse item-show mt-4">
         <h5 class="mt-4">
           登録情報
-          <%= link_to customers_information_edit_path, class:"btn btn-success active ml-4 mt-2" do %>
+          <%= link_to customers_information_edit_path(@customer), class:"btn btn-success active ml-4 mt-2" do %>
             <i class="fas fa-user-edit"></i>
             編集する
           <% end %>

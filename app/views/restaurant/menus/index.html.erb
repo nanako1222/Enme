@@ -8,6 +8,11 @@
       <div class='flashing mt-2'>
         <p>※現在登録されているデータは架空です</p>
       </div>
+      <div class='mt-5'>
+        <% if flash[:notice] %>
+          <%= notice %>
+        <% end %>
+      </div>
 
         <div class = "row mt-4">
           <% @menus.each do |menu| %>

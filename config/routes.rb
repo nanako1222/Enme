@@ -56,8 +56,8 @@ Rails.application.routes.draw do
       resources :menus, only: [:index, :show]
     end
     patch "/customers/information" => "customers#update"
-    get "/customers/information/edit" => "customers#edit"
-    get "/customers/my_page" => "customers#show"
+    get "/customers/:id/information/edit" => "customers#edit",as: "customers_information_edit"
+    get "/customers/:id" => "customers#show",as: "customer"
     get "/customers/confirm" => "customers#confirm"
     patch '/customers/out' => 'customers#out'
     get "/customers/favorite/index" => "customers#index"
