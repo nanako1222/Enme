@@ -12,9 +12,10 @@ $(function(){
       $('#areas_select_customer').html(data)
     })
   })
-//});
+// });
 
 //$(document).on('turbolinks:load',function(){
+// $(function(){
   $('#restaurant_state_id').change(function() {
     $.ajax('/areas', {
       type: 'GET',
