@@ -1,7 +1,7 @@
 class Admin::AreasController < ApplicationController
   def index
     @state = State.new
-    @states = State.all.page(params[:page])
+    @states = State.all.page(params[:page]).per(10)
   end
   def show
     @state = State.find(params[:id])

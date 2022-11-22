@@ -103,27 +103,27 @@
               <ul class="navbar-nav ml-auto">
                 <li>
                   <%= link_to restaurant_homes_path, class:"nav-link text-light" do %>
-                    <strong>登録情報詳細</strong>
+                    <strong class="ml-3">登録情報詳細</strong>
                   <% end %>
                 </li>
                 <li>
                   <%= link_to restaurant_restaurant_menus_path(@restaurant), class:"nav-link text-light" do %>
-                    <strong>メニュー一覧</strong>
+                    <strong class="ml-3">メニュー一覧</strong>
                   <% end %>
                 </li>
                 <li>
                   <%= link_to new_restaurant_restaurant_menu_path(@restaurant), class:"nav-link text-light" do %>
-                    <strong>メニュー追加</strong>
+                    <strong class="ml-3">メニュー追加</strong>
                   <% end %>
                 </li>
                 <li>
                   <%= link_to restaurant_about_path, class:"nav-link text-light", data: {"turbolinks" => false} do %>
-                    <strong>About</strong>
+                    <strong class="ml-3">About</strong>
                   <% end %>
                 </li>
                 <li>
                   <%= link_to destroy_restaurant_session_path, method: :delete, class:"nav-link text-light" do %>
-                    <strong>ログアウト</strong>
+                    <strong class="ml-3">ログアウト</strong>
                   <% end %>
                 </li>
               </ul>
@@ -139,22 +139,22 @@
               <ul class="navbar-nav ml-auto">
                 <li>
                   <%= link_to about_path, class:"nav-link text-light", data: {"turbolinks" => false} do %>
-                    <strong>About</strong>
+                    <strong class="ml-3">About</strong>
                   <% end %>
                 </li>
                 <li>
                   <%= link_to search_restaurants_path, class:"nav-link text-light" do %>
-                    <strong>飲食店検索</strong>
+                    <strong class="ml-3">飲食店検索</strong>
                   <% end %>
                 </li>
                 <li>
                   <%= link_to new_customer_registration_path, class:"nav-link text-light", data: {"turbolinks": false} do %>
-                    <strong>新規登録</strong>
+                    <strong class="ml-3">新規登録</strong>
                   <% end %>
                 </li>
                 <li>
                   <%= link_to new_customer_session_path, class:"nav-link text-light" do %>
-                    <strong>ログイン</strong>
+                    <strong class="ml-3">ログイン</strong>
                   <% end %>
                 </li>
               </ul>

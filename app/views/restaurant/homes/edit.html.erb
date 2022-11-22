@@ -11,8 +11,8 @@
         <%= form_with model: @restaurant, url: restaurant_information_path, method: :patch do |f| %>
 
           <div class="row field d-grid text-center mt-3">
-            <%= f.label :店舗画像, class: "col-md-3 text-left" %>
-            <%= f.file_field :image, accept: "image/*", class: "col-md-6" %>
+            <%= f.label :image, "店舗画像", class: "col-md-3 text-left" %>
+            <%= f.file_field :image, accept: "image/*", class: "col-md-7", style: "padding: 0;" %>
           </div>
 
           <div class="row field d-grid text-center mt-3">

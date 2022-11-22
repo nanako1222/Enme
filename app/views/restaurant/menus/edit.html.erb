@@ -12,7 +12,7 @@
         <%= form_with model: @menu ,url: restaurant_restaurant_menu_path, method: :patch do |f| %>
           <div class="row field d-grid text-center mt-4">
             <%= f.label :料理画像, class: "col-md-4 text-left" %>
-            <%= f.file_field :image, accept: "image/*", class: "col-md-6" %>
+            <%= f.file_field :image, accept: "image/*", class: "col-md-6", style: "padding: 0;" %>
           </div>
 
           <div class="row field d-grid text-center mt-3">

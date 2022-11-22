@@ -27,14 +27,14 @@ Rails.application.routes.draw do
     resources :customers, only: [:show, :index, :edit, :update]
     get '/areas/index' => "areas#index"
     get '/areas/:id' => "areas#show",as: "areas"
-    resources :allergies, only: [:create, :index, :edit, :update]
+    resources :allergies, only: [:create, :index, :edit, :update, :destroy]
     resources :restaurants, only: [:show, :edit, :update]
     get '/' => 'homes#top'
   end
   namespace :restaurant do
     # resources :menus, only: [:create, :index, :show, :new, :edit, :update, :destroy]
     get '/' => 'homes#top', as: 'homes'
-    get "information/edit" => "homes#edit"
+    get "information/:id/edit", to: "homes#edit", as: "information_edit"
     patch "/information" => "homes#update"
     get "/confirm" => "homes#confirm"
     get '/about' => 'homes#about'

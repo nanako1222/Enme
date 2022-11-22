@@ -3,7 +3,7 @@ class Admin::AllergiesController < ApplicationController
 
   def index
     @allergy = Allergy.new
-    @allergies = Allergy.all.page(params[:page])
+    @allergies = Allergy.all.page(params[:page]).per(10)
   end
 
   def create
@@ -25,6 +25,13 @@ class Admin::AllergiesController < ApplicationController
       redirect_to admin_allergies_path, notice: '編集に成功しました'
     else
       render :edit
+    end
+  end
+
+  def destroy
+    @allergen = Allergy.find(params[:id])
+    if @allergen.destroy
+      redirect_to admin_allergies_path, notice: 'アレルゲンを削除しました！'
     end
   end
 

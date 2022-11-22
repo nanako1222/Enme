@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-10 offset-1">
-      <h4 class="col-2 mt-5">会員一覧</h4>
+      <h4 class="col-2 mt-5">飲食店会員一覧</h4>
 
       <div class='flashing mt-2'>
         <p>※現在登録されているデータは架空です</p>
@@ -30,9 +30,9 @@
               </td>
             </tr>
           <% end %>
-          <%= paginate @restaurants %>
         </tbody>
       </table>
+      <div class="offset-5 mt-3"><%= paginate @restaurants %></div>
     </div>
   </div>
 </div>

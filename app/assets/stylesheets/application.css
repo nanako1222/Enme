@@ -60,13 +60,14 @@ th {
 }
 
 #global_nav .navbar-toggler{
-  background-color: rgba( 237, 228, 225, 0.5);
+  background-color: rgba( 152, 96, 54, 1);
   border-color: rgba(0, 0, 0, 0);
+  border-color: rgba( 237, 228, 225, 1);
 }
 
 .navbar-nav li a{
-  color: #800000 !important;
-  background-color: rgba( 237, 228, 225, 0.5);
+  color: #ede4e1 !important;
+  background-color: rgba( 107, 63, 49, 0.7);
 }
 
 .wrapper{

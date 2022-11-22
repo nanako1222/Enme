@@ -33,6 +33,7 @@ class Customer::RestaurantsController < ApplicationController
     else
       @restaurants = Restaurant.all
     end
+
   end
 
   def create
