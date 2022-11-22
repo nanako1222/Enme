@@ -4,7 +4,7 @@ class Menu < ApplicationRecord
   has_many :allergies, through: :menu_having_allergies, dependent: :destroy
   belongs_to :restaurant
 
-  validates :price, presence: true
+  validates :price, :name, presence: true
 
   def get_image(width, height)
     unless image.attached?

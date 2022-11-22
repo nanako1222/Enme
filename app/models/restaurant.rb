@@ -9,6 +9,8 @@ class Restaurant < ApplicationRecord
   belongs_to :state
   belongs_to :area
 
+  validates :name, :email, :state_id, :area_id, :telephone_number,:regular_holiday, :business_hours, :address, presence: true
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')

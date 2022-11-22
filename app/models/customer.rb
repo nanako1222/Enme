@@ -9,6 +9,8 @@ class Customer < ApplicationRecord
   belongs_to :state
   belongs_to :area
 
+  validates :last_name, :first_name, :first_name_kana, :last_name_kana, :email, :state_id, :area_id, :telephone_number, presence: true
+
   def full_name
     "#{first_name} #{last_name}"
   end
