@@ -39,60 +39,62 @@
       <%= @restaurant.introduction %>
     </div>
   </div>
-  <div class="table-responsive-sm">
-    <table class="table table-hover table-inverse col-md-5 mt-4 ">
-      <div>
-        <tr>
-          <th>都道府県</th>
-          <td><%= @state %></td>
-        </tr>
-        <tr>
-          <th>地域エリア</th>
-          <td><%= @area %></td>
-        </tr>
-        <tr>
-          <th>それ以降の住所</th>
-          <td><%= @restaurant.address %></td>
-        </tr>
-        <tr>
-          <th>電話番号</th>
-          <td><%= @restaurant.telephone_number %></td>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <td><%= @restaurant.email %></td>
-        </tr>
-        <tr>
-          <th>定休日</th>
-          <td><%= @restaurant.regular_holiday %></td>
-        </tr>
-        <tr>
-          <th>営業時間</th>
-          <td><%= @restaurant.business_hours %></td>
-        </tr>
-        <tr>
-          <th>ホームページURL</th>
-          <td><%= @restaurant.home_page %></td>
-        </tr>
-        <tr>
-          <th>駐車場</th>
-          <td><%= @restaurant.parking %></td>
-        </tr>
-        <!--<tr>-->
-        <!--  <th>アレルギー一覧</th>-->
-        <!--  <td>-->
-        <!--    <%# @restaurant.menus.each do |menu| %>-->
-        <!--      <%# menu.allergies.each do |allergy| %>-->
-        <!--        <%#= allergy.allergen %>-->
-        <!--      <%# end %>-->
-        <!--    <%# end %>-->
-        <!--  </td>-->
-        <!--</tr>-->
-      </div>
-    </table>
-  </div>
-  <div class= "col-7 mt-4">
-    <h5>NEWS</h5>
-    <%= @restaurant.news %>
+  <div class= "row">
+    <div class="table-responsive-sm col-md-6">
+      <table class="table table-hover table-inverse mt-4 ">
+        <div>
+          <tr>
+            <th>都道府県</th>
+            <td><%= @state %></td>
+          </tr>
+          <tr>
+            <th>地域エリア</th>
+            <td><%= @area %></td>
+          </tr>
+          <tr>
+            <th>それ以降の住所</th>
+            <td><%= @restaurant.address %></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @restaurant.telephone_number %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @restaurant.email %></td>
+          </tr>
+          <tr>
+            <th>定休日</th>
+            <td><%= @restaurant.regular_holiday %></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td><%= @restaurant.business_hours %></td>
+          </tr>
+          <tr>
+            <th>ホームページURL</th>
+            <td><%= @restaurant.home_page %></td>
+          </tr>
+          <tr>
+            <th>駐車場</th>
+            <td><%= @restaurant.parking %></td>
+          </tr>
+          <!--<tr>-->
+          <!--  <th>アレルギー一覧</th>-->
+          <!--  <td>-->
+          <!--    <%# @restaurant.menus.each do |menu| %>-->
+          <!--      <%# menu.allergies.each do |allergy| %>-->
+          <!--        <%#= allergy.allergen %>-->
+          <!--      <%# end %>-->
+          <!--    <%# end %>-->
+          <!--  </td>-->
+          <!--</tr>-->
+        </div>
+      </table>
+    </div>
+    <div class= "col-6 mt-4">
+      <h5>NEWS</h5>
+      <%= @restaurant.news %>
+    </div>
   </div>
 </div>

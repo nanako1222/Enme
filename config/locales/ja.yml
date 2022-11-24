@@ -1,5 +1,28 @@
 ja:
   activerecord:
+    attributes:
+      customer:
+        first_name: 姓
+        last_name: 名
+        first_name_kana: 姓（カナ）
+        last_name_kana: 名（カナ）
+        email: メールアドレス
+        telephone_number: 電話番号
+        password: パスワード
+        activated: アクティブフラグ
+        admin: 管理者フラグ
+
+      restaurant:
+        name: 店名
+        email: メールアドレス
+        telephone_number: 電話番号
+        regular_holiday: 定休日
+        business_hours: 営業時間
+        address: それ以降の住所
+        password: パスワード
+        activated: アクティブフラグ
+        admin: 管理者フラグ
+
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

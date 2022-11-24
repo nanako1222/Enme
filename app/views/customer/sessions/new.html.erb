@@ -9,6 +9,8 @@
       <h6 class="col-md-4 mt-5 ml-md-4">会員の方はこちらからログイン</h6>
 
       <%= form_with model: @customer, url: customer_session_path, id: 'in_customer', class: 'in_customer', local: true do |f| %>
+        <%= render "customer/shared/error_messages", resource: resource %>
+        
         <div class="row field d-grid text-center mt-3">
           <%= f.label :メールアドレス, class: "col-md-3 text-left offset-1" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス", class: "col-md-5" %>
