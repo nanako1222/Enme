@@ -22,4 +22,8 @@ class Restaurant < ApplicationRecord
   def get_areas
       return  Area.all
   end
+
+  def active_for_authentication?
+    super && (is_valid == true)
+  end
 end

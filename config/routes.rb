@@ -58,7 +58,7 @@ Rails.application.routes.draw do
     patch "/customers/information" => "customers#update"
     get "/customers/:id/information/edit" => "customers#edit",as: "customers_information_edit"
     get "/customers/:id" => "customers#show",as: "customer"
-    get "/customers/confirm" => "customers#confirm"
+    get "/customers/:id/confirm" => "customers#confirm",as: "customers_confirm"
     patch '/customers/out' => 'customers#out'
     get "/customers/favorite/index" => "customers#index"
   end

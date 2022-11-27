@@ -9,21 +9,22 @@
 
       <div class="mt-4">
         <%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
+
           <div class="row mt-3">
             <%= f.label :氏名, class: "col-md-3 text-left" %>
             <%= f.text_field :first_name, autofocus: true, required: true, class: "col-md-3" %>
-            <%= f.text_field :last_name, autofocus: true, required: true, class: "col-md-3 ml-2" %>
+            <%= f.text_field :last_name, required: true, class: "col-md-3 ml-2" %>
           </div>
 
           <div class="row mt-4">
             <%= f.label :フリガナ, class: "col-md-3 text-left" %>
-            <%= f.text_field :first_name_kana, autofocus: true, required: true, class: "col-md-3" %>
-            <%= f.text_field :last_name_kana, autofocus: true, required: true, class: "col-md-3 ml-2" %>
+            <%= f.text_field :first_name_kana, required: true, class: "col-md-3" %>
+            <%= f.text_field :last_name_kana, required: true, class: "col-md-3 ml-2" %>
           </div>
 
           <div class="row mt-4">
             <%= f.label :メールアドレス, class: "col-md-3 text-left" %>
-            <%= f.email_field :email, autofocus: true, class: "col-md-6" %>
+            <%= f.email_field :email, required: true, class: "col-md-6" %>
           </div>
 
           <div class="row mt-4">
@@ -49,7 +50,7 @@
 
           <div class="row mt-4">
             <%= f.label :電話番号（ハイフンなし）, class: "col-md-3 text-left" %>
-            <%= f.number_field :telephone_number, autofocus: true, class: "col-md-6" %>
+            <%= f.text_field :telephone_number, required: true, class: "col-md-6" %>
           </div>
 
           <div class="row mt-3">

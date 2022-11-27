@@ -19,7 +19,7 @@
           <h5><strong><%= @menu.name %></strong></h5>
           <div class="mt-3"><%= @menu.introduction %></div>
           <div class="mt-3">
-            <p class="menu_allergen"><strong>アレルゲン</strong></p>
+            <p class="menu_allergen"><strong>含まれるアレルゲン</strong></p>
             <% @menu.menu_having_allergies.each do |e| %>
               <td><%= e.allergy.allergen %></td>
             <% end %>

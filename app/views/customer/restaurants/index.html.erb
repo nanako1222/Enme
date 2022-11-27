@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-10 offset-1">
+    <div class="col-md-10 offset-md-1 col-xs-12">
       <div class ="row mt-5">
         <h4 class="col-md-3"><p class="p_1">飲食店一覧 <span style="font-size: 15px"><%= "(全#{@restaurant_count}件)"%></span></p></h4>
       </div>
@@ -13,20 +13,28 @@
             <th>店名</th>
             <th>住所</th>
             <th>定休日</th>
+            <th>都道府県</th>
+            <th>地域エリア</th>
           </thead>
           <tbody>
             <% @restaurants.each do |restaurant| %>
               <tr>
                 <td>
                   <% if restaurant.image.attached? %>
-                    <%= image_tag restaurant.get_image(60,50) %>
+                    <%= link_to restaurant_path(restaurant.id) do %>
+                      <%= image_tag restaurant.get_image(60,50) %>
+                    <% end %>
                   <% else %>
-                    <%= image_tag 'default-image.jpg', size: "60x50" %>
+                    <%= link_to restaurant_path(restaurant.id) do %>
+                      <%= image_tag 'default-image.jpg', size: "60x50" %>
+                    <% end %>
                   <% end %>
                   <%= link_to restaurant.name, restaurant_path(restaurant.id) %>
                 </td>
                 <td><%= restaurant.address %></td>
                 <td><%= restaurant.regular_holiday %></td>
+                <td><%= State.find(restaurant.state_id).state %></td>
+                <td><%= Area.find(restaurant.area_id).area %></td>
               </tr>
             <% end %>
           </tbody>

@@ -37,7 +37,7 @@
                 <%= link_to "編集", edit_admin_allergy_path(allergy), class:"btn btn-success"%>
               </td>
               <td>
-                <%= link_to "削除",admin_allergy_path(allergy), method: :delete,  class:"btn btn-danger active" %>
+                <%= link_to "削除",admin_allergy_path(allergy), method: :delete,"data-confirm" => "本当に削除しますか？",  class:"btn btn-danger active" %>
               </td>
             </tr>
           <% end %>

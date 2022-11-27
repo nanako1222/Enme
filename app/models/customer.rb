@@ -22,4 +22,7 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (is_valid == true)
   end
+  # def inactive_message
+  #   return "退会済みのユーザです"
+  # end
 end

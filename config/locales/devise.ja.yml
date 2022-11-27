@@ -27,6 +27,8 @@ ja:
         updated_at: 更新日
     models:
       user: ユーザ
+      customer: 会員情報
+      restaurant: 店舗会員情報
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
@@ -36,7 +38,7 @@ ja:
       send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     failure:
       already_authenticated: すでにログインしています。
-      inactive: アカウントが有効化されていません。メールに記載された手順にしたがって、アカウントを有効化してください。
+      inactive: 既に退会済みのアカウントです。
       invalid: "%{authentication_keys}またはパスワードが違います。"
       last_attempt: もう一回誤るとアカウントがロックされます。
       locked: アカウントは凍結されています。

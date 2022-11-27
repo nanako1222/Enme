@@ -2,8 +2,11 @@
   <div class="row">
     <div class="col-md-10 offset-1">
       <h4 class="col-md-3 mt-5">店舗ログイン</h4>
-      <% if flash[:notice] %>
-        <%= notice %>
+      <%# if flash[:notice] %>
+        <%#= notice %>
+      <%# end %>
+      <% if flash[:alert] %>
+        <%= alert %>
       <% end %>
 
       <h6 class="col-md-5 mt-5 ml-md-4">店舗会員の方はこちらからログイン</h6>
