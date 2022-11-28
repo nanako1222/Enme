@@ -4,7 +4,7 @@ class Customer::MenusController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
     # @restaurants = Restaurant.all
     @menu = Menu.new
-    @menus = @restaurant.menus.page(params[:page]).per(9)
+    @menus = @restaurant.menus.order(id: "DESC").page(params[:page]).per(9)
     @menu_count = @menus.count
   end
 

@@ -2,7 +2,7 @@ class Restaurant::MenusController < ApplicationController
   def index
     @restaurant = current_restaurant
     @menu = Menu.new
-    @menus = @restaurant.menus.page(params[:page]).per(9)
+    @menus = @restaurant.menus.order(id: "DESC").page(params[:page]).per(9)
     @menu_count = Menu.count
   end
 

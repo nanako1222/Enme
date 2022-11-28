@@ -2,7 +2,7 @@ class Admin::RestaurantsController < ApplicationController
   before_action :authenticate_admin!
   def index
     @restaurant = Restaurant.new
-    @restaurants = Restaurant.page(params[:page]).per(10)
+    @restaurants = Restaurant.all.order(id: "DESC").page(params[:page]).per(10)
   end
 
   def show
@@ -20,6 +20,7 @@ class Admin::RestaurantsController < ApplicationController
     if @restaurant.update(restaurant_params)
       redirect_to admin_restaurant_path, notice: '飲食店情報を編集しました！'
     else
+      flash.now[:alert] =  '登録に失敗しました'
       render :edit
     end
   end
