@@ -42,13 +42,13 @@
 
 ## 使用素材
 <アイコン>
-* Font Awesome
+* [Font Awesome](https://fontawesome.com/)
 
 <画像>
-* photoAC
-* 地図AC
-* ぱくたそ
+* [photoAC](https://www.photo-ac.com/)
+* [地図AC](https://www.map-ac.com/)
+* [ぱくたそ](https://www.pakutaso.com/)
 
 <ロゴ>
-* designevo
+* [designevo](https://www.designevo.com/)
 
