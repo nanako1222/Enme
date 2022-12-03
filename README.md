@@ -41,6 +41,12 @@
 - IDE：Cloud9
 
 ## 使用素材
-使用検討中です。
-
+* アイコン
+-　Font Awesome
+* 画像
+- photoAC
+- 地図AC
+- ぱくたそ
+* ロゴ
+-designevo
 
