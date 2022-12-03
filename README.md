@@ -43,10 +43,12 @@
 ## 使用素材
 <アイコン>
 * Font Awesome
+
 <画像>
 * photoAC
 * 地図AC
 * ぱくたそ
+
 <ロゴ>
 * designevo
 
