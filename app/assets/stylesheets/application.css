@@ -1,196 +1,196 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
 
-html {
-  height: 100%;
-}
+ /** This is a manifest file that'll be compiled into application.css, which will include all the files*/
+ /** listed below.*/
+ /***/
+ /** Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's*/
+ /** vendor/assets/stylesheets directory can be referenced here using a relative path.*/
+ /***/
+ /** You're free to add application-wide styles to this file and they'll appear at the bottom of the*/
+ /** compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS*/
+ /** files in this directory. Styles in this file should be added after the last require_* statement.*/
+ /** It is generally better to create a new file per style scope.*/
+ /***/
+ /**= require_tree .*/
+ /**= require_self*/
 
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
 
-.content {
-  flex: 1;
-}
+/*html {*/
+/*  height: 100%;*/
+/*}*/
 
-h4, h6 {
-  color: #6e4a55;
-  border-radius: 4px;
-  background-color: #bccddb ;
-}
+/*body {*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  min-height: 100%;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*}*/
 
-h1{
-  color: maroon;
-}
+/*.content {*/
+/*  flex: 1;*/
+/*}*/
 
-.about{
-  color: maroon;
-}
+/*h4, h6 {*/
+/*  color: #6e4a55;*/
+/*  border-radius: 4px;*/
+/*  background-color: #bccddb ;*/
+/*}*/
 
-.table-secondary {
-  background-color: #ffffe0 ;
-}
+/*h1{*/
+/*  color: maroon;*/
+/*}*/
 
-th {
-  color: #cd853f;
-}
+/*.about{*/
+/*  color: maroon;*/
+/*}*/
 
-.navbar-expand-lg {
-  height: 80px;
-  background-image: url('navbar.jpeg');
-  background-size:cover;
-  background-position:center;
-}
+/*.table-secondary {*/
+/*  background-color: #ffffe0 ;*/
+/*}*/
 
-#global_nav .navbar-toggler{
-  background-color: rgba( 152, 96, 54, 1);
-  border-color: rgba(0, 0, 0, 0);
-  border-color: rgba( 237, 228, 225, 1);
-}
+/*th {*/
+/*  color: #cd853f;*/
+/*}*/
 
-.navbar-nav li a{
-  color: #ede4e1 !important;
-  background-color: rgba( 107, 63, 49, 0.7);
-}
+/*.navbar-expand-lg {*/
+/*  height: 80px;*/
+/*  background-image: url('navbar.jpeg');*/
+/*  background-size:cover;*/
+/*  background-position:center;*/
+/*}*/
 
-.wrapper{
-  min-height: 100vh;
-  position: relative;
-  padding-bottom: 120px;
-  box-sizing: border-box;
-  background-color: #ede4e1;
-}
+/*#global_nav .navbar-toggler{*/
+/*  background-color: rgba( 152, 96, 54, 1);*/
+/*  border-color: rgba(0, 0, 0, 0);*/
+/*  border-color: rgba( 237, 228, 225, 1);*/
+/*}*/
 
-footer {
-  background-image: url('navbar.jpeg');
-  background-size:cover;
-  background-position:center;
-  width: 100% ;
-  color: white ;
-}
+/*.navbar-nav li a{*/
+/*  color: #ede4e1 !important;*/
+/*  background-color: rgba( 107, 63, 49, 0.7);*/
+/*}*/
 
-.top_image{
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
+/*.wrapper{*/
+/*  min-height: 100vh;*/
+/*  position: relative;*/
+/*  padding-bottom: 120px;*/
+/*  box-sizing: border-box;*/
+/*  background-color: #ede4e1;*/
+/*}*/
 
-.top_image::after {
-  position: absolute;
-  content: '';
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: inset 0 0 10px 20px #ede4e1;
-}
+/*footer {*/
+/*  background-image: url('navbar.jpeg');*/
+/*  background-size:cover;*/
+/*  background-position:center;*/
+/*  width: 100% ;*/
+/*  color: white ;*/
+/*}*/
 
-.top_image img {
-  width: 150%;
-}
+/*.top_image{*/
+/*  position: relative;*/
+/*  z-index: 1;*/
+/*  width: 100%;*/
+/*  height: 400px;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  overflow: hidden;*/
+/*}*/
 
-.icon{
-  border-radius: 5px;
-}
+/*.top_image::after {*/
+/*  position: absolute;*/
+/*  content: '';*/
+/*  top: 0;*/
+/*  bottom: 0;*/
+/*  left: 0;*/
+/*  right: 0;*/
+/*  box-shadow: inset 0 0 10px 20px #ede4e1;*/
+/*}*/
 
-.restaurant_contents{
-  width: 300px;
-}
+/*.top_image img {*/
+/*  width: 150%;*/
+/*}*/
 
-.p_2{
-  margin: 0;
-  color: white;
-  font-size: 85%;
-}
+/*.icon{*/
+/*  border-radius: 5px;*/
+/*}*/
 
-.area_image{
-  display: flex;
-  justify-content: center;
-}
+/*.restaurant_contents{*/
+/*  width: 300px;*/
+/*}*/
 
-.navbar{
-  position: fixed;
-  z-index: 2;
-}
+/*.p_2{*/
+/*  margin: 0;*/
+/*  color: white;*/
+/*  font-size: 85%;*/
+/*}*/
 
-.lb-image{
-  width: 100% !important;
-  height: 100% !important;
-}
+/*.area_image{*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
 
-.lb-outerContainer{
-  width: 90% !important;
-  height: 100% !important;
-}
+/*.navbar{*/
+/*  position: fixed;*/
+/*  z-index: 2;*/
+/*}*/
 
-.customer_allergen{
-  background-color: #dcd6d2;
-}
+/*.lb-image{*/
+/*  width: 100% !important;*/
+/*  height: 100% !important;*/
+/*}*/
 
-input[type="checkbox"]{
-  position: relative;
-  transform: scale(2);
-	margin: 10px 20px 0 20px;
-}
+/*.lb-outerContainer{*/
+/*  width: 90% !important;*/
+/*  height: 100% !important;*/
+/*}*/
 
-.allergies_check_boxes{
-  text-align: left;
-  margin-left: -15px;
-  padding-left: 0 !important;
-}
+/*.customer_allergen{*/
+/*  background-color: #dcd6d2;*/
+/*}*/
 
-.menu_allergen{
-  margin-bottom: 0;
-}
+/*input[type="checkbox"]{*/
+/*  position: relative;*/
+/*  transform: scale(2);*/
+/*	margin: 10px 20px 0 20px;*/
+/*}*/
 
-.flashing{
-  animation: blink 0.8s ease-in-out infinite alternate;
-  color: red;
-}
+/*.allergies_check_boxes{*/
+/*  text-align: left;*/
+/*  margin-left: -15px;*/
+/*  padding-left: 0 !important;*/
+/*}*/
 
-@keyframes blink{
-  0%   {opacity: 0;}
-  100% {opacity: 1;}
-}
+/*.menu_allergen{*/
+/*  margin-bottom: 0;*/
+/*}*/
 
-.restaurant_valid{
-  color: gray;
-}
+/*.flashing{*/
+/*  animation: blink 0.8s ease-in-out infinite alternate;*/
+/*  color: red;*/
+/*}*/
 
-.restaurant_valid2{
-  color: green;
-}
+/*@keyframes blink{*/
+/*  0%   {opacity: 0;}*/
+/*  100% {opacity: 1;}*/
+/*}*/
 
-.valid{
-  margin-top: 7px;
-}
+/*.restaurant_valid{*/
+/*  color: gray;*/
+/*}*/
 
-.customer_valid{
-  color: gray;
-}
+/*.restaurant_valid2{*/
+/*  color: green;*/
+/*}*/
 
-.customer_valid2{
-  color: green;
-}
+/*.valid{*/
+/*  margin-top: 7px;*/
+/*}*/
+
+/*.customer_valid{*/
+/*  color: gray;*/
+/*}*/
+
+/*.customer_valid2{*/
+/*  color: green;*/
+/*}*/

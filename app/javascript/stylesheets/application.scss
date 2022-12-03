@@ -1,183 +1,183 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-// html {
-//   height: 100%;
-// }
 
-// body {
-//   margin: 0;
-//   padding: 0;
-//   min-height: 100%;
-//   display: flex;
-//   flex-direction: column;
-// }
+html {
+  height: 100%;
+}
 
-// .content {
-//   flex: 1;
-// }
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-// h4, h6 {
-//   color: #6e4a55;
-//   border-radius: 4px;
-//   background-color: #bccddb ;
-// }
+.content {
+  flex: 1;
+}
 
-// h1{
-//   color: maroon;
-// }
+h4, h6 {
+  color: #6e4a55;
+  border-radius: 4px;
+  background-color: #bccddb ;
+}
 
-// .about{
-//   color: maroon;
-// }
+h1{
+  color: maroon;
+}
 
-// .table-secondary {
-//   background-color: #ffffe0 ;
-// }
+.about{
+  color: maroon;
+}
 
-// th {
-//   color: #cd853f;
-// }
+.table-secondary {
+  background-color: #ffffe0 ;
+}
 
-// .navbar-expand-lg {
-//   height: 80px;
-//   background-image: url('navbar.jpeg');
-//   background-size:cover;
-//   background-position:center;
-// }
+th {
+  color: #cd853f;
+}
 
-// #global_nav .navbar-toggler{
-//   background-color: rgba( 152, 96, 54, 1);
-//   border-color: rgba(0, 0, 0, 0);
-//   border-color: rgba( 237, 228, 225, 1);
-// }
+.navbar-expand-lg {
+  height: 80px;
+  background-image: url('../images/navbar.jpg');
+  background-size:cover;
+  background-position:center;
+}
 
-// .navbar-nav li a{
-//   color: #ede4e1 !important;
-//   background-color: rgba( 107, 63, 49, 0.7);
-// }
+#global_nav .navbar-toggler{
+  background-color: rgba( 152, 96, 54, 1);
+  border-color: rgba(0, 0, 0, 0);
+  border-color: rgba( 237, 228, 225, 1);
+}
 
-// .wrapper{
-//   min-height: 100vh;
-//   position: relative;
-//   padding-bottom: 120px;
-//   box-sizing: border-box;
-//   background-color: #ede4e1;
-// }
+.navbar-nav li a{
+  color: #ede4e1 !important;
+  background-color: rgba( 107, 63, 49, 0.7);
+}
 
-// footer {
-//   background-image: url('navbar.jpeg');
-//   background-size:cover;
-//   background-position:center;
-//   width: 100% ;
-//   color: white ;
-// }
+.wrapper{
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 120px;
+  box-sizing: border-box;
+  background-color: #ede4e1;
+}
 
-// .top_image{
-//   position: relative;
-//   z-index: 1;
-//   width: 100%;
-//   height: 400px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   overflow: hidden;
-// }
+footer {
+  background-image: url('../images/navbar.jpg');
+  background-size:cover;
+  background-position:center;
+  width: 100% ;
+  color: white ;
+}
 
-// .top_image::after {
-//   position: absolute;
-//   content: '';
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   box-shadow: inset 0 0 10px 20px #ede4e1;
-// }
+.top_image{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 
-// .top_image img {
-//   width: 150%;
-// }
+.top_image::after {
+  position: absolute;
+  content: '';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: inset 0 0 10px 20px #ede4e1;
+}
 
-// .icon{
-//   border-radius: 5px;
-// }
+.top_image img {
+  width: 150%;
+}
 
-// .restaurant_contents{
-//   width: 300px;
-// }
+.icon{
+  border-radius: 5px;
+}
 
-// .p_2{
-//   margin: 0;
-//   color: white;
-//   font-size: 85%;
-// }
+.restaurant_contents{
+  width: 300px;
+}
 
-// .area_image{
-//   display: flex;
-//   justify-content: center;
-// }
+.p_2{
+  margin: 0;
+  color: white;
+  font-size: 85%;
+}
 
-// .navbar{
-//   position: fixed;
-//   z-index: 2;
-// }
+.area_image{
+  display: flex;
+  justify-content: center;
+}
 
-// .lb-image{
-//   width: 100% !important;
-//   height: 100% !important;
-// }
+.navbar{
+  z-index: 2;
+}
 
-// .lb-outerContainer{
-//   width: 90% !important;
-//   height: 100% !important;
-// }
+.lb-image{
+  width: 100% !important;
+  height: 100% !important;
+}
 
-// .customer_allergen{
-//   background-color: #dcd6d2;
-// }
+.lb-outerContainer{
+  width: 90% !important;
+  height: 100% !important;
+}
 
-// input[type="checkbox"]{
-//   position: relative;
-//   transform: scale(2);
-// 	margin: 10px 20px 0 20px;
-// }
+.customer_allergen{
+  background-color: #dcd6d2;
+}
 
-// .allergies_check_boxes{
-//   text-align: left;
-//   margin-left: -15px;
-//   padding-left: 0 !important;
-// }
+input[type="checkbox"]{
+  position: relative;
+  transform: scale(2);
+	margin: 10px 20px 0 20px;
+}
 
-// .menu_allergen{
-//   margin-bottom: 0;
-// }
+.allergies_check_boxes{
+  text-align: left;
+  margin-left: -15px;
+  padding-left: 0 !important;
+}
 
-// .flashing{
-//   animation: blink 0.8s ease-in-out infinite alternate;
-//   color: red;
-// }
+.menu_allergen{
+  margin-bottom: 0;
+}
 
-// @keyframes blink{
-//   0%   {opacity: 0;}
-//   100% {opacity: 1;}
-// }
+.flashing{
+  animation: blink 0.8s ease-in-out infinite alternate;
+  color: red;
+}
 
-// .restaurant_valid{
-//   color: gray;
-// }
+@keyframes blink{
+  0%   {opacity: 0;}
+  100% {opacity: 1;}
+}
 
-// .restaurant_valid2{
-//   color: green;
-// }
+.restaurant_valid{
+  color: gray;
+}
 
-// .valid{
-//   margin-top: 7px;
-// }
+.restaurant_valid2{
+  color: green;
+}
 
-// .customer_valid{
-//   color: gray;
-// }
+.valid{
+  margin-top: 7px;
+}
 
-// .customer_valid2{
-//   color: green;
-// }
+.customer_valid{
+  color: gray;
+}
+
+.customer_valid2{
+  color: green;
+}

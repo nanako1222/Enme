@@ -46,8 +46,8 @@
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :住所（地域エリア）, class: "col-md-4 text-left" %>
-          <div id="areas_select" >
-            <%= render partial: 'shared/areas', locals: { areas: Area.all } %>
+          <div id="areas_select_customer" >
+            <%= render partial: 'shared/areas', locals: { areas: @area }  %>
           </div>
         </div>
 

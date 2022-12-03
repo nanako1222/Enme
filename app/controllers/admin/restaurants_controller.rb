@@ -13,6 +13,7 @@ class Admin::RestaurantsController < ApplicationController
 
   def edit
     @restaurant = Restaurant.find(params[:id])
+    @area = Area.where(state_id: @restaurant.state_id)
   end
 
   def update
