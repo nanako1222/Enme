@@ -10,15 +10,15 @@
 
 
       <div class="row">
-        <div class='col-md-5 mt-5'>
+        <div class='col-md-7 mt-5'>
           <%= form_with model: @allergy, url: admin_allergy_path, method: :patch do |f| %>
 
-            <div class="field d-grid col-md-10 mt-4">
-              <%= f.label :アレルゲン, class: "col-8" %>
+            <div class="field d-grid col-md-10 mt-4 text-center">
+              <%= f.label :アレルゲン %>
               <%= f.text_field :allergen %>
             </div>
-            <div class="row form-group mt-4 offset-3">
-              <%= f.submit '編集', class:"btn btn-success col-3" %>
+            <div class="row form-group mt-4 offset-4">
+              <%= f.submit '保存', class:"btn btn-success col-4" %>
             </div>
           <% end %>
 
