@@ -36,7 +36,7 @@
       <% end %>
     </div>
     <div class= "col-md-8 mt-4">
-      <%= @restaurant.introduction %>
+      <%= safe_join(@restaurant.introduction.split("\n"),tag(:br)) %>
     </div>
   </div>
   <div class= "row">
@@ -94,7 +94,7 @@
     </div>
     <div class= "col-md-6 mt-4">
       <h5>NEWS</h5>
-      <%= @restaurant.news %>
+      <%= safe_join(@restaurant.news.split("\n"),tag(:br)) %>
     </div>
   </div>
 </div>
