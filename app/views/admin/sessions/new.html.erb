@@ -7,12 +7,12 @@
         <%= form_with model: @admin, url: admin_session_path do |f| %>
 
           <div class="field d-grid col-8 text-center mt-4">
-            <%= f.label :メールアドレス, class: "w-25" %>
+            <%= f.label :email, class: "w-25" %>
             <%= f.email_field :email, class: "col-6" %>
           </div>
 
           <div class="field d-grid col-8 text-center">
-            <%= f.label :パスワード, class: "w-25" %>
+            <%= f.label :password, class: "w-25" %>
             <%= f.password_field :password, class: "col-6" %>
           </div>
 

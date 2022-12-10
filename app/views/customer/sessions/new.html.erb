@@ -12,12 +12,12 @@
         <%= render "customer/shared/error_messages", resource: resource %>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :メールアドレス, class: "col-md-3 text-left offset-1" %>
+          <%= f.label :email, class: "col-md-3 text-left offset-1" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス", class: "col-md-5" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :パスワード, class: "col-md-3 text-left offset-1" %>
+          <%= f.label :password, class: "col-md-3 text-left offset-1" %>
           <%= f.password_field :password, autocomplete: "パスワード", class: "col-md-5" %>
         </div>
 

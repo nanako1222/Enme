@@ -16,24 +16,24 @@
           </div>
 
           <div class="row field d-grid text-center mt-3">
-            <%= f.label :店名, class: "col-md-3 text-left" %>
+            <%= f.label :name, class: "col-md-3 text-left" %>
             <%= f.text_field :name, autofocus: true, required: true, class: "col-md-3" %>
           </div>
 
           <div class="row field d-grid text-center mt-4">
-            <%= f.label :店舗紹介文, class: "col-md-3 text-left" %>
+            <%= f.label :introduction, class: "col-md-3 text-left" %>
             <%= f.text_area :introduction, size: "20x7", class: "col-md-8" %>
           </div>
 
           <div class="row field d-grid text-center mt-4">
-            <%= f.label :都道府県, class: "col-md-3 text-left" %>
+            <%= f.label :state_id, class: "col-md-3 text-left" %>
             <%= f.collection_select :state_id , State.all,:id,:state %>
           </div>
           <p class="offset-md-3 mt-2">
             ※変更される場合は都道府県から選択し直してください
           </P>
           <div class="row field d-grid text-center mt-3">
-            <%= f.label :地域エリア, class: "col-md-3 text-left" %>
+            <%= f.label :area_id, class: "col-md-3 text-left" %>
             <div id="areas_select" >
               <%= render partial: 'shared/restaurant_areas', locals: { areas: @area } %>
             </div>
@@ -46,17 +46,17 @@
           </p>
 
           <div class="row field d-grid text-center mt-4">
-            <%= f.label :それ以降の住所, class: "col-md-3 text-left" %>
+            <%= f.label :address, class: "col-md-3 text-left" %>
             <%= f.text_field :address, required: true, class: "col-md-8" %>
           </div>
 
           <div class="row field d-grid text-center mt-4">
-            <%= f.label :電話番号（ハイフンなし）, class: "col-md-3 text-left" %>
+            <%= f.label :telephone_number, class: "col-md-3 text-left" %>
             <%= f.text_field :telephone_number, required: true, class: "col-md-6" %>
           </div>
 
           <div class="row field d-grid text-center mt-4">
-            <%= f.label :メールアドレス, class: "col-md-3 text-left" %>
+            <%= f.label :email, class: "col-md-3 text-left" %>
             <%= f.email_field :email, required: true, class: "col-md-6" %>
           </div>
 
@@ -66,17 +66,17 @@
           </div>
 
           <div class="row field d-grid text-center mt-4">
-            <%= f.label :営業時間, class: "col-md-3 text-left" %>
+            <%= f.label :business_hours, class: "col-md-3 text-left" %>
             <%= f.text_field :business_hours, required: true, class: "col-md-6" %>
           </div>
 
           <div class="row field d-grid text-center mt-4">
-            <%= f.label :ホームページURL, class: "col-md-3 text-left" %>
+            <%= f.label :home_page, class: "col-md-3 text-left" %>
             <%= f.text_field :home_page, class: "col-md-6" %>
           </div>
 
           <div class="row field d-grid text-center mt-4">
-            <%= f.label :駐車場, class: "col-md-3 text-left" %>
+            <%= f.label :parking, class: "col-md-3 text-left" %>
             <%= f.text_field :parking, class: "col-md-6" %>
           </div>
 

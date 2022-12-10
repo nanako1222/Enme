@@ -13,7 +13,7 @@
           <%= form_with model: @allergy, url: admin_allergies_path, method: :post do |f| %>
 
             <div class="field d-grid col-11 mt-4">
-              <%= f.label :アレルゲン, class: "w-25" %>
+              <%= f.label :allergen, class: "w-25" %>
               <%= f.text_field :allergen %>
             </div>
             <div class="row form-group mt-4 offset-3">

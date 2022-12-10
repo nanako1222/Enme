@@ -4,24 +4,46 @@ ja:
       customer:
         first_name: 姓
         last_name: 名
-        first_name_kana: 姓（カナ）
-        last_name_kana: 名（カナ）
+        first_name_kana:  姓カナ
+        last_name_kana: 名カナ
         email: メールアドレス
         telephone_number: 電話番号
         password: パスワード
         activated: アクティブフラグ
         admin: 管理者フラグ
+        state_id: 都道府県
+        area_id: 地域エリア
+        password_confirmation: パスワード（確認用）
 
       restaurant:
         name: 店名
         email: メールアドレス
-        telephone_number: 電話番号
+        telephone_number: 電話番号(ハイフンなし)
         regular_holiday: 定休日
         business_hours: 営業時間
-        address: それ以降の住所
+        address: 都道府県以降の住所
         password: パスワード
         activated: アクティブフラグ
         admin: 管理者フラグ
+        state_id: 都道府県
+        area_id: 地域エリア
+        introduction: 店舗紹介文
+        home_page: ホームページ
+        parking: 駐車場
+        password_confirmation: パスワード（確認用）
+
+      menu:
+        name: メニュー名
+        image: メニュー画像
+        price: 税抜価格
+        introduction: メニュー説明
+
+      admin:
+        email: メールアドレス
+        password: パスワード
+
+      allergy:
+        allergen: アレルゲン
 
     errors:
       messages:

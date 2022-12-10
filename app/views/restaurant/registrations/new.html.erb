@@ -7,22 +7,22 @@
         <%= render "restaurant/shared/error_messages", resource: resource %>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :店名, class: "col-md-4 text-left" %>
+          <%= f.label :name, class: "col-md-4 text-left" %>
           <%= f.text_field :name, autofocus: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :メールアドレス, class: "col-md-4 text-left" %>
+          <%= f.label :email, class: "col-md-4 text-left" %>
           <%= f.text_field :email, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :店舗住所（都道府県）, class: "col-md-4 text-left" %>
+          <%= f.label :state_id , class: "col-md-4 text-left" %>
           <%= f.collection_select :state_id , State.all,:id,:state, {selected: 1} %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :店舗住所（地域エリア）, class: "col-md-4 text-left" %>
+          <%= f.label :area_id , class: "col-md-4 text-left" %>
           <%#= f.collection_select :area_id , get_areas,:id,:area %>
           <div id="areas_select" >
             <%= render partial: 'shared/restaurant_areas', locals: { areas: Area.where(state_id: 1) } %>
@@ -35,28 +35,28 @@
         </p>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :それ以降の住所, class: "col-md-4 text-left" %>
+          <%= f.label :address, class: "col-md-4 text-left" %>
           <%= f.text_field :address, autofocus: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :電話番号（ハイフンなし）, class: "col-md-4 text-left" %><br />
+          <%= f.label :telephone_number, class: "col-md-4 text-left" %><br />
           <%= f.text_field :telephone_number, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :定休日, class: "col-md-4 text-left" %>
+          <%= f.label :regular_holiday, class: "col-md-4 text-left" %>
           <%= f.text_field :regular_holiday, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :営業時間, class: "col-md-4 text-left" %>
+          <%= f.label :business_hours, class: "col-md-4 text-left" %>
           <%= f.text_field :business_hours, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
           <div class="col-md-4 text-left">
-            <%= f.label :パスワード %>
+            <%= f.label :password %>
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> 文字以上)</em>
             <% end %>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="row field d-grid text-center mt-3">
-          <%= f.label :パスワード（確認用）, class: "col-md-4 text-left" %><br />
+          <%= f.label :password_confirmation, class: "col-md-4 text-left" %><br />
           <%= f.password_field :password_confirmation, class: "col-md-3" %>
         </div>
 

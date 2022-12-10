@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 admin = Admin.find_or_initialize_by(
-   email: 'aaa@www'
+  email: 'aaa@www'
 )
 if admin.new_record?
     admin.password = "testtest"
@@ -43,3 +43,252 @@ wakayama.areas.create!([{area: "和歌山市"}, {area: "高野山"}, {area: "紀
 
 nara = State.create!(state: "奈良県")
 nara.areas.create!([{area: "奈良市"}, {area: "生駒・信貴・斑鳩・葛城"}, {area: "山の辺・飛鳥・橿原・宇陀"}, {area: "吉野路"}])
+
+#エリア毎に分けて作っているので一つにまとめれたらスッキリする
+
+
+5.times do |i|
+  8.times do |n|
+    email = Faker::Name.initials + "@email.com"
+    encrypted_password = "tuyukusa"
+    telephone_number = Faker::Number.number(digits: 11)
+    name = Faker::Restaurant.name
+    regular_holiday = "月曜日"
+    address = Faker::Address.city
+    area_id = 1 + n
+    state_id = 1
+    password = "tuyukusa"
+
+    Restaurant.create!(
+      email: email,
+      encrypted_password: encrypted_password,
+      telephone_number: telephone_number,
+      is_valid: true,
+      name: name,
+      regular_holiday: regular_holiday,
+      business_hours: "10:00~21:00",
+      address: address,
+      area_id: area_id,
+      state_id: state_id,
+      password: password,
+    )
+  end
+
+  10.times do |n|
+    email = Faker::Name.initials + "@email.com"
+    encrypted_password = "tuyukusa"
+    telephone_number = Faker::Number.number(digits: 11)
+    name = Faker::Restaurant.name
+    regular_holiday = "月曜日"
+    address = Faker::Address.city
+    area_id = 9 + n
+    state_id = 2
+    password = "tuyukusa"
+
+    Restaurant.create!(
+      email: email,
+      encrypted_password: encrypted_password,
+      telephone_number: telephone_number,
+      is_valid: true,
+      name: name,
+      regular_holiday: regular_holiday,
+      business_hours: "10:00~21:00",
+      address: address,
+      area_id: area_id,
+      state_id: state_id,
+      password: password,
+    )
+  end
+
+  5.times do |n|
+    email = Faker::Name.initials + "@email.com"
+    encrypted_password = "tuyukusa"
+    telephone_number = Faker::Number.number(digits: 11)
+    name = Faker::Restaurant.name
+    regular_holiday = "月曜日"
+    address = Faker::Address.city
+    area_id = 19 + n
+    state_id = 3
+    password = "tuyukusa"
+
+    Restaurant.create!(
+      email: email,
+      encrypted_password: encrypted_password,
+      telephone_number: telephone_number,
+      is_valid: true,
+      name: name,
+      regular_holiday: regular_holiday,
+      business_hours: "10:00~21:00",
+      address: address,
+      area_id: area_id,
+      state_id: state_id,
+      password: password,
+    )
+  end
+
+  7.times do |n|
+    email = Faker::Name.initials + "@email.com"
+    encrypted_password = "tuyukusa"
+    telephone_number = Faker::Number.number(digits: 11)
+    name = Faker::Restaurant.name
+    regular_holiday = "月曜日"
+    address = Faker::Address.city
+    area_id = 24 + n
+    state_id = 4
+    password = "tuyukusa"
+
+    Restaurant.create!(
+      email: email,
+      encrypted_password: encrypted_password,
+      telephone_number: telephone_number,
+      is_valid: true,
+      name: name,
+      regular_holiday: regular_holiday,
+      business_hours: "10:00~21:00",
+      address: address,
+      area_id: area_id,
+      state_id: state_id,
+      password: password,
+    )
+  end
+
+  5.times do |n|
+    email = Faker::Name.initials + "@email.com"
+    encrypted_password = "tuyukusa"
+    telephone_number = Faker::Number.number(digits: 11)
+    name = Faker::Restaurant.name
+    regular_holiday = "月曜日"
+    address = Faker::Address.city
+    area_id = 31 + n
+    state_id = 5
+    password = "tuyukusa"
+
+    Restaurant.create!(
+      email: email,
+      encrypted_password: encrypted_password,
+      telephone_number: telephone_number,
+      is_valid: true,
+      name: name,
+      regular_holiday: regular_holiday,
+      business_hours: "10:00~21:00",
+      address: address,
+      area_id: area_id,
+      state_id: state_id,
+      password: password,
+    )
+  end
+
+  4.times do |n|
+    email = Faker::Name.initials + "@email.com"
+    encrypted_password = "tuyukusa"
+    telephone_number = Faker::Number.number(digits: 11)
+    name = Faker::Restaurant.name
+    regular_holiday = "月曜日"
+    address = Faker::Address.city
+    area_id = 36 + n
+    state_id = 6
+    password = "tuyukusa"
+
+    Restaurant.create!(
+      email: email,
+      encrypted_password: encrypted_password,
+      telephone_number: telephone_number,
+      is_valid: true,
+      name: name,
+      regular_holiday: regular_holiday,
+      business_hours: "10:00~21:00",
+      address: address,
+      area_id: area_id,
+      state_id: state_id,
+      password: password,
+    )
+  end
+end
+
+195.times do |n|
+  name = Faker::Food.dish
+  introduction = Faker::Food.description
+  price = Faker::Number.number(digits: 4)
+  restaurant_id = 1 + n
+
+  Menu.create!(
+    name: name,
+    introduction: introduction,
+    price: price,
+    restaurant_id: restaurant_id,
+  )
+end
+
+#menu_having_allerugyのアレルギーの数をeachでまわしている
+#メニューの数でまわしてアレルギーの数が１〜２８を繰り返したらひとつにまとまる
+#if文がうまく作動しなかった
+
+28.times do |n|
+  menu_id = 1 + n
+  allergy_id = 1 + n
+
+  MenuHavingAllergy.create!(
+    menu_id: menu_id,
+    allergy_id: allergy_id,
+  )
+end
+
+28.times do |n|
+  menu_id = 29 + n
+  allergy_id = 1 + n
+
+  MenuHavingAllergy.create!(
+    menu_id: menu_id,
+    allergy_id: allergy_id,
+  )
+end
+
+28.times do |n|
+  menu_id = 57 + n
+  allergy_id = 1 + n
+
+  MenuHavingAllergy.create!(
+    menu_id: menu_id,
+    allergy_id: allergy_id,
+  )
+end
+
+28.times do |n|
+  menu_id = 85 + n
+  allergy_id = 1 + n
+
+  MenuHavingAllergy.create!(
+    menu_id: menu_id,
+    allergy_id: allergy_id,
+  )
+end
+
+28.times do |n|
+  menu_id = 113 + n
+  allergy_id = 1 + n
+
+  MenuHavingAllergy.create!(
+    menu_id: menu_id,
+    allergy_id: allergy_id,
+  )
+end
+
+28.times do |n|
+  menu_id = 141 + n
+  allergy_id = 1 + n
+
+  MenuHavingAllergy.create!(
+    menu_id: menu_id,
+    allergy_id: allergy_id,
+  )
+end
+
+25.times do |n|
+  menu_id = 169 + n
+  allergy_id = 1 + n
+
+  MenuHavingAllergy.create!(
+    menu_id: menu_id,
+    allergy_id: allergy_id,
+  )
+end
