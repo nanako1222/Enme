@@ -6,23 +6,47 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 admin = Admin.find_or_initialize_by(
-  email: 'aaa@www'
+  email: 'aaa111@www.com'
 )
 if admin.new_record?
     admin.password = "testtest"
     admin.save!
 end
 
-Allergy.create!([{allergen: "卵"}, {allergen:"えび"}, {allergen: "かに"}, {allergen:"そば"}, {allergen: "落花生"}, {allergen:"小麦"},
-{allergen: "乳"}, {allergen:"あわび"}, {allergen: "イカ"}, {allergen:"いくら"}, {allergen: "オレンジ"}, {allergen:"キウイ"}, {allergen:"牛肉"},
-{allergen: "くるみ"}, {allergen:"サケ"}, {allergen: "りんご"}, {allergen:"サバ"}, {allergen: "大豆"}, {allergen:"鶏肉"}, {allergen:"バナナ"},
-{allergen: "豚肉"}, {allergen:"まつたけ"}, {allergen: "もも"}, {allergen:"やまいも"}, {allergen: "ゼラチン"}, {allergen:"ごま"}, {allergen:"カシューナッツ"},
-{allergen:"アーモンド"}
-])
+allergens = %w(
+  卵
+  えび
+  かに
+  そば
+  落花生
+  小麦
+  乳
+  あわび
+  イカ
+  いくら
+  オレンジ
+  キウイ
+  牛肉
+  くるみ
+  サケ
+  りんご
+  サバ
+  大豆
+  鶏肉
+  バナナ
+  豚肉
+  まつたけ
+  もも
+  やまいも
+  ゼラチン
+  ごま
+  カシューナッツ
+  アーモンド
+)
 
-
-#Admin.create!(password: "testtest")
-# admin.update!(password: "testtest")
+allergens.each do |allergen|
+  Allergy.create!(allergen: allergen)
+end
 
 osaka = State.create!(state: "大阪府")
 osaka.areas.create!([{area: "大阪市"}, {area: "北河内"}, {area: "中河内"}, {area: "豊能"}, {area: "三島"},
@@ -44,17 +68,16 @@ wakayama.areas.create!([{area: "和歌山市"}, {area: "高野山"}, {area: "紀
 nara = State.create!(state: "奈良県")
 nara.areas.create!([{area: "奈良市"}, {area: "生駒・信貴・斑鳩・葛城"}, {area: "山の辺・飛鳥・橿原・宇陀"}, {area: "吉野路"}])
 
-#エリア毎に分けて作っているので一つにまとめれたらスッキリする
-
+# #エリア毎に分けて作っているので一つにまとめれたらスッキリする
 
 5.times do |i|
   8.times do |n|
-    email = Faker::Name.initials + "@email.com"
+    email = Faker::Internet.email
     encrypted_password = "tuyukusa"
     telephone_number = Faker::Number.number(digits: 11)
     name = Faker::Restaurant.name
     regular_holiday = "月曜日"
-    address = Faker::Address.city
+    address = Faker::Address.city + "115-6"
     area_id = 1 + n
     state_id = 1
     password = "tuyukusa"
@@ -75,12 +98,12 @@ nara.areas.create!([{area: "奈良市"}, {area: "生駒・信貴・斑鳩・葛�
   end
 
   10.times do |n|
-    email = Faker::Name.initials + "@email.com"
+    email = Faker::Internet.email
     encrypted_password = "tuyukusa"
     telephone_number = Faker::Number.number(digits: 11)
     name = Faker::Restaurant.name
     regular_holiday = "月曜日"
-    address = Faker::Address.city
+    address = Faker::Address.city + "115-6"
     area_id = 9 + n
     state_id = 2
     password = "tuyukusa"
@@ -101,12 +124,12 @@ nara.areas.create!([{area: "奈良市"}, {area: "生駒・信貴・斑鳩・葛�
   end
 
   5.times do |n|
-    email = Faker::Name.initials + "@email.com"
+    email = Faker::Internet.email
     encrypted_password = "tuyukusa"
     telephone_number = Faker::Number.number(digits: 11)
     name = Faker::Restaurant.name
     regular_holiday = "月曜日"
-    address = Faker::Address.city
+    address = Faker::Address.city + "115-6"
     area_id = 19 + n
     state_id = 3
     password = "tuyukusa"
@@ -127,12 +150,12 @@ nara.areas.create!([{area: "奈良市"}, {area: "生駒・信貴・斑鳩・葛�
   end
 
   7.times do |n|
-    email = Faker::Name.initials + "@email.com"
+    email = Faker::Internet.email
     encrypted_password = "tuyukusa"
     telephone_number = Faker::Number.number(digits: 11)
     name = Faker::Restaurant.name
     regular_holiday = "月曜日"
-    address = Faker::Address.city
+    address = Faker::Address.city + "115-6"
     area_id = 24 + n
     state_id = 4
     password = "tuyukusa"
@@ -153,12 +176,12 @@ nara.areas.create!([{area: "奈良市"}, {area: "生駒・信貴・斑鳩・葛�
   end
 
   5.times do |n|
-    email = Faker::Name.initials + "@email.com"
+    email = Faker::Internet.email
     encrypted_password = "tuyukusa"
     telephone_number = Faker::Number.number(digits: 11)
     name = Faker::Restaurant.name
     regular_holiday = "月曜日"
-    address = Faker::Address.city
+    address = Faker::Address.city + "115-6"
     area_id = 31 + n
     state_id = 5
     password = "tuyukusa"
@@ -179,12 +202,12 @@ nara.areas.create!([{area: "奈良市"}, {area: "生駒・信貴・斑鳩・葛�
   end
 
   4.times do |n|
-    email = Faker::Name.initials + "@email.com"
+    email = Faker::Internet.email
     encrypted_password = "tuyukusa"
     telephone_number = Faker::Number.number(digits: 11)
     name = Faker::Restaurant.name
     regular_holiday = "月曜日"
-    address = Faker::Address.city
+    address = Faker::Address.city + "115-6"
     area_id = 36 + n
     state_id = 6
     password = "tuyukusa"
@@ -207,8 +230,8 @@ end
 
 195.times do |n|
   name = Faker::Food.dish
-  introduction = Faker::Food.description
-  price = Faker::Number.number(digits: 4)
+  introduction = "こだわりの素材を使用した体に優しい一品です。"
+  price = Faker::Number.number(digits: 3)
   restaurant_id = 1 + n
 
   Menu.create!(
@@ -219,76 +242,113 @@ end
   )
 end
 
+(1..195).each do |menu_id|
+  allergy_id = menu_id % 28
+  allergy_id = 28 if allergy_id == 0
+  MenuHavingAllergy.create!(
+    menu_id: menu_id,
+    allergy_id: allergy_id,
+  )
+end
+
+# state_areas = {"大阪府" => %w{大阪市 北河内 中河内 豊能 三島},
+#         "兵庫県" => %w{但馬 神戸市 北播磨 中播磨 東播磨 西播磨 丹波 阪神北 阪神南 淡路},
+#         "京都府" => %w{丹後 中丹 南丹 京都市 山城},
+#         "滋賀県" => %w{湖北 湖東 湖西 東近江 大津市 湖南 甲賀},
+#         "和歌山県" => %w{和歌山市 高野山 紀中 熊野 白浜・串本},
+#         "奈良県" => %w{奈良市 生駒・信貴・斑鳩・葛城 山の辺・飛鳥・橿原・宇陀 吉野路}}
+         
+# state_areas.each do |key, areas|
+#   state = State.create!(state: key)
+#   areas.each do |name|
+#     area = state.areas.create!(area: name)
+
+#     Restaurant.create!(
+#       email: Faker::Internet.email,
+#       encrypted_password: "tuyukusa",
+#       telephone_number: Faker::Number.number(digits: 11),
+#       is_valid: true,
+#       name: Faker::Restaurant.name,
+#       regular_holiday: "月曜日",
+#       business_hours: "10:00~21:00",
+#       address: Faker::Address.city + "115-6",
+#       area_id: area.id,
+#       state_id: state.id,
+#       password: "tuyukusa",
+#     )
+#   end
+# end
+
 #menu_having_allerugyのアレルギーの数をeachでまわしている
 #メニューの数でまわしてアレルギーの数が１〜２８を繰り返したらひとつにまとまる
 #if文がうまく作動しなかった
 
-28.times do |n|
-  menu_id = 1 + n
-  allergy_id = 1 + n
+# 28.times do |n|
+#   menu_id = 1 + n
+#   allergy_id = 1 + n
 
-  MenuHavingAllergy.create!(
-    menu_id: menu_id,
-    allergy_id: allergy_id,
-  )
-end
+#   MenuHavingAllergy.create!(
+#     menu_id: menu_id,
+#     allergy_id: allergy_id,
+#   )
+# end
 
-28.times do |n|
-  menu_id = 29 + n
-  allergy_id = 1 + n
+# 28.times do |n|
+#   menu_id = 29 + n
+#   allergy_id = 1 + n
 
-  MenuHavingAllergy.create!(
-    menu_id: menu_id,
-    allergy_id: allergy_id,
-  )
-end
+#   MenuHavingAllergy.create!(
+#     menu_id: menu_id,
+#     allergy_id: allergy_id,
+#   )
+# end
 
-28.times do |n|
-  menu_id = 57 + n
-  allergy_id = 1 + n
+# 28.times do |n|
+#   menu_id = 57 + n
+#   allergy_id = 1 + n
 
-  MenuHavingAllergy.create!(
-    menu_id: menu_id,
-    allergy_id: allergy_id,
-  )
-end
+#   MenuHavingAllergy.create!(
+#     menu_id: menu_id,
+#     allergy_id: allergy_id,
+#   )
+# end
 
-28.times do |n|
-  menu_id = 85 + n
-  allergy_id = 1 + n
+# 28.times do |n|
+#   menu_id = 85 + n
+#   allergy_id = 1 + n
 
-  MenuHavingAllergy.create!(
-    menu_id: menu_id,
-    allergy_id: allergy_id,
-  )
-end
+#   MenuHavingAllergy.create!(
+#     menu_id: menu_id,
+#     allergy_id: allergy_id,
+#   )
+# end
 
-28.times do |n|
-  menu_id = 113 + n
-  allergy_id = 1 + n
+# 28.times do |n|
+#   menu_id = 113 + n
+#   allergy_id = 1 + n
 
-  MenuHavingAllergy.create!(
-    menu_id: menu_id,
-    allergy_id: allergy_id,
-  )
-end
+#   MenuHavingAllergy.create!(
+#     menu_id: menu_id,
+#     allergy_id: allergy_id,
+#   )
+# end
 
-28.times do |n|
-  menu_id = 141 + n
-  allergy_id = 1 + n
+# 28.times do |n|
+#   menu_id = 141 + n
+#   allergy_id = 1 + n
 
-  MenuHavingAllergy.create!(
-    menu_id: menu_id,
-    allergy_id: allergy_id,
-  )
-end
+#   MenuHavingAllergy.create!(
+#     menu_id: menu_id,
+#     allergy_id: allergy_id,
+#   )
+# end
 
-25.times do |n|
-  menu_id = 169 + n
-  allergy_id = 1 + n
+# 25.times do |n|
+#   menu_id = 169 + n
+#   allergy_id = 1 + n
 
-  MenuHavingAllergy.create!(
-    menu_id: menu_id,
-    allergy_id: allergy_id,
-  )
-end
+#   MenuHavingAllergy.create!(
+#     menu_id: menu_id,
+#     allergy_id: allergy_id,
+#   )
+# end
