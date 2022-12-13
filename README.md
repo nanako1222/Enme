@@ -41,12 +41,24 @@
 * [画面遷移図（管理者）](https://drive.google.com/file/d/19jVMCgMGP26t14XfKvofCtPdB7aqn38E/view?usp=sharing)
 
 
-## 開発環境
+## 使用技術
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
+- 言語：jQuery 3.6.1,Ruby 3.1.2,SQL,
+- フレームワーク：Ruby on Rails 6.1.6
 - JSライブラリ：jQuery
+- ライブラリ：
 - IDE：Cloud9
+
+## 使用技術
+- Ruby 3.1.2
+- Ruby on Rails 6.1.6
+- AWS(EC2,RDS)
+- jQuery 3.6.1
+- Bootstrap 4.5
+- Faker
+- Kaminari
+- Puma
+- Active Storage
 
 ## 使用素材
 <アイコン>

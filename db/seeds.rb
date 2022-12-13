@@ -257,7 +257,7 @@ end
 #         "滋賀県" => %w{湖北 湖東 湖西 東近江 大津市 湖南 甲賀},
 #         "和歌山県" => %w{和歌山市 高野山 紀中 熊野 白浜・串本},
 #         "奈良県" => %w{奈良市 生駒・信貴・斑鳩・葛城 山の辺・飛鳥・橿原・宇陀 吉野路}}
-         
+
 # state_areas.each do |key, areas|
 #   state = State.create!(state: key)
 #   areas.each do |name|
