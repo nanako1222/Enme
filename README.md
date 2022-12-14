@@ -43,22 +43,14 @@
 
 ## 使用技術
 - OS：Linux(CentOS)
-- 言語：jQuery 3.6.1,Ruby 3.1.2,SQL,
-- フレームワーク：Ruby on Rails 6.1.6
+- 言語：HTML/CSS/JavaScript,Ruby (3系）
+- フレームワーク：Ruby on Rails (6系)
 - JSライブラリ：jQuery
-- ライブラリ：
+- データベース: SQLite,MySQL (5.7系)
+- インフラ: EC2,RDS,NginX
+- ライブラリ：Bootstrap 4.5,fontawesome
+- コード管理: GitHub
 - IDE：Cloud9
-
-## 使用技術
-- Ruby 3.1.2
-- Ruby on Rails 6.1.6
-- AWS(EC2,RDS)
-- jQuery 3.6.1
-- Bootstrap 4.5
-- Faker
-- Kaminari
-- Puma
-- Active Storage
 
 ## 使用素材
 <アイコン>
