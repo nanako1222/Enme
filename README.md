@@ -44,7 +44,7 @@
 ## 使用技術
 - OS：Linux(CentOS)
 - 言語：HTML/CSS/JavaScript,Ruby (3系）
-- フレームワーク：Ruby on Rails (6系)
+- フレームワーク：Ruby on Rails (6系),RSpec
 - JSライブラリ：jQuery
 - データベース: SQLite,MySQL (5.7系)
 - インフラ: EC2,RDS,NginX
