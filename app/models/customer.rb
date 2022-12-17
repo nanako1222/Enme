@@ -9,8 +9,11 @@ class Customer < ApplicationRecord
   belongs_to :state
   belongs_to :area
 
-  validates :last_name, :first_name, :first_name_kana, :last_name_kana, :email,
-  :state_id, :area_id, :telephone_number, :password, presence: true
+  with_options presence: true do
+    validates :last_name, :first_name, :first_name_kana, :last_name_kana, :email,
+    :state_id, :area_id, :telephone_number, :password
+    validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
+  end
 
   def full_name
     "#{first_name} #{last_name}"

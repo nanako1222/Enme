@@ -9,7 +9,11 @@ class Restaurant < ApplicationRecord
   belongs_to :state
   belongs_to :area
 
-  validates :name, :email, :state_id, :area_id, :telephone_number,:regular_holiday, :business_hours, :address, presence: true
+  with_options presence: true do
+    validates :name, :email, :state_id, :area_id,
+              :regular_holiday, :business_hours, :address
+    validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
+  end
 
   def get_image(width, height)
     unless image.attached?

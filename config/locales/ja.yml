@@ -7,7 +7,7 @@ ja:
         first_name_kana:  姓カナ
         last_name_kana: 名カナ
         email: メールアドレス
-        telephone_number: 電話番号
+        telephone_number: 電話番号(半角英数字、ハイフンなし)
         password: パスワード
         activated: アクティブフラグ
         admin: 管理者フラグ
@@ -18,7 +18,7 @@ ja:
       restaurant:
         name: 店名
         email: メールアドレス
-        telephone_number: 電話番号(ハイフンなし)
+        telephone_number: 電話番号(半角英数字、ハイフンなし)
         regular_holiday: 定休日
         business_hours: 営業時間
         address: 都道府県以降の住所
