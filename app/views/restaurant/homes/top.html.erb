@@ -36,7 +36,7 @@
       <% end %>
     </div>
     <div class= "col-md-8 mt-4">
-      <%= safe_join(@restaurant.introduction.split("\n"),tag(:br)) %>
+      <%= simple_format(@restaurant.introduction) %>
     </div>
   </div>
   <div class= "row">
