@@ -33,7 +33,8 @@ class Customer::RestaurantsController < ApplicationController
     else
       @restaurants = Restaurant.all
     end
-
+    @restaurant_count = @restaurants.count
+    @restaurants = @restaurants.order(id: "DESC").page(params[:page]).per(9)
   end
 
   def create

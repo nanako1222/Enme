@@ -3,7 +3,7 @@ class Restaurant::MenusController < ApplicationController
     @restaurant = current_restaurant
     @menu = Menu.new
     @menus = @restaurant.menus.order(id: "DESC").page(params[:page]).per(9)
-    @menu_count = Menu.count
+    @menus_count = @restaurant.menus.count
   end
 
   def edit
