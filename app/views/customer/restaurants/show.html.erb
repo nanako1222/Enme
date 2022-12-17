@@ -25,7 +25,7 @@
       <% end %>
     </div>
     <div class= "col-md-8 mt-4">
-      <%= @restaurant.introduction %>
+      <%= simple_format(@restaurant.introduction) %>
     </div>
   </div>
   <div class= "row">
@@ -81,7 +81,7 @@
     </table>
     <div class= "col-md-7 mt-4">
       <h5>NEWS</h5>
-      <%= @restaurant.news %>
+      <%= simple_format(@restaurant.news) %>
     </div>
   </div>
 </div>

@@ -94,7 +94,7 @@
     </div>
     <div class= "col-md-6 mt-4">
       <h5>NEWS</h5>
-      <%#= safe_join(@restaurant.news.split("\n"),tag(:br)) %>
+      <%= simple_format(@restaurant.news) %>
     </div>
   </div>
 </div>
