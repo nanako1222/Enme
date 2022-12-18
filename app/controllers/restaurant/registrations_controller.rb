@@ -69,4 +69,9 @@ class Restaurant::RegistrationsController < Devise::RegistrationsController
       render partial: 'areas', locals: {ms_pref_id: params[:ms_pref_id]}
     end
   end
+
+  protected
+    def update_resource(resource, params)
+      resource.update_without_password(params)
+    end
 end

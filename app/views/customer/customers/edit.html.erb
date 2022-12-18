@@ -2,6 +2,11 @@
   <div class="row">
     <div class="col-md-12">
       <h4 class="col-md-3 mt-5">会員情報編集</h4>
+      <% flash.each do |key, value| %>
+         <p class="alert alert-<%= key %>">
+           <%= value %>
+         </p>
+      <% end %>
 
       <div class='flashing mt-2'>
         <p>※現在登録されているデータは架空です</p>
@@ -42,7 +47,7 @@
           <div class="row mt-3">
             <%= f.label :area_id, class: "col-md-3 text-left" %>
             <div id="areas_select_customer" >
-              <%= render partial: 'shared/areas', locals: { areas: @area  } %>
+              <%= render partial: 'shared/areas', locals: { areas: @area } %>
             </div>
           </div>
 

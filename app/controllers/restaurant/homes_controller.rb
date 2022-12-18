@@ -15,6 +15,8 @@ class Restaurant::HomesController < ApplicationController
     if @restaurant.update(restaurant_params)
       redirect_to restaurant_homes_path, notice: 'ユーザー情報の変更に成功しました'
     else
+      @area = Area.where(state_id: @restaurant.state_id)
+      flash.now[:alert] =  '登録に失敗しました'
       render :edit
     end
   end

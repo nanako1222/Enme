@@ -21,6 +21,7 @@ class Admin::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to admin_customer_path, notice: '顧客情報を編集しました！'
     else
+      @area = Area.where(state_id: @customer.state_id)
       flash.now[:alert] =  '登録に失敗しました'
       render :edit
     end

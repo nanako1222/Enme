@@ -17,6 +17,9 @@ class Customer::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to customer_path(@customer), notice: 'ユーザー情報の変更に成功しました'
     else
+      @allergies = Allergy.all
+      @area = Area.where(state_id: @customer.state_id)
+      flash.now[:alert] =  '登録に失敗しました'
       render :edit
     end
   end

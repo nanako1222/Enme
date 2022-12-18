@@ -21,6 +21,7 @@ class Admin::RestaurantsController < ApplicationController
     if @restaurant.update(restaurant_params)
       redirect_to admin_restaurant_path, notice: '飲食店情報を編集しました！'
     else
+      @area = Area.where(state_id: @restaurant.state_id)
       flash.now[:alert] =  '登録に失敗しました'
       render :edit
     end

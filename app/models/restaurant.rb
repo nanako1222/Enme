@@ -12,6 +12,10 @@ class Restaurant < ApplicationRecord
   with_options presence: true do
     validates :name, :email, :state_id, :area_id,
               :regular_holiday, :business_hours, :address
+              with_options on: :create do
+                validates :password
+                validates :password_confirmation
+              end
     validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
   end
 

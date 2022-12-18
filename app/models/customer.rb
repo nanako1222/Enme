@@ -11,7 +11,11 @@ class Customer < ApplicationRecord
 
   with_options presence: true do
     validates :last_name, :first_name, :first_name_kana, :last_name_kana, :email,
-    :state_id, :area_id, :telephone_number, :password
+              :state_id, :area_id, :telephone_number
+              with_options on: :create do
+                validates :password
+                validates :password_confirmation
+              end
     validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
   end
 
@@ -26,6 +30,7 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (is_valid == true)
   end
+
   # def inactive_message
   #   return "退会済みのユーザです"
   # end
