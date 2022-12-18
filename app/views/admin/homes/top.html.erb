@@ -2,6 +2,11 @@
   <div class="row">
     <div class="col-10 offset-1">
       <h4 class="col-2 mt-5">飲食店会員一覧</h4>
+      <% flash.each do |key, value| %>
+         <p class="alert alert-<%= key %>">
+           <%= value %>
+         </p>
+      <% end %>
 
       <div class='flashing mt-2'>
         <p>※現在登録されているデータは架空です</p>
