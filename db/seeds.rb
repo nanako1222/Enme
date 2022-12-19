@@ -68,7 +68,7 @@ wakayama.areas.create!([{area: "和歌山市"}, {area: "高野山"}, {area: "紀
 nara = State.create!(state: "奈良県")
 nara.areas.create!([{area: "奈良市"}, {area: "生駒・信貴・斑鳩・葛城"}, {area: "山の辺・飛鳥・橿原・宇陀"}, {area: "吉野路"}])
 
-# #エリア毎に分けて作っているので一つにまとめれたらスッキリする
+#エリア毎に分けて作っているので一つにまとめれたらスッキリする
 
 5.times do |i|
   8.times do |n|
@@ -277,78 +277,4 @@ end
 #       password: "tuyukusa",
 #     )
 #   end
-# end
-
-#menu_having_allerugyのアレルギーの数をeachでまわしている
-#メニューの数でまわしてアレルギーの数が１〜２８を繰り返したらひとつにまとまる
-#if文がうまく作動しなかった
-
-# 28.times do |n|
-#   menu_id = 1 + n
-#   allergy_id = 1 + n
-
-#   MenuHavingAllergy.create!(
-#     menu_id: menu_id,
-#     allergy_id: allergy_id,
-#   )
-# end
-
-# 28.times do |n|
-#   menu_id = 29 + n
-#   allergy_id = 1 + n
-
-#   MenuHavingAllergy.create!(
-#     menu_id: menu_id,
-#     allergy_id: allergy_id,
-#   )
-# end
-
-# 28.times do |n|
-#   menu_id = 57 + n
-#   allergy_id = 1 + n
-
-#   MenuHavingAllergy.create!(
-#     menu_id: menu_id,
-#     allergy_id: allergy_id,
-#   )
-# end
-
-# 28.times do |n|
-#   menu_id = 85 + n
-#   allergy_id = 1 + n
-
-#   MenuHavingAllergy.create!(
-#     menu_id: menu_id,
-#     allergy_id: allergy_id,
-#   )
-# end
-
-# 28.times do |n|
-#   menu_id = 113 + n
-#   allergy_id = 1 + n
-
-#   MenuHavingAllergy.create!(
-#     menu_id: menu_id,
-#     allergy_id: allergy_id,
-#   )
-# end
-
-# 28.times do |n|
-#   menu_id = 141 + n
-#   allergy_id = 1 + n
-
-#   MenuHavingAllergy.create!(
-#     menu_id: menu_id,
-#     allergy_id: allergy_id,
-#   )
-# end
-
-# 25.times do |n|
-#   menu_id = 169 + n
-#   allergy_id = 1 + n
-
-#   MenuHavingAllergy.create!(
-#     menu_id: menu_id,
-#     allergy_id: allergy_id,
-#   )
 # end
