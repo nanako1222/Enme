@@ -16,6 +16,11 @@ class Restaurant::MenusController < ApplicationController
     @restaurant = current_restaurant
     @menu = Menu.find(params[:id])
     if @menu.update(menu_params)
+      if menu_params[:allergy_ids].nil?
+        @menu.menu_having_allergies.each do |menu_having_allergy|
+          menu_having_allergy.destroy
+        end
+      end
       redirect_to restaurant_restaurant_menu_path(@restaurant, @menu), notice: 'メニュー情報を編集しました！'
     else
       render :show
