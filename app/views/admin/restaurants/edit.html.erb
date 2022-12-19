@@ -40,7 +40,7 @@
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :address, class: "col-md-4 text-left" %>
-          <%= f.text_field :address, autofocus: true, class: "col-md-3" %>
+          <%= f.text_field :address, autofocus: true, required: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
@@ -50,7 +50,7 @@
 
         <div class="row field d-grid text-center mt-4">
           <%= f.label :email, class: "col-md-4 text-left" %>
-          <%= f.email_field :email, autofocus: true, class: "col-md-6" %>
+          <%= f.email_field :email, autofocus: true, required: true, class: "col-md-6" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">

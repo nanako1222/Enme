@@ -25,27 +25,27 @@
         <div class="row field d-grid text-center">
           <span class="col-md-3 text-left">名前</span>
           <%= f.label :first_name, class: "col-md-1" %>
-          <%= f.text_field :first_name, autofocus: true, class: "col-md-2" %>
+          <%= f.text_field :first_name, autofocus: true, required: true, class: "col-md-2" %>
           <%= f.label :last_name, class: "col-md-1" %>
-          <%= f.text_field :last_name, autofocus: true, class: "col-md-2" %>
+          <%= f.text_field :last_name, autofocus: true, required: true, class: "col-md-2" %>
         </div>
 
         <div class="row field d-grid text-center mt-4">
           <span class="col-md-3 text-left">フリガナ</span>
           <%= f.label :first_name_kana, class: "col-md-1" %>
-          <%= f.text_field :first_name_kana, autofocus: true, class: "col-md-2" %>
+          <%= f.text_field :first_name_kana, autofocus: true, required: true, class: "col-md-2" %>
           <%= f.label :last_name_kana, class: "col-md-1" %>
-          <%= f.text_field :last_name_kana, autofocus: true, class: "col-md-2" %>
+          <%= f.text_field :last_name_kana, autofocus: true, required: true, class: "col-md-2" %>
         </div>
 
         <div class="row field d-grid text-center mt-4">
           <%= f.label :email, class: "col-md-4 text-left" %>
-          <%= f.email_field :email, autofocus: true, class: "col-md-4" %>
+          <%= f.email_field :email, autofocus: true, required: true, class: "col-md-4" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :state_id, class: "col-md-4 text-left" %>
-          <%= f.collection_select :state_id , State.all,:id,:state %>
+          <%= f.collection_select :state_id, State.all,:id,:state %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
@@ -57,7 +57,7 @@
 
         <div class="row field d-grid text-center mt-3">
           <%= f.label :telephone_number, class: "col-md-4 text-left" %><br />
-          <%= f.text_field :telephone_number, required: true, class: "col-md-3" %>
+          <%= f.text_field :telephone_number, required: true, required: true, class: "col-md-3" %>
         </div>
 
         <div class="row field d-grid text-center mt-3">
