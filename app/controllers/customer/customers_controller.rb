@@ -15,6 +15,11 @@ class Customer::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
+      if customer_params[:allergy_ids].nil?
+        @customer.customer_having_allergies.each do |customer_having_allergy|
+          customer_having_allergy.destroy
+        end
+      end
       redirect_to customer_path(@customer), notice: 'ユーザー情報の変更に成功しました'
     else
       @allergies = Allergy.all
