@@ -48,7 +48,7 @@ class Customer::RestaurantsController < ApplicationController
     @customer = Customer.new
   end
 
-  def member_search
+  def simple_search
     @customer = current_customer
     @allergies = Allergy.all
   end
