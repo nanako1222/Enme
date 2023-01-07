@@ -10,6 +10,9 @@ class Restaurant::MenusController < ApplicationController
     @restaurant = current_restaurant
     @menu = Menu.find(params[:id])
     @allergies = Allergy.all
+    if @restaurant != @menu.restaurant
+      redirect_to restaurant_restaurant_menu_path(@restaurant, @menu)
+    end
   end
 
   def update

@@ -31,10 +31,11 @@ Rails.application.routes.draw do
     resources :restaurants, only: [:show, :edit, :update]
     get '/' => 'homes#top'
   end
+
   namespace :restaurant do
-    # resources :menus, only: [:create, :index, :show, :new, :edit, :update, :destroy]
     get '/' => 'homes#top', as: 'homes'
-    get "information/:id/edit", to: "homes#edit", as: "information_edit"
+    # get "information/:id/edit", to: "homes#edit", as: "information_edit"
+    get "information/edit", to: "homes#edit", as: "information_edit"
     patch "/information" => "homes#update"
     get "/confirm" => "homes#confirm"
     get '/about' => 'homes#about'
@@ -56,9 +57,9 @@ Rails.application.routes.draw do
       resources :menus, only: [:index, :show]
     end
     patch "/customers/information" => "customers#update"
-    get "/customers/:id/information/edit" => "customers#edit",as: "customers_information_edit"
-    get "/customers/:id" => "customers#show",as: "customer"
-    get "/customers/:id/confirm" => "customers#confirm",as: "customers_confirm"
+    get "/customers/information/edit" => "customers#edit",as: "customers_information_edit"
+    get "/customers" => "customers#show",as: "customer"
+    get "/customers/confirm" => "customers#confirm",as: "customers_confirm"
     patch '/customers/out' => 'customers#out'
     get "/customers/favorite/index" => "customers#index"
   end
