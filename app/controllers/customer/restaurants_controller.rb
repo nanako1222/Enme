@@ -12,6 +12,7 @@ class Customer::RestaurantsController < ApplicationController
   end
 
   def index
+    #byebug
     #検索画面のアレルギーにチェックがついていないかつ顧客が持つアレルギーのチェックがないメニューを持つレストランを検索
     #1こでもアレルギーが入っているメニューが存在したらそれをはぶいて検索する
     #ただし顧客のアレルギーを一つでも持っていないメニューがある飲食店は表示させる
@@ -22,7 +23,7 @@ class Customer::RestaurantsController < ApplicationController
                 menu.allergies.pluck(:id).any? { |allergen| allergen.in?(@allergy_ids) }
               end
             end
-#byebug
+
     if @state_id && @area_id
       @restaurants = Restaurant.where(id: menus.pluck(:restaurant_id), state_id: @state_id, area_id: @area_id )
     elsif @state_id
@@ -69,7 +70,7 @@ class Customer::RestaurantsController < ApplicationController
   # end
 
   def set_search_query
-    @allergy_ids = (params[:customer][:allergies] || []).map(&:to_i)
+    @allergy_ids = params.dig(:customer, :allergies)&.map(&:to_i) || []
     @state_id = params[:state_id]
     @area_id = params.dig(:customer, :area_id)
   end
