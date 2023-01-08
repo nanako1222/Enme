@@ -20,7 +20,7 @@ class Customer::CustomersController < ApplicationController
           customer_having_allergy.destroy
         end
       end
-      redirect_to customer_path(@customer), notice: 'ユーザー情報の変更に成功しました'
+      redirect_to customer_path, notice: 'ユーザー情報の変更に成功しました'
     else
       @allergies = Allergy.all
       @area = Area.where(state_id: @customer.state_id)
