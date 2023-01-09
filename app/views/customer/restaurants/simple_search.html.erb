@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-11 offset-1">
+
+      <div class="search-data">
+        <div></div>
+          <h4 class="col-md-3 mt-5">会員検索</h4>
+          <p>会員登録したアレルゲン情報を元に簡単検索します</p>
+        </div>
+
+        <div class="customer_allergen col-md-5 mt-5 mb-3">
+          <h5>会員アレルゲン</h5>
+          <% @customer.allergies.each do |allergy| %>
+            <%= allergy.allergen %>
+          <% end %>
+        </div>
+        <%= link_to restaurants_path(customer: { allergies: @customer.allergies.pluck(:id) }, state_id: @customer.state_id), class: "btn btn-info active mt-3" do %>
+          <i class="far fa-map"></i>
+          都道府県で検索
+        <% end %>
+        <%= link_to restaurants_path(customer: { area_id: @customer.area_id, allergies: @customer.allergies.pluck(:id) }, state_id: @customer.state_id), class: "btn btn-success active ml-md-3 mt-3" do%>        <%#= link_to restaurants_path(customer: { area_id: @customer.area_id }, state_id: @customer.state_id, allergies: @customer.allergy_ids), class: "btn btn-success active ml-3 mt-5" do%>
+          <i class="fas fa-map-marked-alt"></i>
+          地域エリアで検索
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
