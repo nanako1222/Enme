@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+  get 'favorites/destroy'
   devise_for :customers, controllers: {
     registrations: "customer/registrations",
     sessions: 'customer/sessions'
@@ -55,13 +57,27 @@ Rails.application.routes.draw do
         get "simple_search"
       end
       resources :menus, only: [:index, :show]
+      resource :favorites, only: [:create, :destroy]
     end
+
+    # resources :customers do
+    #   resource :favorites, only: [:create, :destroy]
+    # end
+    # resources :customers, only: %i[new create]
+    # resources :favorite_restaurants do
+    #   resources :comments, only: %i[create update destroy], shallow: true
+    #   collection do
+    #     get :favorites
+    #   end
+    # end
+    # resources :favorites, only: %i[create destroy]
+
     patch "/customers/information" => "customers#update"
     get "/customers/information/edit" => "customers#edit",as: "customers_information_edit"
-    get "/customers" => "customers#show",as: "customer"
+    get "/my_page" => "customers#my_page"
     get "/customers/confirm" => "customers#confirm",as: "customers_confirm"
     patch '/customers/out' => 'customers#out'
-    get "/customers/favorite/index" => "customers#index"
+    get "/customers/favorite/index" => "favorites#index"
   end
 end
 

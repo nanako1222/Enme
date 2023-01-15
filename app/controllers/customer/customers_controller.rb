@@ -1,6 +1,6 @@
 class Customer::CustomersController < ApplicationController
   before_action :authenticate_customer!
-  def show
+  def my_page
     @customer = current_customer
     @state = State.find(@customer.state_id).state
     @area = Area.find(@customer.area_id).area
@@ -20,7 +20,7 @@ class Customer::CustomersController < ApplicationController
           customer_having_allergy.destroy
         end
       end
-      redirect_to customer_path, notice: 'ユーザー情報の変更に成功しました'
+      redirect_to my_page_path, notice: 'ユーザー情報の変更に成功しました'
     else
       @allergies = Allergy.all
       @area = Area.where(state_id: @customer.state_id)

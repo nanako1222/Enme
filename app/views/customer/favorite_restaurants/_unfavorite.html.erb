@@ -1,0 +1,3 @@
+<%= link_to favorite_path(current_customer.favorites.find_by(restaurant_id: restaurant.id)), id: "js-favorite-button-for-restaurant-#{restaurant.id}", class:"float-right", method: :delete do %>
+  <%= icon 'fas', 'star' %>
+<% end %>

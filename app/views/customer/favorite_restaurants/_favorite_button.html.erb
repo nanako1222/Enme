@@ -1,0 +1,5 @@
+<% if current_customer.favorite?(restaurant) %>
+  <%= render 'unfavorite', { restaurant: restaurant } %>
+<% else %>
+  <%= render 'favorite', { restaurant: restaurant } %>
+<% end %>

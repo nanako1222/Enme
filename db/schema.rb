@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_11_121841) do
+ActiveRecord::Schema.define(version: 2023_01_14_122605) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(version: 2022_10_11_121841) do
     t.index ["state_id"], name: "index_customers_on_state_id"
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_favorites_on_customer_id"
+    t.index ["restaurant_id"], name: "index_favorites_on_restaurant_id"
+  end
+
   create_table "menu_having_allergies", force: :cascade do |t|
     t.integer "menu_id", null: false
     t.integer "allergy_id", null: false
@@ -155,6 +164,8 @@ ActiveRecord::Schema.define(version: 2022_10_11_121841) do
   add_foreign_key "customer_having_allergies", "customers"
   add_foreign_key "customers", "areas"
   add_foreign_key "customers", "states"
+  add_foreign_key "favorites", "customers"
+  add_foreign_key "favorites", "restaurants"
   add_foreign_key "menu_having_allergies", "allergies"
   add_foreign_key "menu_having_allergies", "menus"
   add_foreign_key "menus", "restaurants"

@@ -1,0 +1,16 @@
+<div id=favorite_<%= @restaurant.id %>>
+<!--#favorite{ id: @restaurant.id }-->
+  <% if !Favorite.exists?(customer: current_customer, restaurant_id: @restaurant.id) %>
+    <%= link_to restaurant_favorites_path(@restaurant), method: :post, remote: true, class: "favorite-btn favorite-restaurant" do %>
+      <i class="fas fa-star"></i>
+      <span>お気に入り</span>
+      <%= @restaurant.favorites.length %>
+    <% end %>
+  <% else %>
+    <%= link_to restaurant_favorites_path(@restaurant), method: :delete, remote: true, class: "favorite-btn favorite-delete" do %>
+      <i class="fas fa-star"></i>
+      <span>お気に入り</span>
+      <%= @restaurant.favorites.length %>
+    <% end %>
+  <% end %>
+</div>

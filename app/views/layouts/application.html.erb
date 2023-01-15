@@ -31,7 +31,7 @@
             <div class="navbar-collapse collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto" id="nav_links", style="color: #800000;">
                 <li>
-                  <%= link_to customer_path, class:"nav-link text-light" do %>
+                  <%= link_to my_page_path, class:"nav-link text-light" do %>
                     <strong>会員情報詳細</strong>
                   <% end %>
                 </li>
@@ -43,6 +43,11 @@
                 <li>
                   <%= link_to simple_search_restaurants_path, class:"nav-link text-light" do %>
                     <strong>飲食店簡易検索</strong>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to customers_favorite_index_path, class:"nav-link text-light" do %>
+                    <strong>お気に入り一覧</strong>
                   <% end %>
                 </li>
                 <li>

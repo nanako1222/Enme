@@ -1,0 +1,5 @@
+<% if current_customer.own?(restaurant) %>
+　<%= render 'crud_menus', restaurant: restaurant %>
+<% else %>
+  <%= render 'favorite_button', restaurant: restaurant %>
+<% end %>

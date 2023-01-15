@@ -6,6 +6,9 @@ class Restaurant < ApplicationRecord
 
   has_one_attached :image
   has_many :menus, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :customers, through: :favorites, dependent: :destroy
+  belongs_to :customer, optional: true
   belongs_to :state
   belongs_to :area
 

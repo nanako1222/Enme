@@ -59,6 +59,10 @@ class Customer::RestaurantsController < ApplicationController
       render partial: 'areas', locals: {ms_pref_id: params[:ms_pref_id]}
     end
   end
+  
+  def favorite
+    @favorite_restaurants = current_customer.favorite_restaurants.includes(:customer).order(created_at: :desc)
+  end
 
   private
   # def set_create_query

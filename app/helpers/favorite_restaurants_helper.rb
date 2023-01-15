@@ -1,0 +1,2 @@
+module FavoriteRestaurantsHelper
+end

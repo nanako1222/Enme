@@ -83,5 +83,9 @@
       <h5>NEWS</h5>
       <%= simple_format(@restaurant.news) %>
     </div>
+    <div>
+      <%= render 'customer/favorites/favorite', favorite: @favorite %>
+    </div>
+
   </div>
 </div>

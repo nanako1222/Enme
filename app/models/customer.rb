@@ -6,6 +6,8 @@ class Customer < ApplicationRecord
 
   has_many :customer_having_allergies, dependent: :destroy
   has_many :allergies, through: :customer_having_allergies, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :restaurants, through: :favorites, dependent: :destroy
   belongs_to :state
   belongs_to :area
 
@@ -30,6 +32,22 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (is_valid == true)
   end
+
+  # def favorite(restaurant)
+  #   favorite_restaurants << restaurant
+  # end
+
+  # def unfavorite(restaurant)
+  #   favorite_restaurants.destroy(restaurant)
+  # end
+
+  # def favorite?(restaurant)
+  #   favorite_restaurants.include?(restaurant)
+  # end
+
+  # def own?(object)
+  #   id == object.customer_id
+  # end
 
   # def inactive_message
   #   return "退会済みのユーザです"

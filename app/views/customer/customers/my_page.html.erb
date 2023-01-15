@@ -55,6 +55,12 @@
           </td>
         </tr>
       </table>
+      <% if @favorite_list.present? %>
+        <% @favorite_list.each do |restaurant| %>
+          <%= restaurant.name %>
+          <%= restaurant.content %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
