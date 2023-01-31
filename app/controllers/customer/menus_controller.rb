@@ -2,7 +2,6 @@ class Customer::MenusController < ApplicationController
 
   def index
     @restaurant = Restaurant.find(params[:restaurant_id])
-    # @restaurants = Restaurant.all
     @menu = Menu.new
     @menus = @restaurant.menus.order(id: "DESC").page(params[:page]).per(9)
     @menus_count = @restaurant.menus.count
