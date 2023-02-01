@@ -65,9 +65,7 @@ class Customer::RestaurantsController < ApplicationController
   end
 
   private
-  # def set_create_query
-  #   @allergy_id = params[:allergy_id]
-  # end
+
 
   # def set_customer_farm_area
   #   @ms_pref_id = params[:ms_pref_id]
