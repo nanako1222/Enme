@@ -66,11 +66,6 @@ class Customer::RestaurantsController < ApplicationController
 
   private
 
-
-  # def set_customer_farm_area
-  #   @ms_pref_id = params[:ms_pref_id]
-  # end
-
   def set_search_query
     @allergy_ids = params.dig(:customer, :allergies)&.map(&:to_i) || []
     @state_id = params[:state_id]
