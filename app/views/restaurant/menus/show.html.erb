@@ -40,10 +40,10 @@
                 <i class="fas fa-pen-nib"></i>
                 編集する
               <% end %>
-            <%= link_to restaurant_restaurant_menu_path(@restaurant, @menu), method: :delete,"data-confirm" => "本当に削除しますか？",  class:"btn btn-danger active ml-md-5 mt-5" do %>
-              <i class="fas fa-trash"></i>
-              削除する
-            <% end %>
+              <%= link_to restaurant_restaurant_menu_path(@restaurant, @menu), method: :delete,"data-confirm" => "本当に削除しますか？",  class:"btn btn-danger active ml-md-5 mt-5" do %>
+                <i class="fas fa-trash"></i>
+                削除する
+              <% end %>
             <% end %>
           </div>
         </div>
