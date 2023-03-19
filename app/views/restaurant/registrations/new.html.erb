@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11 offset-1">
-      <h4 class="col-md-3 mt-5">新規飲食店登録</h4>
+      <h4 class="col-md-3 mt-5"><strong>新規飲食店登録</strong></h4>
 
       <%= form_with model: @restaurant, url: restaurant_registration_path, id: 'new_restaurant', class: 'new_restaurant', local: true do  |f| %>
         <%= render "restaurant/shared/error_messages", resource: resource %>
