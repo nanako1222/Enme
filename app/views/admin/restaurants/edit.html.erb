@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-10 offset-1">
-      <h4 class="col-6 mt-5"><%= "#{@restaurant.name}の店舗情報編集" %></h4>
+      <h4 class="col-6 mt-5"><strong><%= "#{@restaurant.name}の店舗情報編集" %></strong></h4>
       <% flash.each do |key, value| %>
          <p class="alert alert-<%= key %>">
            <%= value %>
