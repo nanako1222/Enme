@@ -1,34 +1,34 @@
 /*global $*/
-
-// 関数として独立させる
 function initAreaSelect() {
-  console.log("Area selector initialized"); // これがコンソールに出れば成功
+  console.log("Checking for dropdowns...");
 
-  // 顧客用
-  $(document).off('change', '#customer_state_id').on('change', '#customer_state_id', function() {
-    console.log("State changed: " + $(this).val());
+  // [重要] ID指定を「state_id」という文字を含むもの全て、に広げます
+  $(document).off('change', '[id*="state_id"]').on('change', '[id*="state_id"]', function() {
+    var stateId = $(this).val();
+    var elementId = $(this).attr('id');
+    console.log("Detected change in: " + elementId + " value: " + stateId);
+
+    // どの画面（顧客/店舗/管理者）にいるかを自動判別
+    var type = "restaurant";
+    var targetSelector = "#areas_select";
+
+    if (elementId.includes("customer")) {
+      type = "customer";
+      targetSelector = "#areas_select_customer";
+    }
+
     $.ajax({
       url: '/areas',
       type: 'GET',
-      data: { type: "customer", state_id: $(this).val() }
+      data: { type: type, state_id: stateId }
     }).done(function(data){
-      $('#areas_select_customer').html(data);
-    });
-  });
-
-  // 飲食店・管理者用
-  $(document).off('change', '#restaurant_state_id, #admin_state_id').on('change', '#restaurant_state_id, #admin_state_id', function() {
-    var typeName = $(this).attr('id').includes('admin') ? "restaurant" : "restaurant"; 
-    $.ajax({
-      url: '/areas',
-      type: 'GET',
-      data: { type: typeName, state_id: $(this).val() }
-    }).done(function(data){
-      $('#areas_select').html(data);
+      console.log("Ajax success! Updating: " + targetSelector);
+      $(targetSelector).html(data);
+    }).fail(function(){
+      console.log("Ajax failed. Check if /areas route exists.");
     });
   });
 }
 
-// ページ読み込みのあらゆるタイミングで実行
 $(document).on('turbolinks:load', initAreaSelect);
 $(document).ready(initAreaSelect);
