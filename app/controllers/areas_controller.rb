@@ -1,15 +1,16 @@
 class AreasController < ApplicationController
   def index
-    # 送られてきた都道府県IDに紐づく地域を取得
-    @areas = Area.where(state_id: params[:state_id])
+    # state_idが空の場合やデータがない場合でもエラーにならないようにする
+    state_id = params[:state_id]
+    @areas = state_id.present? ? Area.where(state_id: state_id) : []
     
-    # セレクトボックスの中身（HTML）を文字列として作成
     options = "<option value=''>選択してください</option>"
     @areas.each do |area|
-      options += "<option value='#{area.id}'>#{area.name}</option>"
+      # カラム名が 'area' か 'name' か不明なため、両方に対応できるように
+      name = area.try(:area) || area.try(:name) || "名称未設定"
+      options += "<option value='#{area.id}'>#{name}</option>"
     end
 
-    # HTML形式で文字列のみを返す（ビューファイルを使わない設定）
-    render inline: options, layout: false
+    render plain: options
   end
 end
