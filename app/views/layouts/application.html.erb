@@ -14,18 +14,22 @@
       <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container">
-            <a class="navbar-brand" href="/">Enme</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <a class="navbar-brand" href="/">
+              <%= image_tag('logo.png', size:'200x60', alt: "Enme Logo") %>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto">
                 <% if customer_signed_in? %>
-                  <li class="nav-item"><%= link_to "マイページ", my_page_path, class: "nav-link" %></li>
-                  <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to "会員情報詳細", my_page_path, class: "nav-link font-weight-bold" %></li>
+                  <li class="nav-item"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link font-weight-bold" %></li>
                 <% else %>
-                  <li class="nav-item"><%= link_to "ログイン", new_customer_session_path, class: "nav-link" %></li>
-                  <li class="nav-item"><%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %></li>
+                  <li class="nav-item"><%= link_to "ログイン", new_customer_session_path, class: "nav-link font-weight-bold" %></li>
+                  <li class="nav-item"><%= link_to "新規登録", new_customer_registration_path, class: "nav-link font-weight-bold" %></li>
                 <% end %>
               </ul>
             </div>
@@ -39,6 +43,7 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
   </body>
 </html>
