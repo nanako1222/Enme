@@ -1,17 +1,24 @@
-# --- Admin 修正 (パスワード確認追加) ---
+# 1. 管理者 (Admin)
 admin = Admin.find_or_initialize_by(email: 'aaa111@www.com')
 if admin.new_record?
   admin.password = "testtest"
-  admin.password_confirmation = "testtest" # 追加
+  admin.password_confirmation = "testtest"
   admin.save!
 end
 
-# --- アレルギーデータ (重複回避) ---
+# 2. アレルギー項目 (Allergens)
+allergens = %w(
+  卵 えび かに そば 落花生 小麦 乳 あわび イカ いくら
+  オレンジ キウイ 牛肉 くるみ サケ りんご サバ 大豆
+  鶏肉 バナナ 豚肉 まつたけ もも やまいも ゼラチン
+  ごま カシューナッツ アーモンド
+)
+
 allergens.each do |allergen|
   Allergy.find_or_create_by!(allergen: allergen)
 end
 
-# --- 都道府県とエリア (find_or_create_by で重複回避) ---
+# 3. 都道府県とエリア (States and Areas)
 states_data = {
   "大阪府" => ["大阪市", "北河内", "中河内", "豊能", "三島", "泉北", "泉南", "南河内"],
   "兵庫県" => ["但馬", "神戸市", "北播磨", "中播磨", "東播磨", "西播磨", "丹波", "阪神北", "阪神南", "淡路"],
@@ -28,23 +35,46 @@ states_data.each do |state_name, area_names|
   end
 end
 
-# --- レストラン作成部分 (重要：password_confirmation を追加) ---
-# ※ 全ての Restaurant.create! 内に password_confirmation: password を追記してください
+# 4. レストラン (Restaurants)
+# 各都府県ごとに最初のエリアIDを基準に作成
+base_area_id = 1
+states_data.each_with_index do |(state_name, area_names), state_idx|
+  state = State.find_by(state: state_name)
+  
+  5.times do
+    area_names.each_with_index do |_, area_idx|
+      password = "tuyukusa"
+      Restaurant.create!(
+        email: Faker::Internet.unique.email,
+        telephone_number: Faker::Number.number(digits: 11),
+        is_valid: true,
+        name: Faker::Restaurant.name,
+        regular_holiday: "月曜日",
+        business_hours: "10:00~21:00",
+        address: Faker::Address.city + "115-6",
+        state_id: state.id,
+        area_id: state.areas[area_idx].id,
+        password: password,
+        password_confirmation: password
+      )
+    end
+  end
+end
 
-# 例: 最初の loop 内
-8.times do |n|
-  password = "tuyukusa"
-  Restaurant.create!(
-    email: Faker::Internet.email,
-    telephone_number: Faker::Number.number(digits: 11),
-    is_valid: true,
-    name: Faker::Restaurant.name,
-    regular_holiday: "月曜日",
-    business_hours: "10:00~21:00",
-    address: Faker::Address.city + "115-6",
-    area_id: 1 + n,
-    state_id: 1,
-    password: password,
-    password_confirmation: password # ← これを全ての Restaurant.create! に追加！
-  )
+# 5. メニュー (Menus)
+Restaurant.all.each do |restaurant|
+  3.times do
+    menu = Menu.create!(
+      name: Faker::Food.dish,
+      introduction: "こだわりの素材を使用した体に優しい一品です。",
+      price: Faker::Number.number(digits: 3),
+      restaurant_id: restaurant.id
+    )
+    
+    # メニューにランダムなアレルギーを紐付け
+    MenuHavingAllergy.create!(
+      menu_id: menu.id,
+      allergy_id: Allergy.all.sample.id
+    )
+  end
 end
