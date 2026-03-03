@@ -2,18 +2,17 @@ import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-// jQueryを最優先で読み込み、どこからでも使えるように固定する
+// jQueryをグローバル（window）に即座に登録
 import jQuery from "jquery"
-window.$ = window.jQuery = jQuery
+window.$ = window.jQuery = jQuery;
 
-// ライブラリの読み込み
 import "popper.js"
 import "bootstrap"
-
-// スタイルシートと個別のJS（ここが地域連動に重要！）
 import "../stylesheets/application"
 import '@fortawesome/fontawesome-free/js/all'
-import './area.js' 
+
+// 最後に自分のJSを読み込む
+import "./area.js"
 
 Rails.start()
 ActiveStorage.start()

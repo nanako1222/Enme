@@ -1,55 +1,34 @@
 /*global $*/
-$(document).on('turbolinks:load', function() {
-  
-  // 顧客用：都道府県変更時
-  $('#customer_state_id').on('change', function() {
-    $.ajax('/areas', {
-      type: 'GET',
-      data: {
-        type: "customer",
-        state_id: $(this).val()
-      }
-    }).done(function(data){
-      $('#areas_select_customer').html(data)
-    })
-  });
 
-  // 飲食店用：都道府県変更時
-  $('#restaurant_state_id').on('change', function() {
-    $.ajax('/areas', {
-      type: 'GET',
-      data: {
-        type: "restaurant",
-        state_id: $(this).val()
-      }
-    }).done(function(data){
-      $('#areas_select').html(data)
-    })
-  });
+// 関数として独立させる
+function initAreaSelect() {
+  console.log("Area selector initialized"); // これがコンソールに出れば成功
 
-  // 管理者用：飲食店検索の都道府県変更
-  $('#admin_state_id').on('change', function() {
-    // 飲食店側のセレクトボックスを更新
-    $.ajax('/areas', {
+  // 顧客用
+  $(document).off('change', '#customer_state_id').on('change', '#customer_state_id', function() {
+    console.log("State changed: " + $(this).val());
+    $.ajax({
+      url: '/areas',
       type: 'GET',
-      data: {
-        type: "restaurant",
-        state_id: $(this).val()
-      }
+      data: { type: "customer", state_id: $(this).val() }
     }).done(function(data){
-      $('#areas_select').html(data)
-    });
-
-    // 顧客側のセレクトボックスも更新（必要であれば）
-    $.ajax('/areas', {
-      type: 'GET',
-      data: {
-        type: "customer",
-        state_id: $(this).val()
-      }
-    }).done(function(data){
-      $('#areas_select_customer').html(data)
+      $('#areas_select_customer').html(data);
     });
   });
 
-});
+  // 飲食店・管理者用
+  $(document).off('change', '#restaurant_state_id, #admin_state_id').on('change', '#restaurant_state_id, #admin_state_id', function() {
+    var typeName = $(this).attr('id').includes('admin') ? "restaurant" : "restaurant"; 
+    $.ajax({
+      url: '/areas',
+      type: 'GET',
+      data: { type: typeName, state_id: $(this).val() }
+    }).done(function(data){
+      $('#areas_select').html(data);
+    });
+  });
+}
+
+// ページ読み込みのあらゆるタイミングで実行
+$(document).on('turbolinks:load', initAreaSelect);
+$(document).ready(initAreaSelect);
