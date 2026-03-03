@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
   <head>
     <title>Enme</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,23 +8,24 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    
+    <%# JSのエラー（警告）対策として preload の設定を明示 %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
 
-  <body>
-    <div class="wrapper" style="min-height: 100vh; display: flex; flex-direction: column;">
+  <body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
+    <div class="wrapper" style="flex: 1 0 auto;">
       <header>
         <nav class="navbar navbar-expand-lg navbar-dark" id="global_nav">
           <div class="container">
-
+            <%# --- ヘッダーの中身（前回お送りしたログイン分岐）をここにそのまま入れてください --- %>
             <% if customer_signed_in? %>
-              <a class="navbar-brand" href="/">
-                <%= image_tag('logo.png', size:'200x60') %>
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <a class="navbar-brand" href="/"><%= image_tag('logo.png', size:'200x60') %></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="navbar-collapse collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ml-auto" id="nav_links" style="color: #800000;">
+                <ul class="navbar-nav ml-auto">
                   <li><%= link_to "会員情報詳細", my_page_path, class:"nav-link text-light font-weight-bold" %></li>
                   <li><%= link_to "飲食店検索", search_restaurants_path, class:"nav-link text-light font-weight-bold" %></li>
                   <li><%= link_to "飲食店簡易検索", simple_search_restaurants_path, class:"nav-link text-light font-weight-bold" %></li>
@@ -33,89 +34,68 @@
                   <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"nav-link text-light font-weight-bold" %></li>
                 </ul>
               </div>
-
             <% elsif admin_signed_in? %>
-              <a class="navbar-brand" href="/admin">
-                <%= image_tag('logo.png', size:'200x60') %>
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="navbar-collapse collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ml-auto">
-                  <li><%= link_to "顧客一覧", admin_customers_path, class:"nav-link text-light font-weight-bold" %></li>
-                  <li><%= link_to "アレルゲン一覧", admin_allergies_path, class:"nav-link text-light font-weight-bold" %></li>
-                  <li><%= link_to "飲食店一覧", admin_path, class:"nav-link text-light font-weight-bold" %></li>
-                  <li><%= link_to "地域一覧", admin_areas_index_path, class:"nav-link text-light font-weight-bold" %></li>
-                  <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"nav-link text-light font-weight-bold" %></li>
-                </ul>
-              </div>
-
+               <%# --- 管理者用のリンク（省略せずに元のコードを入れてください） --- %>
+               <a class="navbar-brand" href="/admin"><%= image_tag('logo.png', size:'200x60') %></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"><span class="navbar-toggler-icon"></span></button>
+               <div class="navbar-collapse collapse" id="navbarNavDropdown">
+                 <ul class="navbar-nav ml-auto">
+                   <li><%= link_to "顧客一覧", admin_customers_path, class:"nav-link text-light font-weight-bold" %></li>
+                   <li><%= link_to "アレルゲン一覧", admin_allergies_path, class:"nav-link text-light font-weight-bold" %></li>
+                   <li><%= link_to "飲食店一覧", admin_path, class:"nav-link text-light font-weight-bold" %></li>
+                   <li><%= link_to "地域一覧", admin_areas_index_path, class:"nav-link text-light font-weight-bold" %></li>
+                   <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"nav-link text-light font-weight-bold" %></li>
+                 </ul>
+               </div>
             <% elsif restaurant_signed_in? %>
-              <a class="navbar-brand" href="/restaurant">
-                <%= image_tag('logo.png', size:'200x60') %>
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="navbar-collapse collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ml-auto">
-                  <li><%= link_to "登録情報詳細", restaurant_homes_path, class:"nav-link text-light font-weight-bold ml-3" %></li>
-                  <li><%= link_to "メニュー一覧", restaurant_restaurant_menus_path(@restaurant), class:"nav-link text-light font-weight-bold ml-3" %></li>
-                  <li><%= link_to "メニュー追加", new_restaurant_restaurant_menu_path(@restaurant), class:"nav-link text-light font-weight-bold ml-3" %></li>
-                  <li><%= link_to "About", restaurant_about_path, class:"nav-link text-light font-weight-bold ml-3", data: {"turbolinks" => false} %></li>
-                  <li><%= link_to "ログアウト", destroy_restaurant_session_path, method: :delete, class:"nav-link text-light font-weight-bold ml-3" %></li>
-                </ul>
-              </div>
-
+               <%# --- 店舗用のリンク（省略せずに元のコードを入れてください） --- %>
+               <a class="navbar-brand" href="/restaurant"><%= image_tag('logo.png', size:'200x60') %></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"><span class="navbar-toggler-icon"></span></button>
+               <div class="navbar-collapse collapse" id="navbarNavDropdown">
+                 <ul class="navbar-nav ml-auto">
+                   <li><%= link_to "登録情報詳細", restaurant_homes_path, class:"nav-link text-light font-weight-bold ml-3" %></li>
+                   <li><%= link_to "メニュー一覧", restaurant_restaurant_menus_path(@restaurant), class:"nav-link text-light font-weight-bold ml-3" %></li>
+                   <li><%= link_to "メニュー追加", new_restaurant_restaurant_menu_path(@restaurant), class:"nav-link text-light font-weight-bold ml-3" %></li>
+                   <li><%= link_to "About", restaurant_about_path, class:"nav-link text-light font-weight-bold ml-3", data: {"turbolinks" => false} %></li>
+                   <li><%= link_to "ログアウト", destroy_restaurant_session_path, method: :delete, class:"nav-link text-light font-weight-bold ml-3" %></li>
+                 </ul>
+               </div>
             <% else %>
-              <a class="navbar-brand" href="/">
-                <%= image_tag('logo.png', size:'200x60') %>
-              </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="navbar-collapse collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ml-auto">
-                  <li><%= link_to "About", about_path, class:"nav-link text-light font-weight-bold ml-3", data: {"turbolinks" => false} %></li>
-                  <li><%= link_to "飲食店検索", search_restaurants_path, class:"nav-link text-light font-weight-bold ml-3" %></li>
-                  <li><%= link_to "新規登録", new_customer_registration_path, class:"nav-link text-light font-weight-bold ml-3", data: {"turbolinks": false} %></li>
-                  <li><%= link_to "ログイン", new_customer_session_path, class:"nav-link text-light font-weight-bold ml-3" %></li>
-                </ul>
-              </div>
+               <%# --- 未ログイン用のリンク（省略せずに元のコードを入れてください） --- %>
+               <a class="navbar-brand" href="/"><%= image_tag('logo.png', size:'200x60') %></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"><span class="navbar-toggler-icon"></span></button>
+               <div class="navbar-collapse collapse" id="navbarNavDropdown">
+                 <ul class="navbar-nav ml-auto">
+                   <li><%= link_to "About", about_path, class:"nav-link text-light font-weight-bold ml-3", data: {"turbolinks" => false} %></li>
+                   <li><%= link_to "飲食店検索", search_restaurants_path, class:"nav-link text-light font-weight-bold ml-3" %></li>
+                   <li><%= link_to "新規登録", new_customer_registration_path, class:"nav-link text-light font-weight-bold ml-3", data: {"turbolinks": false} %></li>
+                   <li><%= link_to "ログイン", new_customer_session_path, class:"nav-link text-light font-weight-bold ml-3" %></li>
+                 </ul>
+               </div>
             <% end %>
           </div>
         </nav>
       </header>
 
-      <main style="flex: 1;">
+      <main>
         <%= yield %>
       </main>
-
-      <footer class="text-white pt-5 pb-4 bg-dark">
-        <div class="container">
-          <div class="row no-gutters">
-            <% unless signed_in? %>
-              <div class="col-md-3">
-                <%= link_to "店舗新規会員登録", new_restaurant_registration_path, class:"nav-link text-light font-weight-bold", data: {"turbolinks": false} %>
-                <%= link_to "店舗ログイン", new_restaurant_session_path, class:"nav-link text-light font-weight-bold" %>
-              </div>
-              <div class="col-md-9 text-center">
-                <p>©2022 Enme</p>
-              </div>
-            <% else %>
-              <div class="col-md-12 text-center">
-                <p>©2022 Enme</p>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </footer>
     </div>
 
-    <%# --- JavaScript実行環境の安定化 --- %>
+    <footer style="flex-shrink: 0; background-color: #343a40; color: white; padding: 40px 0;">
+      <div class="container text-center">
+        <% unless signed_in? %>
+          <div style="margin-bottom: 20px;">
+            <%= link_to "店舗新規会員登録", new_restaurant_registration_path, class:"text-light font-weight-bold px-3", data: {"turbolinks": false} %>
+            <%= link_to "店舗ログイン", new_restaurant_session_path, class:"text-light font-weight-bold px-3" %>
+          </div>
+        <% end %>
+        <p>©2022 Enme</p>
+      </div>
+    </footer>
+
+    <%# ライブラリの読み込み %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
   </body>
 </html>
