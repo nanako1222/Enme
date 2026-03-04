@@ -76,11 +76,11 @@ test:
 production:
   <<: *default
 
-  # 修正ポイント: 本番でもコンパイルを許可し、manifest.jsonの生成を確実にする
+  # 【修正】本番環境でもコンパイルを許可し、ビルド漏れを防ぐ
   compile: true
 
-  # CSSを別ファイルとして書き出す（Bootstrap等のスタイル崩れ防止）
+  # CSSをJSから分離して書き出す
   extract_css: true
 
-  # パフォーマンスのためにマニフェストをキャッシュする
+  # パフォーマンス向上のためにマニフェストをキャッシュする
   cache_manifest: true
