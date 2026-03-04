@@ -11,8 +11,15 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-production:
-  <<: *default
+default: &default
   adapter: postgresql
   encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: your_app_development # ここは任意ですが、adapterが共通なのでPostgreSQLになります
+
+production:
+  <<: *default
   url: <%= ENV['DATABASE_URL'] %>
