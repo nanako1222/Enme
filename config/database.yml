@@ -1,16 +1,23 @@
+# 共通設定
 default: &default
-  adapter: postgresql
-  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
+# ローカル環境（自分のPC）は SQLite3 を使う
 development:
   <<: *default
-  database: your_app_development # ここは任意。もしローカルがSQLiteなら adapter: sqlite3 に戻してください
+  adapter: sqlite3
+  database: db/development.sqlite3
 
+# テスト環境も SQLite3
 test:
   <<: *default
-  database: your_app_test
+  adapter: sqlite3
+  database: db/test.sqlite3
 
+# Render本番環境（ここだけ PostgreSQL）
 production:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
   url: <%= ENV['DATABASE_URL'] %>

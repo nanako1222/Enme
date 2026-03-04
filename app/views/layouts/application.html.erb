@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%# CSSはLinkタグ、JSはPackタグを使用します %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
   </head>
 
@@ -15,7 +18,6 @@
       <header>
         <nav class="navbar navbar-expand-lg navbar-dark" id="global_nav" style="background-color: #343a40;">
           <div class="container">
-            <%# ロゴ部分 %>
             <% if customer_signed_in? %>
               <a class="navbar-brand" href="/"><%= image_tag('logo.png', size:'200x60') %></a>
             <% elsif admin_signed_in? %>
@@ -58,18 +60,18 @@
                   <li><%= link_to "ログイン", new_customer_session_path, class:"nav-link text-light font-weight-bold" %></li>
                 <% end %>
               </ul>
-            </div>
+            </div>   
           </div>
         </nav>
       </header>
-
+                
       <main>
         <%= yield %>
       </main>
     </div>
-
+                  
     <footer style="flex-shrink: 0; background-color: #343a40; color: white; padding: 30px 0;">
-      <div class="container text-center">
+      <div class="container text-center">   
         <% unless signed_in? %>
           <div style="margin-bottom: 15px;">
             <%= link_to "店舗新規会員登録", new_restaurant_registration_path, class:"text-light font-weight-bold px-2", data: {"turbolinks": false} %>
@@ -79,9 +81,8 @@
         <p>©2022 Enme</p>
       </div>
     </footer>
-
-    <%# 外部ライブラリをページの一番下で読み込む %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                  
+    <%# JSライブラリ %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
   </body>
 </html>

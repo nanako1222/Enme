@@ -5,31 +5,36 @@ import jQuery from "jquery"
 import "popper.js"
 import "bootstrap"
 
-// グローバル設定
+// グローバル設定：これでJSから $ が使えるようになります
 window.$ = window.jQuery = jQuery;
 
 Rails.start()
 ActiveStorage.start()
 
-// --- ここに地域のプルダウン機能を直接書く ---
+// --- 地域のプルダウン連動機能 ---
 $(document).on('turbolinks:load', function() {
-  console.log("Application.js is running!");
+  console.log("Application.js: DOM Loaded");
 
   $(document).off('change', '[id*="state_id"]').on('change', '[id*="state_id"]', function() {
     var stateId = $(this).val();
     var elementId = $(this).attr('id');
-    console.log("State dropdown changed: " + elementId);
+    console.log("Detected state change in: " + elementId + " (ID: " + stateId + ")");
 
-    var type = elementId.includes("customer") ? "customer" : "restaurant";
+    // 顧客(customer)か店舗(restaurant)かをID名から判定
     var targetSelector = elementId.includes("customer") ? "#areas_select_customer" : "#areas_select";
 
-    $.ajax({
-      url: '/areas',
-      type: 'GET',
-      data: { type: type, state_id: stateId }
-    }).done(function(data){
-      console.log("Ajax success!");
-      $(targetSelector).html(data);
-    });
+    if (stateId) {
+      $.ajax({
+        url: '/areas',
+        type: 'GET',
+        data: { state_id: stateId },
+        dataType: 'html'
+      }).done(function(data){
+        console.log("Ajax success: Updating " + targetSelector);
+        $(targetSelector).html(data);
+      }).fail(function(){
+        console.log("Ajax failed. Check server logs.");
+      });
+    }
   });
 });
