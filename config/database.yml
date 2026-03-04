@@ -1,24 +1,15 @@
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
-
-development:
-  <<: *default
-  database: db/development.sqlite3
-
-test:
-  <<: *default
-  database: db/test.sqlite3
-
-default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: your_app_development # ここは任意ですが、adapterが共通なのでPostgreSQLになります
+  database: your_app_development # ここは任意。もしローカルがSQLiteなら adapter: sqlite3 に戻してください
+
+test:
+  <<: *default
+  database: your_app_test
 
 production:
   <<: *default
