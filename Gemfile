@@ -8,7 +8,7 @@ gem 'rails', '~> 6.1.6', '>= 6.1.6.1'
 
 # データベースの設定
 group :development, :test do
-  # 自分のPCでの開発用
+  # ローカル開発用
   gem 'sqlite3', '~> 1.4'
 end
 
@@ -21,11 +21,13 @@ end
 gem 'puma', '~> 3.11'
 gem 'nio4r', '~> 2.6'
 
-# Assets & Frontend
+# Assets & Frontend (ここが重要！)
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.0'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
+gem 'bootstrap', '~> 5.1.3'  # 本番でのエラー解消のために追加
+gem 'popper_js'              # Bootstrap 5の動作に必要
 gem 'image_processing', '~> 1.2'
 
 # Efficiency
@@ -39,7 +41,7 @@ gem 'ransack'
 gem 'dotenv-rails'
 gem 'faker'
 
-# Mailer requirements for Ruby 3.1+
+# Mailer requirements for Ruby 3.1+ (Renderでのエラー防止)
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
