@@ -18,7 +18,7 @@ group :production do
 end
 
 # App Server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 5.6'
 gem 'nio4r', '~> 2.6'
 
 # Assets & Frontend (ここが重要！)
