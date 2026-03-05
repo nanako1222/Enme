@@ -1,6 +1,6 @@
 // 1. ライブラリの読み込み
 @import '~bootstrap/scss/bootstrap';
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/all'; // アイコン表示のためfontawesomeではなくallを推奨
 
 // 2. 既存のCSSファイルをWebpacker経由で読み込む
 @import '../../assets/stylesheets/favorite_restaurants.scss';
@@ -47,21 +47,21 @@ th { color: #cd853f; }
 .navbar {
   z-index: 10;
   display: flex !important;
-  justify-content: space-between !important; // これで両端に分ける
+  justify-content: space-between !important;
 }
 
 .navbar-brand {
-  margin-right: auto !important; // ロゴを確実に左へ
+  margin-right: auto !important;
 }
 
 .navbar-collapse {
-  flex-grow: 0 !important; // 右側にメニューを固める
+  flex-grow: 0 !important;
 }
 
 .navbar-nav {
   margin-left: auto !important;
   display: flex !important;
-  flex-direction: row !important; // 縦並びを阻止
+  flex-direction: row !important;
 }
 
 .navbar-nav li {
@@ -105,7 +105,6 @@ th { color: #cd853f; }
   position: absolute;
   content: '';
   top: 0; left: 0; right: 0; bottom: 0;
-  // ぼかしを強めにして背景色と馴染ませる
   box-shadow: inset 0 0 60px 80px #ede4e1 !important;
   pointer-events: none;
   z-index: 2;
@@ -122,16 +121,23 @@ footer {
   background-position: center;
   width: 100%;
   color: white;
-  display: flex;
-  justify-content: flex-start !important; // 左端に固定
+  padding: 20px 0;
+  // 修正：中央寄せを完全に解除し左寄せにする
+  display: block !important;
   text-align: left !important;
-  padding: 20px;
+}
+
+footer .container {
+  // Bootstrapのcontainerが持つ「自動中央寄せ」を上書き
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  max-width: 100% !important;
 }
 
 // --- 8. 検索・登録フォーム（横並び強制） ---
 .field.d-grid {
-  display: flex !important; // d-gridの縦並びを上書き
-  flex-direction: row !important; // 横並びを強制
+  display: flex !important;
+  flex-direction: row !important;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -139,34 +145,42 @@ footer {
 }
 
 select.col-md-3 {
-  width: 200px !important; // 固定幅にして安定させる
+  width: 200px !important;
   min-width: 200px;
 }
 
-// --- 9. アレルゲンチェックボックスの整列 ---
+// --- 9. アレルゲンチェックボックス（縦横に整列） ---
 .customer_allergen {
   background-color: #dcd6d2;
   display: flex !important;
-  flex-wrap: wrap !important;
+  flex-wrap: wrap !important; // 画面端で自動改行
   justify-content: flex-start !important;
   padding: 20px;
-  gap: 10px;
+  gap: 15px; // 項目間の余白
 }
 
 .allergies_check_boxes {
-  text-align: left;
-  margin-left: 0;
-  padding-left: 0 !important;
   display: flex;
   align-items: center;
+  min-width: 140px; // 各項目の幅を揃えて縦列を作る
+  white-space: nowrap; // 文字とチェックボックスの泣き別れを防止
 }
 
 input[type="checkbox"] {
-  transform: scale(1.5);
-  margin: 5px 10px;
+  transform: scale(1.3); // 少しサイズを抑えて整列を優先
+  margin-right: 10px !important;
 }
 
-// --- 10. その他 ---
+// --- 10. 検索ボタンのアイコン（FontAwesome） ---
+// アイコンが表示されない問題への対策
+.fa, .fas, .far {
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+// --- 11. その他 ---
 .icon { border-radius: 5px; }
 .restaurant_contents { width: 300px; }
 .p_2 { margin: 0; color: white; font-size: 85%; }
