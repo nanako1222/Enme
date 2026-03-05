@@ -3,22 +3,19 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 // 2. 既存のCSSファイルをWebpacker経由で読み込む
-// ※ app/assets/stylesheets/ からファイルを引っ張ってきます
 @import '../../assets/stylesheets/favorite_restaurants.scss';
 @import '../../assets/stylesheets/favorites.scss';
 @import '../../assets/stylesheets/my_page.scss';
 @import '../../assets/stylesheets/customer/areas.scss';
 
-// ...以下、あなたが書いた修正コード...
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-
-html {
+// 3. 基本設定
+html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -34,23 +31,12 @@ h4, h6 {
   background-color: #bccddb;
 }
 
-h1 {
-  color: maroon;
-}
+h1 { color: maroon; }
+.about { color: maroon; }
+.table-secondary { background-color: #ffffe0; }
+th { color: #cd853f; }
 
-.about {
-  color: maroon;
-}
-
-.table-secondary {
-  background-color: #ffffe0;
-}
-
-th {
-  color: #cd853f;
-}
-
-// --- ヘッダー・ナビゲーションの修正 ---
+// --- 4. ヘッダー（ロゴ左・メニュー右へ強制） ---
 .navbar-expand-lg {
   height: 80px;
   background-image: url('../images/navbar.jpg');
@@ -58,19 +44,28 @@ th {
   background-position: center;
 }
 
-// ロゴを左端、メニューを右端に強制
 .navbar {
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
+  display: flex !important;
+  justify-content: space-between !important; // これで両端に分ける
+}
+
+.navbar-brand {
+  margin-right: auto !important; // ロゴを確実に左へ
 }
 
 .navbar-collapse {
-  flex-grow: 0; // メニューが必要以上に広がらないようにする
+  flex-grow: 0 !important; // 右側にメニューを固める
 }
 
 .navbar-nav {
-  margin-left: auto; // メニューを右側に寄せる
+  margin-left: auto !important;
+  display: flex !important;
+  flex-direction: row !important; // 縦並びを阻止
+}
+
+.navbar-nav li {
+  margin-left: 10px;
 }
 
 #global_nav .navbar-toggler {
@@ -81,9 +76,11 @@ th {
 .navbar-nav li a {
   color: #ede4e1 !important;
   background-color: rgba(107, 63, 49, 0.7);
+  padding: 5px 10px;
+  border-radius: 4px;
 }
 
-// --- メインコンテンツの修正 ---
+// --- 5. メインコンテンツ・背景 ---
 .wrapper {
   min-height: 100vh;
   position: relative;
@@ -92,7 +89,7 @@ th {
   background-color: #ede4e1;
 }
 
-// --- トップページ画像の境界線ぼかし ---
+// --- 6. トップページ画像（境界線のぼかし復活） ---
 .top_image {
   position: relative;
   z-index: 1;
@@ -107,20 +104,18 @@ th {
 .top_image::after {
   position: absolute;
   content: '';
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  // ぼかしの強度を強め（40px 60px）に設定
-  box-shadow: inset 0 0 40px 60px #ede4e1;
-  pointer-events: none; // クリックを阻害しない
+  top: 0; left: 0; right: 0; bottom: 0;
+  // ぼかしを強めにして背景色と馴染ませる
+  box-shadow: inset 0 0 60px 80px #ede4e1 !important;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .top_image img {
   width: 150%;
 }
 
-// --- フッターの修正 ---
+// --- 7. フッター（左寄せ固定） ---
 footer {
   background-image: url('../images/navbar.jpg');
   background-size: cover;
@@ -128,74 +123,57 @@ footer {
   width: 100%;
   color: white;
   display: flex;
-  justify-content: flex-start; // フッター内を左寄せに固定
+  justify-content: flex-start !important; // 左端に固定
+  text-align: left !important;
+  padding: 20px;
 }
 
-// --- 検索ページ・フォームの修正 ---
-// 横並びが崩れたセレクトボックスの修正
+// --- 8. 検索・登録フォーム（横並び強制） ---
 .field.d-grid {
-  display: flex !important; // d-grid（縦並び）を解除
+  display: flex !important; // d-gridの縦並びを上書き
+  flex-direction: row !important; // 横並びを強制
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 15px !important;
 }
 
 select.col-md-3 {
-  width: auto !important;
+  width: 200px !important; // 固定幅にして安定させる
   min-width: 200px;
 }
 
-// アレルゲンチェックボックスの整列
+// --- 9. アレルゲンチェックボックスの整列 ---
 .customer_allergen {
   background-color: #dcd6d2;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  padding: 15px;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-start !important;
+  padding: 20px;
+  gap: 10px;
 }
 
 .allergies_check_boxes {
   text-align: left;
   margin-left: 0;
   padding-left: 0 !important;
+  display: flex;
+  align-items: center;
 }
 
 input[type="checkbox"] {
-  position: relative;
-  transform: scale(1.5); // 少しサイズを控えめに調整（崩れ防止）
-  margin: 10px 10px 0 10px;
+  transform: scale(1.5);
+  margin: 5px 10px;
 }
 
-// --- その他 ---
-.icon {
-  border-radius: 5px;
-}
+// --- 10. その他 ---
+.icon { border-radius: 5px; }
+.restaurant_contents { width: 300px; }
+.p_2 { margin: 0; color: white; font-size: 85%; }
+.area_image { display: flex; justify-content: center; }
 
-.restaurant_contents {
-  width: 300px;
-}
-
-.p_2 {
-  margin: 0;
-  color: white;
-  font-size: 85%;
-}
-
-.area_image {
-  display: flex;
-  justify-content: center;
-}
-
-.lb-image {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.lb-outerContainer {
-  width: 90% !important;
-  height: 100% !important;
-}
+.lb-image { width: 100% !important; height: 100% !important; }
+.lb-outerContainer { width: 90% !important; height: 100% !important; }
 
 .flashing {
   animation: blink 0.8s ease-in-out infinite alternate;
