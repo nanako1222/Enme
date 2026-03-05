@@ -38,3 +38,5 @@ $(document).on('turbolinks:load', function() {
     }
   });
 });
+
+// update for css fix
