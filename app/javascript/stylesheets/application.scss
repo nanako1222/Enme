@@ -1,4 +1,15 @@
+// 1. ライブラリの読み込み
 @import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+// 2. 既存のCSSファイルをWebpacker経由で読み込む
+// ※ app/assets/stylesheets/ からファイルを引っ張ってきます
+@import '../../assets/stylesheets/favorite_restaurants.scss';
+@import '../../assets/stylesheets/favorites.scss';
+@import '../../assets/stylesheets/my_page.scss';
+@import '../../assets/stylesheets/customer/areas.scss';
+
+// ...以下、あなたが書いた修正コード...
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 html {
