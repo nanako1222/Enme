@@ -11,16 +11,18 @@ Rails.start()
 ActiveStorage.start()
 
 $(document).on('turbolinks:load', function() {
-  // すでに登録されているイベントを一度クリアしてから再登録
-  $(document).off('change', '[id*="state_id"]');
-  
-  $(document).on('change', '[id*="state_id"]', function() {
-    // $(this) を使って、今まさに変更された要素から値を取得する
-    var stateId = $(this).val();
-    var elementId = $(this).attr('id');
-    
-    console.log("選択された都道府県ID: " + stateId); // これで検証コンソールに値が出るか確認
+  // 以前のイベントを確実に消去
+  $(document).off('change', 'select[id*="state_id"]');
 
+  // 都道府県セレクトボックスの変更を検知
+  $(document).on('change', 'select[id*="state_id"]', function(e) {
+    // 変更された要素そのものから値を取得
+    var stateId = $(e.target).val();
+    var elementId = $(e.target).attr('id');
+    
+    console.log("Change detected on: " + elementId + " value: " + stateId);
+
+    // 顧客用か店舗用かのターゲット判定
     var targetSelector = elementId.includes("customer") ? "#areas_select_customer" : "#areas_select";
     var $target = $(targetSelector);
 
@@ -28,17 +30,16 @@ $(document).on('turbolinks:load', function() {
       $.ajax({
         url: '/areas',
         type: 'GET',
-        data: { state_id: stateId }, // ここで選んだIDがサーバーに飛びます
-        dataType: 'html',
-        success: function(data) {
-          $target.html(data);
-        },
-        error: function() {
-          console.log("エリアの取得に失敗しました");
-        }
+        data: { state_id: stateId }, // ここで選択したIDを送信
+        dataType: 'text' // コントローラーが render plain なので text
+      }).done(function(data) {
+        $target.html(data);
+        console.log("Areas updated for state: " + stateId);
+      }).fail(function() {
+        console.error("Ajax Error: Failed to fetch areas.");
       });
     } else {
-      $target.html('<option value="">地域を選択してください</option>');
+      $target.html('<option value="">選択してください</option>');
     }
   });
 });
