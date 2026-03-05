@@ -11,12 +11,16 @@ Rails.start()
 ActiveStorage.start()
 
 $(document).on('turbolinks:load', function() {
-  // 都道府県プルダウンの変更を検知
+  // すでに登録されているイベントを一度クリアしてから再登録
+  $(document).off('change', '[id*="state_id"]');
+  
   $(document).on('change', '[id*="state_id"]', function() {
+    // $(this) を使って、今まさに変更された要素から値を取得する
     var stateId = $(this).val();
     var elementId = $(this).attr('id');
     
-    // ターゲット判定（ID名にcustomerが含まれるかどうか）
+    console.log("選択された都道府県ID: " + stateId); // これで検証コンソールに値が出るか確認
+
     var targetSelector = elementId.includes("customer") ? "#areas_select_customer" : "#areas_select";
     var $target = $(targetSelector);
 
@@ -24,15 +28,14 @@ $(document).on('turbolinks:load', function() {
       $.ajax({
         url: '/areas',
         type: 'GET',
-        data: { state_id: stateId },
-        dataType: 'html'
-      }).done(function(data) {
-        // 取得した <option> タグ群を流し込む
-        $target.html(data);
-        // プルダウンとして反応させるため、一番上を選択状態にする
-        $target.prop('selectedIndex', 0);
-      }).fail(function() {
-        console.log("エリア取得失敗");
+        data: { state_id: stateId }, // ここで選んだIDがサーバーに飛びます
+        dataType: 'html',
+        success: function(data) {
+          $target.html(data);
+        },
+        error: function() {
+          console.log("エリアの取得に失敗しました");
+        }
       });
     } else {
       $target.html('<option value="">地域を選択してください</option>');
