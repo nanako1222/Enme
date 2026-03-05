@@ -1,6 +1,9 @@
-// 1. ライブラリの読み込み（エラー回避のため書き方を修正）
-@import '~bootstrap/scss/bootstrap';
-@import '~@fortawesome/fontawesome-free/css/all.css'; // scssではなくcssを直接読み込むのが最も安全です
+// 1. ライブラリの読み込み（最もエラーが起きにくい書き方に変更）
+@import 'bootstrap/scss/bootstrap';
+
+// FontAwesomeはWebpacker経由での読み込みが不安定なため、
+// 一旦この行をコメントアウト（無効化）してビルドが通るか確認します。
+// @import '~@fortawesome/fontawesome-free/css/all.css'; 
 
 // 2. 既存のCSSファイルをWebpacker経由で読み込む
 @import '../../assets/stylesheets/favorite_restaurants.scss';
@@ -119,7 +122,7 @@ footer .container {
   max-width: 100% !important;
 }
 
-// --- 8. 検索・登録フォーム（横並び） ---
+// --- 8. 検索・登録フォーム ---
 .field.d-grid {
   display: flex !important;
   flex-direction: row !important;
@@ -129,22 +132,22 @@ footer .container {
   gap: 15px !important;
 }
 
-// --- 9. アレルゲンチェックボックス（タイル状に整列・はみ出し防止） ---
+// --- 9. アレルゲンチェックボックス（タイル状に整列） ---
 .customer_allergen {
   background-color: #dcd6d2;
   display: flex !important;
-  flex-wrap: wrap !important; // これで自動で次の行にいきます
+  flex-wrap: wrap !important;
   justify-content: flex-start !important;
   padding: 20px;
-  gap: 10px; // 項目同士の隙間
+  gap: 10px;
 }
 
 .allergies_check_boxes {
   display: inline-flex !important;
   align-items: center;
-  width: 150px; // 各項目の横幅を固定して縦列を揃えます
+  width: 150px;
   margin-bottom: 10px;
-  white-space: nowrap; // 文字が途中で切れないようにします
+  white-space: nowrap;
 }
 
 input[type="checkbox"] {
@@ -152,13 +155,7 @@ input[type="checkbox"] {
   margin-right: 10px !important;
 }
 
-// --- 10. アイコン表示用設定 ---
-.fa, .fas, .far {
-  font-family: "Font Awesome 5 Free" !important;
-  font-weight: 900;
-}
-
-// --- 11. その他 ---
+// --- 10. その他 ---
 .flashing {
   animation: blink 0.8s ease-in-out infinite alternate;
   color: red;
@@ -169,7 +166,6 @@ input[type="checkbox"] {
   100% { opacity: 1; }
 }
 
-// ...以下、既存のクラスを維持
 .restaurant_valid { color: gray; }
 .restaurant_valid2 { color: green; }
 .valid { margin-top: 7px; }
