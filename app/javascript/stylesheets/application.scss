@@ -1,6 +1,6 @@
-// 1. ライブラリの読み込み
+// 1. ライブラリの読み込み（エラー回避のため書き方を修正）
 @import '~bootstrap/scss/bootstrap';
-@import '~@fortawesome/fontawesome-free/scss/all'; // アイコン表示のためfontawesomeではなくallを推奨
+@import '~@fortawesome/fontawesome-free/css/all.css'; // scssではなくcssを直接読み込むのが最も安全です
 
 // 2. 既存のCSSファイルをWebpacker経由で読み込む
 @import '../../assets/stylesheets/favorite_restaurants.scss';
@@ -36,7 +36,7 @@ h1 { color: maroon; }
 .table-secondary { background-color: #ffffe0; }
 th { color: #cd853f; }
 
-// --- 4. ヘッダー（ロゴ左・メニュー右へ強制） ---
+// --- 4. ヘッダー ---
 .navbar-expand-lg {
   height: 80px;
   background-image: url('../images/navbar.jpg');
@@ -54,23 +54,10 @@ th { color: #cd853f; }
   margin-right: auto !important;
 }
 
-.navbar-collapse {
-  flex-grow: 0 !important;
-}
-
 .navbar-nav {
   margin-left: auto !important;
   display: flex !important;
   flex-direction: row !important;
-}
-
-.navbar-nav li {
-  margin-left: 10px;
-}
-
-#global_nav .navbar-toggler {
-  background-color: rgba(152, 96, 54, 1);
-  border-color: rgba(237, 228, 225, 1);
 }
 
 .navbar-nav li a {
@@ -89,7 +76,7 @@ th { color: #cd853f; }
   background-color: #ede4e1;
 }
 
-// --- 6. トップページ画像（境界線のぼかし復活） ---
+// --- 6. トップページ画像のぼかし ---
 .top_image {
   position: relative;
   z-index: 1;
@@ -114,7 +101,7 @@ th { color: #cd853f; }
   width: 150%;
 }
 
-// --- 7. フッター（左寄せ固定） ---
+// --- 7. フッター（左寄せ） ---
 footer {
   background-image: url('../images/navbar.jpg');
   background-size: cover;
@@ -122,19 +109,17 @@ footer {
   width: 100%;
   color: white;
   padding: 20px 0;
-  // 修正：中央寄せを完全に解除し左寄せにする
   display: block !important;
   text-align: left !important;
 }
 
 footer .container {
-  // Bootstrapのcontainerが持つ「自動中央寄せ」を上書き
   margin-left: 0 !important;
   margin-right: auto !important;
   max-width: 100% !important;
 }
 
-// --- 8. 検索・登録フォーム（横並び強制） ---
+// --- 8. 検索・登録フォーム（横並び） ---
 .field.d-grid {
   display: flex !important;
   flex-direction: row !important;
@@ -144,51 +129,36 @@ footer .container {
   gap: 15px !important;
 }
 
-select.col-md-3 {
-  width: 200px !important;
-  min-width: 200px;
-}
-
-// --- 9. アレルゲンチェックボックス（縦横に整列） ---
+// --- 9. アレルゲンチェックボックス（タイル状に整列・はみ出し防止） ---
 .customer_allergen {
   background-color: #dcd6d2;
   display: flex !important;
-  flex-wrap: wrap !important; // 画面端で自動改行
+  flex-wrap: wrap !important; // これで自動で次の行にいきます
   justify-content: flex-start !important;
   padding: 20px;
-  gap: 15px; // 項目間の余白
+  gap: 10px; // 項目同士の隙間
 }
 
 .allergies_check_boxes {
-  display: flex;
+  display: inline-flex !important;
   align-items: center;
-  min-width: 140px; // 各項目の幅を揃えて縦列を作る
-  white-space: nowrap; // 文字とチェックボックスの泣き別れを防止
+  width: 150px; // 各項目の横幅を固定して縦列を揃えます
+  margin-bottom: 10px;
+  white-space: nowrap; // 文字が途中で切れないようにします
 }
 
 input[type="checkbox"] {
-  transform: scale(1.3); // 少しサイズを抑えて整列を優先
+  transform: scale(1.3);
   margin-right: 10px !important;
 }
 
-// --- 10. 検索ボタンのアイコン（FontAwesome） ---
-// アイコンが表示されない問題への対策
+// --- 10. アイコン表示用設定 ---
 .fa, .fas, .far {
   font-family: "Font Awesome 5 Free" !important;
   font-weight: 900;
-  display: inline-block;
-  margin-right: 5px;
 }
 
 // --- 11. その他 ---
-.icon { border-radius: 5px; }
-.restaurant_contents { width: 300px; }
-.p_2 { margin: 0; color: white; font-size: 85%; }
-.area_image { display: flex; justify-content: center; }
-
-.lb-image { width: 100% !important; height: 100% !important; }
-.lb-outerContainer { width: 90% !important; height: 100% !important; }
-
 .flashing {
   animation: blink 0.8s ease-in-out infinite alternate;
   color: red;
@@ -199,6 +169,7 @@ input[type="checkbox"] {
   100% { opacity: 1; }
 }
 
+// ...以下、既存のクラスを維持
 .restaurant_valid { color: gray; }
 .restaurant_valid2 { color: green; }
 .valid { margin-top: 7px; }
