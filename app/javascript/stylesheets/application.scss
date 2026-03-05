@@ -39,40 +39,39 @@ footer .container { margin-left: 0 !important; margin-right: auto !important; ma
 // --- 8. 検索フォーム ---
 .field.d-grid { display: flex !important; flex-direction: row !important; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px !important; }
 
-// --- 9. アレルゲンチェックボックス（1セット横並び × 5列） ---
+// --- 9. アレルゲンチェックボックス（5列・強制折り返し） ---
 .customer_allergen {
-  background-color: #dcd6d2;
+  background-color: #dcd6d2 !important;
   display: flex !important;
-  flex-wrap: wrap !important;
+  flex-wrap: wrap !important;     // 折り返しを許可
+  flex-direction: row !important; // 横向きに並べる
   justify-content: flex-start !important;
-  padding: 20px;
-  gap: 0; // 下の width で調整するため 0 に
+  padding: 20px !important;
   width: 100% !important;
+  overflow: visible !important;   // はみ出しを隠さず表示
 }
 
 .allergies_check_boxes {
-  display: flex !important; // 項目内を横並びに
-  align-items: center !important; // 縦位置を中央に
-  width: 20% !important; // 完璧に5列にする
-  min-width: 130px !important; // スマホでの崩れ防止
-  margin-bottom: 12px;
-  box-sizing: border-box;
+  display: flex !important;       // 1セット（箱＋文字）を横並びに
+  align-items: center !important; // 縦中央揃え
+  width: 20% !important;          // 1/5の幅（5列）
+  min-width: 130px !important;    // 狭くなりすぎないようガード
+  margin-bottom: 12px !important;
+  box-sizing: border-box !important;
 }
 
 .allergies_check_boxes label {
   margin: 0 !important;
   padding: 0 !important;
-  white-space: nowrap; // 文字の改行を阻止
-  font-size: 0.85rem;
-  cursor: pointer;
+  white-space: nowrap !important; // 文字の途中で改行させない
+  font-size: 0.85rem !important;
 }
 
 input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  margin: 0 6px 0 0 !important; // 右側にだけ隙間を作る
-  flex-shrink: 0; // チェックボックスが潰れるのを阻止
-  cursor: pointer;
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 8px 0 0 !important;
+  flex-shrink: 0 !important;      // チェックボックスが潰れるのを防ぐ
 }
 
 // --- その他 ---
