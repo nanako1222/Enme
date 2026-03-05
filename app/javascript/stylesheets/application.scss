@@ -1,7 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-
 html {
   height: 100%;
 }
@@ -21,44 +20,60 @@ body {
 h4, h6 {
   color: #6e4a55;
   border-radius: 4px;
-  background-color: #bccddb ;
+  background-color: #bccddb;
 }
 
-h1{
+h1 {
   color: maroon;
 }
 
-.about{
+.about {
   color: maroon;
 }
 
 .table-secondary {
-  background-color: #ffffe0 ;
+  background-color: #ffffe0;
 }
 
 th {
   color: #cd853f;
 }
 
+// --- ヘッダー・ナビゲーションの修正 ---
 .navbar-expand-lg {
   height: 80px;
   background-image: url('../images/navbar.jpg');
-  background-size:cover;
-  background-position:center;
+  background-size: cover;
+  background-position: center;
 }
 
-#global_nav .navbar-toggler{
-  background-color: rgba( 152, 96, 54, 1);
-  border-color: rgba(0, 0, 0, 0);
-  border-color: rgba( 237, 228, 225, 1);
+// ロゴを左端、メニューを右端に強制
+.navbar {
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
 }
 
-.navbar-nav li a{
+.navbar-collapse {
+  flex-grow: 0; // メニューが必要以上に広がらないようにする
+}
+
+.navbar-nav {
+  margin-left: auto; // メニューを右側に寄せる
+}
+
+#global_nav .navbar-toggler {
+  background-color: rgba(152, 96, 54, 1);
+  border-color: rgba(237, 228, 225, 1);
+}
+
+.navbar-nav li a {
   color: #ede4e1 !important;
-  background-color: rgba( 107, 63, 49, 0.7);
+  background-color: rgba(107, 63, 49, 0.7);
 }
 
-.wrapper{
+// --- メインコンテンツの修正 ---
+.wrapper {
   min-height: 100vh;
   position: relative;
   padding-bottom: 120px;
@@ -66,15 +81,8 @@ th {
   background-color: #ede4e1;
 }
 
-footer {
-  background-image: url('../images/navbar.jpg');
-  background-size:cover;
-  background-position:center;
-  width: 100% ;
-  color: white ;
-}
-
-.top_image{
+// --- トップページ画像の境界線ぼかし ---
+.top_image {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -92,92 +100,104 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  box-shadow: inset 0 0 10px 20px #ede4e1;
+  // ぼかしの強度を強め（40px 60px）に設定
+  box-shadow: inset 0 0 40px 60px #ede4e1;
+  pointer-events: none; // クリックを阻害しない
 }
 
 .top_image img {
   width: 150%;
 }
 
-.icon{
+// --- フッターの修正 ---
+footer {
+  background-image: url('../images/navbar.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: flex-start; // フッター内を左寄せに固定
+}
+
+// --- 検索ページ・フォームの修正 ---
+// 横並びが崩れたセレクトボックスの修正
+.field.d-grid {
+  display: flex !important; // d-grid（縦並び）を解除
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+select.col-md-3 {
+  width: auto !important;
+  min-width: 200px;
+}
+
+// アレルゲンチェックボックスの整列
+.customer_allergen {
+  background-color: #dcd6d2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 15px;
+}
+
+.allergies_check_boxes {
+  text-align: left;
+  margin-left: 0;
+  padding-left: 0 !important;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  transform: scale(1.5); // 少しサイズを控えめに調整（崩れ防止）
+  margin: 10px 10px 0 10px;
+}
+
+// --- その他 ---
+.icon {
   border-radius: 5px;
 }
 
-.restaurant_contents{
+.restaurant_contents {
   width: 300px;
 }
 
-.p_2{
+.p_2 {
   margin: 0;
   color: white;
   font-size: 85%;
 }
 
-.area_image{
+.area_image {
   display: flex;
   justify-content: center;
 }
 
-.navbar{
-  z-index: 2;
-}
-
-.lb-image{
+.lb-image {
   width: 100% !important;
   height: 100% !important;
 }
 
-.lb-outerContainer{
+.lb-outerContainer {
   width: 90% !important;
   height: 100% !important;
 }
 
-.customer_allergen{
-  background-color: #dcd6d2;
-}
-
-input[type="checkbox"]{
-  position: relative;
-  transform: scale(2);
-	margin: 10px 20px 0 20px;
-}
-
-.allergies_check_boxes{
-  text-align: left;
-  margin-left: -15px;
-  padding-left: 0 !important;
-}
-
-.menu_allergen{
-  margin-bottom: 0;
-}
-
-.flashing{
+.flashing {
   animation: blink 0.8s ease-in-out infinite alternate;
   color: red;
 }
 
-@keyframes blink{
-  0%   {opacity: 0;}
-  100% {opacity: 1;}
+@keyframes blink {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-.restaurant_valid{
-  color: gray;
-}
-
-.restaurant_valid2{
-  color: green;
-}
-
-.valid{
-  margin-top: 7px;
-}
-
-.customer_valid{
-  color: gray;
-}
-
-.customer_valid2{
-  color: green;
-}
+.restaurant_valid { color: gray; }
+.restaurant_valid2 { color: green; }
+.valid { margin-top: 7px; }
+.customer_valid { color: gray; }
+.customer_valid2 { color: green; }
