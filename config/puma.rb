@@ -11,5 +11,7 @@ environment ENV.fetch("RAILS_ENV") { "production" }
 # プロセスIDの保存場所
 pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
+workers ENV.fetch("WEB_CONCURRENCY") { 0 }
+
 # 自動再起動の設定
 plugin :tmp_restart
