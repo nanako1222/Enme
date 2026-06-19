@@ -16,22 +16,14 @@ class Customer::RestaurantsController < ApplicationController
     #検索画面のアレルギーにチェックがついていないかつ顧客が持つアレルギーのチェックがないメニューを持つレストランを検索
     #1こでもアレルギーが入っているメニューが存在したらそれをはぶいて検索する
     #ただし顧客のアレルギーを一つでも持っていないメニューがある飲食店は表示させる
-    menus = if @allergy_ids.blank?
-              Menu.all
-            else
-              Menu.all.reject do |menu|
-                menu.allergies.pluck(:id).any? { |allergen| allergen.in?(@allergy_ids) }
-              end
-            end
+    @restaurants = Restaurant.all
+    @restaurants = @restaurants.where(state_id: @state_id) if @state_id.present?
+    @restaurants = @restaurants.where(area_id: @area_id) if @area_id.present?
 
-    if @state_id && @area_id
-      @restaurants = Restaurant.where(id: menus.pluck(:restaurant_id), state_id: @state_id, area_id: @area_id )
-    elsif @state_id
-      @restaurants = Restaurant.where(id: menus.pluck(:restaurant_id), state_id: @state_id)
-    elsif @area_id
-      @restaurants = Restaurant.where(id: menus.pluck(:restaurant_id), area_id: @area_id)
-    else
-      @restaurants = Restaurant.all
+    unless @allergy_ids.blank?
+      unsafe_menu_ids = Menu.joins(:allergies).where(allergies: { id: @allergy_ids }).select(:id)
+      safe_restaurant_ids = Menu.where.not(id: unsafe_menu_ids).pluck(:restaurant_id).uniq
+      @restaurants = @restaurants.where(id: safe_restaurant_ids)
     end
     @restaurant_count = @restaurants.count
     @restaurants = @restaurants.order(id: "DESC").page(params[:page]).per(9)
