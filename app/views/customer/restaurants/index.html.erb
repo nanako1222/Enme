@@ -1,47 +1,48 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-10 offset-md-1 col-xs-12">
-      <div class ="row mt-5">
-        <h4 class="col-md-3"><p class="p_1">飲食店一覧 <span style="font-size: 15px"><%= "(全#{@restaurant_count}件)"%></span></p></h4>
-      </div>
-      <div class='flashing mt-2'>
-        <p>※現在登録されているデータは架空です</p>
-      </div>
-      <div class="table-responsive-md">
-        <table class="table table-hover mt-4">
-          <thead class="table-secondary">
+  <div class="col-11 col-md-10 mx-auto">
+
+    <h4 class="text-center mt-5">飲食店一覧 <span class="fs-6"><%= "(全#{@restaurant_count}件)" %></span></h4>
+
+    <div class="flashing mt-2">
+      <p>※現在登録されているデータは架空です</p>
+    </div>
+
+    <div class="table-responsive mt-4">
+      <table class="table table-hover">
+        <thead class="table-secondary">
+          <tr>
             <th>店名</th>
             <th>住所</th>
             <th>定休日</th>
             <th>都道府県</th>
             <th>地域エリア</th>
-          </thead>
-          <tbody>
-            <% @restaurants.each do |restaurant| %>
-              <tr>
-                <td>
-                  <% if restaurant.image.attached? %>
-                    <%= link_to restaurant_path(restaurant.id) do %>
-                      <%= image_tag restaurant.get_image(60,50) %>
-                    <% end %>
-                  <% else %>
-                    <%= link_to restaurant_path(restaurant.id) do %>
-                      <%= image_tag 'default-image.jpg', size: "60x50" %>
-                    <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @restaurants.each do |restaurant| %>
+            <tr>
+              <td>
+                <% if restaurant.image.attached? %>
+                  <%= link_to restaurant_path(restaurant.id) do %>
+                    <%= image_tag restaurant.get_image(60,50), class: "me-2" %>
                   <% end %>
-                  <%= link_to restaurant.name, restaurant_path(restaurant.id) %>
-                </td>
-                <td><%= restaurant.address %></td>
-                <td><%= restaurant.regular_holiday %></td>
-                <td><%= State.find(restaurant.state_id).state %></td>
-                <td><%= Area.find(restaurant.area_id).area %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <div class="offset-5 mt-3"><%= paginate @restaurants %></div>
-      </div>
+                <% else %>
+                  <%= link_to restaurant_path(restaurant.id) do %>
+                    <%= image_tag 'default-image.jpg', size: "60x50", class: "me-2" %>
+                  <% end %>
+                <% end %>
+                <%= link_to restaurant.name, restaurant_path(restaurant.id) %>
+              </td>
+              <td><%= restaurant.address %></td>
+              <td><%= restaurant.regular_holiday %></td>
+              <td><%= State.find(restaurant.state_id).state %></td>
+              <td><%= Area.find(restaurant.area_id).area %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center mt-3"><%= paginate @restaurants %></div>
     </div>
+
   </div>
 </div>
-

@@ -8,8 +8,8 @@
 @import '../../assets/stylesheets/customer/areas.scss';
 
 // 3. 基本設定
-html, body { height: 100%; margin: 0; padding: 0; }
-body { min-height: 100%; display: flex; flex-direction: column; }
+html { margin: 0; padding: 0; }
+body { min-height: 100vh; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .content { flex: 1; }
 h4, h6 { color: #6e4a55; border-radius: 4px; background-color: #bccddb; }
 h1 { color: maroon; }
@@ -18,14 +18,32 @@ h1 { color: maroon; }
 th { color: #cd853f; }
 
 // --- 4. ヘッダー ---
-.navbar-expand-lg { height: 80px; background-image: url('../images/navbar.jpg'); background-size: cover; background-position: center; }
+.navbar-expand-lg { min-height: 80px; background-image: url('../images/navbar.jpg'); background-size: cover; background-position: center; }
 .navbar { z-index: 10; display: flex !important; justify-content: space-between !important; }
 .navbar-brand { margin-right: auto !important; }
-.navbar-nav { margin-left: auto !important; display: flex !important; flex-direction: row !important; }
-.navbar-nav li a { color: #ede4e1 !important; background-color: rgba(107, 63, 49, 0.7); padding: 5px 10px; border-radius: 4px; }
+.navbar-nav { margin-left: auto !important; display: flex !important; flex-direction: row !important; gap: 4px; }
+.navbar-nav li a { color: #ede4e1 !important; background-color: rgba(107, 63, 49, 0.7); padding: 5px 10px; border-radius: 4px; white-space: nowrap; }
+
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    flex-direction: column !important;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0 16px;
+    gap: 6px;
+  }
+  .navbar-nav li {
+    width: 100%;
+    text-align: center;
+  }
+  .navbar-nav li a {
+    display: inline-block !important;
+    min-width: 140px;
+  }
+}
 
 // --- 5. メインコンテンツ ---
-.wrapper { min-height: 100vh; position: relative; padding-bottom: 120px; box-sizing: border-box; background-color: #ede4e1; }
+.wrapper { flex: 1; position: relative; box-sizing: border-box; background-color: #ede4e1; }
 
 // --- 6. トップ画像ぼかし ---
 .top_image { position: relative; z-index: 1; width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
@@ -52,18 +70,21 @@ footer .container { margin-left: 0 !important; margin-right: auto !important; ma
 }
 
 .allergies_check_boxes {
-  display: flex !important;       // 1セット（箱＋文字）を横並びに
-  align-items: center !important; // 縦中央揃え
-  width: 20% !important;          // 1/5の幅（5列）
-  min-width: 130px !important;    // 狭くなりすぎないようガード
-  margin-bottom: 12px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  width: 100% !important;
   box-sizing: border-box !important;
 }
 
 .allergies_check_boxes label {
-  margin: 0 !important;
-  padding: 0 !important;
-  white-space: nowrap !important; // 文字の途中で改行させない
+  display: flex !important;
+  align-items: center !important;
+  width: 20% !important;
+  min-width: 130px !important;
+  margin-bottom: 12px !important;
+  padding: 0 5px !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
   font-size: 0.85rem !important;
 }
 

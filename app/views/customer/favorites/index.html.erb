@@ -1,53 +1,53 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class ="row mt-5">
-        <h4 class="col-md-3"><p class="p_1">お気に入り一覧 <span style="font-size: 15px"><%= "(全#{@favorites_count}件)"%></span></p></h4>
-      </div>
+  <div class="col-11 col-md-10 mx-auto">
 
-      <div class='flashing mt-2'>
-        <p>※現在登録されているデータは架空です</p>
-      </div>
-      <div class='mt-5'>
-        <% if flash[:notice] %>
-          <%= notice %>
-        <% end %>
-      </div>
-      <div class="table-responsive-md">
-        <table class="table table-hover mt-4">
-          <thead class="table-secondary">
+    <h4 class="text-center mt-5">お気に入り一覧 <span class="fs-6"><%= "(全#{@favorites_count}件)" %></span></h4>
+
+    <div class="flashing mt-2">
+      <p>※現在登録されているデータは架空です</p>
+    </div>
+    <div class="mt-3">
+      <% if flash[:notice] %>
+        <%= notice %>
+      <% end %>
+    </div>
+
+    <div class="table-responsive mt-4">
+      <table class="table table-hover">
+        <thead class="table-secondary">
+          <tr>
             <th>店名</th>
             <th>住所</th>
             <th>定休日</th>
             <th>都道府県</th>
             <th>地域エリア</th>
-          </thead>
-          <tbody>
-            <div class = "row mt-4">
-              <% @favorites.each do |favorite| %>
-                <tr>
-                  <td>
-                    <% if favorite.restaurant.image.attached? %>
-                      <%= link_to restaurant_path(favorite.restaurant) do %>
-                        <%= image_tag favorite.restaurant.get_image(60,50) %>
-                      <% end %>
-                    <% else %>
-                      <%= link_to restaurant_path(favorite.restaurant) do %>
-                        <%= image_tag 'default-image.jpg', size: "60x50" %>
-                      <% end %>
-                    <% end %>
-                    <%= link_to favorite.restaurant.name, restaurant_path(favorite.restaurant) %>
-                  </td>
-                  <td><%= favorite.restaurant.address %></td>
-                  <td><%= favorite.restaurant.regular_holiday %></td>
-                  <td><%= State.find(favorite.restaurant.state_id).state %></td>
-                  <td><%= Area.find(favorite.restaurant.area_id).area %></td>
-                </tr>
-              <% end %>
-          </tbody>
-        </table>
-        <div class="offset-5 mt-3"><%= paginate @favorites %></div>
-      </div>
+          </tr>
+        </thead>
+        <tbody>
+          <% @favorites.each do |favorite| %>
+            <tr>
+              <td>
+                <% if favorite.restaurant.image.attached? %>
+                  <%= link_to restaurant_path(favorite.restaurant) do %>
+                    <%= image_tag favorite.restaurant.get_image(60,50), class: "me-2" %>
+                  <% end %>
+                <% else %>
+                  <%= link_to restaurant_path(favorite.restaurant) do %>
+                    <%= image_tag 'default-image.jpg', size: "60x50", class: "me-2" %>
+                  <% end %>
+                <% end %>
+                <%= link_to favorite.restaurant.name, restaurant_path(favorite.restaurant) %>
+              </td>
+              <td><%= favorite.restaurant.address %></td>
+              <td><%= favorite.restaurant.regular_holiday %></td>
+              <td><%= State.find(favorite.restaurant.state_id).state %></td>
+              <td><%= Area.find(favorite.restaurant.area_id).area %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center mt-3"><%= paginate @favorites %></div>
     </div>
+
   </div>
 </div>

@@ -23,7 +23,7 @@
               <%= image_tag('logo.png', size:'200x60') %>
             </a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
               <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -44,8 +44,8 @@
                   <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"nav-link" %></li>
                 <% elsif restaurant_signed_in? %>
                   <li><%= link_to "登録情報詳細", restaurant_homes_path, class:"nav-link" %></li>
-                  <li><%= link_to "メニュー一覧", restaurant_restaurant_menus_path(@restaurant), class:"nav-link" %></li>
-                  <li><%= link_to "メニュー追加", new_restaurant_restaurant_menu_path(@restaurant), class:"nav-link" %></li>
+                  <li><%= link_to "メニュー一覧", restaurant_restaurant_menus_path(current_restaurant), class:"nav-link" %></li>
+                  <li><%= link_to "メニュー追加", new_restaurant_restaurant_menu_path(current_restaurant), class:"nav-link" %></li>
                   <li><%= link_to "About", restaurant_about_path, class:"nav-link", data: {"turbolinks" => false} %></li>
                   <li><%= link_to "ログアウト", destroy_restaurant_session_path, method: :delete, class:"nav-link" %></li>
                 <% else %>

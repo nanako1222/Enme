@@ -1,30 +1,29 @@
 <div class="container">
-  <div class="row">
-    <div class="col-10 offset-1">
-      <h4 class="col-md-4 mt-5">会員情報詳細</h4>
+  <div class="col-11 col-md-8 mx-auto">
 
-      <div class='flashing mt-2'>
-        <p>※現在登録されているデータは架空です</p>
-      </div>
-      <div class='mt-5'>
-        <% if flash[:notice] %>
-          <%= notice %>
-        <% end %>
-      </div>
+    <h4 class="text-center mt-5">会員情報詳細</h4>
 
-      <table class="table table-hover table-inverse item-show mt-4">
-        <h5 class="mt-4">
-          登録情報
-          <%= link_to customers_information_edit_path, class:"btn btn-success active ml-4 mt-2" do %>
-            <i class="fas fa-user-edit"></i>
-            編集する
-          <% end %>
-        </h5>
+    <div class="flashing mt-2">
+      <p>※現在登録されているデータは架空です</p>
+    </div>
+    <div class="mt-3">
+      <% if flash[:notice] %>
+        <%= notice %>
+      <% end %>
+    </div>
+
+    <div class="d-flex align-items-center gap-3 mt-4">
+      <h5 class="mb-0">登録情報</h5>
+      <%= link_to customers_information_edit_path, class: "btn btn-success active btn-sm" do %>
+        <i class="fas fa-user-edit"></i> 編集する
+      <% end %>
+    </div>
+
+    <div class="table-responsive mt-3">
+      <table class="table table-hover">
         <tr>
           <th>氏名</th>
-          <td><%= @customer.full_name %>
-
-          </td>
+          <td><%= @customer.full_name %></td>
         </tr>
         <tr>
           <th>カナ</th>
@@ -50,17 +49,12 @@
           <th>アレルギー</th>
           <td>
             <% @customer.allergies.each do |allergy| %>
-              <%= allergy.allergen %>
+              <span class="badge bg-secondary me-1"><%= allergy.allergen %></span>
             <% end %>
           </td>
         </tr>
       </table>
-      <% if @favorite_list.present? %>
-        <% @favorite_list.each do |restaurant| %>
-          <%= restaurant.name %>
-          <%= restaurant.content %>
-        <% end %>
-      <% end %>
     </div>
+
   </div>
 </div>

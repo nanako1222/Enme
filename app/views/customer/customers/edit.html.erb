@@ -1,95 +1,88 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h4 class="col-md-3 mt-5">会員情報編集</h4>
-      <% flash.each do |key, value| %>
-         <p class="alert alert-<%= key %>">
-           <%= value %>
-         </p>
-      <% end %>
+  <div class="col-11 col-md-8 mx-auto">
 
-      <div class='flashing mt-2'>
-        <p>※現在登録されているデータは架空です</p>
-      </div>
+    <h4 class="text-center mt-5">会員情報編集</h4>
 
-      <div class="mt-4">
-        <%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
+    <% flash.each do |key, value| %>
+      <p class="alert alert-<%= key %>"><%= value %></p>
+    <% end %>
 
-          <div class="row mt-3">
-            <span class="col-md-3 text-left">名前</span>
-            <%= f.label :first_name, class: "col-md-1" %>
-            <%= f.text_field :first_name, autofocus: true, required: true, class: "col-md-2" %>
-            <%= f.label :last_name, class: "col-md-1" %>
-            <%= f.text_field :last_name, autofocus: true, required: true, class: "col-md-2" %>
-          </div>
-
-          <div class="row mt-4">
-            <span class="col-md-3 text-left">フリガナ</span>
-            <%= f.label :first_name_kana, class: "col-md-1" %>
-            <%= f.text_field :first_name_kana, autofocus: true, required: true, class: "col-md-2" %>
-            <%= f.label :last_name_kana, class: "col-md-1" %>
-            <%= f.text_field :last_name_kana, autofocus: true, required: true, class: "col-md-2" %>
-          </div>
-
-          <div class="row mt-4">
-            <%= f.label :email, class: "col-md-3 text-left" %>
-            <%= f.email_field :email, required: true, class: "col-md-4" %>
-          </div>
-
-          <div class="row mt-4">
-            <%= f.label :state_id, class: "col-md-3 text-left" %>
-            <%= f.collection_select :state_id , State.all,:id,:state %>
-          </div>
-          <p class="offset-md-3 mt-2">
-            ※変更される場合は都道府県から選択し直してください
-          </P>
-
-          <div class="row mt-3">
-            <%= f.label :area_id, class: "col-md-3 text-left" %>
-            <div id="areas_select_customer" >
-              <%= render partial: 'shared/areas', locals: { areas: @area } %>
-            </div>
-          </div>
-
-          <p class="offset-md-3 mt-2">
-            ※エリア分け詳細は
-            <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm" %>
-            をご参考ください
-          </p>
-
-          <div class="row mt-4">
-            <%= f.label :telephone_number, class: "col-md-3 text-left" %>
-            <%= f.text_field :telephone_number, required: true, class: "col-md-4" %>
-          </div>
-
-          <div class="row mt-3">
-            <%= f.label :アレルゲン情報登録, class: "col-md-3 text-left" %>
-            <%#= f.collection_check_boxes :allergy_ids, @allergies, :id, :allergen, include_hidden: false %>
-            <div class="allergies_check_boxes col-md-7">
-              <%= f.collection_check_boxes(:allergy_ids, @allergies, :id, :allergen, include_hidden: false) do |a| %>
-                <%= a.label { a.check_box + a.text } %>
-              <% end %>
-            </div>
-          </div>
-
-          <div class="row field d-grid offset-md-3">
-            <%= button_tag type: :submit, class: "btn btn-success active mt-4" do %>
-              <i class="fas fa-save"></i> 編集内容を保存
-            <% end %>
-            <%= link_to customers_confirm_path, class:"btn btn-danger active ml-md-5 mt-4" do %>
-              <i class="fas fa-user-slash"></i>
-              退会する
-            <% end %>
-          </div>
-        <% end %>
-
-
-      </div>
+    <div class="flashing mt-2">
+      <p>※現在登録されているデータは架空です</p>
     </div>
+
+    <%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
+
+      <div class="row mt-4 align-items-center">
+        <span class="col-md-4">名前</span>
+        <div class="col-md-8 d-flex gap-2">
+          <%= f.text_field :first_name, autofocus: true, required: true, placeholder: "姓", class: "flex-grow-1", style: "min-width: 0;" %>
+          <%= f.text_field :last_name, required: true, placeholder: "名", class: "flex-grow-1", style: "min-width: 0;" %>
+        </div>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <span class="col-md-4">フリガナ</span>
+        <div class="col-md-8 d-flex gap-2">
+          <%= f.text_field :first_name_kana, required: true, placeholder: "姓（カナ）", class: "flex-grow-1", style: "min-width: 0;" %>
+          <%= f.text_field :last_name_kana, required: true, placeholder: "名（カナ）", class: "flex-grow-1", style: "min-width: 0;" %>
+        </div>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :email, class: "col-md-4" %>
+        <%= f.email_field :email, required: true, class: "col-md-8" %>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :state_id, class: "col-md-4" %>
+        <%= f.collection_select :state_id, State.all, :id, :state, {}, { class: "col-md-4" } %>
+      </div>
+      <p class="text-center mt-1 small">※変更される場合は都道府県から選択し直してください</p>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :area_id, class: "col-md-4" %>
+        <div id="areas_select_customer" class="col-md-8">
+          <%= render partial: 'shared/areas', locals: { areas: @area } %>
+        </div>
+      </div>
+
+      <p class="text-center mt-1 small">
+        ※エリア分け詳細は
+        <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm" %>
+        をご参考ください
+      </p>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :telephone_number, class: "col-md-4" %>
+        <%= f.text_field :telephone_number, required: true, class: "col-md-8" %>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :アレルゲン情報登録, class: "col-md-4" %>
+        <div class="allergies_check_boxes col-md-8">
+          <%= f.collection_check_boxes(:allergy_ids, @allergies, :id, :allergen, include_hidden: false) do |a| %>
+            <%= a.label { a.check_box + a.text } %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="d-flex gap-3 justify-content-center mt-4 mb-4">
+        <%= button_tag type: :submit, class: "btn btn-success active" do %>
+          <i class="fas fa-save"></i> 編集内容を保存
+        <% end %>
+        <%= link_to customers_confirm_path, class: "btn btn-danger active" do %>
+          <i class="fas fa-user-slash"></i> 退会する
+        <% end %>
+      </div>
+
+    <% end %>
+
   </div>
 </div>
+
 <script>
   window.addEventListener('pageshow',()=>{
-  	if(window.performance.navigation.type==2) location.reload();
+    if(window.performance.navigation.type==2) location.reload();
   });
 </script>

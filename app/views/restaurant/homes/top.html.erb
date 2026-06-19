@@ -1,91 +1,85 @@
-<div class="container col-10 offset-1">
-  <h4 class="col-md-4 mt-5"><strong>登録情報詳細</strong></h4>
+<div class="container">
+  <div class="col-11 col-md-10 mx-auto">
 
-  <div class='flashing mt-2'>
-    <p>※現在登録されているデータは架空です</p>
-  </div>
-  <div class='mt-5'>
-    <% if flash[:notice] %>
-      <%= notice %>
-    <% end %>
-  </div>
+    <h4 class="text-center mt-5"><strong>登録情報詳細</strong></h4>
 
-  <h5 class="mt-4">
-    <%= @restaurant.name %>
-    <%= link_to restaurant_information_edit_path, class:"btn btn-info active ml-4 mt-2" do %>
-      <i class="fas fa-pen-nib"></i>
-      編集する
-    <% end %>
-  </h5>
-  <div class= "row">
-    <div class= "restaurant_image col-4 mt-4 text-center">
-
-      <% if @restaurant.image.attached? %>
-        <%= image_tag @restaurant.get_image(200,200) %>
-      <% else %>
-        <%= image_tag 'default-image.jpg', size: "200x200" %>
+    <div class="flashing mt-2">
+      <p>※現在登録されているデータは架空です</p>
+    </div>
+    <div class="mt-3">
+      <% if flash[:notice] %>
+        <%= notice %>
       <% end %>
     </div>
-    <div class= "col-md-8 mt-4">
-      <%= simple_format(@restaurant.introduction) %>
+
+    <div class="d-flex align-items-center gap-3 mt-4 flex-wrap">
+      <h5 class="mb-0"><%= @restaurant.name %></h5>
+      <%= link_to restaurant_information_edit_path, class: "btn btn-info active btn-sm" do %>
+        <i class="fas fa-pen-nib"></i> 編集する
+      <% end %>
     </div>
-  </div>
-  <div class= "row">
-    <div class="table-responsive-sm col-md-6">
-      <table class="table table-hover table-inverse mt-4 ">
-        <div>
-          <tr>
-            <th>都道府県</th>
-            <td><%= @state %></td>
-          </tr>
-          <tr>
-            <th>地域エリア</th>
-            <td><%= @area %></td>
-          </tr>
-          <tr>
-            <th>それ以降の住所</th>
-            <td><%= @restaurant.address %></td>
-          </tr>
-          <tr>
-            <th>電話番号</th>
-            <td><%= @restaurant.telephone_number %></td>
-          </tr>
-          <tr>
-            <th>メールアドレス</th>
-            <td><%= @restaurant.email %></td>
-          </tr>
-          <tr>
-            <th>定休日</th>
-            <td><%= @restaurant.regular_holiday %></td>
-          </tr>
-          <tr>
-            <th>営業時間</th>
-            <td><%= @restaurant.business_hours %></td>
-          </tr>
-          <tr>
-            <th>ホームページURL</th>
-            <td><%= @restaurant.home_page %></td>
-          </tr>
-          <tr>
-            <th>駐車場</th>
-            <td><%= @restaurant.parking %></td>
-          </tr>
-          <!--<tr>-->
-          <!--  <th>アレルギー一覧</th>-->
-          <!--  <td>-->
-          <!--    <%# @restaurant.menus.each do |menu| %>-->
-          <!--      <%# menu.allergies.each do |allergy| %>-->
-          <!--        <%#= allergy.allergen %>-->
-          <!--      <%# end %>-->
-          <!--    <%# end %>-->
-          <!--  </td>-->
-          <!--</tr>-->
+
+    <div class="row mt-3">
+      <div class="col-md-4 text-center">
+        <% if @restaurant.image.attached? %>
+          <%= image_tag @restaurant.get_image(200,200), class: "img-fluid rounded" %>
+        <% else %>
+          <%= image_tag 'default-image.jpg', size: "200x200", class: "img-fluid rounded" %>
+        <% end %>
+      </div>
+      <div class="col-md-8 mt-3 mt-md-0">
+        <%= simple_format(@restaurant.introduction) %>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <tr>
+              <th>都道府県</th>
+              <td><%= @state %></td>
+            </tr>
+            <tr>
+              <th>地域エリア</th>
+              <td><%= @area %></td>
+            </tr>
+            <tr>
+              <th>それ以降の住所</th>
+              <td><%= @restaurant.address %></td>
+            </tr>
+            <tr>
+              <th>電話番号</th>
+              <td><%= @restaurant.telephone_number %></td>
+            </tr>
+            <tr>
+              <th>メールアドレス</th>
+              <td><%= @restaurant.email %></td>
+            </tr>
+            <tr>
+              <th>定休日</th>
+              <td><%= @restaurant.regular_holiday %></td>
+            </tr>
+            <tr>
+              <th>営業時間</th>
+              <td><%= @restaurant.business_hours %></td>
+            </tr>
+            <tr>
+              <th>ホームページURL</th>
+              <td><%= @restaurant.home_page %></td>
+            </tr>
+            <tr>
+              <th>駐車場</th>
+              <td><%= @restaurant.parking %></td>
+            </tr>
+          </table>
         </div>
-      </table>
+      </div>
+      <div class="col-md-6 mt-3 mt-md-0">
+        <h5>NEWS</h5>
+        <%= simple_format(@restaurant.news) %>
+      </div>
     </div>
-    <div class= "col-md-6 mt-4">
-      <h5>NEWS</h5>
-      <%= simple_format(@restaurant.news) %>
-    </div>
+
   </div>
 </div>

@@ -1,84 +1,82 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-11 offset-1">
-      <h4 class="col-md-3 mt-5"><strong>新規飲食店登録</strong></h4>
-          
-      <%= form_with model: @restaurant, url: restaurant_registration_path, id: 'new_restaurant', class: 'new_restaurant', local: true do |f| %>
-        <%= render "restaurant/shared/error_messages", resource: resource %>
-        
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :name, class: "col-md-4 text-left" %>
-          <%= f.text_field :name, autofocus: true, class: "col-md-3" %>
-        </div>
-        
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :email, class: "col-md-4 text-left" %>
-          <%= f.text_field :email, class: "col-md-3" %>
-        </div>
-        
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :state_id , class: "col-md-4 text-left" %>
-          <%# データがなくてもエラーにならないように presence || [] を追加 %>
-          <%= f.collection_select :state_id, State.all.presence || [], :id, :state, { include_blank: "都道府県を選択してください" }, { class: "col-md-3" } %>
-        </div>
+  <div class="col-11 col-md-8 mx-auto">
 
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :area_id , class: "col-md-4 text-left" %>
-          <div id="areas_select" >
-            <%# 最初の都道府県がある場合のみエリアを表示、ない場合は空 %>
-            <% first_state = State.first %>
-            <%= render partial: 'shared/restaurant_areas', locals: { areas: first_state ? Area.where(state_id: first_state.id) : [] } %>
-          </div>
-        </div>
-            
-        <p class="mt-2" style="text-align:center;">
-          ※エリア分け詳細は
-          <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
-          をご参考ください
-        </p>  
+    <h4 class="text-center mt-5"><strong>新規飲食店登録</strong></h4>
 
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :address, class: "col-md-4 text-left" %>
-          <%= f.text_field :address, autofocus: true, class: "col-md-3" %> 
-        </div>
+    <%= form_with model: @restaurant, url: restaurant_registration_path, id: 'new_restaurant', class: 'new_restaurant', local: true do |f| %>
+      <%= render "restaurant/shared/error_messages", resource: resource %>
 
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :telephone_number, class: "col-md-4 text-left" %>
-          <%= f.text_field :telephone_number, class: "col-md-3" %>
-        </div>
+      <div class="row mt-3 align-items-center">
+        <%= f.label :name, class: "col-md-4" %>
+        <%= f.text_field :name, autofocus: true, class: "col-md-6" %>
+      </div>
 
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :regular_holiday, class: "col-md-4 text-left" %>
-          <%= f.text_field :regular_holiday, class: "col-md-3" %>
-        </div>
+      <div class="row mt-3 align-items-center">
+        <%= f.label :email, class: "col-md-4" %>
+        <%= f.text_field :email, class: "col-md-6" %>
+      </div>
 
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :business_hours, class: "col-md-4 text-left" %>
-          <%= f.text_field :business_hours, class: "col-md-3" %>
-        </div>
-            
-        <div class="row field d-grid text-center mt-3">
-          <div class="col-md-4 text-left">
-            <%= f.label :password %>
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> 文字以上)</em>
-            <% end %>
-          </div>
-          <%= f.password_field :password, class: "col-md-3" %>
-        </div>
+      <div class="row mt-3 align-items-center">
+        <%= f.label :state_id, class: "col-md-4" %>
+        <%= f.collection_select :state_id, State.all.presence || [], :id, :state, { include_blank: "都道府県を選択してください" }, { class: "col-md-4" } %>
+      </div>
 
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :password_confirmation, class: "col-md-4 text-left" %><br />
-          <%= f.password_field :password_confirmation, class: "col-md-3" %>
+      <div class="row mt-3 align-items-center">
+        <%= f.label :area_id, class: "col-md-4" %>
+        <div id="areas_select" class="col-md-4">
+          <% first_state = State.first %>
+          <%= render partial: 'shared/restaurant_areas', locals: { areas: first_state ? Area.where(state_id: first_state.id) : [] } %>
         </div>
+      </div>
 
-        <div class="actions2 mt-4 offset-4">
-          <%= button_tag type: :submit, class: "btn btn-success active" do %>
-            登録する
+      <p class="text-center mt-2 small">
+        ※エリア分け詳細は
+        <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
+        をご参考ください
+      </p>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :address, class: "col-md-4" %>
+        <%= f.text_field :address, class: "col-md-6" %>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :telephone_number, class: "col-md-4" %>
+        <%= f.text_field :telephone_number, class: "col-md-6" %>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :regular_holiday, class: "col-md-4" %>
+        <%= f.text_field :regular_holiday, class: "col-md-6" %>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :business_hours, class: "col-md-4" %>
+        <%= f.text_field :business_hours, class: "col-md-6" %>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <div class="col-md-4">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+            <em class="small">(<%= @minimum_password_length %> 文字以上)</em>
           <% end %>
         </div>
-      <% end %>
+        <%= f.password_field :password, class: "col-md-6" %>
+      </div>
 
-    </div>
+      <div class="row mt-3 align-items-center">
+        <%= f.label :password_confirmation, class: "col-md-4" %>
+        <%= f.password_field :password_confirmation, class: "col-md-6" %>
+      </div>
+
+      <div class="mt-5 mb-4 text-center">
+        <%= button_tag type: :submit, class: "btn btn-success active" do %>
+          登録する
+        <% end %>
+      </div>
+
+    <% end %>
+
   </div>
 </div>

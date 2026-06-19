@@ -1,113 +1,108 @@
 <div class="container">
-  <div class="row">
-    <div class="col-10 offset-1">
-      <h4 class="col-md-3 mt-5"><strong>店舗情報編集</strong></h4>
-      <% flash.each do |key, value| %>
-         <p class="alert alert-<%= key %>">
-           <%= value %>
-         </p>
-      <% end %>
+  <div class="col-11 col-md-8 mx-auto">
 
-      <div class='flashing mt-2'>
-        <p>※現在登録されているデータは架空です</p>
-      </div>
+    <h4 class="text-center mt-5"><strong>店舗情報編集</strong></h4>
 
-      <div class="mt-4">
-        <%= form_with model: @restaurant, url: restaurant_information_path, method: :patch do |f| %>
+    <% flash.each do |key, value| %>
+      <p class="alert alert-<%= key %>"><%= value %></p>
+    <% end %>
 
-          <div class="row field d-grid text-center mt-3">
-            <%= f.label :image, "店舗画像", class: "col-md-3 text-left" %>
-            <%= f.file_field :image, accept: "image/*", class: "col-md-7", style: "padding: 0;" %>
-          </div>
-
-          <div class="row field d-grid text-center mt-3">
-            <%= f.label :name, class: "col-md-3 text-left" %>
-            <%= f.text_field :name, autofocus: true, required: true, class: "col-md-3" %>
-          </div>
-
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :introduction, class: "col-md-3 text-left" %>
-            <%= f.text_area :introduction, size: "20x7", class: "col-md-8" %>
-          </div>
-
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :state_id, class: "col-md-3 text-left" %>
-            <%= f.collection_select :state_id , State.all,:id,:state %>
-          </div>
-          <p class="offset-md-3 mt-2">
-            ※変更される場合は都道府県から選択し直してください
-          </P>
-          <div class="row field d-grid text-center mt-3">
-            <%= f.label :area_id, class: "col-md-3 text-left" %>
-            <div id="areas_select" >
-              <%= render partial: 'shared/restaurant_areas', locals: { areas: @area } %>
-            </div>
-          </div>
-
-          <p class="offset-md-3 mt-2">
-            ※エリア分け詳細は
-            <%= link_to "こちら", restaurant_about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
-            をご参考ください
-          </p>
-
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :address, class: "col-md-3 text-left" %>
-            <%= f.text_field :address, required: true, class: "col-md-8" %>
-          </div>
-
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :telephone_number, class: "col-md-3 text-left" %>
-            <%= f.text_field :telephone_number, required: true, class: "col-md-6" %>
-          </div>
-
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :email, class: "col-md-3 text-left" %>
-            <%= f.email_field :email, required: true, class: "col-md-6" %>
-          </div>
-
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :定休日, class: "col-md-3 text-left" %>
-            <%= f.text_field :regular_holiday, required: true, class: "col-md-6" %>
-          </div>
-
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :business_hours, class: "col-md-3 text-left" %>
-            <%= f.text_field :business_hours, required: true, class: "col-md-6" %>
-          </div>
-
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :home_page, class: "col-md-3 text-left" %>
-            <%= f.text_field :home_page, class: "col-md-6" %>
-          </div>
-
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :parking, class: "col-md-3 text-left" %>
-            <%= f.text_field :parking, class: "col-md-6" %>
-          </div>
-
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :News, class: "col-md-3 text-left" %>
-            <%= f.text_area :news, size: "20x7", class: "col-md-8" %>
-          </div>
-
-          <div class="row field d-grid offset-md-3">
-            <%= button_tag type: :submit, class: "btn btn-success active mt-4" do %>
-              <i class="fas fa-save"></i> 編集内容を保存
-            <% end %>
-            <%= link_to restaurant_confirm_path, class:"btn btn-danger active ml-md-5 mt-4" do %>
-              <i class="fas fa-store-alt-slash"></i>
-              退会する
-            <% end %>
-          </div>
-        <% end %>
-
-      </div>
+    <div class="flashing mt-2">
+      <p>※現在登録されているデータは架空です</p>
     </div>
+
+    <%= form_with model: @restaurant, url: restaurant_information_path, method: :patch do |f| %>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :image, "店舗画像", class: "col-md-4 text-start" %>
+        <%= f.file_field :image, accept: "image/*", class: "col-md-7", style: "padding: 0;" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-3">
+        <%= f.label :name, class: "col-md-4 text-start" %>
+        <%= f.text_field :name, autofocus: true, required: true, class: "col-md-6" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :introduction, class: "col-md-4 text-start" %>
+        <%= f.text_area :introduction, size: "20x7", class: "col-md-8" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :state_id, class: "col-md-4 text-start" %>
+        <%= f.collection_select :state_id, State.all, :id, :state, {}, { class: "col-md-4" } %>
+      </div>
+      <p class="text-center mt-1 small">※変更される場合は都道府県から選択し直してください</p>
+
+      <div class="row field d-grid text-center mt-3">
+        <%= f.label :area_id, class: "col-md-4 text-start" %>
+        <div id="areas_select">
+          <%= render partial: 'shared/restaurant_areas', locals: { areas: @area } %>
+        </div>
+      </div>
+
+      <p class="text-center mt-1 small">
+        ※エリア分け詳細は
+        <%= link_to "こちら", restaurant_about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
+        をご参考ください
+      </p>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :address, class: "col-md-4 text-start" %>
+        <%= f.text_field :address, required: true, class: "col-md-8" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :telephone_number, class: "col-md-4 text-start" %>
+        <%= f.text_field :telephone_number, required: true, class: "col-md-6" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :email, class: "col-md-4 text-start" %>
+        <%= f.email_field :email, required: true, class: "col-md-6" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :定休日, class: "col-md-4 text-start" %>
+        <%= f.text_field :regular_holiday, required: true, class: "col-md-6" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :business_hours, class: "col-md-4 text-start" %>
+        <%= f.text_field :business_hours, required: true, class: "col-md-6" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :home_page, class: "col-md-4 text-start" %>
+        <%= f.text_field :home_page, class: "col-md-6" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :parking, class: "col-md-4 text-start" %>
+        <%= f.text_field :parking, class: "col-md-6" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :News, class: "col-md-4 text-start" %>
+        <%= f.text_area :news, size: "20x7", class: "col-md-8" %>
+      </div>
+
+      <div class="d-flex gap-3 justify-content-center mt-4 mb-4">
+        <%= button_tag type: :submit, class: "btn btn-success active" do %>
+          <i class="fas fa-save"></i> 編集内容を保存
+        <% end %>
+        <%= link_to restaurant_confirm_path, class: "btn btn-danger active" do %>
+          <i class="fas fa-store-alt-slash"></i> 退会する
+        <% end %>
+      </div>
+
+    <% end %>
+
   </div>
 </div>
 
 <script>
   window.addEventListener('pageshow',()=>{
-  	if(window.performance.navigation.type==2) location.reload();
+    if(window.performance.navigation.type==2) location.reload();
   });
 </script>

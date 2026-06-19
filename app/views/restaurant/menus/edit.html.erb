@@ -1,54 +1,55 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-11 offset-1">
+  <div class="col-11 col-md-8 mx-auto">
 
-      <div class="menu_edit">
-        <h4 class="col-md-4 mt-5"><strong>メニュー編集</strong></h4>
+    <h4 class="text-center mt-5"><strong>メニュー編集</strong></h4>
 
-        <div class='flashing mt-2'>
-          <p>※現在登録されているデータは架空です</p>
+    <div class="flashing mt-2">
+      <p>※現在登録されているデータは架空です</p>
+    </div>
+
+    <%= form_with model: @menu, url: restaurant_restaurant_menu_path, method: :patch do |f| %>
+
+      <div class="row field d-grid text-center mt-4">
+        <%= f.label :image, class: "col-md-4 text-start" %>
+        <%= f.file_field :image, accept: "image/*", class: "col-md-6", style: "padding: 0;" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-3">
+        <%= f.label :name, class: "col-md-4 text-start" %>
+        <%= f.text_field :name, autofocus: true, required: true, class: "col-md-6" %>
+      </div>
+
+      <div class="row field d-grid text-center mt-3">
+        <%= f.label :含まれるアレルゲン, class: "col-md-4 text-start" do %>
+          含まれるアレルゲン（全てにチェック）
+        <% end %>
+        <div class="allergies_check_boxes col-md-6">
+          <%= f.collection_check_boxes(:allergy_ids, @allergies, :id, :allergen, checked: @menu.allergy_ids, include_hidden: false) do |a| %>
+            <%= a.label { a.check_box + a.text } %>
+          <% end %>
         </div>
+      </div>
 
-        <%= form_with model: @menu ,url: restaurant_restaurant_menu_path, method: :patch do |f| %>
-          <div class="row field d-grid text-center mt-4">
-            <%= f.label :image, class: "col-md-4 text-left" %>
-            <%= f.file_field :image, accept: "image/*", class: "col-md-6", style: "padding: 0;" %>
-          </div>
+      <div class="row field d-grid text-center mt-3 align-items-center">
+        <%= f.label :price, class: "col-md-4 text-start" %>
+        <div class="col-md-4 d-flex align-items-center gap-2">
+          <%= f.text_field :price, required: true, class: "flex-grow-1" %>
+          <span>円</span>
+        </div>
+      </div>
 
-          <div class="row field d-grid text-center mt-3">
-            <%= f.label :name, class: "col-md-4 text-left" %>
-            <%= f.text_field :name, autofocus: true, required: true, class: "col-md-6" %>
-          </div>
+      <div class="row field d-grid text-center mt-3">
+        <%= f.label :introduction, class: "col-md-4 text-start" %>
+        <%= f.text_area :introduction, size: "20x7", class: "col-md-6" %>
+      </div>
 
-          <div class="row field d-grid text-center mt-3">
-            <%= f.label :含まれるアレルゲン, class: "col-md-4 text-left" do %>
-              含まれるアレルゲン<br>（全てにチェック）
-            <% end %>
-            <div class="allergies_check_boxes col-md-6">
-              <%= f.collection_check_boxes(:allergy_ids, @allergies, :id, :allergen,checked:@menu.allergy_ids, include_hidden: false) do |a| %>
-                <%= a.label { a.check_box + a.text } %>
-              <% end %>
-            </div>
-          </div>
-
-          <div class="row field d-grid text-center mt-3">
-            <%= f.label :price, class: "col-md-4 text-left" %>
-            <%= f.text_field :price, required: true, class: "col-md-3" %>
-            <span class ="ml-2">円</span>
-          </div>
-
-          <div class="row field d-grid text-center mt-3">
-            <%= f.label :introduction, class: "col-md-4 text-left" %>
-            <%= f.text_area :introduction, size: "20x7", class: "col-md-6" %>
-          </div>
-
-          <div class="actions2 mt-4 offset-md-4">
-            <%= button_tag type: :submit, class: "btn btn-success active" do %>
-              <i class="fas fa-save"></i> 編集内容を保存
-            <% end %>
-          </div>
+      <div class="mt-4 text-center mb-4">
+        <%= button_tag type: :submit, class: "btn btn-success active" do %>
+          <i class="fas fa-save"></i> 編集内容を保存
         <% end %>
       </div>
-    </div>
+
+    <% end %>
+
   </div>
 </div>
