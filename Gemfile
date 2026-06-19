@@ -29,6 +29,7 @@ gem 'jquery-rails'
 gem 'bootstrap', '~> 5.1.3'  # 本番でのエラー解消のために追加
 gem 'popper_js'              # Bootstrap 5の動作に必要
 gem 'image_processing', '~> 1.2'
+gem 'cloudinary', '~> 1.28'
 
 # Efficiency
 gem 'bootsnap', '>= 1.4.4', require: false

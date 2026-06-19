@@ -4,7 +4,7 @@ Rails.application.configure do
   # 基本設定
   config.cache_classes = true
   config.eager_load = true
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
   # 1. 静的ファイル（CSS/JS）をRails自身が配信できるように設定（Renderでの404/500対策）
@@ -14,7 +14,7 @@ Rails.application.configure do
   config.assets.compile = true
 
   # ストレージとログレベル
-  config.active_storage.service = :local
+  config.active_storage.service = :cloudinary
   config.log_level = :info
   config.log_tags = [ :request_id ]
 
