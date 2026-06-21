@@ -40,11 +40,11 @@ end
 # 4. シード用画像の準備
 # 5種類ずつダウンロードして使い回す（全件ダウンロードすると時間がかかりすぎるため）
 RESTAURANT_IMAGE_URLS = (1..10).map { |n|
-  "https://loremflickr.com/800/600/restaurant,building?lock=#{n}"
+  "https://picsum.photos/seed/enme-rest#{n}/800/600"
 }.freeze
 
 MENU_IMAGE_URLS = (1..10).map { |n|
-  "https://loremflickr.com/400/300/food,dish?lock=#{n}"
+  "https://picsum.photos/seed/enme-menu#{n}/400/300"
 }.freeze
 
 def download_image(url, label)
