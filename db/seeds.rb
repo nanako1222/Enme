@@ -1,4 +1,25 @@
-require 'open-uri'
+RESTAURANT_NAMES = %w[
+  花まる食堂 麺処たかし 炭火焼鳥とり吉 居酒屋まつり 洋食ビストロ風
+  寿司処さかな 天ぷら揚げ太 うどん麦の穂 焼肉牛太郎 カフェ彩り
+  ラーメン大将 中華料理龍門 お好み焼き鶴橋 定食屋さくら 串カツ道場
+  イタリアンベルフォーレ カレー香辛 蕎麦更科 海鮮丼まぐろ屋 焼きそば鉄板亭
+  ちゃんこ鍋横綱 豚骨一家 鶏白湯麺とり屋 野菜ビュッフェ緑 もつ鍋博多風
+  パスタの森 洋食グリル山 魚介ラーメン海風 創作和食雅 韓国料理ソウル
+].freeze
+
+MENU_NAMES = %w[
+  醤油ラーメン 塩ラーメン みそラーメン 担々麺 つけ麺 ざるそば
+  天ぷらうどん きつねうどん 親子丼 カツ丼 海鮮丼 まぐろ丼 天丼 牛丼
+  唐揚げ定食 焼き魚定食 ハンバーグ定食 豚カツ定食 刺身定食 野菜炒め定食
+  餃子 炒飯 麻婆豆腐 エビチリ 酢豚 八宝菜 回鍋肉
+  天ぷら盛り合わせ 刺身盛り合わせ 寿司盛り合わせ 焼き鳥盛り合わせ 串カツ盛り合わせ
+  お好み焼き たこ焼き 焼きそば もんじゃ焼き
+  カレーライス ハヤシライス オムライス ナポリタン
+  マルゲリータピザ ペペロンチーノ カルボナーラ ボロネーゼ
+  ハンバーグ ビーフシチュー チキンソテー サーモンムニエル
+  唐揚げ コロッケ メンチカツ アジフライ エビフライ
+  冷やし中華 焼きうどん チャーシュー麺 ワンタン麺 五目そば
+].freeze
 
 # 1. 管理者 (Admin)
 admin = Admin.find_or_initialize_by(email: 'aaa111@www.com')
@@ -70,7 +91,7 @@ states_data.each_with_index do |(state_name, area_names), state_idx|
         email: Faker::Internet.unique.email,
         telephone_number: Faker::Number.number(digits: 11),
         is_valid: true,
-        name: Faker::Restaurant.name,
+        name: RESTAURANT_NAMES.sample,
         regular_holiday: "月曜日",
         business_hours: "10:00~21:00",
         address: Faker::Address.city + "115-6",
@@ -90,7 +111,7 @@ menu_idx = 0
 Restaurant.all.each do |restaurant|
   3.times do
     menu = Menu.create!(
-      name: Faker::Food.dish,
+      name: MENU_NAMES.sample,
       introduction: "こだわりの素材を使用した体に優しい一品です。",
       price: Faker::Number.number(digits: 3),
       restaurant_id: restaurant.id
