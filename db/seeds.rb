@@ -39,21 +39,13 @@ end
 
 # 4. シード用画像の準備
 # 5種類ずつダウンロードして使い回す（全件ダウンロードすると時間がかかりすぎるため）
-RESTAURANT_IMAGE_URLS = [
-  "https://picsum.photos/seed/enme-rest1/800/600",
-  "https://picsum.photos/seed/enme-rest2/800/600",
-  "https://picsum.photos/seed/enme-rest3/800/600",
-  "https://picsum.photos/seed/enme-rest4/800/600",
-  "https://picsum.photos/seed/enme-rest5/800/600",
-].freeze
+RESTAURANT_IMAGE_URLS = (1..10).map { |n|
+  "https://loremflickr.com/800/600/restaurant,building?lock=#{n}"
+}.freeze
 
-MENU_IMAGE_URLS = [
-  "https://picsum.photos/seed/enme-menu1/400/300",
-  "https://picsum.photos/seed/enme-menu2/400/300",
-  "https://picsum.photos/seed/enme-menu3/400/300",
-  "https://picsum.photos/seed/enme-menu4/400/300",
-  "https://picsum.photos/seed/enme-menu5/400/300",
-].freeze
+MENU_IMAGE_URLS = (1..10).map { |n|
+  "https://loremflickr.com/400/300/food,dish?lock=#{n}"
+}.freeze
 
 def download_image(url, label)
   file = Tempfile.new([label, '.jpg'])
