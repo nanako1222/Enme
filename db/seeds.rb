@@ -47,31 +47,26 @@ MENU_IMAGE_URLS = (1..10).map { |n|
   "https://picsum.photos/seed/enme-menu#{n}/400/300"
 }.freeze
 
-def download_image(url, label)
-  file = Tempfile.new([label, '.jpg'])
-  file.binmode
-  file.write(URI.open(url, read_timeout: 30).read)
-  file.rewind
-  file
+def download_image_data(url)
+  URI.open(url, read_timeout: 30).read
 rescue => e
-  puts "  画像ダウンロード失敗 (#{label}): #{e.message}"
+  puts "  画像ダウンロード失敗 (#{url}): #{e.message}"
   nil
 end
 
-def attach_image(record, files, index)
-  return if files.empty?
-  file = files[index % files.length]
-  return unless file
-  file.rewind
-  record.image.attach(io: file, filename: "image.jpg", content_type: "image/jpeg")
+def attach_image(record, data_list, index)
+  return if data_list.empty?
+  data = data_list[index % data_list.length]
+  return unless data
+  record.image.attach(io: StringIO.new(data), filename: "image.jpg", content_type: "image/jpeg")
 rescue => e
   puts "  画像添付失敗: #{e.message}"
 end
 
 puts "店舗画像をダウンロード中..."
-restaurant_images = RESTAURANT_IMAGE_URLS.map.with_index { |url, i| download_image(url, "rest#{i}") }.compact
+restaurant_images = RESTAURANT_IMAGE_URLS.map { |url| download_image_data(url) }.compact
 puts "メニュー画像をダウンロード中..."
-menu_images = MENU_IMAGE_URLS.map.with_index { |url, i| download_image(url, "menu#{i}") }.compact
+menu_images = MENU_IMAGE_URLS.map { |url| download_image_data(url) }.compact
 puts "ダウンロード完了: 店舗#{restaurant_images.length}件, メニュー#{menu_images.length}件"
 
 # 5. レストラン (Restaurants)
@@ -122,6 +117,4 @@ Restaurant.all.each do |restaurant|
   end
 end
 
-# 後処理
-(restaurant_images + menu_images).each { |f| f.close! rescue nil }
 puts "シード完了！"
