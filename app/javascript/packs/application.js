@@ -9,6 +9,15 @@ window.$ = window.jQuery = jQuery;
 Rails.start()
 ActiveStorage.start()
 
+// Cloudinary画像の読み込み失敗時にデフォルト画像で差し替え
+document.addEventListener('error', function(e) {
+  var img = e.target;
+  if (img.tagName === 'IMG' && img.src && img.src.includes('cloudinary')) {
+    img.src = window.defaultImageUrl || '/assets/default-image.jpg';
+    img.onerror = null;
+  }
+}, true);
+
 // documentへのイベント委譲（Turbolinksでページ遷移しても外れない）
 document.addEventListener('change', function(e) {
   if (!e.target.matches('select[id*="state_id"]')) return;
