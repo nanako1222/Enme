@@ -24,7 +24,8 @@ class Restaurant < ApplicationRecord
 
   def get_image(width, height)
     if image.attached?
-      image.url.sub(%r{/upload/}, "/upload/w_#{width},h_#{height},c_fill/")
+      crop = (width >= 200 || height >= 200) ? 'fit' : 'fill'
+      image.url.sub(%r{/upload/}, "/upload/w_#{width},h_#{height},c_#{crop}/")
     else
       ActionController::Base.helpers.asset_path('default-image.jpg')
     end
