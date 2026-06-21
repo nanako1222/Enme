@@ -3,8 +3,8 @@ require 'open-uri'
 namespace :images do
   desc "画像が未添付のレストランとメニューにプレースホルダー画像を添付する"
   task attach_missing: :environment do
-    restaurant_urls = (1..10).map { |n| "https://picsum.photos/seed/enme-rest#{n}/800/600" }
-    menu_urls       = (1..10).map { |n| "https://picsum.photos/seed/enme-menu#{n}/400/300" }
+    restaurant_urls = (1..10).map { |n| "https://loremflickr.com/800/600/restaurant?lock=#{n}" }
+    menu_urls       = (1..10).map { |n| "https://loremflickr.com/400/300/food?lock=#{n}" }
 
     puts "画像ダウンロード中..."
     rest_data = restaurant_urls.each_with_index.map do |url, i|
