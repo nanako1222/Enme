@@ -29,7 +29,7 @@
               <td>
                 <% if favorite.restaurant.image.attached? %>
                   <%= link_to restaurant_path(favorite.restaurant) do %>
-                    <%= image_tag favorite.restaurant.get_image(60,50), class: "me-2" %>
+                    <%= image_tag favorite.restaurant.get_image(60,50), class: "me-2", width: 60, height: 50, style: "object-fit: cover;" %>
                   <% end %>
                 <% else %>
                   <%= link_to restaurant_path(favorite.restaurant) do %>

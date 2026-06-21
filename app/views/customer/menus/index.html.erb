@@ -19,7 +19,7 @@
           <div class="item_image">
             <% if menu.image.attached? %>
               <%= link_to restaurant_menu_path(@restaurant, menu) do %>
-                <%= image_tag menu.get_image(100,100), class: "img-fluid rounded" %>
+                <%= image_tag menu.get_image(100,100), class: "img-fluid rounded", width: 100, height: 100, style: "object-fit: cover;" %>
               <% end %>
             <% else %>
               <%= link_to restaurant_menu_path(@restaurant, menu) do %>

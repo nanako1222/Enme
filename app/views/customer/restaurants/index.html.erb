@@ -24,7 +24,7 @@
               <td>
                 <% if restaurant.image.attached? %>
                   <%= link_to restaurant_path(restaurant.id) do %>
-                    <%= image_tag restaurant.get_image(60,50), class: "me-2" %>
+                    <%= image_tag restaurant.get_image(60,50), class: "me-2", width: 60, height: 50, style: "object-fit: cover;" %>
                   <% end %>
                 <% else %>
                   <%= link_to restaurant_path(restaurant.id) do %>
