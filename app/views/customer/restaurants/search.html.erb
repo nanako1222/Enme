@@ -17,13 +17,17 @@
 
       <div class="row mt-3 align-items-center">
         <%= f.label :state_id, class: "col-md-4" %>
-        <%= f.collection_select :state_id, State.all, :id, :state, { selected: 1 }, { class: "col-md-4" } %>
+        <%= f.collection_select :state_id, State.all, :id, :state,
+            { include_blank: "すべての都道府県" },
+            { class: "col-md-4" } %>
       </div>
 
       <div class="row mt-3 align-items-center">
         <%= f.label :area_id, class: "col-md-4" %>
-        <div id="areas_select_customer" class="col-md-4">
-          <%= render partial: 'shared/areas', locals: { areas: Area.where(state_id: 1) } %>
+        <div id="areas_select_search" class="col-md-4">
+          <select name="customer[area_id]" id="customer_area_id">
+            <option value="">すべてのエリア</option>
+          </select>
         </div>
       </div>
 

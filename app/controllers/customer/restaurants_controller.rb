@@ -60,7 +60,7 @@ class Customer::RestaurantsController < ApplicationController
 
   def set_search_query
     @allergy_ids = params.dig(:customer, :allergies)&.map(&:to_i) || []
-    @state_id = params[:state_id]
+    @state_id = params.dig(:customer, :state_id)
     @area_id = params.dig(:customer, :area_id)
   end
 
