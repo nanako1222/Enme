@@ -4,7 +4,7 @@ set -o errexit
 
 bundle install
 yarn install
-NODE_OPTIONS=--openssl-legacy-provider bundle exec rails webpacker:compile
+bundle exec rails webpacker:compile
 bundle exec rails assets:precompile
 bundle exec rails db:migrate
 
