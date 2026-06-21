@@ -21,6 +21,7 @@ ATTACHED=$(bundle exec rails runner "print ActiveStorage::Attachment.where(recor
 TOTAL=$(bundle exec rails runner "print Restaurant.count" 2>/dev/null || echo "0")
 echo "店舗画像: ${ATTACHED}件添付済 / ${TOTAL}件"
 if [ "$TOTAL" -gt "0" ] && [ "$ATTACHED" -lt "$TOTAL" ]; then
-  echo "未添付の画像があります。添付します（時間がかかります）..."
+  echo "未添付の画像があります。添付します..."
   bundle exec rails images:attach_missing
 fi
+

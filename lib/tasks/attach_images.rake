@@ -1,27 +1,11 @@
-require 'open-uri'
-
 namespace :images do
-  desc "画像が未添付のレストランとメニューにプレースホルダー画像を添付する"
+  desc "画像が未添付のレストランとメニューにseed画像を添付する"
   task attach_missing: :environment do
-    restaurant_urls = (1..10).map { |n| "https://loremflickr.com/800/600/restaurant?lock=#{n}" }
-    menu_urls       = (1..10).map { |n| "https://loremflickr.com/400/300/food?lock=#{n}" }
+    image_dir = Rails.root.join("db/seeds/images")
 
-    puts "画像ダウンロード中..."
-    rest_data = restaurant_urls.each_with_index.map do |url, i|
-      URI.open(url, read_timeout: 30).read
-    rescue => e
-      puts "  DL失敗 rest#{i}: #{e.message}"
-      nil
-    end.compact
-
-    menu_data = menu_urls.each_with_index.map do |url, i|
-      URI.open(url, read_timeout: 30).read
-    rescue => e
-      puts "  DL失敗 menu#{i}: #{e.message}"
-      nil
-    end.compact
-
-    puts "ダウンロード完了: 店舗#{rest_data.size}件, メニュー#{menu_data.size}件"
+    rest_data = Dir[image_dir.join("restaurants/*")].sort.map { |p| File.binread(p) }
+    menu_data = Dir[image_dir.join("menus/*")].sort.map { |p| File.binread(p) }
+    puts "画像読み込み: 店舗#{rest_data.size}件, メニュー#{menu_data.size}件"
 
     puts "レストラン画像を添付中..."
     Restaurant.all.each_with_index do |r, i|

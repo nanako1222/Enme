@@ -39,35 +39,24 @@ end
 
 # 4. シード用画像の準備
 # 5種類ずつダウンロードして使い回す（全件ダウンロードすると時間がかかりすぎるため）
-RESTAURANT_IMAGE_URLS = (1..10).map { |n|
-  "https://loremflickr.com/800/600/restaurant?lock=#{n}"
-}.freeze
+SEEDS_IMAGE_DIR = Rails.root.join("db/seeds/images")
 
-MENU_IMAGE_URLS = (1..10).map { |n|
-  "https://loremflickr.com/400/300/food?lock=#{n}"
-}.freeze
-
-def download_image_data(url)
-  URI.open(url, read_timeout: 30).read
-rescue => e
-  puts "  画像ダウンロード失敗 (#{url}): #{e.message}"
-  nil
+def load_image_data(dir)
+  Dir[dir.join("*")].sort.map { |path| File.binread(path) }
 end
 
 def attach_image(record, data_list, index)
   return if data_list.empty?
   data = data_list[index % data_list.length]
-  return unless data
-  record.image.attach(io: StringIO.new(data), filename: "image.jpg", content_type: "image/jpeg")
+  ext  = "jpg"
+  record.image.attach(io: StringIO.new(data), filename: "image.#{ext}", content_type: "image/jpeg")
 rescue => e
   puts "  画像添付失敗: #{e.message}"
 end
 
-puts "店舗画像をダウンロード中..."
-restaurant_images = RESTAURANT_IMAGE_URLS.map { |url| download_image_data(url) }.compact
-puts "メニュー画像をダウンロード中..."
-menu_images = MENU_IMAGE_URLS.map { |url| download_image_data(url) }.compact
-puts "ダウンロード完了: 店舗#{restaurant_images.length}件, メニュー#{menu_images.length}件"
+restaurant_images = load_image_data(SEEDS_IMAGE_DIR.join("restaurants"))
+menu_images       = load_image_data(SEEDS_IMAGE_DIR.join("menus"))
+puts "画像読み込み完了: 店舗#{restaurant_images.length}件, メニュー#{menu_images.length}件"
 
 # 5. レストラン (Restaurants)
 restaurant_idx = 0
