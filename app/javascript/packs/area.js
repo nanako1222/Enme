@@ -22,7 +22,13 @@ function initAreaSelect() {
       type: 'GET',
       data: { type: type, state_id: stateId }
     }).done(function(data){
-      $(targetSelector).html(data);
+      var $target = $(targetSelector);
+      var $select = $target.find('select');
+      if ($select.length) {
+        $select.html(data);
+      } else {
+        $target.html(data);
+      }
     }).fail(function(){
       console.log("Ajax failed. Check if /areas route exists.");
     });
