@@ -23,20 +23,36 @@ document.addEventListener('change', function(e) {
   if (!e.target.matches('select[id*="state_id"]')) return;
 
   const stateId = e.target.value;
+  const form = e.target.closest('form');
+  const formId = form ? form.id : '';
   const elementId = e.target.id;
-  const targetSelector = elementId.includes("customer") ? "#areas_select_customer" : "#areas_select";
-  const targetElement = document.querySelector(targetSelector);
 
-  if (stateId && targetElement) {
-    fetch(`/areas?state_id=${stateId}`)
-      .then(response => response.text())
-      .then(html => {
-        const selectEl = targetElement.querySelector('select');
-        if (selectEl) {
-          selectEl.innerHTML = html;
-        } else {
-          targetElement.innerHTML = html;
-        }
-      });
+  // フォームごとに送信先コンテナとtypeを切り替える
+  let targetSelector, type;
+  if (formId === 'search_restaurant') {
+    targetSelector = "#areas_select_search";
+    type = "search";
+  } else if (elementId.includes("customer")) {
+    targetSelector = "#areas_select_customer";
+    type = "customer";
+  } else {
+    targetSelector = "#areas_select";
+    type = "restaurant";
   }
+
+  const targetElement = document.querySelector(targetSelector);
+  if (!targetElement) return;
+
+  // search では都道府県を空に戻したときも「すべてのエリア」にリセットしたいので
+  // stateId が空でも fetch する（type=search なら空でも適切なoptionが返る）
+  fetch(`/areas?type=${type}&state_id=${stateId}`)
+    .then(response => response.text())
+    .then(html => {
+      const selectEl = targetElement.querySelector('select');
+      if (selectEl) {
+        selectEl.innerHTML = html;
+      } else {
+        targetElement.innerHTML = html;
+      }
+    });
 });
