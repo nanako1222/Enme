@@ -240,12 +240,6 @@ th { color: #cd853f; }
   border-radius: 10px;
   padding: 16px;
   margin-bottom: 4px;
-
-  // PC: 常時表示（Bootstrap collapseを無効化）
-  @media (min-width: 768px) {
-    display: block !important;
-    height: auto !important;
-  }
 }
 
 .top-allergen-grid {

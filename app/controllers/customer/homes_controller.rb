@@ -5,7 +5,7 @@ class Customer::HomesController < ApplicationController
     @restaurants = Restaurant.includes(:state, :area, menus: :allergies)
                              .where(is_valid: true)
                              .order(created_at: :desc)
-                             .limit(6)
+                             .limit(3)
   end
 
   def about
