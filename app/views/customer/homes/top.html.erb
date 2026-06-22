@@ -1,21 +1,135 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <% if flash[:notice] %>
-        <%= notice %>
-      <% end %>
-      <div class="top_image">
-        <%= image_tag 'top.jpg' %>
+<%# ─── Hero ─────────────────────────────────────────────── %>
+<section class="top-hero">
+  <div class="container">
+    <div class="row align-items-center g-5 py-5">
+      <div class="col-lg-6">
+        <p class="top-hero__label">アレルギー対応飲食店検索サービス</p>
+        <h1 class="top-hero__title">アレルギーがあっても、<br>安心して外食を。</h1>
+        <p class="top-hero__desc mt-3">
+          登録したアレルゲンに合わせて、対応している飲食店を検索できます。
+        </p>
+        <%= link_to search_restaurants_path, class: "btn top-hero__cta mt-4" do %>
+          飲食店を探す <i class="fas fa-arrow-right ms-1"></i>
+        <% end %>
+      </div>
+      <div class="col-lg-6">
+        <%= image_tag "top.jpg", class: "top-hero__img img-fluid rounded-4", alt: "食卓風景" %>
       </div>
     </div>
   </div>
-  <div class="col-md-8 mx-auto text-center">
-    <p class="about"><strong>Welcome to Enme!</strong></br>
-      ご覧頂きありがとうございます。</br>
-      Enme（エンミー）は食物アレルギー対策を行なっている</br>
-      関西の飲食店の検索サイトになります。</br>
-      地域検索やアレルギー検索をぜひご活用し</br>
-      アレルギーをお持ちの方でも楽しい食事の時間にして頂けたら幸いです。
-    </p>
+</section>
+
+<%# ─── Search ─────────────────────────────────────────── %>
+<section class="top-search">
+  <div class="container">
+    <h2 class="top-section-title">飲食店を検索する</h2>
+
+    <%= form_with model: @customer, url: restaurants_path, method: :get,
+                  id: "search_restaurant", local: true do |f| %>
+
+      <%# アレルゲン選択 %>
+      <div class="mb-4">
+        <p class="top-search__label">
+          <i class="fas fa-exclamation-triangle me-1"></i>除外するアレルゲン
+        </p>
+
+        <%# スマホ：折り畳みトグル %>
+        <button type="button"
+                class="btn btn-outline-secondary d-md-none w-100 mb-2"
+                data-bs-toggle="collapse"
+                data-bs-target="#allergenArea"
+                aria-expanded="false">
+          アレルゲンを選択
+          <span id="allergenBadge" class="badge bg-brown ms-1 d-none">0</span>
+        </button>
+
+        <%# チェックボックス本体（PC:常時表示 / スマホ:折り畳み） %>
+        <div id="allergenArea" class="top-allergen-area">
+          <div class="top-allergen-grid">
+            <%= f.collection_check_boxes(
+                  :allergies, @allergies, :id, :allergen,
+                  include_hidden: false
+                ) do |a| %>
+              <label class="top-allergen-chip">
+                <%= a.check_box class: "top-allergen-cb" %><%= a.text %>
+              </label>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <%# 都道府県・エリア・検索ボタン %>
+      <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+          <label class="top-search__label">都道府県</label>
+          <%= f.collection_select :state_id, State.all, :id, :state,
+              { include_blank: "すべての都道府県" },
+              { class: "form-select" } %>
+        </div>
+        <div class="col-md-4">
+          <label class="top-search__label">エリア</label>
+          <div id="areas_select_search">
+            <select name="customer[area_id]" id="customer_area_id" class="form-select">
+              <option value="">すべてのエリア</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <%= button_tag type: :submit, class: "btn top-search__btn w-100" do %>
+            <i class="fas fa-search me-1"></i>検索する
+          <% end %>
+        </div>
+      </div>
+
+    <% end %>
   </div>
-</div>
+</section>
+
+<%# ─── New Restaurants ───────────────────────────────── %>
+<section class="top-restaurants">
+  <div class="container">
+    <h2 class="top-section-title">新着店舗</h2>
+    <p class="top-section-sub">アレルギー対応の飲食店をご紹介します</p>
+
+    <div class="row g-4">
+      <% @restaurants.each do |restaurant| %>
+        <div class="col-md-6 col-lg-4">
+          <div class="top-card">
+            <%= link_to restaurant_path(restaurant), class: "text-decoration-none" do %>
+              <div class="top-card__img-wrap">
+                <%= image_tag restaurant.get_image(400, 230),
+                    class: "top-card__img",
+                    alt: restaurant.name %>
+              </div>
+              <div class="top-card__body">
+                <h5 class="top-card__name"><%= restaurant.name %></h5>
+                <p class="top-card__area">
+                  <i class="fas fa-map-marker-alt me-1"></i>
+                  <%= restaurant.state.state %>&nbsp;<%= restaurant.area.area %>
+                </p>
+                <% allergens = restaurant.menus.flat_map(&:allergies).map(&:allergen).uniq %>
+                <div class="top-card__tags">
+                  <% if allergens.any? %>
+                    <% allergens.first(4).each do |a| %>
+                      <span class="top-card__tag"><%= a %>対応</span>
+                    <% end %>
+                    <% if allergens.size > 4 %>
+                      <span class="top-card__tag top-card__tag--more">+<%= allergens.size - 4 %></span>
+                    <% end %>
+                  <% else %>
+                    <span class="top-card__no-tag">アレルゲン情報を確認</span>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="text-center mt-5 mb-2">
+      <%= link_to "すべての店舗を見る →", search_restaurants_path,
+          class: "btn top-restaurants__more-btn px-5" %>
+    </div>
+  </div>
+</section>

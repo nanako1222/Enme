@@ -1,81 +1,400 @@
-// 1. ライブラリの読み込み
+// 1. Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-// 2. 既存のCSSファイルをWebpacker経由で読み込む
+// 2. 既存SCSSの読み込み
 @import '../../assets/stylesheets/favorite_restaurants.scss';
 @import '../../assets/stylesheets/favorites.scss';
 @import '../../assets/stylesheets/my_page.scss';
 @import '../../assets/stylesheets/customer/areas.scss';
 
-// 3. 基本設定
+// ═══════════════════════════════════════════
+// 3. カラー変数
+// ═══════════════════════════════════════════
+$ivory:       #faf7f2;
+$beige:       #f0ebe3;
+$beige-dark:  #e2d9cd;
+$brown:       #7a5c44;
+$brown-dark:  #3d2b1f;
+$green:       #6b8f6e;
+$green-dark:  #4f7052;
+$text-main:   #3d2b1f;
+$text-sub:    #7a6a5a;
+
+// ═══════════════════════════════════════════
+// 4. ベース
+// ═══════════════════════════════════════════
 html { margin: 0; padding: 0; }
-body { min-height: 100vh; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.content { flex: 1; }
+body {
+  min-height: 100vh;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  color: $text-main;
+  background-color: $ivory;
+}
+.wrapper { flex: 1; }
+
+// 管理・一般ページで使うタイトル装飾（h4/h6）は維持
 h4, h6 { color: #6e4a55; border-radius: 4px; background-color: #bccddb; }
-h1 { color: maroon; }
+h1 { color: maroon; }  // About等で使用
 .about { color: maroon; }
 .table-secondary { background-color: #ffffe0; }
 th { color: #cd853f; }
 
-// --- 4. ヘッダー ---
-.navbar-expand-lg { min-height: 80px; background-image: url('../images/navbar.jpg'); background-size: cover; background-position: center; }
-.navbar { z-index: 10; display: flex !important; justify-content: space-between !important; }
-.navbar-brand { margin-right: auto !important; }
-.navbar-nav { margin-left: auto !important; display: flex !important; flex-direction: row !important; gap: 4px; }
-.navbar-nav li a { color: #ede4e1 !important; background-color: rgba(107, 63, 49, 0.7); padding: 5px 10px; border-radius: 4px; white-space: nowrap; }
+// ═══════════════════════════════════════════
+// 5. ナビゲーション（新デザイン）
+// ═══════════════════════════════════════════
+#global_nav {
+  background-color: #fff;
+  border-bottom: 1px solid $beige-dark;
+  min-height: 68px;
+
+  .navbar-brand img { max-height: 52px; }
+
+  .nav-link {
+    color: $text-main !important;
+    font-size: 0.92rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+
+    &:hover { background-color: $beige; }
+  }
+
+  .navbar-toggler {
+    border-color: $beige-dark;
+    &:focus { box-shadow: none; }
+  }
+}
+
+.nav-btn-outline {
+  font-size: 0.88rem;
+  padding: 5px 14px;
+  border: 1.5px solid $brown;
+  border-radius: 6px;
+  color: $brown;
+  background: transparent;
+  transition: all 0.15s;
+
+  &:hover { background-color: $brown; color: #fff; }
+}
+
+.nav-btn-primary {
+  font-size: 0.88rem;
+  padding: 5px 14px;
+  border-radius: 6px;
+  background-color: $green;
+  color: #fff;
+  border: none;
+  transition: background 0.15s;
+
+  &:hover { background-color: $green-dark; color: #fff; }
+}
 
 @media (max-width: 991.98px) {
-  .navbar-nav {
-    flex-direction: column !important;
-    align-items: center;
-    width: 100%;
-    padding: 10px 0 16px;
-    gap: 6px;
-  }
-  .navbar-nav li {
-    width: 100%;
-    text-align: center;
-  }
-  .navbar-nav li a {
-    display: inline-block !important;
-    min-width: 140px;
+  #global_nav .navbar-nav {
+    padding: 12px 0 16px;
+    gap: 4px;
+
+    .nav-item { width: 100%; }
+    .nav-link { display: block; }
+    .nav-btn-outline, .nav-btn-primary {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 4px;
+    }
   }
 }
 
-// --- 5. メインコンテンツ ---
-.wrapper { flex: 1; position: relative; box-sizing: border-box; background-color: #ede4e1; }
+// ═══════════════════════════════════════════
+// 6. フッター（新デザイン）
+// ═══════════════════════════════════════════
+#site-footer {
+  background-color: $brown-dark;
+  color: #e8ddd0;
 
-// --- 6. トップ画像ぼかし ---
-.top_image { position: relative; z-index: 1; width: 100%; height: 400px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.top_image::after { position: absolute; content: ''; top: 0; left: 0; right: 0; bottom: 0; box-shadow: inset 0 0 60px 80px #ede4e1 !important; pointer-events: none; z-index: 2; }
-.top_image img { width: 150%; }
-
-// --- 7. フッター（左寄せ） ---
-footer { background-image: url('../images/navbar.jpg'); background-size: cover; background-position: center; width: 100%; color: white; padding: 20px 0; display: block !important; text-align: left !important; }
-footer .container { margin-left: 0 !important; margin-right: auto !important; max-width: 100% !important; }
-
-// --- 8. 検索フォーム ---
-.field.d-grid { display: flex !important; flex-direction: row !important; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px !important; }
-
-// --- 9. アレルゲンチェックボックス（5列・強制折り返し） ---
-.customer_allergen {
-  background-color: #dcd6d2 !important;
-  display: flex !important;
-  flex-wrap: wrap !important;     // 折り返しを許可
-  flex-direction: row !important; // 横向きに並べる
-  justify-content: flex-start !important;
-  padding: 20px !important;
-  width: 100% !important;
-  overflow: visible !important;   // はみ出しを隠さず表示
+  .footer-logo { filter: brightness(0) invert(1); opacity: 0.9; }
+  .footer-tagline { font-size: 0.85rem; color: #c9b99a; }
+  .footer-link {
+    color: #c9b99a;
+    text-decoration: none;
+    font-size: 0.88rem;
+    &:hover { color: #fff; }
+  }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    color: #8a7a6a;
+  }
 }
 
+// ═══════════════════════════════════════════
+// 7. トップページ: Hero
+// ═══════════════════════════════════════════
+.top-hero {
+  background-color: $ivory;
+  padding-bottom: 20px;
+
+  &__label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: $green;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    font-weight: 800;
+    color: $brown-dark !important; // h1 { color: maroon } を上書き
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  &__desc {
+    font-size: 1rem;
+    color: $text-sub;
+    line-height: 1.8;
+    max-width: 480px;
+  }
+
+  &__cta {
+    background-color: $green;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    transition: background 0.2s, transform 0.15s;
+
+    &:hover {
+      background-color: $green-dark;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+  }
+
+  &__img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    box-shadow: 0 8px 32px rgba(61, 43, 31, 0.12);
+  }
+}
+
+// ═══════════════════════════════════════════
+// 8. トップページ: 共通セクション
+// ═══════════════════════════════════════════
+.top-section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: $brown-dark;
+  text-align: center;
+  margin-bottom: 8px;
+  background: none !important;  // h4グローバルスタイル上書き防止
+}
+
+.top-section-sub {
+  font-size: 0.9rem;
+  color: $text-sub;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+// ═══════════════════════════════════════════
+// 9. トップページ: 検索セクション
+// ═══════════════════════════════════════════
+.top-search {
+  background-color: $beige;
+  padding: 52px 0;
+  border-top: 1px solid $beige-dark;
+  border-bottom: 1px solid $beige-dark;
+
+  .top-section-title { text-align: left; }
+
+  &__label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: $text-sub;
+    margin-bottom: 8px;
+  }
+
+  &__btn {
+    background-color: $brown;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    transition: background 0.2s;
+    &:hover { background-color: $brown-dark; color: #fff; }
+  }
+}
+
+// ─── アレルゲンチップ ───────────────────────
+.top-allergen-area {
+  background: #fff;
+  border: 1px solid $beige-dark;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 4px;
+
+  // PC: 常時表示（Bootstrap collapseを無効化）
+  @media (min-width: 768px) {
+    display: block !important;
+    height: auto !important;
+  }
+}
+
+.top-allergen-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.top-allergen-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border: 1.5px solid $beige-dark;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.83rem;
+  color: $text-main;
+  background: $ivory;
+  transition: all 0.15s;
+  user-select: none;
+
+  &:hover { border-color: $brown; background: $beige; }
+
+  &:has(input:checked) {
+    background: $brown;
+    color: #fff;
+    border-color: $brown;
+  }
+
+  .top-allergen-cb {
+    width: 14px !important;
+    height: 14px !important;
+    margin: 0 !important;
+    flex-shrink: 0;
+    accent-color: $brown;
+  }
+}
+
+.bg-brown { background-color: $brown !important; }
+
+// ═══════════════════════════════════════════
+// 10. トップページ: 新着店舗
+// ═══════════════════════════════════════════
+.top-restaurants {
+  background-color: #fff;
+  padding: 60px 0 64px;
+}
+
+.top-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid $beige-dark;
+  background: #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+  height: 100%;
+
+  &:hover {
+    box-shadow: 0 6px 24px rgba(61, 43, 31, 0.12);
+    transform: translateY(-3px);
+  }
+
+  &__img-wrap {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+
+  &:hover &__img { transform: scale(1.03); }
+
+  &__body {
+    padding: 16px;
+  }
+
+  &__name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $brown-dark;
+    margin-bottom: 4px;
+  }
+
+  &__area {
+    font-size: 0.82rem;
+    color: $text-sub;
+    margin-bottom: 10px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  &__tag {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #edf4ee;
+    color: $green-dark;
+    border: 1px solid #c6dfc8;
+  }
+
+  &__tag--more {
+    background: $beige;
+    color: $text-sub;
+    border-color: $beige-dark;
+  }
+
+  &__no-tag {
+    font-size: 0.78rem;
+    color: $text-sub;
+  }
+}
+
+.top-restaurants__more-btn {
+  border: 1.5px solid $green;
+  color: $green-dark;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+  &:hover { background-color: $green; color: #fff; }
+}
+
+// ═══════════════════════════════════════════
+// 11. 既存ページ用（変更なし）
+// ═══════════════════════════════════════════
+.flashing { animation: blink 0.8s ease-in-out infinite alternate; color: red; }
+@keyframes blink { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+.restaurant_valid  { color: gray; }
+.restaurant_valid2 { color: green; }
+.customer_valid    { color: gray; }
+.customer_valid2   { color: green; }
+.valid { margin-top: 7px; }
+
+// 検索ページのアレルゲンチェックボックス（既存）
 .allergies_check_boxes {
   display: flex !important;
   flex-wrap: wrap !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
-
 .allergies_check_boxes label {
   display: flex !important;
   align-items: center !important;
@@ -87,19 +406,15 @@ footer .container { margin-left: 0 !important; margin-right: auto !important; ma
   white-space: nowrap !important;
   font-size: 0.85rem !important;
 }
-
 input[type="checkbox"] {
   width: 18px !important;
   height: 18px !important;
   margin: 0 8px 0 0 !important;
-  flex-shrink: 0 !important;      // チェックボックスが潰れるのを防ぐ
+  flex-shrink: 0 !important;
 }
-
-// --- その他 ---
-.flashing { animation: blink 0.8s ease-in-out infinite alternate; color: red; }
-@keyframes blink { 0% { opacity: 0; } 100% { opacity: 1; } }
-.restaurant_valid { color: gray; }
-.restaurant_valid2 { color: green; }
-.valid { margin-top: 7px; }
-.customer_valid { color: gray; }
-.customer_valid2 { color: green; }
+// トップページのチェックボックスは上書きして小さく
+.top-allergen-cb {
+  width: 14px !important;
+  height: 14px !important;
+  margin: 0 !important;
+}

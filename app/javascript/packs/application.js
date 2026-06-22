@@ -18,6 +18,16 @@ document.addEventListener('error', function(e) {
   }
 }, true);
 
+// トップページ: アレルゲン選択数をバッジに反映
+document.addEventListener('change', function(e) {
+  if (!e.target.matches('.top-allergen-cb')) return;
+  const count = document.querySelectorAll('.top-allergen-cb:checked').length;
+  const badge = document.getElementById('allergenBadge');
+  if (!badge) return;
+  badge.textContent = count;
+  badge.classList.toggle('d-none', count === 0);
+});
+
 // documentへのイベント委譲（Turbolinksでページ遷移しても外れない）
 document.addEventListener('change', function(e) {
   if (!e.target.matches('select[id*="state_id"]')) return;
