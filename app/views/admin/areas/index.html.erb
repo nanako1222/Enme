@@ -1,23 +1,21 @@
 <div class="container">
-  <div class="row">
-    <div class='col-12'>
-      <h4 class="col-3 mt-5 offset-2"><strong>地域一覧</strong></h4>
+  <div class="col-11 col-md-8 mx-auto">
 
-      <div class="row">
-        <table class="table table-hover col-8 mt-3 offset-2">
-          <thead class="table-secondary">
-            <th>都道府県</th>
-          </thead>
-          <% @states.each do |state| %>
-            <tr>
-              <td>
-                <%= link_to state.state, admin_areas_path(state.id) %>
-              </td>
-            </tr>
-          <% end %>
-        </table>
-        <div class="offset-9 mt-3"><%= paginate @states %></div>
-      </div>
+    <div class="text-center mt-5">
+      <h4 class="text-center"><strong>地域一覧</strong></h4>
     </div>
+
+    <table class="table table-hover mt-4">
+      <thead class="table-secondary">
+        <th>都道府県</th>
+      </thead>
+      <% @states.each do |state| %>
+        <tr>
+          <td><%= link_to state.state, admin_areas_path(state.id) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <div class="text-end mt-3"><%= paginate @states %></div>
+
   </div>
 </div>

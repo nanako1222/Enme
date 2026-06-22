@@ -1,28 +1,29 @@
 <div class="container">
-  <div class="row">
-    <div class='col-12'>
-      <h4 class="col-3 mt-5"><strong>アレルゲン一覧・追加</strong></h4>
-      <% flash.each do |key, value| %>
-         <p class="alert alert-<%= key %>">
-           <%= value %>
-         </p>
-      <% end %>
+  <div class="col-11 col-md-10 mx-auto">
 
-      <div class="row">
-        <div class='col-md-7 mt-5'>
-          <%= form_with model: @allergy, url: admin_allergies_path, method: :post do |f| %>
+    <div class="text-center mt-5">
+      <h4 class="text-center"><strong>アレルゲン一覧・追加</strong></h4>
+    </div>
 
-            <div class="field d-grid col-11 mt-4">
-              <%= f.label :allergen, class: "w-25" %>
-              <%= f.text_field :allergen %>
-            </div>
-            <div class="row form-group mt-4 offset-3">
-              <%= f.submit '新規登録', class:"btn btn-success col-4" %>
-            </div>
-          <% end %>
-        </div>
+    <% flash.each do |key, value| %>
+      <p class="alert alert-<%= key %>"><%= value %></p>
+    <% end %>
 
-        <table class="table table-hover col-5">
+    <div class="row mt-4">
+      <div class="col-md-5">
+        <%= form_with model: @allergy, url: admin_allergies_path, method: :post do |f| %>
+          <div class="row mt-3 align-items-center">
+            <%= f.label :allergen, class: "col-md-4" %>
+            <%= f.text_field :allergen, class: "col-md-8" %>
+          </div>
+          <div class="mt-4 text-center">
+            <%= f.submit '新規登録', class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-md-7">
+        <table class="table table-hover">
           <thead class="table-secondary">
             <th>アレルゲン</th>
             <th></th>
@@ -30,20 +31,15 @@
           </thead>
           <% @allergies.each do |allergy| %>
             <tr>
-              <td>
-                <%= allergy.allergen %>
-              </td>
-              <td>
-                <%= link_to "編集", edit_admin_allergy_path(allergy), class:"btn btn-success"%>
-              </td>
-              <td>
-                <%= link_to "削除",admin_allergy_path(allergy), method: :delete,"data-confirm" => "本当に削除しますか？",  class:"btn btn-danger active" %>
-              </td>
+              <td><%= allergy.allergen %></td>
+              <td><%= link_to "編集", edit_admin_allergy_path(allergy), class: "btn btn-success" %></td>
+              <td><%= link_to "削除", admin_allergy_path(allergy), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger active" %></td>
             </tr>
           <% end %>
         </table>
-        <div class="offset-9 mt-3"><%= paginate @allergies %></div>
+        <div class="text-end mt-3"><%= paginate @allergies %></div>
       </div>
     </div>
+
   </div>
 </div>

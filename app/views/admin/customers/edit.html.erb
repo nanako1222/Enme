@@ -1,77 +1,78 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h4 class="col-6 mt-5"><strong><%= "#{@customer.full_name}さんの会員情報編集" %></strong></h4>
-      <% flash.each do |key, value| %>
-         <p class="alert alert-<%= key %>">
-           <%= value %>
-         </p>
-      <% end %>
+  <div class="col-11 col-md-8 mx-auto">
 
-      <div class='flashing mt-2'>
-        <p>※現在登録されているデータは架空です</p>
+    <div class="text-center mt-5">
+      <h4 class="text-center"><strong><%= "#{@customer.full_name}さんの会員情報編集" %></strong></h4>
+    </div>
+
+    <% flash.each do |key, value| %>
+      <p class="alert alert-<%= key %>"><%= value %></p>
+    <% end %>
+
+    <div class='flashing mt-2'>
+      <p>※現在登録されているデータは架空です</p>
+    </div>
+
+    <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :会員ID, class: "col-md-4" %>
+        <div class="col-md-8"><%= @customer.id %></div>
       </div>
 
-      <%= form_with model: @customer, url:admin_customer_path, method: :patch do |f| %>
+      <div class="row mt-3 align-items-center">
+        <span class="col-md-4">名前</span>
+        <%= f.label :first_name, "名", class: "col-md-1" %>
+        <%= f.text_field :first_name, required: true, class: "col-md-3" %>
+        <%= f.label :last_name, "姓", class: "col-md-1" %>
+        <%= f.text_field :last_name, required: true, class: "col-md-3" %>
+      </div>
 
-      　<div class="row field d-grid text-center mt-3">
-          <%= f.label :会員ID, class: "col-md-3 text-left" %>
-          <div class="col-md-2 ml-2">
-            <%= @customer.id %>
-          </div>
+      <div class="row mt-3 align-items-center">
+        <span class="col-md-4">フリガナ</span>
+        <%= f.label :first_name_kana, "名", class: "col-md-1" %>
+        <%= f.text_field :first_name_kana, required: true, class: "col-md-3" %>
+        <%= f.label :last_name_kana, "姓", class: "col-md-1" %>
+        <%= f.text_field :last_name_kana, required: true, class: "col-md-3" %>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :email, class: "col-md-4" %>
+        <%= f.email_field :email, required: true, class: "col-md-8" %>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :state_id, class: "col-md-4" %>
+        <%= f.collection_select :state_id, State.all, :id, :state, {}, { class: "col-md-8" } %>
+      </div>
+
+      <div class="row mt-3 align-items-center">
+        <%= f.label :area_id, class: "col-md-4" %>
+        <div id="areas_select_customer" class="col-md-8">
+          <%= render partial: 'shared/areas', locals: { areas: @area } %>
         </div>
+      </div>
 
+      <div class="row mt-3 align-items-center">
+        <%= f.label :telephone_number, class: "col-md-4" %>
+        <%= f.text_field :telephone_number, required: true, class: "col-md-8" %>
+      </div>
 
-        <div class="row field d-grid text-center">
-          <span class="col-md-3 text-left">名前</span>
-          <%= f.label :first_name, class: "col-md-1" %>
-          <%= f.text_field :first_name, autofocus: true, required: true, class: "col-md-2" %>
-          <%= f.label :last_name, class: "col-md-1" %>
-          <%= f.text_field :last_name, autofocus: true, required: true, class: "col-md-2" %>
-        </div>
-
-        <div class="row field d-grid text-center mt-4">
-          <span class="col-md-3 text-left">フリガナ</span>
-          <%= f.label :first_name_kana, class: "col-md-1" %>
-          <%= f.text_field :first_name_kana, autofocus: true, required: true, class: "col-md-2" %>
-          <%= f.label :last_name_kana, class: "col-md-1" %>
-          <%= f.text_field :last_name_kana, autofocus: true, required: true, class: "col-md-2" %>
-        </div>
-
-        <div class="row field d-grid text-center mt-4">
-          <%= f.label :email, class: "col-md-4 text-left" %>
-          <%= f.email_field :email, autofocus: true, required: true, class: "col-md-4" %>
-        </div>
-
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :state_id, class: "col-md-4 text-left" %>
-          <%= f.collection_select :state_id, State.all,:id,:state %>
-        </div>
-
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :area_id, class: "col-md-4 text-left" %>
-          <div id="areas_select_customer" >
-            <%= render partial: 'shared/areas', locals: { areas: @area }  %>
-          </div>
-        </div>
-
-        <div class="row field d-grid text-center mt-3">
-          <%= f.label :telephone_number, class: "col-md-4 text-left" %><br />
-          <%= f.text_field :telephone_number, required: true, required: true, class: "col-md-3" %>
-        </div>
-
-        <div class="row field d-grid text-center mt-3">
-          <p class="col-md-4 text-left">会員状況</p>
+      <div class="row mt-3 align-items-center">
+        <p class="col-md-4 mb-0">会員状況</p>
+        <div class="col-md-8">
           <%= f.radio_button :is_valid, true %>
-          <%= f.label :is_valid, "有効", class: "valid ml-1" %>
-          <%= f.radio_button :is_valid, false, class: "ml-4" %>
-          <%= f.label :is_valid, "退会", class: "valid ml-1" %>
+          <%= f.label :is_valid, "有効", class: "valid me-3" %>
+          <%= f.radio_button :is_valid, false %>
+          <%= f.label :is_valid, "退会", class: "valid" %>
         </div>
+      </div>
 
-        <div class="row form-group offset-4 mt-4 ml-26">
-          <%= f.submit '変更を保存', class:"btn btn-success" %>
-        </div>
-      <% end %>
-    </div>
+      <div class="mt-4 text-center">
+        <%= f.submit '変更を保存', class: "btn btn-success" %>
+      </div>
+
+    <% end %>
+
   </div>
 </div>
