@@ -111,9 +111,9 @@ th { color: #cd853f; }
 // 6. フッター（明るいベージュ）
 // ═══════════════════════════════════════════
 #site-footer {
-  background-color: $beige;
+  background-color: $beige-dark;
   color: $text-main;
-  border-top: 1px solid $beige-dark;
+  border-top: 1px solid darken($beige-dark, 6%);
 
   // ロゴの白背景を自然に馴染ませる
   .footer-logo { mix-blend-mode: multiply; }
