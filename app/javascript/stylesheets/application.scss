@@ -216,28 +216,52 @@ th { color: #cd853f; }
 // ═══════════════════════════════════════════
 .top-search {
   background-color: $beige;
-  padding: 52px 0;
+  padding: 48px 0;
   border-top: 1px solid $beige-dark;
   border-bottom: 1px solid $beige-dark;
 
-  .top-section-title { text-align: left; }
+  &__card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(61, 43, 31, 0.10);
+    padding: 36px 40px 40px;
+
+    @media (max-width: 575.98px) {
+      padding: 24px 20px 28px;
+    }
+  }
+
+  &__card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $brown-dark;
+    margin-bottom: 24px;
+    background: none !important;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $beige-dark;
+  }
 
   &__label {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: $text-sub;
     margin-bottom: 8px;
   }
 
   &__btn {
-    background-color: $brown;
+    background-color: $green;
     color: #fff;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 1rem;
     border: none;
-    transition: background 0.2s;
-    &:hover { background-color: $brown-dark; color: #fff; }
+    transition: background 0.2s, transform 0.15s;
+    &:hover {
+      background-color: $green-dark;
+      color: #fff;
+      transform: translateY(-1px);
+    }
   }
 }
 

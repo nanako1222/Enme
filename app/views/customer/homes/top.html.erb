@@ -33,7 +33,10 @@
 <%# ─── Search ─────────────────────────────────────────── %>
 <section class="top-search">
   <div class="container">
-    <h2 class="top-section-title">飲食店を検索する</h2>
+    <div class="top-search__card">
+      <h2 class="top-search__card-title">
+        <i class="fas fa-search me-2"></i>飲食店を検索する
+      </h2>
 
     <%= form_with model: @customer, url: restaurants_path, method: :get,
                   id: "search_restaurant", local: true do |f| %>
@@ -93,6 +96,7 @@
       </div>
 
     <% end %>
+    </div><%# /top-search__card %>
   </div>
 </section>
 
