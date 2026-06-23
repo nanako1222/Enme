@@ -108,23 +108,25 @@ th { color: #cd853f; }
 }
 
 // ═══════════════════════════════════════════
-// 6. フッター（新デザイン）
+// 6. フッター（明るいベージュ）
 // ═══════════════════════════════════════════
 #site-footer {
-  background-color: $brown-dark;
-  color: #e8ddd0;
+  background-color: $beige;
+  color: $text-main;
+  border-top: 1px solid $beige-dark;
 
-  .footer-logo { filter: brightness(0) invert(1); opacity: 0.9; }
-  .footer-tagline { font-size: 0.85rem; color: #c9b99a; }
+  // ロゴの白背景を自然に馴染ませる
+  .footer-logo { mix-blend-mode: multiply; }
+  .footer-tagline { font-size: 0.85rem; color: $text-sub; }
   .footer-link {
-    color: #c9b99a;
+    color: $brown;
     text-decoration: none;
     font-size: 0.88rem;
-    &:hover { color: #fff; }
+    &:hover { color: $brown-dark; text-decoration: underline; }
   }
   .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.12);
-    color: #8a7a6a;
+    border-top: 1px solid $beige-dark;
+    color: $text-sub;
   }
 }
 
@@ -159,28 +161,34 @@ th { color: #cd853f; }
     max-width: 480px;
   }
 
-  &__cta {
-    background-color: $green;
-    color: #fff;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    transition: background 0.2s, transform 0.15s;
-
-    &:hover {
-      background-color: $green-dark;
-      color: #fff;
-      transform: translateY(-1px);
-    }
-  }
-
   &__img {
     width: 100%;
     max-height: 420px;
     object-fit: cover;
     box-shadow: 0 8px 32px rgba(61, 43, 31, 0.12);
+  }
+
+  // ─── 特徴アイコン 3つ ───────────────────
+  &__features {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  &__feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: $text-sub;
+    line-height: 1.5;
+  }
+
+  &__feature-icon {
+    color: $green;
+    font-size: 1.2rem;
+    margin-top: 2px;
+    flex-shrink: 0;
   }
 }
 
@@ -243,24 +251,30 @@ th { color: #cd853f; }
 }
 
 .top-allergen-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 8px;
+
+  @media (max-width: 575.98px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .top-allergen-chip {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
-  padding: 5px 12px;
+  padding: 6px 8px;
   border: 1.5px solid $beige-dark;
-  border-radius: 20px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 0.83rem;
+  font-size: 0.82rem;
   color: $text-main;
   background: $ivory;
   transition: all 0.15s;
   user-select: none;
+  text-align: center;
 
   &:hover { border-color: $brown; background: $beige; }
 
@@ -361,17 +375,83 @@ th { color: #cd853f; }
   }
 }
 
-.top-restaurants__more-btn {
-  border: 1.5px solid $green;
-  color: $green-dark;
+// ═══════════════════════════════════════════
+// 11. トップページ: Enmeの使い方
+// ═══════════════════════════════════════════
+.top-steps {
+  background-color: $beige;
+  padding: 60px 0 64px;
+  border-top: 1px solid $beige-dark;
+}
+
+.top-step {
+  &__icon-wrap {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: $green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+
+  &__num {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: $brown;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  &__icon {
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  &__title {
+    font-weight: 700;
+    color: $brown-dark;
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+  }
+
+  &__desc {
+    font-size: 0.82rem;
+    color: $text-sub;
+    margin: 0;
+  }
+}
+
+.top-steps__cta {
+  background-color: $green;
+  color: #fff;
+  padding: 12px 32px;
   border-radius: 8px;
+  font-size: 1rem;
   font-weight: 600;
-  transition: all 0.2s;
-  &:hover { background-color: $green; color: #fff; }
+  border: none;
+  transition: background 0.2s, transform 0.15s;
+
+  &:hover {
+    background-color: $green-dark;
+    color: #fff;
+    transform: translateY(-1px);
+  }
 }
 
 // ═══════════════════════════════════════════
-// 11. 既存ページ用（変更なし）
+// 12. 既存ページ用（変更なし）
 // ═══════════════════════════════════════════
 .flashing { animation: blink 0.8s ease-in-out infinite alternate; color: red; }
 @keyframes blink { 0% { opacity: 0; } 100% { opacity: 1; } }
