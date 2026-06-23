@@ -168,27 +168,81 @@ th { color: #cd853f; }
     box-shadow: 0 8px 32px rgba(61, 43, 31, 0.12);
   }
 
-  // ─── 特徴アイコン 3つ ───────────────────
-  &__features {
+  // ─── 4ステップ ──────────────────────────
+  &__steps {
     display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    background: rgba(122, 92, 68, 0.05);
+    border: 1px solid $beige-dark;
+    border-radius: 14px;
+    padding: 20px 28px;
+
+    @media (max-width: 767.98px) {
+      flex-direction: column;
+      gap: 0;
+      padding: 20px;
+      align-items: stretch;
+    }
   }
 
-  &__feature {
+  &__step-item {
+    flex: 1;
     display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 0.85rem;
-    color: $text-sub;
-    line-height: 1.5;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    padding: 8px;
+
+    @media (max-width: 767.98px) {
+      flex-direction: row;
+      text-align: left;
+      padding: 10px 4px;
+      gap: 12px;
+    }
   }
 
-  &__feature-icon {
-    color: $green;
-    font-size: 1.2rem;
-    margin-top: 2px;
+  &__step-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: $green;
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+  }
+
+  &__step-icon {
+    font-size: 1.3rem;
+    color: $green;
+
+    @media (max-width: 767.98px) {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__step-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-main;
+    line-height: 1.3;
+  }
+
+  &__step-arrow {
+    color: $beige-dark;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+
+    @media (max-width: 767.98px) {
+      align-self: center;
+      transform: rotate(90deg);
+      padding: 2px 0;
+    }
   }
 }
 
@@ -400,82 +454,7 @@ th { color: #cd853f; }
 }
 
 // ═══════════════════════════════════════════
-// 11. トップページ: Enmeの使い方
-// ═══════════════════════════════════════════
-.top-steps {
-  background-color: $beige;
-  padding: 60px 0 64px;
-  border-top: 1px solid $beige-dark;
-}
-
-.top-step {
-  &__icon-wrap {
-    position: relative;
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: $green;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 16px;
-  }
-
-  &__num {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: $brown;
-    color: #fff;
-    font-size: 0.72rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-  }
-
-  &__icon {
-    color: #fff;
-    font-size: 1.5rem;
-  }
-
-  &__title {
-    font-weight: 700;
-    color: $brown-dark;
-    margin-bottom: 4px;
-    font-size: 0.95rem;
-  }
-
-  &__desc {
-    font-size: 0.82rem;
-    color: $text-sub;
-    margin: 0;
-  }
-}
-
-.top-steps__cta {
-  background-color: $green;
-  color: #fff;
-  padding: 12px 32px;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  transition: background 0.2s, transform 0.15s;
-
-  &:hover {
-    background-color: $green-dark;
-    color: #fff;
-    transform: translateY(-1px);
-  }
-}
-
-// ═══════════════════════════════════════════
-// 12. 既存ページ用（変更なし）
+// 11. 既存ページ用（変更なし）
 // ═══════════════════════════════════════════
 .flashing { animation: blink 0.8s ease-in-out infinite alternate; color: red; }
 @keyframes blink { 0% { opacity: 0; } 100% { opacity: 1; } }
