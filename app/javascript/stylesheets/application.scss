@@ -537,14 +537,25 @@ th { color: #cd853f; }
     flex: 1;
   }
 
-  &__match-badge {
+  &__full-badge {
     display: inline-flex;
     align-items: center;
     font-size: 0.78rem;
     font-weight: 700;
-    color: $green-dark;
-    background: #edf4ee;
-    border: 1px solid #c6dfc8;
+    color: #fff;
+    background: $green-dark;
+    border-radius: 10px;
+    padding: 4px 10px;
+  }
+
+  &__partial-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #7a4f00;
+    background: #fff3cd;
+    border: 1px solid #f0c060;
     border-radius: 10px;
     padding: 4px 10px;
   }

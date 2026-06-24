@@ -77,14 +77,22 @@
                 </p>
               <% end %>
 
-              <%# アレルゲン確認バッジ %>
+              <%# アレルゲン対応バッジ %>
               <div class="search-card__allergen-hint mb-3">
                 <% if @selected_allergies&.any? %>
-                  <span class="search-card__match-badge">
-                    <i class="fas fa-check-circle me-1"></i>除外条件に合うメニューあり
-                  </span>
+                  <% allergen_ids_set = @allergy_ids.to_set %>
+                  <% has_unsafe_menu = restaurant.menus.any? { |m| m.allergies.any? { |a| allergen_ids_set.include?(a.id) } } %>
+                  <% if has_unsafe_menu %>
+                    <span class="search-card__partial-badge">
+                      <i class="fas fa-exclamation-triangle me-1"></i>一部メニューが対応・要確認
+                    </span>
+                  <% else %>
+                    <span class="search-card__full-badge">
+                      <i class="fas fa-check-circle me-1"></i>全メニュー対応
+                    </span>
+                  <% end %>
                   <p class="search-card__hint-sub">
-                    <%= link_to "メニューで対象を確認する", restaurant_menus_path(restaurant), class: "search-card__hint-link" %>
+                    <%= link_to "対応メニューを確認する", restaurant_menus_path(restaurant), class: "search-card__hint-link" %>
                   </p>
                 <% else %>
                   <span class="search-card__menu-hint">
