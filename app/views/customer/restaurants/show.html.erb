@@ -87,6 +87,36 @@
   </section>
 <% end %>
 
+<%# ─── お知らせ・新着情報 ──────────────────────────── %>
+<section class="rest-news">
+  <div class="container py-4">
+    <h2 class="rest-section-title">
+      <i class="fas fa-bullhorn me-2"></i>お知らせ・新着情報
+    </h2>
+    <p class="rest-section-sub">期間限定メニュー・アレルギー対応メニュー追加・営業時間変更など</p>
+
+    <% if @restaurant.news.present? %>
+      <div class="rest-news-card">
+        <div class="rest-news-card__icon">
+          <i class="fas fa-store"></i>
+        </div>
+        <div class="rest-news-card__body">
+          <p class="rest-news-card__from">店舗からのお知らせ</p>
+          <div class="rest-news-card__text">
+            <%= simple_format(@restaurant.news) %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="rest-news-empty">
+        <i class="fas fa-bell rest-news-empty__icon"></i>
+        <p class="rest-news-empty__text">現在、新着のお知らせはありません</p>
+        <p class="rest-news-empty__sub">期間限定メニューや営業時間変更などが出た際にこちらへ掲載されます</p>
+      </div>
+    <% end %>
+  </div>
+</section>
+
 <%# ─── 店舗基本情報 ──────────────────────────────── %>
 <section class="rest-info">
   <div class="container py-4 pb-5">

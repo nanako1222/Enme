@@ -756,6 +756,90 @@ th { color: #cd853f; }
   font-weight: 600;
 }
 
+// ─── お知らせセクション ───────────────────
+.rest-news {
+  background-color: $ivory;
+  border-top: 1px solid $beige-dark;
+  border-bottom: 1px solid $beige-dark;
+}
+
+.rest-news-card {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 16px;
+  border-left: 4px solid $green;
+  box-shadow: 0 2px 16px rgba(122, 92, 68, 0.07);
+  padding: 24px 28px;
+
+  @media (max-width: 575.98px) {
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 18px;
+  }
+
+  &__icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #edf4ee;
+    color: $green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  &__body { flex: 1; }
+
+  &__from {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $green-dark;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    color: $text-main;
+    line-height: 1.8;
+
+    p { margin-bottom: 6px; &:last-child { margin-bottom: 0; } }
+  }
+}
+
+.rest-news-empty {
+  background: #fff;
+  border-radius: 16px;
+  border: 1.5px dashed $beige-dark;
+  padding: 40px 24px;
+  text-align: center;
+
+  &__icon {
+    display: block;
+    font-size: 1.6rem;
+    color: $beige-dark;
+    margin-bottom: 12px;
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    color: $text-sub;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  &__sub {
+    font-size: 0.8rem;
+    color: $beige-dark;
+    margin: 0;
+  }
+}
+
 // ─── 店舗情報カード ───────────────────────
 .rest-info {
   background-color: $ivory;
