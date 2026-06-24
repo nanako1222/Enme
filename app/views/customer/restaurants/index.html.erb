@@ -77,18 +77,19 @@
                 </p>
               <% end %>
 
-              <%# アレルゲン対応タグ %>
-              <% allergens = restaurant.menus.flat_map(&:allergies).map(&:allergen).uniq %>
-              <div class="top-card__tags mb-3">
-                <% if allergens.any? %>
-                  <% allergens.first(4).each do |a| %>
-                    <span class="top-card__tag"><%= a %>対応</span>
-                  <% end %>
-                  <% if allergens.size > 4 %>
-                    <span class="top-card__tag top-card__tag--more">+<%= allergens.size - 4 %></span>
-                  <% end %>
+              <%# アレルゲン確認バッジ %>
+              <div class="search-card__allergen-hint mb-3">
+                <% if @selected_allergies&.any? %>
+                  <span class="search-card__match-badge">
+                    <i class="fas fa-check-circle me-1"></i>除外条件に合うメニューあり
+                  </span>
+                  <p class="search-card__hint-sub">
+                    <%= link_to "メニューで対象を確認する", restaurant_menus_path(restaurant), class: "search-card__hint-link" %>
+                  </p>
                 <% else %>
-                  <span class="top-card__no-tag">アレルゲン情報を確認</span>
+                  <span class="search-card__menu-hint">
+                    <i class="fas fa-utensils me-1"></i>メニューでアレルゲンを確認できます
+                  </span>
                 <% end %>
               </div>
 

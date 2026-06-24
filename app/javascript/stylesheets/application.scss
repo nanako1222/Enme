@@ -529,6 +529,48 @@ th { color: #cd853f; }
     margin-bottom: 10px;
   }
 
+  &__allergen-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1;
+  }
+
+  &__match-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: $green-dark;
+    background: #edf4ee;
+    border: 1px solid #c6dfc8;
+    border-radius: 10px;
+    padding: 4px 10px;
+  }
+
+  &__hint-sub {
+    font-size: 0.75rem;
+    color: $text-sub;
+    margin: 0;
+  }
+
+  &__hint-link {
+    color: $green-dark;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+
+  &__menu-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78rem;
+    color: $text-sub;
+
+    i { color: $green; }
+  }
+
   &__link-btn {
     display: block;
     text-align: center;
