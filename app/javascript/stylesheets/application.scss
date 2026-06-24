@@ -578,7 +578,278 @@ th { color: #cd853f; }
 }
 
 // ═══════════════════════════════════════════
-// 12. 既存ページ用（変更なし）
+// 12. 店舗詳細ページ
+// ═══════════════════════════════════════════
+
+// ─── ヒーローセクション ────────────────────
+.rest-hero {
+  background-color: $ivory;
+}
+
+.rest-hero__img-wrap {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(61, 43, 31, 0.10);
+}
+
+.rest-hero__img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.rest-hero__demo-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  color: $text-sub;
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+.rest-hero__location {
+  font-size: 0.82rem;
+  color: $text-sub;
+  margin-bottom: 8px;
+
+  i { color: $green; }
+}
+
+.rest-hero__name {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: $brown-dark !important;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.rest-hero__quickinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rest-hero__qi-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: $text-sub;
+
+  i {
+    color: $green;
+    width: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+}
+
+.rest-hero__intro {
+  font-size: 0.92rem;
+  color: $text-main;
+  line-height: 1.8;
+  background: $beige;
+  border-radius: 12px;
+  padding: 16px 18px;
+
+  p { margin: 0; }
+}
+
+// メニューボタン
+.rest-hero__menu-btn {
+  background-color: $green;
+  color: #fff;
+  border-radius: 8px;
+  padding: 9px 22px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border: none;
+  transition: background 0.15s;
+
+  &:hover {
+    background-color: $green-dark;
+    color: #fff;
+  }
+}
+
+// ─── お気に入りボタン（既存クラス拡張） ───
+.favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid $brown;
+  color: $brown;
+  background: transparent;
+  transition: all 0.15s;
+
+  i { color: $brown; }
+
+  &:hover {
+    background-color: $brown;
+    color: #fff;
+    i { color: #fff; }
+  }
+}
+
+.favorite-delete {
+  background-color: $brown;
+  color: #fff;
+  border: 1.5px solid $brown;
+
+  i { color: #fff; }
+
+  &:hover {
+    background-color: $brown-dark;
+    border-color: $brown-dark;
+    color: #fff;
+  }
+}
+
+// ─── セクション共通タイトル ────────────────
+.rest-section-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: $brown-dark;
+  margin-bottom: 6px;
+  background: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+
+  i { color: $green; }
+}
+
+.rest-section-sub {
+  font-size: 0.83rem;
+  color: $text-sub;
+  margin-bottom: 16px;
+}
+
+// ─── アレルゲン対応エリア ──────────────────
+.rest-allergen {
+  background-color: $beige;
+  border-top: 1px solid $beige-dark;
+  border-bottom: 1px solid $beige-dark;
+}
+
+.rest-allergen-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rest-allergen-tag {
+  font-size: 0.82rem;
+  padding: 5px 14px;
+  border-radius: 14px;
+  background: #edf4ee;
+  color: $green-dark;
+  border: 1px solid #c6dfc8;
+  font-weight: 600;
+}
+
+// ─── 店舗情報カード ───────────────────────
+.rest-info {
+  background-color: $ivory;
+}
+
+.rest-info-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(122, 92, 68, 0.07);
+  padding: 8px 28px;
+
+  @media (max-width: 575.98px) {
+    padding: 4px 16px;
+  }
+}
+
+.rest-info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid $beige;
+
+  &:last-child { border-bottom: none; }
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: $ivory;
+    color: $green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $text-sub;
+    letter-spacing: 0.04em;
+    margin-bottom: 3px;
+  }
+
+  &__value {
+    font-size: 0.9rem;
+    color: $text-main;
+    line-height: 1.55;
+    margin: 0;
+  }
+}
+
+.rest-info-link {
+  color: $green-dark;
+  word-break: break-all;
+
+  &:hover { color: $brown; }
+}
+
+// ─── メニューCTA ──────────────────────────
+.rest-cta {
+  background-color: $beige;
+  border-top: 1px solid $beige-dark;
+}
+
+.rest-cta__lead {
+  font-size: 0.9rem;
+  color: $text-sub;
+  margin-bottom: 16px;
+}
+
+.rest-cta__btn {
+  background-color: $green;
+  color: #fff;
+  border-radius: 10px;
+  padding: 14px 44px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border: none;
+  transition: background 0.15s, transform 0.15s;
+  box-shadow: 0 4px 16px rgba(90, 110, 82, 0.25);
+
+  &:hover {
+    background-color: $green-dark;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+}
+
+// ═══════════════════════════════════════════
+// 13. 既存ページ用（変更なし）
 // ═══════════════════════════════════════════
 .flashing { animation: blink 0.8s ease-in-out infinite alternate; color: red; }
 @keyframes blink { 0% { opacity: 0; } 100% { opacity: 1; } }
