@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   }
 
   root :to  => 'customer/homes#top'
-  get '/about' => 'customer/homes#about'
+  get '/about'   => 'customer/homes#about'
+  get '/terms'   => 'customer/homes#terms',   as: 'terms'
+  get '/contact' => 'customer/homes#contact', as: 'contact'
   resources :areas, only: :index
 
   # resources :areas do

@@ -21,7 +21,7 @@
         <nav class="navbar navbar-expand-lg" id="global_nav">
           <div class="container">
             <a class="navbar-brand" href="/">
-              <%= image_tag 'logo.png', height: '52', alt: 'Enme' %>
+              <%= image_tag 'logo.png', height: '66', alt: 'Enme' %>
             </a>
 
             <button class="navbar-toggler" type="button"
@@ -83,17 +83,33 @@
     <%# ─── Footer ──────────────────────────────────────── %>
     <footer id="site-footer">
       <div class="container">
-        <div class="row align-items-center py-4">
-          <div class="col-md-6 mb-3 mb-md-0">
-            <%= image_tag 'logo.png', height: '42', alt: 'Enme', class: "footer-logo" %>
+        <div class="row py-5 g-4">
+
+          <%# ロゴ・タグライン %>
+          <div class="col-md-4 mb-2 mb-md-0">
+            <%= image_tag 'logo.png', height: '52', alt: 'Enme', class: "footer-logo" %>
             <p class="footer-tagline mt-2 mb-0">アレルギーがあっても、安心して外食を。</p>
           </div>
-          <div class="col-md-6 text-md-end">
-            <% unless signed_in? %>
-              <%= link_to "店舗会員登録", new_restaurant_registration_path, class: "footer-link me-3", data: {"turbolinks": false} %>
-              <%= link_to "店舗ログイン", new_restaurant_session_path, class: "footer-link" %>
-            <% end %>
+
+          <%# サービスリンク %>
+          <div class="col-md-4">
+            <p class="footer-nav-title">サービス</p>
+            <ul class="footer-nav-list">
+              <li><%= link_to "About", about_path, class: "footer-link", data: {"turbolinks" => false} %></li>
+              <li><%= link_to "利用規約", terms_path, class: "footer-link" %></li>
+              <li><%= link_to "お問い合わせ", contact_path, class: "footer-link" %></li>
+            </ul>
           </div>
+
+          <%# 店舗オーナー向け %>
+          <div class="col-md-4">
+            <p class="footer-nav-title">飲食店オーナーの方</p>
+            <ul class="footer-nav-list">
+              <%= content_tag :li, link_to("店舗会員登録", new_restaurant_registration_path, class: "footer-link", data: {"turbolinks": false}) %>
+              <%= content_tag :li, link_to("店舗ログイン", new_restaurant_session_path, class: "footer-link") %>
+            </ul>
+          </div>
+
         </div>
         <div class="footer-bottom text-center py-3">
           <p class="mb-0 small">©<%= Time.now.year %> Enme</p>

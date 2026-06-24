@@ -49,7 +49,7 @@ th { color: #cd853f; }
   border-bottom: 1px solid $beige-dark;
   min-height: 68px;
 
-  .navbar-brand img { max-height: 52px; }
+  .navbar-brand img { max-height: 66px; }
 
   .nav-link {
     color: $text-main !important;
@@ -124,6 +124,24 @@ th { color: #cd853f; }
     font-size: 0.88rem;
     &:hover { color: $brown-dark; text-decoration: underline; }
   }
+  .footer-nav-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: $text-sub;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .footer-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .footer-bottom {
     border-top: 1px solid $beige-dark;
     color: $text-sub;
@@ -250,7 +268,7 @@ th { color: #cd853f; }
 // ═══════════════════════════════════════════
 .top-search {
   background-color: $beige;
-  padding: 48px 0;
+  padding: 32px 0 40px;
   border-top: 1px solid $beige-dark;
   border-bottom: 1px solid $beige-dark;
 
@@ -266,13 +284,15 @@ th { color: #cd853f; }
   }
 
   &__card-title {
-    font-size: 1.2rem;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 800;
     color: $brown-dark;
     margin-bottom: 24px;
     background: none !important;
     padding-bottom: 16px;
-    border-bottom: 1px solid $beige-dark;
+    border-bottom: 2px solid $beige-dark;
+
+    i { color: $green; }
   }
 
   &__label {
