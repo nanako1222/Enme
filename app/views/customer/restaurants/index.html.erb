@@ -1,48 +1,123 @@
-<div class="container">
-  <div class="col-11 col-md-10 mx-auto">
+<%# ─── 検索条件バー ──────────────────────────────────── %>
+<div class="search-results-header">
+  <div class="container py-4">
 
-    <h4 class="text-center mt-5">飲食店一覧 <span class="fs-6"><%= "(全#{@restaurant_count}件)" %></span></h4>
+    <%# 条件バッジ群 %>
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+      <span class="search-condition-label">検索条件</span>
 
-    <div class="flashing mt-2">
-      <p>※現在登録されているデータは架空です</p>
+      <% if @selected_state_name.present? %>
+        <span class="search-condition-badge">
+          <i class="fas fa-map-marker-alt me-1"></i><%= @selected_state_name %>
+        </span>
+      <% end %>
+
+      <% if @selected_area_name.present? %>
+        <span class="search-condition-badge"><%= @selected_area_name %></span>
+      <% end %>
+
+      <% if @selected_allergies&.any? %>
+        <% @selected_allergies.each do |allergy| %>
+          <span class="search-condition-badge search-condition-badge--allergy">
+            <i class="fas fa-ban me-1"></i><%= allergy.allergen %>除外
+          </span>
+        <% end %>
+      <% end %>
+
+      <% if @selected_state_name.blank? && @selected_area_name.blank? && !@selected_allergies&.any? %>
+        <span class="search-condition-badge">すべての店舗</span>
+      <% end %>
     </div>
 
-    <div class="table-responsive mt-4">
-      <table class="table table-hover">
-        <thead class="table-secondary">
-          <tr>
-            <th>店名</th>
-            <th>住所</th>
-            <th>定休日</th>
-            <th>都道府県</th>
-            <th>地域エリア</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @restaurants.each do |restaurant| %>
-            <tr>
-              <td>
-                <% if restaurant.image.attached? %>
-                  <%= link_to restaurant_path(restaurant.id) do %>
-                    <%= image_tag restaurant.get_image(60,50), class: "me-2", width: 60, height: 50, style: "object-fit: cover;" %>
-                  <% end %>
-                <% else %>
-                  <%= link_to restaurant_path(restaurant.id) do %>
-                    <%= image_tag 'default-image.jpg', size: "60x50", class: "me-2" %>
-                  <% end %>
-                <% end %>
-                <%= link_to restaurant.name, restaurant_path(restaurant.id) %>
-              </td>
-              <td><%= restaurant.address %></td>
-              <td><%= restaurant.regular_holiday %></td>
-              <td><%= State.find(restaurant.state_id).state %></td>
-              <td><%= Area.find(restaurant.area_id).area %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <div class="d-flex justify-content-center mt-3"><%= paginate @restaurants %></div>
+    <%# ヒット件数 + 再検索リンク %>
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+      <p class="search-results-count mb-0">
+        <strong><%= @restaurant_count %>件</strong>のお店が見つかりました
+      </p>
+      <%= link_to search_restaurants_path, class: "search-results-refine-link" do %>
+        <i class="fas fa-sliders-h me-1"></i>絞り込みを変更
+      <% end %>
     </div>
 
   </div>
+</div>
+
+<%# ─── カード一覧 ─────────────────────────────────────── %>
+<div class="container py-5 pb-5">
+  <% if @restaurants.any? %>
+    <div class="row g-4">
+      <% @restaurants.each do |restaurant| %>
+        <div class="col-md-6 col-lg-4">
+          <div class="top-card search-card">
+
+            <%# 写真 %>
+            <%= link_to restaurant_path(restaurant), class: "text-decoration-none d-block" do %>
+              <div class="top-card__img-wrap">
+                <%= image_tag restaurant.get_image(400, 230),
+                    class: "top-card__img", alt: restaurant.name %>
+              </div>
+            <% end %>
+
+            <%# カード本文 %>
+            <div class="top-card__body search-card__body">
+
+              <h5 class="top-card__name">
+                <%= link_to restaurant.name, restaurant_path(restaurant),
+                    class: "text-decoration-none top-card__name-link" %>
+              </h5>
+
+              <p class="top-card__area">
+                <i class="fas fa-map-marker-alt me-1"></i>
+                <%= restaurant.state.state %>&nbsp;<%= restaurant.area.area %>
+              </p>
+
+              <% if restaurant.regular_holiday.present? %>
+                <p class="search-card__holiday">
+                  <i class="fas fa-calendar-times me-1"></i>定休日：<%= restaurant.regular_holiday %>
+                </p>
+              <% end %>
+
+              <%# アレルゲン対応タグ %>
+              <% allergens = restaurant.menus.flat_map(&:allergies).map(&:allergen).uniq %>
+              <div class="top-card__tags mb-3">
+                <% if allergens.any? %>
+                  <% allergens.first(4).each do |a| %>
+                    <span class="top-card__tag"><%= a %>対応</span>
+                  <% end %>
+                  <% if allergens.size > 4 %>
+                    <span class="top-card__tag top-card__tag--more">+<%= allergens.size - 4 %></span>
+                  <% end %>
+                <% else %>
+                  <span class="top-card__no-tag">アレルゲン情報を確認</span>
+                <% end %>
+              </div>
+
+              <%# 詳細へ %>
+              <%= link_to restaurant_path(restaurant), class: "search-card__link-btn" do %>
+                詳細を見る&nbsp;<i class="fas fa-arrow-right"></i>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5 mb-2">
+      <%= paginate @restaurants %>
+    </div>
+
+  <% else %>
+    <%# 0件 %>
+    <div class="text-center py-5">
+      <div class="search-empty-icon mb-4">
+        <i class="fas fa-search"></i>
+      </div>
+      <h5 class="search-empty-title">条件に合うお店が見つかりませんでした</h5>
+      <p class="text-muted small mt-2">検索条件を変えてお試しください</p>
+      <%= link_to search_restaurants_path, class: "btn search-empty-btn mt-3" do %>
+        <i class="fas fa-arrow-left me-1"></i>検索条件を変更する
+      <% end %>
+    </div>
+  <% end %>
 </div>

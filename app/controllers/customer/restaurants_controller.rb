@@ -12,21 +12,23 @@ class Customer::RestaurantsController < ApplicationController
   end
 
   def index
-    #byebug
-    #検索画面のアレルギーにチェックがついていないかつ顧客が持つアレルギーのチェックがないメニューを持つレストランを検索
-    #1こでもアレルギーが入っているメニューが存在したらそれをはぶいて検索する
-    #ただし顧客のアレルギーを一つでも持っていないメニューがある飲食店は表示させる
-    @restaurants = Restaurant.all
-    @restaurants = @restaurants.where(state_id: @state_id) if @state_id.present?
-    @restaurants = @restaurants.where(area_id: @area_id) if @area_id.present?
+    restaurants = Restaurant.where(is_valid: true)
+    restaurants = restaurants.where(state_id: @state_id) if @state_id.present?
+    restaurants = restaurants.where(area_id: @area_id) if @area_id.present?
 
     unless @allergy_ids.blank?
       unsafe_menu_ids = Menu.joins(:allergies).where(allergies: { id: @allergy_ids }).select(:id)
       safe_restaurant_ids = Menu.where.not(id: unsafe_menu_ids).pluck(:restaurant_id).uniq
-      @restaurants = @restaurants.where(id: safe_restaurant_ids)
+      restaurants = restaurants.where(id: safe_restaurant_ids)
     end
-    @restaurant_count = @restaurants.count
-    @restaurants = @restaurants.order(id: "DESC").page(params[:page]).per(9)
+
+    @restaurant_count = restaurants.count
+    @restaurants = restaurants.includes(:state, :area, menus: :allergies)
+                              .order(id: "DESC").page(params[:page]).per(9)
+
+    @selected_allergies   = Allergy.where(id: @allergy_ids) if @allergy_ids.present?
+    @selected_state_name  = State.find(@state_id).state if @state_id.present?
+    @selected_area_name   = Area.find(@area_id).area if @area_id.present?
   end
 
   def create
