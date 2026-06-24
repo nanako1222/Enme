@@ -84,16 +84,13 @@
                   <% has_unsafe_menu = restaurant.menus.any? { |m| m.allergies.any? { |a| allergen_ids_set.include?(a.id) } } %>
                   <% if has_unsafe_menu %>
                     <span class="search-card__partial-badge">
-                      <i class="fas fa-exclamation-triangle me-1"></i>一部メニューで対象アレルゲン不使用
+                      <i class="fas fa-exclamation-triangle me-1"></i>一部対象食材なし
                     </span>
                   <% else %>
                     <span class="search-card__full-badge">
-                      <i class="fas fa-check-circle me-1"></i>全メニューで対象アレルゲン不使用
+                      <i class="fas fa-check-circle me-1"></i>全品対象食材なし
                     </span>
                   <% end %>
-                  <p class="search-card__hint-sub">
-                    <%= link_to "対応メニューを確認する", restaurant_menus_path(restaurant), class: "search-card__hint-link" %>
-                  </p>
                 <% else %>
                   <span class="search-card__menu-hint">
                     <i class="fas fa-utensils me-1"></i>メニューでアレルゲンを確認できます
