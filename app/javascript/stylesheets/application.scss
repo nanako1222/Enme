@@ -844,7 +844,9 @@ th { color: #cd853f; }
   border-radius: 16px;
   border-left: 4px solid $green;
   box-shadow: 0 2px 16px rgba(122, 92, 68, 0.07);
-  padding: 24px 28px;
+  padding: 20px 24px;
+  max-height: 200px;
+  overflow-y: auto;
 
   @media (max-width: 575.98px) {
     flex-direction: column;
@@ -885,32 +887,10 @@ th { color: #cd853f; }
   }
 }
 
-.rest-news-empty {
-  background: #fff;
-  border-radius: 16px;
-  border: 1.5px dashed $beige-dark;
-  padding: 40px 24px;
-  text-align: center;
-
-  &__icon {
-    display: block;
-    font-size: 1.6rem;
-    color: $beige-dark;
-    margin-bottom: 12px;
-  }
-
-  &__text {
-    font-size: 0.9rem;
-    color: $text-sub;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-
-  &__sub {
-    font-size: 0.8rem;
-    color: $beige-dark;
-    margin: 0;
-  }
+.rest-news-empty-line {
+  font-size: 0.82rem;
+  color: $beige-dark;
+  margin: 4px 0 0;
 }
 
 // ─── 店舗情報カード ───────────────────────
@@ -933,7 +913,7 @@ th { color: #cd853f; }
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  padding: 16px 0;
+  padding: 10px 0;
   border-bottom: 1px solid $beige;
 
   &:last-child { border-bottom: none; }
@@ -1001,6 +981,39 @@ th { color: #cd853f; }
   &:hover {
     background-color: $green-dark;
     color: #fff;
+    transform: translateY(-2px);
+  }
+}
+
+// ─── 上部に戻るボタン ─────────────────────
+.scroll-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: $green;
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 16px rgba(90, 110, 82, 0.25);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.15s;
+  z-index: 900;
+
+  &--visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    background: $green-dark;
     transform: translateY(-2px);
   }
 }

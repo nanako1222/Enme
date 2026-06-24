@@ -71,7 +71,7 @@
             <%= render 'customer/favorites/favorite', favorite: @favorite %>
           <% end %>
           <%= link_to restaurant_menus_path(@restaurant.id), class: "btn rest-hero__menu-btn" do %>
-            <i class="fas fa-clipboard-list me-1"></i>メニュー一覧
+            <i class="fas fa-clipboard-list me-1"></i>メニューでアレルゲンを確認する
           <% end %>
         </div>
       </div>
@@ -101,18 +101,16 @@
         </div>
       </div>
     <% else %>
-      <div class="rest-news-empty">
-        <i class="fas fa-bell rest-news-empty__icon"></i>
-        <p class="rest-news-empty__text">現在、新着のお知らせはありません</p>
-        <p class="rest-news-empty__sub">期間限定メニューや営業時間変更などが出た際にこちらへ掲載されます</p>
-      </div>
+      <p class="rest-news-empty-line">
+        <i class="fas fa-bell me-1"></i>現在お知らせはありません
+      </p>
     <% end %>
   </div>
 </section>
 
 <%# ─── 店舗基本情報 ──────────────────────────────── %>
 <section class="rest-info">
-  <div class="container py-4 pb-5">
+  <div class="container py-3 pb-3">
     <h2 class="rest-section-title">
       <i class="fas fa-store me-2"></i>店舗情報
     </h2>
@@ -194,12 +192,16 @@
   </div>
 </section>
 
-<%# ─── メニューへのCTA ──────────────────────────── %>
-<section class="rest-cta">
-  <div class="container text-center py-5">
-    <p class="rest-cta__lead">メニューでアレルゲン詳細を確認しましょう</p>
-    <%= link_to restaurant_menus_path(@restaurant.id), class: "btn rest-cta__btn" do %>
-      <i class="fas fa-clipboard-list me-2"></i>この店舗のメニューを見る
-    <% end %>
-  </div>
-</section>
+<%# ─── 上部に戻るボタン ──────────────────────── %>
+<button class="scroll-top-btn" id="scrollTopBtn"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        aria-label="上部に戻る">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<script>
+  window.addEventListener('scroll', function() {
+    var btn = document.getElementById('scrollTopBtn');
+    if (btn) btn.classList.toggle('scroll-top-btn--visible', window.scrollY > 300);
+  });
+</script>
