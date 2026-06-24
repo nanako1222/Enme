@@ -395,7 +395,7 @@ th { color: #cd853f; }
 
   &__img-wrap {
     width: 100%;
-    height: 180px;
+    height: 140px;
     overflow: hidden;
   }
 
@@ -633,6 +633,26 @@ th { color: #cd853f; }
 // ═══════════════════════════════════════════
 // 12. 店舗詳細ページ
 // ═══════════════════════════════════════════
+
+// ─── 上部お知らせ帯 ────────────────────────
+.rest-notice-band {
+  background-color: #fdf5ec;
+  border-bottom: 1px solid $beige-dark;
+  padding: 8px 0;
+
+  p { margin: 0; line-height: 1.5; }
+
+  &__allergy {
+    font-size: 0.78rem;
+    color: #7a4f00;
+  }
+
+  &__demo {
+    font-size: 0.74rem;
+    color: $text-sub;
+    margin-top: 2px !important;
+  }
+}
 
 // ─── ヒーローセクション ────────────────────
 .rest-hero {

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  get '/health', to: proc { [200, {}, ['ok']] }
   root :to  => 'customer/homes#top'
   get '/about'   => 'customer/homes#about'
   get '/terms'   => 'customer/homes#terms',   as: 'terms'

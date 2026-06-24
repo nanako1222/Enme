@@ -7,6 +7,18 @@
   </div>
 <% end %>
 
+<%# ─── 上部お知らせ帯 ─────────────────────────────── %>
+<div class="rest-notice-band">
+  <div class="container">
+    <p class="rest-notice-band__allergy">
+      <i class="fas fa-exclamation-circle me-1"></i>掲載情報は店舗登録内容に基づいています。食材変更や調理器具の共有等により、アレルゲン混入の可能性があります。ご利用前に必ず店舗へ直接ご確認ください。
+    </p>
+    <p class="rest-notice-band__demo">
+      <i class="fas fa-info-circle me-1"></i>現在登録されているデータは架空のサンプルデータです。
+    </p>
+  </div>
+</div>
+
 <%# ─── 店舗ヘッダー ──────────────────────────────────── %>
 <div class="rest-hero">
   <div class="container py-5">
@@ -22,7 +34,6 @@
             <%= image_tag 'default-image.jpg',
                 class: "rest-hero__img", alt: @restaurant.name %>
           <% end %>
-          <span class="rest-hero__demo-badge">※架空データ</span>
         </div>
       </div>
 
@@ -68,27 +79,6 @@
     </div>
   </div>
 </div>
-
-<%# ─── アレルゲン対応 ─────────────────────────────── %>
-<% allergens = @restaurant.menus.flat_map(&:allergies).map(&:allergen).uniq %>
-<% if allergens.any? %>
-  <section class="rest-allergen">
-    <div class="container py-4">
-      <h2 class="rest-section-title">
-        <i class="fas fa-shield-alt me-2"></i>アレルゲン対応情報
-      </h2>
-      <p class="rest-section-sub">この店舗のメニューで対応しているアレルゲンです</p>
-      <div class="rest-allergen-tags">
-        <% allergens.each do |allergen| %>
-          <span class="rest-allergen-tag"><%= allergen %>対応</span>
-        <% end %>
-      </div>
-      <p class="rest-allergen-disclaimer mt-3">
-        <i class="fas fa-info-circle me-1"></i>アレルゲン情報は店舗の登録内容に基づきます。実際のご利用の際は、店舗へ直接ご確認ください。
-      </p>
-    </div>
-  </section>
-<% end %>
 
 <%# ─── お知らせ・新着情報 ──────────────────────────── %>
 <section class="rest-news">
