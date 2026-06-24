@@ -1,66 +1,86 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── ヒーロー ─────────────────────────────── %>
+<div class="search-form-hero">
+  <div class="container text-center py-4">
+    <h1 class="search-form-hero__title">飲食店を探す</h1>
+    <p class="search-form-hero__sub">除外したいアレルゲンとエリアを選んで、安心して食べられるお店を見つけましょう</p>
+  </div>
+</div>
 
-    <h4 class="text-center mt-5"><strong>飲食店検索</strong></h4>
-    <p class="text-center mt-2"><strong>アレルゲンを含まないメニューを提供するお店の絞り込みをします。</strong></p>
+<%# ─── フォームカード ──────────────────────── %>
+<div class="container py-5">
+  <div class="search-form-card">
 
-    <%= form_with model: @customer, url: restaurants_path, method: :get, id: 'search_restaurant', class: 'search_restaurant', local: true do |f| %>
+    <%= form_with model: @customer, url: restaurants_path, method: :get,
+        id: 'search_restaurant', class: 'search_restaurant', local: true do |f| %>
 
-      <div class="row mt-3 align-items-start">
-        <%= f.label :アレルゲン選択, class: "col-md-4 pt-1" %>
-        <div class="allergies_check_boxes col-md-8">
+      <%# アレルゲン選択 %>
+      <div class="search-form-section">
+        <h2 class="search-form-section__title">
+          <i class="fas fa-ban me-2"></i>除外するアレルゲン
+          <span class="search-form-section__note">複数選択可・選択しない場合は全店舗が対象</span>
+        </h2>
+        <div class="allergen-pills">
           <%= f.collection_check_boxes(:allergies, @allergies, :id, :allergen, include_hidden: false) do |a| %>
             <%= a.label { a.check_box + a.text } %>
           <% end %>
         </div>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :state_id, class: "col-md-4" %>
-        <%= f.collection_select :state_id, State.all, :id, :state,
-            { include_blank: "すべての都道府県" },
-            { class: "col-md-4" } %>
-      </div>
+      <hr class="search-form-divider">
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :area_id, class: "col-md-4" %>
-        <div id="areas_select_search" class="col-md-4">
-          <select name="customer[area_id]" id="customer_area_id">
-            <option value="">すべてのエリア</option>
-          </select>
+      <%# エリア絞り込み %>
+      <div class="search-form-section">
+        <h2 class="search-form-section__title">
+          <i class="fas fa-map-marker-alt me-2"></i>エリアで絞り込む
+          <span class="search-form-section__note">任意</span>
+        </h2>
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <label class="search-form-label">都道府県</label>
+            <%= f.collection_select :state_id, State.all, :id, :state,
+                { include_blank: "すべての都道府県" },
+                { class: "search-select w-100" } %>
+          </div>
+          <div class="col-sm-6">
+            <label class="search-form-label">地域エリア</label>
+            <div id="areas_select_search">
+              <select name="customer[area_id]" id="customer_area_id" class="search-select w-100">
+                <option value="">すべてのエリア</option>
+              </select>
+            </div>
+          </div>
         </div>
+        <p class="search-form-area-note mt-2">
+          ※エリア区分の詳細は
+          <%= link_to "こちら", about_path, class: "search-form-area-link", data: {"turbolinks" => false} %>
+          をご覧ください
+        </p>
       </div>
 
-      <p class="text-center mt-2 small">
-        ※エリア分け詳細は
-        <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
-        をご参考ください
-      </p>
-
-      <div class="mt-4 mb-5 text-center">
-        <%= button_tag type: :submit, class: "btn btn-success active" do %>
-          <i class="fas fa-search"></i> 検索
+      <%# 検索ボタン %>
+      <div class="text-center mt-4 mb-2">
+        <%= button_tag type: :submit, class: "btn search-form-btn" do %>
+          <i class="fas fa-search me-2"></i>この条件で検索する
         <% end %>
       </div>
 
-      <% if customer_signed_in? %>
-        <div class="mt-5">
-          <h4>登録アレルゲンで簡易検索</h4>
-          <p class="mt-2">
-            アレルゲンを登録した会員の方は
-            <%= link_to "こちら", simple_search_restaurants_path, class: "btn btn-outline-info btn-sm" %>
-            で簡単に検索する事ができます。
-          </p>
-        </div>
-      <% end %>
+    <% end %>
 
+    <%# 簡易検索（ログイン済みのみ） %>
+    <% if customer_signed_in? %>
+      <hr class="search-form-divider">
+      <p class="search-form-quick text-center">
+        <i class="fas fa-user-circle me-1"></i>登録済みアレルゲンで
+        <%= link_to "かんたん検索", simple_search_restaurants_path, class: "search-form-quick__link" %>
+        もできます
+      </p>
     <% end %>
 
   </div>
 </div>
 
 <script>
-  window.addEventListener('pageshow',()=>{
-    if(window.performance.navigation.type==2) location.reload();
+  window.addEventListener('pageshow', () => {
+    if (window.performance.navigation.type == 2) location.reload();
   });
 </script>

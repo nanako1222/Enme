@@ -1019,6 +1019,171 @@ th { color: #cd853f; }
 }
 
 // ═══════════════════════════════════════════
+// 14. 飲食店検索フォームページ
+// ═══════════════════════════════════════════
+
+.search-form-hero {
+  background-color: $beige;
+  border-bottom: 1px solid $beige-dark;
+
+  &__title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: $brown-dark;
+    margin-bottom: 8px;
+  }
+
+  &__sub {
+    font-size: 0.9rem;
+    color: $text-sub;
+    margin: 0;
+  }
+}
+
+.search-form-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 28px rgba(61, 43, 31, 0.09);
+  padding: 36px 44px;
+
+  @media (max-width: 767.98px) {
+    padding: 24px 20px;
+  }
+}
+
+.search-form-section {
+  &__title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: $brown;
+    margin-bottom: 16px;
+    background: none !important;
+    border-radius: 0 !important;
+    color: $brown !important;
+  }
+
+  &__note {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: $text-sub;
+    margin-left: 8px;
+  }
+}
+
+.search-form-divider {
+  border: none;
+  border-top: 1px solid $beige;
+  margin: 28px 0;
+}
+
+// ─── アレルゲンピルタグ ────────────────────
+.allergen-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1.5px solid $beige-dark;
+    background: #fff;
+    color: $text-sub;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+    user-select: none;
+
+    input[type="checkbox"] { display: none; }
+
+    &:hover {
+      border-color: $green;
+      color: $green-dark;
+      background: #f2f5f1;
+    }
+
+    &:has(input:checked) {
+      border-color: $green-dark;
+      background: $green-dark;
+      color: #fff;
+    }
+  }
+}
+
+// ─── エリア選択 ───────────────────────────
+.search-form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: $text-sub;
+  margin-bottom: 6px;
+  letter-spacing: 0.03em;
+}
+
+.search-select {
+  display: block;
+  border: 1.5px solid $beige-dark;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 0.9rem;
+  color: $text-main;
+  background-color: #fff;
+
+  &:focus {
+    outline: none;
+    border-color: $green;
+    box-shadow: 0 0 0 3px rgba(90, 110, 82, 0.12);
+  }
+}
+
+.search-form-area-note {
+  font-size: 0.78rem;
+  color: $text-sub;
+  margin-bottom: 0;
+}
+
+.search-form-area-link {
+  color: $green-dark;
+  text-decoration: underline;
+  &:hover { color: $brown; }
+}
+
+// ─── 検索ボタン ───────────────────────────
+.search-form-btn {
+  background-color: $green;
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px 52px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  transition: background 0.15s, transform 0.15s;
+  box-shadow: 0 4px 16px rgba(90, 110, 82, 0.2);
+
+  &:hover {
+    background-color: $green-dark;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+}
+
+// ─── 簡易検索 ─────────────────────────────
+.search-form-quick {
+  font-size: 0.88rem;
+  color: $text-sub;
+  margin: 0;
+
+  &__link {
+    color: $green-dark;
+    font-weight: 700;
+    text-decoration: underline;
+    &:hover { color: $brown; }
+  }
+}
+
+// ═══════════════════════════════════════════
 // 13. 既存ページ用（変更なし）
 // ═══════════════════════════════════════════
 .flashing { animation: blink 0.8s ease-in-out infinite alternate; color: red; }
