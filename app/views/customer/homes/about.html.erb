@@ -16,7 +16,7 @@
             <i class="fas fa-info-circle me-2"></i>このサイトについて
           </h2>
           <p class="about-section__text mt-3">
-            Enme（エンミー）は、食物アレルギーをお持ちの方が安心して外食を楽しめるよう、アレルゲン対応の飲食店を探せるサービスです。除外したいアレルゲンやエリアを選ぶだけで、条件に合ったお店を見つけられます。
+            食べられない食材を避けて、安心して外食できる飲食店を探せるサービスです。除外したいアレルゲンやエリアを選ぶだけで、条件に合ったお店を見つけられます。
           </p>
           <p class="about-section__text">
             会員登録なしでもご利用いただけます。登録すると、アレルゲン情報の保存やお気に入りの飲食店登録など、より便利にお使いいただけます。
@@ -48,9 +48,11 @@
     <h2 class="about-section__title text-center mb-2">
       <i class="fas fa-map-marked-alt me-2"></i>地域エリアについて
     </h2>
+    <p class="about-section__text text-center mb-2">
+      関西6府県の店舗を探しやすいよう、複数の市区町村をまとめた独自のエリア区分を採用しています。
+    </p>
     <p class="about-section__text text-center mb-4">
-      都道府県ごとに地域エリアを分けており、店舗を絞り込む際に活用します。<br>
-      市区町村名で検索すると、どのエリアに属するかを確認できます。
+      お探しのエリアがわからない場合は、市区町村名で検索してご確認ください。
     </p>
 
     <%# ─── 市区町村検索 ─── %>
@@ -78,18 +80,20 @@
   <div class="container">
     <div class="about-owner-card">
       <div class="row g-4 align-items-center">
-        <div class="col-md-8">
+        <div class="col-md-7">
           <h2 class="about-section__title about-section__title--light">
             <i class="fas fa-store me-2"></i>飲食店経営者の皆様へ
           </h2>
           <p class="about-section__text about-section__text--light mt-3">
-            飲食店経営者の皆様のご協力が、食物アレルギーをお持ちの方々の「安心して行けるお店」を増やす力になります。
+            飲食店経営者の皆様のご協力が、食物アレルギーをお持ちの方々の「安心して行けるお店」を増やす力になります。ぜひEnmeへのご登録をお願いいたします。
           </p>
-          <p class="about-section__text about-section__text--light">
-            アレルゲン情報を公開することで、外食の選択肢が少ない方々に、大切な一軒を届けることができます。ぜひEnmeへのご登録をお願いいたします。
-          </p>
+          <ul class="about-owner-checklist mt-3">
+            <li><i class="fas fa-check me-2"></i>無料で掲載できます</li>
+            <li><i class="fas fa-check me-2"></i>アレルギー対応メニューをアピールできます</li>
+            <li><i class="fas fa-check me-2"></i>新しいお客様との出会いにつながります</li>
+          </ul>
         </div>
-        <div class="col-md-4 text-center text-md-end">
+        <div class="col-md-5 text-center">
           <%= link_to new_restaurant_registration_path, class: "btn about-owner-btn" do %>
             <i class="fas fa-store-alt me-1"></i>店舗登録はこちら
           <% end %>

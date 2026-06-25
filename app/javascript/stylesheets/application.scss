@@ -1388,6 +1388,20 @@ input[type="checkbox"] {
   @media (max-width: 575.98px) { padding: 28px 20px; }
 }
 
+.about-owner-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    padding: 4px 0;
+
+    i { color: $beige; }
+  }
+}
+
 .about-owner-btn {
   background-color: #fff;
   color: $green-dark;
