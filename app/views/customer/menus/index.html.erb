@@ -40,10 +40,7 @@
               </div>
             <% end %>
             <div class="menu-card__body">
-              <h5 class="menu-card__name">
-                <%= link_to menu.name, restaurant_menu_path(@restaurant, menu),
-                    class: "menu-card__name-link" %>
-              </h5>
+              <h5 class="menu-card__name"><%= menu.name %></h5>
               <p class="menu-card__price">
                 ¥<%= menu.with_tax_price %><span class="menu-card__price-unit">（税込）</span>
               </p>
@@ -56,6 +53,9 @@
                 </div>
               <% else %>
                 <p class="menu-card__no-allergen">情報なし</p>
+              <% end %>
+              <%= link_to restaurant_menu_path(@restaurant, menu), class: "search-card__link-btn mt-3 d-block" do %>
+                説明・アレルゲンを確認&nbsp;<i class="fas fa-arrow-right"></i>
               <% end %>
             </div>
           </div>

@@ -61,10 +61,7 @@
             <%# カード本文 %>
             <div class="top-card__body search-card__body">
 
-              <h5 class="top-card__name">
-                <%= link_to restaurant.name, restaurant_path(restaurant),
-                    class: "text-decoration-none top-card__name-link" %>
-              </h5>
+              <h5 class="top-card__name"><%= restaurant.name %></h5>
 
               <p class="top-card__area">
                 <i class="fas fa-map-marker-alt me-1"></i>
