@@ -1,22 +1,55 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── ヒーロー ─────────────────────────────── %>
+<div class="auth-hero">
+  <div class="container text-center py-4">
+    <h1 class="auth-hero__title">かんたん検索</h1>
+    <p class="auth-hero__sub">登録済みのアレルゲン情報をもとに、すぐに検索できます</p>
+  </div>
+</div>
 
-    <h4 class="text-center mt-5"><strong>会員検索</strong></h4>
-    <p class="text-center mt-2">会員登録したアレルゲン情報を元に簡単検索します</p>
+<div class="container py-5">
+  <div class="auth-card auth-card--wide mx-auto">
 
-    <div class="customer_allergen mt-4 mb-3">
-      <h5>会員アレルゲン</h5>
-      <% @customer.allergies.each do |allergy| %>
-        <%= allergy.allergen %>
+    <%# 登録済みアレルゲン %>
+    <p class="auth-form__label mb-3">
+      <i class="fas fa-exclamation-triangle me-1"></i>除外するアレルゲン
+    </p>
+    <% if @customer.allergies.any? %>
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        <% @customer.allergies.each do |allergy| %>
+          <span class="menu-allergen-tag menu-allergen-tag--lg"><%= allergy.allergen %></span>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="simple-search__no-allergen mb-4">
+        <i class="fas fa-info-circle me-1"></i>アレルゲンが登録されていません。
+        <%= link_to "マイページ", my_page_path, class: "simple-search__mypage-link" %>
+        から登録できます。
+      </p>
+    <% end %>
+
+    <hr class="auth-divider mb-4">
+
+    <%# 検索ボタン %>
+    <p class="auth-form__label mb-3">
+      <i class="fas fa-map-marker-alt me-1"></i>エリアを選んで検索
+    </p>
+    <div class="d-flex flex-wrap gap-3">
+      <%= link_to restaurants_path(
+            customer: {
+              allergies: @customer.allergies.pluck(:id),
+              state_id: @customer.state_id
+            }
+          ), class: "btn simple-search__btn" do %>
+        <i class="far fa-map me-1"></i>都道府県で検索
       <% end %>
-    </div>
-
-    <div class="d-flex flex-wrap gap-3 mt-3">
-      <%= link_to restaurants_path(customer: { allergies: @customer.allergies.pluck(:id) }, state_id: @customer.state_id), class: "btn btn-info active" do %>
-        <i class="far fa-map"></i> 都道府県で検索
-      <% end %>
-      <%= link_to restaurants_path(customer: { area_id: @customer.area_id, allergies: @customer.allergies.pluck(:id) }, state_id: @customer.state_id), class: "btn btn-success active" do %>
-        <i class="fas fa-map-marked-alt"></i> 地域エリアで検索
+      <%= link_to restaurants_path(
+            customer: {
+              allergies: @customer.allergies.pluck(:id),
+              state_id: @customer.state_id,
+              area_id: @customer.area_id
+            }
+          ), class: "btn simple-search__btn simple-search__btn--primary" do %>
+        <i class="fas fa-map-marked-alt me-1"></i>地域エリアで検索
       <% end %>
     </div>
 

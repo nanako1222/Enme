@@ -1,60 +1,74 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── 上部お知らせ帯 ──────────────────────── %>
+<div class="rest-notice-band">
+  <div class="container">
+    <p class="rest-notice-band__demo">
+      <i class="fas fa-info-circle me-1"></i>現在登録されているデータは架空のサンプルデータです。
+    </p>
+  </div>
+</div>
 
-    <h4 class="text-center mt-5">会員情報詳細</h4>
-
-    <div class="flashing mt-2">
-      <p>※現在登録されているデータは架空です</p>
-    </div>
-    <div class="mt-3">
-      <% if flash[:notice] %>
-        <%= notice %>
+<%# ─── ページヘッダー ─────────────────────── %>
+<div class="menu-list-header">
+  <div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <h1 class="menu-list-header__title">
+        <i class="fas fa-user-circle me-2"></i>マイページ
+      </h1>
+      <%= link_to customers_information_edit_path, class: "btn menu-back-btn" do %>
+        <i class="fas fa-user-edit me-1"></i>情報を編集
       <% end %>
     </div>
+  </div>
+</div>
 
-    <div class="d-flex align-items-center gap-3 mt-4">
-      <h5 class="mb-0">登録情報</h5>
-      <%= link_to customers_information_edit_path, class: "btn btn-success active btn-sm" do %>
-        <i class="fas fa-user-edit"></i> 編集する
-      <% end %>
-    </div>
+<%# ─── 情報カード ──────────────────────────── %>
+<div class="container py-4 pb-5">
+  <div class="mypage-card">
 
-    <div class="table-responsive mt-3">
-      <table class="table table-hover">
-        <tr>
-          <th>氏名</th>
-          <td><%= @customer.full_name %></td>
-        </tr>
-        <tr>
-          <th>カナ</th>
-          <td><%= @customer.full_name_kana %></td>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <td><%= @customer.email %></td>
-        </tr>
-        <tr>
-          <th>都道府県</th>
-          <td><%= @state %></td>
-        </tr>
-        <tr>
-          <th>地域エリア</th>
-          <td><%= @area %></td>
-        </tr>
-        <tr>
-          <th>電話番号</th>
-          <td><%= @customer.telephone_number %></td>
-        </tr>
-        <tr>
-          <th>アレルギー</th>
-          <td>
-            <% @customer.allergies.each do |allergy| %>
-              <span class="badge bg-secondary me-1"><%= allergy.allergen %></span>
-            <% end %>
-          </td>
-        </tr>
-      </table>
-    </div>
+    <%# 基本情報 %>
+    <h2 class="mypage-card__section-title">
+      <i class="fas fa-id-card me-2"></i>登録情報
+    </h2>
+    <dl class="mypage-dl">
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">氏名</dt>
+        <dd class="mypage-dl__value"><%= @customer.full_name %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">フリガナ</dt>
+        <dd class="mypage-dl__value"><%= @customer.full_name_kana %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">メールアドレス</dt>
+        <dd class="mypage-dl__value"><%= @customer.email %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">都道府県</dt>
+        <dd class="mypage-dl__value"><%= @state %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">地域エリア</dt>
+        <dd class="mypage-dl__value"><%= @area %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">電話番号</dt>
+        <dd class="mypage-dl__value"><%= @customer.telephone_number %></dd>
+      </div>
+    </dl>
+
+    <%# アレルゲン %>
+    <h2 class="mypage-card__section-title mt-4">
+      <i class="fas fa-exclamation-triangle me-2"></i>登録済みアレルゲン
+    </h2>
+    <% if @customer.allergies.any? %>
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        <% @customer.allergies.each do |allergy| %>
+          <span class="menu-allergen-tag menu-allergen-tag--lg"><%= allergy.allergen %></span>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="mypage-no-allergen mt-3">アレルゲンは登録されていません</p>
+    <% end %>
 
   </div>
 </div>
