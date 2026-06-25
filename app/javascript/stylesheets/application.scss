@@ -317,55 +317,12 @@ th { color: #cd853f; }
   }
 }
 
-// ─── アレルゲンチップ ───────────────────────
+// ─── TOP アレルゲンエリア（折りたたみラッパー） ─
 .top-allergen-area {
   background: $ivory;
   border-radius: 14px;
   padding: 16px;
   margin-bottom: 4px;
-}
-
-.top-allergen-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-
-  @media (max-width: 575.98px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.top-allergen-chip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 6px 8px;
-  border: 1.5px solid $beige-dark;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.82rem;
-  color: $text-main;
-  background: $ivory;
-  transition: all 0.15s;
-  user-select: none;
-  text-align: center;
-
-  &:hover { border-color: $brown; background: $beige; }
-
-  &:has(input:checked) {
-    background: $brown;
-    color: #fff;
-    border-color: $brown;
-  }
-
-  .top-allergen-cb {
-    width: 14px !important;
-    height: 14px !important;
-    margin: 0 !important;
-    flex-shrink: 0;
-    accent-color: $brown;
-  }
 }
 
 .bg-brown { background-color: $brown !important; }
@@ -1150,6 +1107,55 @@ th { color: #cd853f; }
   &:hover { color: $brown; }
 }
 
+// ─── 選択中アレルゲン チップ表示 ─────────
+.allergen-chip-summary {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: #f2f5f1;
+  border-radius: 10px;
+
+  &__label {
+    font-size: 0.78rem;
+    color: $text-sub;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+
+.allergen-chip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px 3px 10px;
+  background: $green-dark;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+
+  &__remove {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    padding: 0 0 0 2px;
+    font-size: 1rem;
+    line-height: 1;
+
+    &:hover { color: #fff; }
+  }
+}
+
 // ─── 検索ボタン ───────────────────────────
 .search-form-btn {
   background-color: $green;
@@ -1218,10 +1224,4 @@ input[type="checkbox"] {
   height: 18px !important;
   margin: 0 8px 0 0 !important;
   flex-shrink: 0 !important;
-}
-// トップページのチェックボックスは上書きして小さく
-.top-allergen-cb {
-  width: 14px !important;
-  height: 14px !important;
-  margin: 0 !important;
 }

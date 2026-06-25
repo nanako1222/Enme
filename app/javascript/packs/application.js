@@ -20,8 +20,8 @@ document.addEventListener('error', function(e) {
 
 // トップページ: アレルゲン選択数をバッジに反映
 document.addEventListener('change', function(e) {
-  if (!e.target.matches('.top-allergen-cb')) return;
-  const count = document.querySelectorAll('.top-allergen-cb:checked').length;
+  if (!e.target.closest('#allergenArea')) return;
+  const count = document.querySelectorAll('#allergenArea input[type="checkbox"]:checked').length;
   const badge = document.getElementById('allergenBadge');
   if (!badge) return;
   badge.textContent = count;

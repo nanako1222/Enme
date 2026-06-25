@@ -70,14 +70,12 @@
 
         <%# チェックボックス本体（デフォルト非表示） %>
         <div id="allergenArea" class="top-allergen-area collapse">
-          <div class="top-allergen-grid">
+          <div class="allergen-pills">
             <%= f.collection_check_boxes(
                   :allergies, @allergies, :id, :allergen,
                   include_hidden: false
                 ) do |a| %>
-              <label class="top-allergen-chip">
-                <%= a.check_box class: "top-allergen-cb" %><%= a.text %>
-              </label>
+              <%= a.label { a.check_box + a.text } %>
             <% end %>
           </div>
         </div>
@@ -89,12 +87,12 @@
           <label class="top-search__label">都道府県</label>
           <%= f.collection_select :state_id, State.all, :id, :state,
               { include_blank: "すべての都道府県" },
-              { class: "form-select" } %>
+              { class: "search-select w-100" } %>
         </div>
         <div class="col-md-4">
           <label class="top-search__label">エリア</label>
           <div id="areas_select_search">
-            <select name="customer[area_id]" id="customer_area_id" class="form-select">
+            <select name="customer[area_id]" id="customer_area_id" class="search-select w-100">
               <option value="">すべてのエリア</option>
             </select>
           </div>

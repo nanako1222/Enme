@@ -19,6 +19,12 @@
           <i class="fas fa-ban me-2"></i>除外するアレルゲン
           <span class="search-form-section__note">複数選択可・選択しない場合は全店舗が対象</span>
         </h2>
+        <%# 選択中チップ表示 %>
+        <div id="allergenChipWrap" class="allergen-chip-summary d-none">
+          <span class="allergen-chip-summary__label">除外中：</span>
+          <div id="allergenChipList" class="allergen-chip-summary__list"></div>
+        </div>
+
         <div class="allergen-pills">
           <%= f.collection_check_boxes(:allergies, @allergies, :id, :allergen, include_hidden: false) do |a| %>
             <%= a.label { a.check_box + a.text } %>
@@ -82,5 +88,37 @@
 <script>
   window.addEventListener('pageshow', () => {
     if (window.performance.navigation.type == 2) location.reload();
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const chipWrap = document.getElementById('allergenChipWrap');
+    const chipList = document.getElementById('allergenChipList');
+    if (!chipWrap || !chipList) return;
+
+    const checkboxes = document.querySelectorAll('.allergen-pills input[type="checkbox"]');
+
+    function buildChips() {
+      chipList.innerHTML = '';
+      let count = 0;
+      checkboxes.forEach(function(cb) {
+        if (!cb.checked) return;
+        count++;
+        const text = cb.closest('label').textContent.trim();
+        const chip = document.createElement('span');
+        chip.className = 'allergen-chip-item';
+        chip.innerHTML =
+          '<i class="fas fa-ban me-1"></i>' + text +
+          '<button type="button" class="allergen-chip-item__remove" aria-label="解除">&times;</button>';
+        chip.querySelector('button').addEventListener('click', function() {
+          cb.checked = false;
+          buildChips();
+        });
+        chipList.appendChild(chip);
+      });
+      chipWrap.classList.toggle('d-none', count === 0);
+    }
+
+    checkboxes.forEach(cb => cb.addEventListener('change', buildChips));
+    buildChips();
   });
 </script>
