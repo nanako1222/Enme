@@ -1,31 +1,30 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── 管理者ログイン ───────────────────────── %>
+<div class="container py-5">
+  <div class="admin-auth-card mx-auto mt-4">
 
-    <div class="text-center mt-5">
-      <h4 class="text-center"><strong>管理者</strong>ログイン</h4>
-    </div>
+    <h1 class="admin-auth__title text-center mb-4">
+      <i class="fas fa-lock me-2"></i>管理者ログイン
+    </h1>
 
-    <%= form_with model: @admin, url: admin_session_path do |f| %>
+    <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :email, class: "col-md-4" %>
-        <%= f.email_field :email, class: "col-md-8" %>
+      <div class="mb-4">
+        <%= f.label :email, "メールアドレス", class: "auth-form__label" %>
+        <%= f.email_field :email, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :password, class: "col-md-4" %>
-        <%= f.password_field :password, class: "col-md-8" %>
+      <div class="mb-4">
+        <%= f.label :password, "パスワード", class: "auth-form__label" %>
+        <%= f.password_field :password, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="mt-4 mb-5 text-center">
-        <%= button_tag type: :submit, class: "btn btn-success active px-4" do %>
-          <i class="fas fa-sign-in-alt"></i> ログイン
+      <div class="d-grid mt-2">
+        <%= button_tag type: :submit, class: "btn admin-auth-submit-btn" do %>
+          <i class="fas fa-sign-in-alt me-1"></i>ログイン
         <% end %>
       </div>
 
     <% end %>
-
-    <%= render "admin/shared/links" %>
 
   </div>
 </div>

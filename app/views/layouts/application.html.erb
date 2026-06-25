@@ -75,6 +75,18 @@
       </header>
 
       <main>
+        <% if flash[:notice] %>
+          <div class="flash-notice alert alert-dismissible fade show mb-0" role="alert">
+            <i class="fas fa-check-circle me-2"></i><%= flash[:notice] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="閉じる"></button>
+          </div>
+        <% end %>
+        <% if flash[:alert] %>
+          <div class="flash-alert alert alert-dismissible fade show mb-0" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i><%= flash[:alert] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="閉じる"></button>
+          </div>
+        <% end %>
         <%= yield %>
       </main>
 

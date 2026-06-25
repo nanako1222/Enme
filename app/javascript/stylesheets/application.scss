@@ -1745,3 +1745,147 @@ input[type="checkbox"] {
     margin-top: 4px;
   }
 }
+
+
+// ─── Section 17: Auth pages ───────────────────────────────────────
+.auth-hero {
+  background-color: $beige;
+  border-bottom: 1px solid $beige-dark;
+
+  &__title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: $brown-dark;
+    margin-bottom: 8px;
+  }
+
+  &__sub {
+    font-size: 0.9rem;
+    color: $text-sub;
+    margin: 0;
+  }
+}
+
+.auth-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 28px rgba(61, 43, 31, 0.09);
+  padding: 40px 48px;
+  max-width: 480px;
+
+  @media (max-width: 575.98px) { padding: 28px 20px; }
+}
+
+.auth-form {
+  &__label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: $text-sub;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  &__input {
+    border: 1.5px solid $beige-dark;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    color: $text-main;
+
+    &:focus {
+      border-color: $green;
+      box-shadow: 0 0 0 3px rgba(101, 136, 84, 0.15);
+      outline: none;
+    }
+  }
+}
+
+.auth-submit-btn {
+  background-color: $green;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  width: 100%;
+  transition: background-color 0.15s;
+
+  &:hover { background-color: $green-dark; color: #fff; }
+}
+
+.auth-divider { border-color: $beige-dark; }
+
+.auth-sub-text {
+  font-size: 0.85rem;
+  color: $text-sub;
+  margin-bottom: 10px;
+}
+
+.auth-register-btn {
+  border: 1.5px solid $green;
+  color: $green;
+  border-radius: 8px;
+  padding: 9px 24px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: background-color 0.15s, color 0.15s;
+
+  &:hover { background-color: $green; color: #fff; }
+}
+
+// ─── 管理者ログイン ────────────────────────────────────────────────
+.admin-auth-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 18px rgba(0, 0, 0, 0.08);
+  padding: 40px 44px;
+  max-width: 400px;
+
+  @media (max-width: 575.98px) { padding: 28px 20px; }
+}
+
+.admin-auth {
+  &__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $text-main;
+  }
+}
+
+.admin-auth-submit-btn {
+  background-color: $brown-dark;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  width: 100%;
+  transition: background-color 0.15s;
+
+  &:hover { background-color: darken($brown-dark, 8%); color: #fff; }
+}
+
+// ─── Section 18: Flash messages ──────────────────────────────────
+.flash-notice {
+  background-color: #f0f7f2;
+  border: none;
+  border-left: 4px solid $green;
+  border-radius: 0;
+  color: $green-dark;
+  margin: 0;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+}
+
+.flash-alert {
+  background-color: #fff8f0;
+  border: none;
+  border-left: 4px solid #c0392b;
+  border-radius: 0;
+  color: #922b21;
+  margin: 0;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+}
