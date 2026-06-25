@@ -19,16 +19,27 @@
           <i class="fas fa-exclamation-triangle me-1"></i>除外するアレルゲン
         </p>
 
+        <button type="button"
+                class="btn btn-outline-secondary mb-2"
+                data-bs-toggle="collapse"
+                data-bs-target="#allergenArea"
+                aria-expanded="false">
+          <i class="fas fa-filter me-1"></i>アレルゲンで絞り込む
+          <span id="allergenBadge" class="badge bg-brown ms-1 d-none">0</span>
+        </button>
+
         <%# 選択中チップ表示 %>
         <div id="allergenChipWrap" class="allergen-chip-summary d-none">
           <span class="allergen-chip-summary__label">除外中：</span>
           <div id="allergenChipList" class="allergen-chip-summary__list"></div>
         </div>
 
-        <div class="allergen-pills">
-          <%= f.collection_check_boxes(:allergies, @allergies, :id, :allergen, include_hidden: false) do |a| %>
-            <%= a.label { a.check_box + a.text } %>
-          <% end %>
+        <div id="allergenArea" class="top-allergen-area collapse">
+          <div class="allergen-pills">
+            <%= f.collection_check_boxes(:allergies, @allergies, :id, :allergen, include_hidden: false) do |a| %>
+              <%= a.label { a.check_box + a.text } %>
+            <% end %>
+          </div>
         </div>
       </div>
 
@@ -83,9 +94,11 @@
   document.addEventListener('DOMContentLoaded', function() {
     const chipWrap = document.getElementById('allergenChipWrap');
     const chipList = document.getElementById('allergenChipList');
+    const allergenArea = document.getElementById('allergenArea');
+    const allergenBadge = document.getElementById('allergenBadge');
     if (!chipWrap || !chipList) return;
 
-    const checkboxes = document.querySelectorAll('.allergen-pills input[type="checkbox"]');
+    const checkboxes = document.querySelectorAll('#allergenArea input[type="checkbox"]');
 
     function buildChips() {
       chipList.innerHTML = '';
@@ -110,5 +123,18 @@
 
     checkboxes.forEach(cb => cb.addEventListener('change', buildChips));
     buildChips();
+
+    // 既選択がある場合は自動展開
+    const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+    if (anyChecked && allergenArea) {
+      allergenArea.classList.add('show');
+      const toggleBtn = document.querySelector('[data-bs-target="#allergenArea"]');
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+      if (allergenBadge) {
+        const count = Array.from(checkboxes).filter(cb => cb.checked).length;
+        allergenBadge.textContent = count;
+        allergenBadge.classList.remove('d-none');
+      }
+    }
   });
 </script>
