@@ -55,7 +55,7 @@
               <% else %>
                 <p class="menu-card__no-allergen">情報なし</p>
               <% end %>
-              <%= link_to edit_restaurant_restaurant_menu_path(menu),
+              <%= link_to edit_restaurant_restaurant_menu_path(@restaurant, menu),
                   class: "search-card__link-btn mt-3 d-block" do %>
                 編集する&nbsp;<i class="fas fa-pen-nib"></i>
               <% end %>
