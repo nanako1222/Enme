@@ -1,72 +1,139 @@
-<div class="container py-4">
-  <div class="col-11 col-md-8 col-lg-7 mx-auto text-center">
-
-    <h1 class="mt-4 mb-3"><strong>About</strong></h1>
-
-    <h4><strong>このサイトについて</strong></h4>
-    <p class="about mt-3 text-start">
-      Enme（エンミー）は食物アレルギーにより外食に不安を持っている方々に、楽しい食事（Enjoyable meal）を提供するサイトです。アレルギー表記をおこなっている関西の飲食店にご協力いただき、アレルゲンや地域からメニュー・飲食店を検索できます。
-    </p>
-    <p class="about text-start">
-      会員登録なしでも検索はできますが、お気に入りの飲食店登録やアレルゲン情報の登録など、より簡単に利用したい方はぜひご登録ください。
-    </p>
-
-    <%= image_tag 'about_image.jpg', class: "d-block mx-auto mt-4 img-fluid", style: "max-width: 420px; width: 80%; border-radius: 8px;" %>
-
-    <h4 class="mt-5"><strong>地域エリアについて</strong></h4>
-    <p class="about mt-3 text-start">
-      このサイトでは都道府県ごとに地域エリアを分けており、店舗を絞り込む際に活用します。地域エリアの詳細は下記をご覧ください。
-    </p>
-
-    <div class="row mt-4 justify-content-center">
-      <div class="col-6 col-md-4 mb-4">
-        <%= link_to asset_path('osaka.jpg'), "data-lightbox" => 'osaka.jpg' do %>
-          <%= image_tag 'osaka.jpg', class: "img-fluid", style: "height: 160px; object-fit: cover; width: 100%; border-radius: 4px;" %>
-        <% end %>
-        <p class="about mt-1"><strong>大阪府</strong></p>
-      </div>
-      <div class="col-6 col-md-4 mb-4">
-        <%= link_to asset_path('kyoto.jpg'), "data-lightbox" => 'kyoto.jpg' do %>
-          <%= image_tag 'kyoto.jpg', class: "img-fluid", style: "height: 160px; object-fit: cover; width: 100%; border-radius: 4px;" %>
-        <% end %>
-        <p class="about mt-1"><strong>京都府</strong></p>
-      </div>
-      <div class="col-6 col-md-4 mb-4">
-        <%= link_to asset_path('hyogo.jpg'), "data-lightbox" => 'hyogo.jpg' do %>
-          <%= image_tag 'hyogo.jpg', class: "img-fluid", style: "height: 160px; object-fit: cover; width: 100%; border-radius: 4px;" %>
-        <% end %>
-        <p class="about mt-1"><strong>兵庫県</strong></p>
-      </div>
-      <div class="col-6 col-md-4 mb-4">
-        <%= link_to asset_path('nara.jpg'), "data-lightbox" => 'nara.jpg' do %>
-          <%= image_tag 'nara.jpg', class: "img-fluid", style: "height: 160px; object-fit: cover; width: 100%; border-radius: 4px;" %>
-        <% end %>
-        <p class="about mt-1"><strong>奈良県</strong></p>
-      </div>
-      <div class="col-6 col-md-4 mb-4">
-        <%= link_to asset_path('wakayama.jpg'), "data-lightbox" => 'wakayama.jpg' do %>
-          <%= image_tag 'wakayama.jpg', class: "img-fluid", style: "height: 160px; object-fit: cover; width: 100%; border-radius: 4px;" %>
-        <% end %>
-        <p class="about mt-1"><strong>和歌山県</strong></p>
-      </div>
-      <div class="col-6 col-md-4 mb-4">
-        <%= link_to asset_path('shiga.jpg'), "data-lightbox" => 'shiga.jpg' do %>
-          <%= image_tag 'shiga.jpg', class: "img-fluid", style: "height: 160px; object-fit: cover; width: 100%; border-radius: 4px;" %>
-        <% end %>
-        <p class="about mt-1"><strong>滋賀県</strong></p>
-      </div>
-    </div>
-
-    <h4 class="mt-5"><strong>飲食店経営者の皆様へ</strong></h4>
-    <p class="about mt-3 text-start">
-      飲食店経営者の皆様のご協力により、アレルギーを持つ方々に安心して外食を楽しんでいただけるようになります。
-    </p>
-    <p class="about text-start">
-      海外ではアレルゲン表記をおこなう飲食店が広く普及していますが、日本ではまだ少ないのが現状です。食物アレルギーを持つ方は年々増加しており、今後アレルゲン表記に対応した飲食店の需要はさらに高まると予想されます。
-    </p>
-    <p class="about mb-5 text-start">
-      ぜひEnmeにご登録いただき、アレルギーをお持ちの方々が安心して食事を楽しめるよう、ご協力をお願いいたします。
-    </p>
-
+<%# ─── ヒーロー ─────────────────────────────── %>
+<div class="about-hero">
+  <div class="container text-center py-5">
+    <h1 class="about-hero__title">Enmeについて</h1>
+    <p class="about-hero__sub">アレルギーがあっても、安心して外食を。</p>
   </div>
 </div>
+
+<%# ─── このサイトについて ──────────────────── %>
+<section class="about-section">
+  <div class="container">
+    <div class="about-card">
+      <div class="row g-4 g-lg-5 align-items-center">
+        <div class="col-md-6">
+          <h2 class="about-section__title">
+            <i class="fas fa-info-circle me-2"></i>このサイトについて
+          </h2>
+          <p class="about-section__text mt-3">
+            Enme（エンミー）は食物アレルギーにより外食に不安を持っている方々に、楽しい食事（Enjoyable meal）を提供するサービスです。アレルギー表記をおこなっている関西の飲食店にご協力いただき、アレルゲンや地域からメニュー・飲食店を検索できます。
+          </p>
+          <p class="about-section__text">
+            会員登録なしでも検索はできますが、お気に入りの飲食店登録やアレルゲン情報の登録など、より簡単に利用したい方はぜひご登録ください。
+          </p>
+          <% unless customer_signed_in? %>
+            <div class="mt-4">
+              <%= link_to new_customer_registration_path, class: "btn about-cta-btn me-2" do %>
+                <i class="fas fa-user-plus me-1"></i>新規会員登録
+              <% end %>
+              <%= link_to new_customer_session_path, class: "btn about-sub-btn" do %>
+                ログイン
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <%= image_tag 'about_image.jpg',
+              class: "about-hero-img img-fluid",
+              alt: "Enmeサービスイメージ" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ─── 地域エリアについて ─────────────────── %>
+<section class="about-section about-section--beige">
+  <div class="container">
+    <h2 class="about-section__title text-center mb-2">
+      <i class="fas fa-map-marked-alt me-2"></i>地域エリアについて
+    </h2>
+    <p class="about-section__text text-center mb-4">
+      都道府県ごとに地域エリアを分けており、店舗を絞り込む際に活用します。<br>
+      各マップをクリックすると拡大表示できます。
+    </p>
+
+    <div class="row g-3 justify-content-center">
+      <% [
+        { file: 'osaka.jpg',     name: '大阪府' },
+        { file: 'kyoto.jpg',     name: '京都府' },
+        { file: 'hyogo.jpg',     name: '兵庫県' },
+        { file: 'nara.jpg',      name: '奈良県' },
+        { file: 'wakayama.jpg',  name: '和歌山県' },
+        { file: 'shiga.jpg',     name: '滋賀県' },
+      ].each do |map| %>
+        <div class="col-6 col-md-4">
+          <div class="about-map-item"
+               data-bs-toggle="modal"
+               data-bs-target="#mapModal"
+               data-src="<%= asset_path(map[:file]) %>"
+               data-title="<%= map[:name] %>の地域エリア">
+            <%= image_tag map[:file],
+                class: "about-map-img",
+                alt: "#{map[:name]}の地域エリアマップ" %>
+            <div class="about-map-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+            <p class="about-map-name"><%= map[:name] %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ─── 飲食店経営者の皆様へ ─────────────── %>
+<section class="about-section">
+  <div class="container">
+    <div class="about-owner-card">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-8">
+          <h2 class="about-section__title about-section__title--light">
+            <i class="fas fa-store me-2"></i>飲食店経営者の皆様へ
+          </h2>
+          <p class="about-section__text about-section__text--light mt-3">
+            飲食店経営者の皆様のご協力により、アレルギーを持つ方々に安心して外食を楽しんでいただけるようになります。
+          </p>
+          <p class="about-section__text about-section__text--light">
+            海外ではアレルゲン表記をおこなう飲食店が広く普及していますが、日本ではまだ少ないのが現状です。食物アレルギーを持つ方は年々増加しており、今後アレルゲン表記に対応した飲食店の需要はさらに高まると予想されます。
+          </p>
+          <p class="about-section__text about-section__text--light">
+            ぜひEnmeにご登録いただき、アレルギーをお持ちの方々が安心して食事を楽しめるよう、ご協力をお願いいたします。
+          </p>
+        </div>
+        <div class="col-md-4 text-center text-md-end">
+          <%= link_to new_restaurant_registration_path, class: "btn about-owner-btn" do %>
+            <i class="fas fa-store-alt me-1"></i>店舗登録はこちら
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%# ─── 地図拡大モーダル ───────────────────── %>
+<div class="modal fade" id="mapModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content about-modal">
+      <div class="modal-header about-modal__header">
+        <h5 class="modal-title about-modal__title" id="mapModalTitle"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+      </div>
+      <div class="modal-body p-0">
+        <img id="mapModalImg" src="" alt="" class="img-fluid w-100">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('mapModal');
+    if (!modal) return;
+    modal.addEventListener('show.bs.modal', function(e) {
+      const trigger = e.relatedTarget;
+      document.getElementById('mapModalTitle').textContent = trigger.dataset.title || '';
+      document.getElementById('mapModalImg').src = trigger.dataset.src || '';
+    });
+  });
+</script>
