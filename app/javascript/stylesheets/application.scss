@@ -1329,7 +1329,19 @@ input[type="checkbox"] {
     font-size: 0.95rem;
     font-weight: 700;
     color: $brown;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
+  }
+
+  &__price-unit {
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: $text-sub;
+  }
+
+  &__allergen-label {
+    font-size: 0.72rem;
+    color: $text-sub;
+    margin-bottom: 4px;
   }
 
   &__allergens {
@@ -1442,8 +1454,14 @@ input[type="checkbox"] {
   }
 
   &__price-tax {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 400;
     color: $text-sub;
+  }
+
+  &__price-sub {
+    font-size: 0.82rem;
+    color: $text-sub;
+    margin-top: 4px;
   }
 }

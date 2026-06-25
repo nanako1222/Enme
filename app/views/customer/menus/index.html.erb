@@ -44,7 +44,10 @@
                 <%= link_to menu.name, restaurant_menu_path(@restaurant, menu),
                     class: "menu-card__name-link" %>
               </h5>
-              <p class="menu-card__price">¥<%= menu.price %></p>
+              <p class="menu-card__price">
+                ¥<%= menu.with_tax_price %><span class="menu-card__price-unit">（税込）</span>
+              </p>
+              <p class="menu-card__allergen-label">アレルゲン</p>
               <% if menu.allergies.any? %>
                 <div class="menu-card__allergens">
                   <% menu.allergies.each do |a| %>
@@ -52,7 +55,7 @@
                   <% end %>
                 </div>
               <% else %>
-                <p class="menu-card__no-allergen">アレルゲン情報なし</p>
+                <p class="menu-card__no-allergen">情報なし</p>
               <% end %>
             </div>
           </div>

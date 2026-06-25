@@ -53,11 +53,11 @@
 
         <%# 価格 %>
         <div class="menu-show__price-section mt-4">
-          <p class="menu-show__price-label">税抜価格（税込価格）</p>
+          <p class="menu-show__price-label">価格</p>
           <p class="menu-show__price">
-            <%= @menu.price %>円
-            <span class="menu-show__price-tax">（<%= @menu.with_tax_price %>円）</span>
+            ¥<%= @menu.with_tax_price %><span class="menu-show__price-tax">（税込）</span>
           </p>
+          <p class="menu-show__price-sub">税抜 ¥<%= @menu.price %></p>
         </div>
 
         <%# 戻るボタン %>
