@@ -1,7 +1,7 @@
 <%# ─── ヒーロー ─────────────────────────────── %>
 <div class="search-form-hero">
   <div class="container text-center py-4">
-    <h1 class="search-form-hero__title">飲食店を探す</h1>
+    <h1 class="search-form-hero__title">飲食店を検索する</h1>
     <p class="search-form-hero__sub">除外したいアレルゲンとエリアを選んで、安心して食べられるお店を見つけましょう</p>
   </div>
 </div>
@@ -14,11 +14,11 @@
         id: 'search_restaurant', class: 'search_restaurant', local: true do |f| %>
 
       <%# アレルゲン選択 %>
-      <div class="search-form-section">
-        <h2 class="search-form-section__title">
-          <i class="fas fa-ban me-2"></i>除外するアレルゲン
-          <span class="search-form-section__note">複数選択可・選択しない場合は全店舗が対象</span>
-        </h2>
+      <div class="mb-4">
+        <p class="top-search__label">
+          <i class="fas fa-exclamation-triangle me-1"></i>除外するアレルゲン
+        </p>
+
         <%# 選択中チップ表示 %>
         <div id="allergenChipWrap" class="allergen-chip-summary d-none">
           <span class="allergen-chip-summary__label">除外中：</span>
@@ -32,41 +32,33 @@
         </div>
       </div>
 
-      <hr class="search-form-divider">
-
       <%# エリア絞り込み %>
-      <div class="search-form-section">
-        <h2 class="search-form-section__title">
-          <i class="fas fa-map-marker-alt me-2"></i>エリアで絞り込む
-          <span class="search-form-section__note">任意</span>
-        </h2>
-        <div class="row g-3">
-          <div class="col-sm-6">
-            <label class="search-form-label">都道府県</label>
-            <%= f.collection_select :state_id, State.all, :id, :state,
-                { include_blank: "すべての都道府県" },
-                { class: "search-select w-100" } %>
-          </div>
-          <div class="col-sm-6">
-            <label class="search-form-label">地域エリア</label>
-            <div id="areas_select_search">
-              <select name="customer[area_id]" id="customer_area_id" class="search-select w-100">
-                <option value="">すべてのエリア</option>
-              </select>
-            </div>
+      <div class="row g-3 align-items-end mt-2">
+        <div class="col-md-4">
+          <label class="top-search__label">都道府県</label>
+          <%= f.collection_select :state_id, State.all, :id, :state,
+              { include_blank: "すべての都道府県" },
+              { class: "search-select w-100" } %>
+        </div>
+        <div class="col-md-4">
+          <label class="top-search__label">エリア</label>
+          <div id="areas_select_search">
+            <select name="customer[area_id]" id="customer_area_id" class="search-select w-100">
+              <option value="">すべてのエリア</option>
+            </select>
           </div>
         </div>
-        <p class="search-form-area-note mt-2">
-          ※エリア区分の詳細は
-          <%= link_to "こちら", about_path, class: "search-form-area-link", data: {"turbolinks" => false} %>
-          をご覧ください
-        </p>
       </div>
+      <p class="search-form-area-note mt-2">
+        ※エリア区分の詳細は
+        <%= link_to "こちら", about_path, class: "search-form-area-link", data: {"turbolinks" => false} %>
+        をご覧ください
+      </p>
 
       <%# 検索ボタン %>
       <div class="text-center mt-4 mb-2">
-        <%= button_tag type: :submit, class: "btn search-form-btn" do %>
-          <i class="fas fa-search me-2"></i>この条件で検索する
+        <%= button_tag type: :submit, class: "btn top-search__btn px-5" do %>
+          <i class="fas fa-search me-1"></i>検索する
         <% end %>
       </div>
 
