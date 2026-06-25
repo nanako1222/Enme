@@ -1,16 +1,19 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── ヒーロー ─────────────────────────────── %>
+<div class="auth-hero">
+  <div class="container text-center py-4">
+    <h1 class="auth-hero__title">メニューを追加</h1>
+    <p class="auth-hero__sub">アレルゲン情報を正確に登録してください</p>
+  </div>
+</div>
 
-    <h4 class="text-center mt-5"><strong>メニュー新規登録</strong></h4>
-
-    <div class="flashing mt-2">
-      <p>※現在登録されているデータは架空です</p>
-    </div>
+<div class="container py-5">
+  <div class="auth-card auth-card--wide mx-auto">
 
     <% if @menu.errors.any? %>
-      <div class="alert alert-danger mt-3">
+      <div class="rest-form-errors mb-4">
+        <i class="fas fa-exclamation-circle me-2"></i>
         <%= @menu.errors.count %>件のエラーが発生しました
-        <ul>
+        <ul class="mt-2 mb-0">
           <% @menu.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
@@ -18,49 +21,66 @@
       </div>
     <% end %>
 
-    <%= form_with model: @menu, url: restaurant_restaurant_menus_path, id: 'new_menu', class: 'new_menu' do |f| %>
+    <%= form_with model: @menu, url: restaurant_restaurant_menus_path,
+        id: 'new_menu', class: 'new_menu' do |f| %>
 
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :image, class: "col-md-4 text-start" %>
-        <%= f.file_field :image, accept: "image/*", class: "col-md-6", style: "padding: 0;" %>
+      <%# 画像 %>
+      <div class="mb-4">
+        <%= f.label :image, "メニュー画像", class: "auth-form__label" %>
+        <%= f.file_field :image, accept: "image/*", class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row field d-grid text-center mt-3">
-        <%= f.label :name, class: "col-md-4 text-start" %>
-        <%= f.text_field :name, autofocus: true, required: true, class: "col-md-6" %>
+      <%# メニュー名 %>
+      <div class="mb-4">
+        <%= f.label :name, "メニュー名", class: "auth-form__label" %>
+        <%= f.text_field :name, autofocus: true, required: true,
+            class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row field d-grid text-center mt-3">
-        <%= f.label :含まれるアレルゲン, class: "col-md-4 text-start" do %>
-          含まれるアレルゲン（全てにチェック）
-        <% end %>
-        <div class="allergies_check_boxes col-md-7">
-          <%= f.collection_check_boxes(:allergy_ids, @allergies, :id, :allergen, include_hidden: false) do |a| %>
-            <%= a.label { a.check_box + a.text } %>
+      <%# アレルゲン %>
+      <div class="mb-4">
+        <p class="auth-form__label mb-2">含まれるアレルゲン（該当するものをすべて選択）</p>
+        <div class="rest-allergen-grid">
+          <%= f.collection_check_boxes(:allergy_ids, @allergies, :id, :allergen,
+              include_hidden: false) do |a| %>
+            <label class="rest-allergen-check">
+              <%= a.check_box(class: "rest-allergen-check__input") %>
+              <span class="rest-allergen-check__label"><%= a.text %></span>
+            </label>
           <% end %>
         </div>
       </div>
 
-      <div class="row field d-grid text-center mt-3 align-items-center">
-        <%= f.label :price, class: "col-md-4 text-start" %>
-        <div class="col-md-4 d-flex align-items-center gap-2">
-          <%= f.text_field :price, required: true, class: "flex-grow-1" %>
-          <span>円</span>
+      <%# 価格 %>
+      <div class="mb-4">
+        <%= f.label :price, "価格（税抜）", class: "auth-form__label" %>
+        <div class="d-flex align-items-center gap-2">
+          <%= f.text_field :price, required: true,
+              class: "form-control auth-form__input", style: "max-width: 160px;" %>
+          <span class="auth-form__note">円（税抜）</span>
         </div>
       </div>
 
-      <div class="row field d-grid text-center mt-3">
-        <%= f.label :introduction, class: "col-md-4 text-start" %>
-        <%= f.text_area :introduction, size: "20x7", class: "col-md-6" %>
+      <%# 説明 %>
+      <div class="mb-4">
+        <%= f.label :introduction, "メニュー説明", class: "auth-form__label" %>
+        <%= f.text_area :introduction, rows: 5, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="mt-4 text-center mb-4">
-        <%= button_tag type: :submit, class: "btn btn-success active" do %>
-          <i class="fas fa-utensils me-2"></i>新規登録
+      <div class="d-grid mt-2">
+        <%= button_tag type: :submit, class: "btn auth-submit-btn" do %>
+          <i class="fas fa-utensils me-1"></i>登録する
         <% end %>
       </div>
 
     <% end %>
+
+    <hr class="auth-divider my-4">
+    <div class="text-center">
+      <%= link_to restaurant_restaurant_menus_path(@restaurant), class: "btn auth-register-btn" do %>
+        <i class="fas fa-arrow-left me-1"></i>メニュー一覧に戻る
+      <% end %>
+    </div>
 
   </div>
 </div>

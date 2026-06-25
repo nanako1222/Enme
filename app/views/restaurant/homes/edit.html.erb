@@ -1,98 +1,118 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── ヒーロー ─────────────────────────────── %>
+<div class="auth-hero">
+  <div class="container text-center py-4">
+    <h1 class="auth-hero__title">店舗情報編集</h1>
+    <p class="auth-hero__sub">登録内容を変更し、「保存する」を押してください</p>
+  </div>
+</div>
 
-    <h4 class="text-center mt-5"><strong>店舗情報編集</strong></h4>
-
-    <% flash.each do |key, value| %>
-      <p class="alert alert-<%= key %>"><%= value %></p>
-    <% end %>
-
-    <div class="flashing mt-2">
-      <p>※現在登録されているデータは架空です</p>
-    </div>
+<div class="container py-5">
+  <div class="auth-card auth-card--wide mx-auto">
 
     <%= form_with model: @restaurant, url: restaurant_information_path, method: :patch do |f| %>
 
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :image, "店舗画像", class: "col-md-4 text-start" %>
-        <%= f.file_field :image, accept: "image/*", class: "col-md-7", style: "padding: 0;" %>
+      <%# 店舗画像 %>
+      <div class="mb-4">
+        <%= f.label :image, "店舗画像", class: "auth-form__label" %>
+        <%= f.file_field :image, accept: "image/*", class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row field d-grid text-center mt-3">
-        <%= f.label :name, class: "col-md-4 text-start" %>
-        <%= f.text_field :name, autofocus: true, required: true, class: "col-md-6" %>
+      <%# 店舗名 %>
+      <div class="mb-4">
+        <%= f.label :name, "店舗名", class: "auth-form__label" %>
+        <%= f.text_field :name, autofocus: true, required: true,
+            class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :introduction, class: "col-md-4 text-start" %>
-        <%= f.text_area :introduction, size: "20x7", class: "col-md-8" %>
+      <%# 店舗紹介 %>
+      <div class="mb-4">
+        <%= f.label :introduction, "店舗紹介", class: "auth-form__label" %>
+        <%= f.text_area :introduction, rows: 5,
+            class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :state_id, class: "col-md-4 text-start" %>
-        <%= f.collection_select :state_id, State.all, :id, :state, {}, { class: "col-md-4" } %>
+      <%# 都道府県・エリア %>
+      <div class="row g-3 mb-1">
+        <div class="col-md-6">
+          <%= f.label :state_id, "都道府県", class: "auth-form__label" %>
+          <%= f.collection_select :state_id, State.all, :id, :state, {},
+              { class: "form-select auth-form__input" } %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :area_id, "エリア", class: "auth-form__label" %>
+          <div id="areas_select">
+            <%= render partial: 'shared/restaurant_areas', locals: { areas: @area } %>
+          </div>
+        </div>
       </div>
-      <p class="text-center mt-1 small">※変更される場合は都道府県から選択し直してください</p>
+      <p class="auth-area-note mb-4">
+        ※変更する場合は都道府県から選択し直してください。エリア区分の詳細は
+        <%= link_to "こちら", restaurant_about_path, class: "auth-area-link",
+            data: {"turbolinks" => false} %>
+        をご覧ください
+      </p>
 
-      <div class="row field d-grid text-center mt-3">
-        <%= f.label :area_id, class: "col-md-4 text-start" %>
-        <div id="areas_select">
-          <%= render partial: 'shared/restaurant_areas', locals: { areas: @area } %>
+      <%# 住所 %>
+      <div class="mb-4">
+        <%= f.label :address, "住所", class: "auth-form__label" %>
+        <%= f.text_field :address, required: true, class: "form-control auth-form__input" %>
+      </div>
+
+      <%# 電話番号・メール %>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <%= f.label :telephone_number, "電話番号", class: "auth-form__label" %>
+          <%= f.text_field :telephone_number, required: true,
+              class: "form-control auth-form__input" %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :email, "メールアドレス", class: "auth-form__label" %>
+          <%= f.email_field :email, required: true,
+              class: "form-control auth-form__input" %>
         </div>
       </div>
 
-      <p class="text-center mt-1 small">
-        ※エリア分け詳細は
-        <%= link_to "こちら", restaurant_about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
-        をご参考ください
-      </p>
-
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :address, class: "col-md-4 text-start" %>
-        <%= f.text_field :address, required: true, class: "col-md-8" %>
+      <%# 定休日・営業時間 %>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <%= f.label :regular_holiday, "定休日", class: "auth-form__label" %>
+          <%= f.text_field :regular_holiday, required: true,
+              placeholder: "例：毎週水曜日",
+              class: "form-control auth-form__input" %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :business_hours, "営業時間", class: "auth-form__label" %>
+          <%= f.text_field :business_hours, required: true,
+              placeholder: "例：11:00〜22:00",
+              class: "form-control auth-form__input" %>
+        </div>
       </div>
 
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :telephone_number, class: "col-md-4 text-start" %>
-        <%= f.text_field :telephone_number, required: true, class: "col-md-6" %>
+      <%# ホームページ・駐車場 %>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <%= f.label :home_page, "ホームページURL", class: "auth-form__label" %>
+          <%= f.text_field :home_page, class: "form-control auth-form__input" %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :parking, "駐車場", class: "auth-form__label" %>
+          <%= f.text_field :parking, class: "form-control auth-form__input" %>
+        </div>
       </div>
 
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :email, class: "col-md-4 text-start" %>
-        <%= f.email_field :email, required: true, class: "col-md-6" %>
+      <%# NEWS %>
+      <div class="mb-4">
+        <%= f.label :news, "NEWS", class: "auth-form__label" %>
+        <%= f.text_area :news, rows: 4, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :定休日, class: "col-md-4 text-start" %>
-        <%= f.text_field :regular_holiday, required: true, class: "col-md-6" %>
-      </div>
-
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :business_hours, class: "col-md-4 text-start" %>
-        <%= f.text_field :business_hours, required: true, class: "col-md-6" %>
-      </div>
-
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :home_page, class: "col-md-4 text-start" %>
-        <%= f.text_field :home_page, class: "col-md-6" %>
-      </div>
-
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :parking, class: "col-md-4 text-start" %>
-        <%= f.text_field :parking, class: "col-md-6" %>
-      </div>
-
-      <div class="row field d-grid text-center mt-4">
-        <%= f.label :News, class: "col-md-4 text-start" %>
-        <%= f.text_area :news, size: "20x7", class: "col-md-8" %>
-      </div>
-
-      <div class="d-flex gap-3 justify-content-center mt-4 mb-4">
-        <%= button_tag type: :submit, class: "btn btn-success active" do %>
-          <i class="fas fa-save"></i> 編集内容を保存
+      <%# ボタン %>
+      <div class="d-flex gap-3 justify-content-between mt-2">
+        <%= button_tag type: :submit, class: "btn auth-submit-btn flex-grow-1" do %>
+          <i class="fas fa-save me-1"></i>保存する
         <% end %>
-        <%= link_to restaurant_confirm_path, class: "btn btn-danger active" do %>
-          <i class="fas fa-store-alt-slash"></i> 退会する
+        <%= link_to restaurant_confirm_path, class: "btn rest-withdraw-btn" do %>
+          退会する
         <% end %>
       </div>
 
@@ -102,7 +122,7 @@
 </div>
 
 <script>
-  window.addEventListener('pageshow',()=>{
-    if(window.performance.navigation.type==2) location.reload();
+  window.addEventListener('pageshow', () => {
+    if (window.performance.navigation.type == 2) location.reload();
   });
 </script>

@@ -1,27 +1,29 @@
-<div class= "container">
-  <div class='row mb-3 mt-5'>
-    <div class='col-10 offset-1'>
-      <div class='flashing offset-md-4 mt-2'>
-        <p>※現在登録されているデータは架空です</p>
-      </div>
+<%# ─── 退会確認 ───────────────────────────── %>
+<div class="container py-5">
+  <div class="rest-confirm-card mx-auto mt-4">
 
-      <h5 class="mt-5 text-center"><strong>本当に退会しますか</strong></h5>
-      <p class="mt-4 text-center">
-        退会すると、会員登録情報や<br>
-        これまでの購入履歴が閲覧できなくなります。<br>
-        退会する場合は「退会する」をクリックしてください
-      </p>
-
-      <div class="text-center">
-        <%= link_to restaurant_homes_path, class:"btn btn-primary active ml-md-5 mt-4" do %>
-          <i class="fas fa-store-alt"></i>
-          退会しない
-        <% end %>
-        <%= link_to restaurant_out_path,"data-confirm" => "本当に退会しますか？", method: :patch, class:"btn btn-danger active ml-md-5 mt-4" do %>
-          <i class="fas fa-store-alt-slash"></i>
-          退会する
-        <% end %>
-      </div>
+    <div class="text-center mb-4">
+      <i class="fas fa-exclamation-triangle rest-confirm__icon"></i>
     </div>
+
+    <h1 class="rest-confirm__title text-center">退会の確認</h1>
+    <p class="rest-confirm__text text-center mt-3">
+      退会すると、店舗情報・メニュー情報がすべて削除され、<br>
+      Enmeへの掲載が終了します。<br>
+      この操作は取り消せません。
+    </p>
+
+    <div class="d-flex gap-3 justify-content-center mt-4">
+      <%= link_to restaurant_homes_path, class: "btn rest-confirm__cancel-btn" do %>
+        <i class="fas fa-arrow-left me-1"></i>退会しない
+      <% end %>
+      <%= link_to restaurant_out_path,
+          "data-confirm": "本当に退会しますか？",
+          method: :patch,
+          class: "btn rest-confirm__danger-btn" do %>
+        <i class="fas fa-store-slash me-1"></i>退会する
+      <% end %>
+    </div>
+
   </div>
 </div>

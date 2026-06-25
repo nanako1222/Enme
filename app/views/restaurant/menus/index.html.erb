@@ -1,43 +1,84 @@
-<div class="container">
-  <div class="col-11 col-md-10 mx-auto">
+<%# ─── 上部お知らせ帯 ──────────────────────── %>
+<div class="rest-notice-band">
+  <div class="container">
+    <p class="rest-notice-band__demo">
+      <i class="fas fa-info-circle me-1"></i>現在登録されているデータは架空のサンプルデータです。
+    </p>
+  </div>
+</div>
 
-    <h4 class="text-center mt-5">店舗メニュー一覧 <span class="fs-6"><%= "(全#{@menus_count}件)" %></span></h4>
-
-    <div class="flashing mt-2">
-      <p>※現在登録されているデータは架空です</p>
-    </div>
-    <div class="mt-3">
-      <% if flash[:notice] %>
-        <%= notice %>
+<%# ─── ページヘッダー ─────────────────────── %>
+<div class="menu-list-header">
+  <div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div>
+        <h1 class="menu-list-header__title">
+          <i class="fas fa-clipboard-list me-2"></i>メニュー一覧
+        </h1>
+        <p class="menu-list-header__count">全 <strong><%= @menus_count %></strong> 品</p>
+      </div>
+      <%= link_to new_restaurant_restaurant_menu_path(@restaurant), class: "btn auth-submit-btn" do %>
+        <i class="fas fa-plus me-1"></i>メニューを追加
       <% end %>
     </div>
+  </div>
+</div>
 
-    <div class="row mt-4">
+<%# ─── カード一覧 ─────────────────────────── %>
+<div class="container py-4 pb-5">
+  <% if @menus.any? %>
+    <div class="row g-4">
       <% @menus.each do |menu| %>
-        <div class="col-6 col-md-4 mb-4 text-center">
-          <div class="item_image">
-            <% if menu.image.attached? %>
-              <%= link_to restaurant_restaurant_menu_path(@restaurant, menu) do %>
-                <%= image_tag menu.get_image(100,100), class: "img-fluid rounded", width: 100, height: 100, style: "object-fit: cover;" %>
-              <% end %>
-            <% else %>
-              <%= link_to restaurant_restaurant_menu_path(@restaurant, menu) do %>
-                <%= image_tag 'default-image.jpg', size: "100x100", class: "img-fluid rounded" %>
-              <% end %>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-card">
+            <%= link_to restaurant_restaurant_menu_path(@restaurant, menu),
+                class: "text-decoration-none d-block" do %>
+              <div class="menu-card__img-wrap">
+                <%= image_tag(
+                  menu.image.attached? ? menu.get_image(400, 280) : 'default-image.jpg',
+                  class: "menu-card__img", alt: menu.name
+                ) %>
+              </div>
             <% end %>
+            <div class="menu-card__body">
+              <h5 class="menu-card__name"><%= menu.name %></h5>
+              <p class="menu-card__price">
+                ¥<%= menu.with_tax_price %><span class="menu-card__price-unit">（税込）</span>
+              </p>
+              <p class="menu-card__allergen-label">含有アレルゲン</p>
+              <% if menu.allergies.any? %>
+                <div class="menu-card__allergens">
+                  <% menu.allergies.each do |a| %>
+                    <span class="menu-allergen-tag"><%= a.allergen %></span>
+                  <% end %>
+                </div>
+              <% else %>
+                <p class="menu-card__no-allergen">情報なし</p>
+              <% end %>
+              <%= link_to edit_restaurant_restaurant_menu_path(menu),
+                  class: "search-card__link-btn mt-3 d-block" do %>
+                編集する&nbsp;<i class="fas fa-pen-nib"></i>
+              <% end %>
+            </div>
           </div>
-          <p class="p_1 mt-2"><%= link_to menu.name, restaurant_restaurant_menu_path(@restaurant, menu) %></p>
-          <p class="p_1"><%= "¥#{menu.price}" %></p>
-          <p class="p_1 small text-muted">
-            <% menu.allergies.each do |e| %>
-              <%= e.allergen %>
-            <% end %>
-          </p>
         </div>
       <% end %>
     </div>
 
-    <div class="d-flex justify-content-center mt-3"><%= paginate @menus %></div>
+    <div class="d-flex justify-content-center mt-5 mb-2">
+      <%= paginate @menus %>
+    </div>
 
-  </div>
+  <% else %>
+    <div class="text-center py-5">
+      <div class="search-empty-icon mb-4">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <h5 class="search-empty-title">まだメニューが登録されていません</h5>
+      <p class="text-muted small mt-2">メニューを追加して、アレルゲン情報を公開しましょう</p>
+      <%= link_to new_restaurant_restaurant_menu_path(@restaurant), class: "btn search-empty-btn mt-3" do %>
+        <i class="fas fa-plus me-1"></i>メニューを追加する
+      <% end %>
+    </div>
+  <% end %>
 </div>

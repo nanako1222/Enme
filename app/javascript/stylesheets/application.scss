@@ -2003,3 +2003,146 @@ input[type="checkbox"] {
   font-size: 0.9rem;
   color: $text-sub;
 }
+
+
+// ─── Section 21: Restaurant member pages ─────────────────────────
+.rest-top-img {
+  width: 100%;
+  max-width: 260px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.rest-top-intro {
+  font-size: 0.92rem;
+  color: $text-main;
+  line-height: 1.8;
+}
+
+.rest-top-link {
+  color: $green;
+  word-break: break-all;
+
+  &:hover { color: $green-dark; }
+}
+
+.rest-withdraw-btn {
+  border: 1.5px solid #c0392b;
+  color: #c0392b;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 0.15s, color 0.15s;
+
+  &:hover { background-color: #c0392b; color: #fff; }
+}
+
+// 退会確認
+.rest-confirm-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 28px rgba(61, 43, 31, 0.09);
+  padding: 48px 44px;
+  max-width: 520px;
+
+  @media (max-width: 575.98px) { padding: 32px 20px; }
+}
+
+.rest-confirm {
+  &__icon {
+    font-size: 2.8rem;
+    color: #c0392b;
+    opacity: 0.85;
+  }
+
+  &__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $brown-dark;
+  }
+
+  &__text {
+    font-size: 0.9rem;
+    color: $text-sub;
+    line-height: 1.9;
+  }
+
+  &__cancel-btn {
+    border: 1.5px solid $green;
+    color: $green;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background-color 0.15s, color 0.15s;
+
+    &:hover { background-color: $green; color: #fff; }
+  }
+
+  &__danger-btn {
+    background-color: #c0392b;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    transition: background-color 0.15s;
+
+    &:hover { background-color: darken(#c0392b, 8%); color: #fff; }
+  }
+}
+
+// アレルゲンチェックボックス
+.rest-allergen-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rest-allergen-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border: 1.5px solid $beige-dark;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: border-color 0.12s, background-color 0.12s;
+
+  &:has(.rest-allergen-check__input:checked) {
+    border-color: #c0392b;
+    background-color: rgba(192, 57, 43, 0.06);
+    color: #c0392b;
+  }
+
+  &__input {
+    accent-color: #c0392b;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+// フォームエラー
+.rest-form-errors {
+  background: rgba(192, 57, 43, 0.08);
+  border-left: 4px solid #c0392b;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 0.88rem;
+  color: #922b21;
+
+  ul { padding-left: 20px; }
+}
+
+// 編集フォームのサムネイル
+.rest-edit-thumb {
+  height: 80px;
+  width: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
