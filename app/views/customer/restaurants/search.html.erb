@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <%# エリア絞り込み %>
+      <%# エリア絞り込み＋検索ボタン %>
       <div class="row g-3 align-items-end mt-2">
         <div class="col-md-4">
           <label class="top-search__label">都道府県</label>
@@ -48,19 +48,17 @@
             </select>
           </div>
         </div>
+        <div class="col-md-4">
+          <%= button_tag type: :submit, class: "btn top-search__btn w-100" do %>
+            <i class="fas fa-search me-1"></i>検索する
+          <% end %>
+        </div>
       </div>
       <p class="search-form-area-note mt-2">
         ※エリア区分の詳細は
         <%= link_to "こちら", about_path, class: "search-form-area-link", data: {"turbolinks" => false} %>
         をご覧ください
       </p>
-
-      <%# 検索ボタン %>
-      <div class="text-center mt-4 mb-2">
-        <%= button_tag type: :submit, class: "btn top-search__btn px-5" do %>
-          <i class="fas fa-search me-1"></i>検索する
-        <% end %>
-      </div>
 
     <% end %>
 
