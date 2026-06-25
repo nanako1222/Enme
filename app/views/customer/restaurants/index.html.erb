@@ -34,7 +34,7 @@
       <p class="search-results-count mb-0">
         <strong><%= @restaurant_count %>件</strong>のお店が見つかりました
       </p>
-      <%= link_to search_restaurants_path, class: "search-results-refine-link" do %>
+      <%= link_to search_restaurants_path(customer: { allergies: @allergy_ids, state_id: @state_id, area_id: @area_id }), class: "search-results-refine-link" do %>
         <i class="fas fa-sliders-h me-1"></i>絞り込みを変更
       <% end %>
     </div>
@@ -121,7 +121,7 @@
       </div>
       <h5 class="search-empty-title">条件に合うお店が見つかりませんでした</h5>
       <p class="text-muted small mt-2">検索条件を変えてお試しください</p>
-      <%= link_to search_restaurants_path, class: "btn search-empty-btn mt-3" do %>
+      <%= link_to search_restaurants_path(customer: { allergies: @allergy_ids, state_id: @state_id, area_id: @area_id }), class: "btn search-empty-btn mt-3" do %>
         <i class="fas fa-arrow-left me-1"></i>検索条件を変更する
       <% end %>
     </div>

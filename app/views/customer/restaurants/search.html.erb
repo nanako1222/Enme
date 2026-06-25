@@ -36,8 +36,15 @@
 
         <div id="allergenArea" class="top-allergen-area collapse">
           <div class="allergen-pills">
-            <%= f.collection_check_boxes(:allergies, @allergies, :id, :allergen, include_hidden: false) do |a| %>
-              <%= a.label { a.check_box + a.text } %>
+            <% @allergies.each do |allergy| %>
+              <label>
+                <input type="checkbox"
+                       name="customer[allergies][]"
+                       value="<%= allergy.id %>"
+                       id="allergen_<%= allergy.id %>"
+                       <%= 'checked' if @selected_allergy_ids.include?(allergy.id) %>>
+                <%= allergy.allergen %>
+              </label>
             <% end %>
           </div>
         </div>
@@ -48,7 +55,7 @@
         <div class="col-md-4">
           <label class="top-search__label">都道府県</label>
           <%= f.collection_select :state_id, State.all, :id, :state,
-              { include_blank: "すべての都道府県" },
+              { include_blank: "すべての都道府県", selected: @selected_state_id },
               { class: "search-select w-100" } %>
         </div>
         <div class="col-md-4">
@@ -135,6 +142,25 @@
         allergenBadge.textContent = count;
         allergenBadge.classList.remove('d-none');
       }
+    }
+
+    // 都道府県・エリアの復元
+    const preStateId = '<%= @selected_state_id %>';
+    const preAreaId  = '<%= @selected_area_id %>';
+    if (preStateId) {
+      fetch(`/areas?type=search&state_id=${preStateId}`)
+        .then(r => r.text())
+        .then(html => {
+          const container = document.querySelector('#areas_select_search');
+          if (!container) return;
+          const sel = container.querySelector('select');
+          if (sel) sel.innerHTML = html;
+          else container.innerHTML = html;
+          if (preAreaId) {
+            const areaSelect = document.querySelector('#customer_area_id');
+            if (areaSelect) areaSelect.value = preAreaId;
+          }
+        });
     }
   });
 </script>

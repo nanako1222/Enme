@@ -41,6 +41,9 @@ class Customer::RestaurantsController < ApplicationController
   def search
     @allergies = Allergy.all
     @customer = Customer.new
+    @selected_allergy_ids = params.dig(:customer, :allergies)&.map(&:to_i) || []
+    @selected_state_id    = params.dig(:customer, :state_id).presence
+    @selected_area_id     = params.dig(:customer, :area_id).presence
   end
 
   def simple_search
