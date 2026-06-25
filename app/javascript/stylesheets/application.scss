@@ -1773,7 +1773,22 @@ input[type="checkbox"] {
   padding: 40px 48px;
   max-width: 480px;
 
+  &--wide { max-width: 620px; }
+
   @media (max-width: 575.98px) { padding: 28px 20px; }
+}
+
+.auth-area-note {
+  font-size: 0.82rem;
+  color: $text-sub;
+  margin-top: -4px;
+}
+
+.auth-area-link {
+  color: $green;
+  text-decoration: underline;
+
+  &:hover { color: $green-dark; }
 }
 
 .auth-form {
@@ -1797,6 +1812,12 @@ input[type="checkbox"] {
       box-shadow: 0 0 0 3px rgba(101, 136, 84, 0.15);
       outline: none;
     }
+  }
+
+  &__note {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: $text-sub;
   }
 }
 

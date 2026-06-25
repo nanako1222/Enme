@@ -1,92 +1,113 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── ヒーロー ─────────────────────────────── %>
+<div class="auth-hero">
+  <div class="container text-center py-4">
+    <h1 class="auth-hero__title">新規会員登録</h1>
+    <p class="auth-hero__sub">登録すると、アレルゲン情報の保存やお気に入りの飲食店管理ができます</p>
+  </div>
+</div>
 
-    <div class="text-center mt-5">
-      <h4 class="text-center"><strong>新規会員登録</strong></h4>
-    </div>
+<div class="container py-5">
+  <div class="auth-card auth-card--wide mx-auto">
 
-    <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
+    <%= form_with model: @customer, url: customer_registration_path,
+        id: 'new_customer', class: 'new_customer', local: true do |f| %>
       <%= render "customer/shared/error_messages", resource: resource %>
 
-      <div class="row mt-3 align-items-center">
-        <span class="col-md-4">名前</span>
-        <div class="col-md-8 d-flex gap-2">
-          <%= f.text_field :first_name, autofocus: true, placeholder: "姓", class: "flex-grow-1", style: "min-width: 0;" %>
-          <%= f.text_field :last_name, placeholder: "名", class: "flex-grow-1", style: "min-width: 0;" %>
+      <%# 名前 %>
+      <div class="mb-4">
+        <label class="auth-form__label">名前</label>
+        <div class="d-flex gap-2">
+          <%= f.text_field :first_name, placeholder: "姓", autofocus: true,
+              class: "form-control auth-form__input" %>
+          <%= f.text_field :last_name, placeholder: "名",
+              class: "form-control auth-form__input" %>
         </div>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <span class="col-md-4">フリガナ</span>
-        <div class="col-md-8 d-flex gap-2">
-          <%= f.text_field :first_name_kana, placeholder: "姓（カナ）", class: "flex-grow-1", style: "min-width: 0;" %>
-          <%= f.text_field :last_name_kana, placeholder: "名（カナ）", class: "flex-grow-1", style: "min-width: 0;" %>
+      <%# フリガナ %>
+      <div class="mb-4">
+        <label class="auth-form__label">フリガナ</label>
+        <div class="d-flex gap-2">
+          <%= f.text_field :first_name_kana, placeholder: "セイ",
+              class: "form-control auth-form__input" %>
+          <%= f.text_field :last_name_kana, placeholder: "メイ",
+              class: "form-control auth-form__input" %>
         </div>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :email, class: "col-md-4" %>
-        <%= f.email_field :email, class: "col-md-8" %>
+      <%# メールアドレス %>
+      <div class="mb-4">
+        <%= f.label :email, "メールアドレス", class: "auth-form__label" %>
+        <%= f.email_field :email, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :state_id, class: "col-md-4" %>
-        <%= f.collection_select :state_id, State.all, :id, :state, {selected: 1}, {class: "col-md-4"} %>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <%= f.label :area_id, class: "col-md-4" %>
-        <div id="areas_select_customer" class="col-md-8">
-          <%= render partial: 'shared/areas', locals: { areas: Area.where(state_id: 1) } %>
+      <%# 都道府県・エリア %>
+      <div class="row g-3 mb-1">
+        <div class="col-md-6">
+          <%= f.label :state_id, "都道府県", class: "auth-form__label" %>
+          <%= f.collection_select :state_id, State.all, :id, :state,
+              { selected: 1 },
+              { class: "form-select auth-form__input" } %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :area_id, "エリア", class: "auth-form__label" %>
+          <div id="areas_select_customer">
+            <%= render partial: 'shared/areas', locals: { areas: Area.where(state_id: 1) } %>
+          </div>
         </div>
       </div>
-
-      <p class="text-center mt-2">
-        ※エリア分け詳細は
-        <%= link_to "こちら", about_path, class: "btn btn-outline-info btn-sm", data: {"turbolinks" => false} %>
-        をご参考ください
+      <p class="auth-area-note mb-4">
+        ※エリア区分の詳細は
+        <%= link_to "こちら", about_path, class: "auth-area-link",
+            data: {"turbolinks" => false} %>
+        をご覧ください
       </p>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :telephone_number, class: "col-md-4" %>
-        <%= f.text_field :telephone_number, class: "col-md-8" %>
+      <%# 電話番号 %>
+      <div class="mb-4">
+        <%= f.label :telephone_number, "電話番号", class: "auth-form__label" %>
+        <%= f.text_field :telephone_number, placeholder: "例：090-1234-5678",
+            class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <div class="col-md-4">
-          <%= f.label :password %>
+      <%# パスワード %>
+      <div class="mb-4">
+        <%= f.label :password, class: "auth-form__label" do %>
+          パスワード
           <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> 文字以上)</em>
+            <span class="auth-form__note">（<%= @minimum_password_length %>文字以上）</span>
           <% end %>
-        </div>
-        <%= f.password_field :password, class: "col-md-8" %>
+        <% end %>
+        <%= f.password_field :password, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :password_confirmation, class: "col-md-4" %>
-        <%= f.password_field :password_confirmation, class: "col-md-8" %>
+      <%# パスワード確認 %>
+      <div class="mb-4">
+        <%= f.label :password_confirmation, "パスワード（確認）", class: "auth-form__label" %>
+        <%= f.password_field :password_confirmation, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="mt-4 text-center">
-        <%= button_tag type: :submit, class: "btn btn-success active" do %>
-          <i class="fas fa-user-plus"></i> 新規登録
+      <div class="d-grid mt-2">
+        <%= button_tag type: :submit, class: "btn auth-submit-btn" do %>
+          <i class="fas fa-user-plus me-1"></i>登録する
         <% end %>
       </div>
-
-      <div class="text-center mt-5 mb-4">
-        <h6 class="text-center">既に登録済みの方</h6>
-        <p class="mt-3">
-          <%= link_to "こちら", new_customer_session_path, class: "btn btn-outline-info btn-sm" %>
-          からログインしてください。
-        </p>
-      </div>
-
     <% end %>
+
+    <hr class="auth-divider my-4">
+
+    <p class="text-center auth-sub-text">既に登録済みの方</p>
+    <div class="text-center">
+      <%= link_to new_customer_session_path, class: "btn auth-register-btn" do %>
+        ログインはこちら
+      <% end %>
+    </div>
+
   </div>
 </div>
 
 <script>
-  window.addEventListener('pageshow',()=>{
-    if(window.performance.navigation.type==2) location.reload();
+  window.addEventListener('pageshow', () => {
+    if (window.performance.navigation.type == 2) location.reload();
   });
 </script>
