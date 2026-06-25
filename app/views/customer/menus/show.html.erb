@@ -1,42 +1,73 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class='flashing mt-5 offset-2'>
-        <p>※現在登録されているデータは架空です</p>
-      </div>
-      <div class="row mt-5">
-        <div class="col-md-5 mt-5 text-center">
-          <div class="menu_image">
-            <% if @menu.image.attached? %>
-              <%= image_tag @menu.get_image(200,200) %>
-            <% else %>
-              <%= image_tag 'default-image.jpg', size: "200x200" %>
-            <% end %>
-          </div>
-        </div>
+<%# ─── 上部お知らせ帯 ──────────────────────── %>
+<div class="rest-notice-band">
+  <div class="container">
+    <p class="rest-notice-band__allergy">
+      <i class="fas fa-exclamation-circle me-1"></i>アレルゲン情報は店舗の登録内容に基づきます。食材変更や調理器具の共有等により混入の可能性があるため、ご利用前に必ず店舗へ直接ご確認ください。
+    </p>
+    <p class="rest-notice-band__demo">
+      <i class="fas fa-info-circle me-1"></i>現在登録されているデータは架空のサンプルデータです。
+    </p>
+  </div>
+</div>
 
-        <div class="col-md-7 mt-5 menu_show">
-          <h5><strong><%= @menu.name %></strong></h5>
-          <div class="mt-3">
+<%# ─── メニュー詳細 ─────────────────────── %>
+<div class="container py-5 pb-6">
+  <div class="menu-show-card">
+    <div class="row g-4 g-lg-5 align-items-start">
+
+      <%# 画像カラム %>
+      <div class="col-md-5">
+        <div class="menu-show__img-wrap">
+          <%= image_tag(
+            @menu.image.attached? ? @menu.get_image(600, 440) : 'default-image.jpg',
+            class: "menu-show__img", alt: @menu.name
+          ) %>
+        </div>
+      </div>
+
+      <%# 情報カラム %>
+      <div class="col-md-7">
+        <h1 class="menu-show__name"><%= @menu.name %></h1>
+
+        <% if @menu.introduction.present? %>
+          <div class="menu-show__intro mt-3">
             <%= simple_format(@menu.introduction) %>
           </div>
-          <div class="mt-3">
-            <p class="menu_allergen"><strong>含まれるアレルゲン</strong></p>
-            <% @menu.menu_having_allergies.each do |e| %>
-              <td><%= e.allergy.allergen %></td>
-            <% end %>
-          </div>
-            <!--<th>税込価格</th>-->
-          <div class="mt-5"><span>税抜価格（税込価格）</span><br><strong class="price"><%= "#{@menu.price}円" %>(<%= "#{@menu.with_tax_price}円" %>)　</strong></div>
+        <% end %>
+
+        <%# アレルゲン %>
+        <div class="menu-show__allergen-section mt-4">
+          <p class="menu-show__allergen-label">
+            <i class="fas fa-exclamation-triangle me-1"></i>含まれるアレルゲン
+          </p>
+          <% if @menu.allergies.any? %>
+            <div class="menu-show__allergen-tags">
+              <% @menu.allergies.each do |a| %>
+                <span class="menu-allergen-tag menu-allergen-tag--lg"><%= a.allergen %></span>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="menu-show__no-allergen">このメニューには登録されたアレルゲンはありません</p>
+          <% end %>
         </div>
 
-        <div class = "mt-4 offset-4">
-          <%= link_to restaurant_menus_path(@restaurant), class:"btn btn-info active btn-sm ml-3" do %>
-            <i class="fas fa-clipboard-list"></i>
-            メニュー一覧に戻る
+        <%# 価格 %>
+        <div class="menu-show__price-section mt-4">
+          <p class="menu-show__price-label">税抜価格（税込価格）</p>
+          <p class="menu-show__price">
+            <%= @menu.price %>円
+            <span class="menu-show__price-tax">（<%= @menu.with_tax_price %>円）</span>
+          </p>
+        </div>
+
+        <%# 戻るボタン %>
+        <div class="mt-4">
+          <%= link_to restaurant_menus_path(@restaurant), class: "btn menu-back-btn" do %>
+            <i class="fas fa-clipboard-list me-1"></i>メニュー一覧に戻る
           <% end %>
         </div>
       </div>
+
     </div>
   </div>
 </div>
