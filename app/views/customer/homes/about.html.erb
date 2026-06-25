@@ -50,7 +50,7 @@
     </h2>
     <p class="about-section__text text-center mb-4">
       都道府県ごとに地域エリアを分けており、店舗を絞り込む際に活用します。<br>
-      市区町村名で検索するか、各マップをクリックして確認できます。
+      市区町村名で検索すると、どのエリアに属するかを確認できます。
     </p>
 
     <%# ─── 市区町村検索 ─── %>
@@ -70,32 +70,6 @@
       <p class="about-area-search__note">※エリア区分は当サービス独自の定義によるものです</p>
     </div>
 
-    <div class="row g-3 justify-content-center">
-      <% [
-        { file: 'osaka.jpg',     name: '大阪府' },
-        { file: 'kyoto.jpg',     name: '京都府' },
-        { file: 'hyogo.jpg',     name: '兵庫県' },
-        { file: 'nara.jpg',      name: '奈良県' },
-        { file: 'wakayama.jpg',  name: '和歌山県' },
-        { file: 'shiga.jpg',     name: '滋賀県' },
-      ].each do |map| %>
-        <div class="col-6 col-md-4">
-          <div class="about-map-item"
-               data-bs-toggle="modal"
-               data-bs-target="#mapModal"
-               data-src="<%= asset_path(map[:file]) %>"
-               data-title="<%= map[:name] %>の地域エリア">
-            <%= image_tag map[:file],
-                class: "about-map-img",
-                alt: "#{map[:name]}の地域エリアマップ" %>
-            <div class="about-map-overlay">
-              <i class="fas fa-search-plus"></i>
-            </div>
-            <p class="about-map-name"><%= map[:name] %></p>
-          </div>
-        </div>
-      <% end %>
-    </div>
   </div>
 </section>
 
@@ -125,20 +99,6 @@
   </div>
 </section>
 
-<%# ─── 地図拡大モーダル ───────────────────── %>
-<div class="modal fade" id="mapModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-    <div class="modal-content about-modal">
-      <div class="modal-header about-modal__header">
-        <h5 class="modal-title about-modal__title" id="mapModalTitle"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
-      </div>
-      <div class="modal-body p-0">
-        <img id="mapModalImg" src="" alt="" class="img-fluid w-100">
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
   // ─── 市区町村 → エリア検索データ ─────────────────
@@ -181,7 +141,7 @@
     "神河町":"兵庫県 / 中播磨",
     // 兵庫県 / 東播磨
     "明石市":"兵庫県 / 東播磨","加古川市":"兵庫県 / 東播磨","高砂市":"兵庫県 / 東播磨",
-    "稲美町":"兵庫県 / 東播磨","播磨町":"兵庫県 / 東播磨",
+    "播磨町":"兵庫県 / 東播磨","稲美町":"兵庫県 / 神戸市",
     // 兵庫県 / 西播磨
     "相生市":"兵庫県 / 西播磨","赤穂市":"兵庫県 / 西播磨","宍粟市":"兵庫県 / 西播磨",
     "たつの市":"兵庫県 / 西播磨","上郡町":"兵庫県 / 西播磨","佐用町":"兵庫県 / 西播磨",
@@ -290,13 +250,5 @@
       });
     }
 
-    // ─── 地図モーダル ────────────────────────────
-    const modal = document.getElementById('mapModal');
-    if (!modal) return;
-    modal.addEventListener('show.bs.modal', function(e) {
-      const trigger = e.relatedTarget;
-      document.getElementById('mapModalTitle').textContent = trigger.dataset.title || '';
-      document.getElementById('mapModalImg').src = trigger.dataset.src || '';
-    });
   });
 </script>
