@@ -47,7 +47,7 @@
               <p class="menu-card__price">
                 ¥<%= menu.with_tax_price %><span class="menu-card__price-unit">（税込）</span>
               </p>
-              <p class="menu-card__allergen-label">アレルゲン</p>
+              <p class="menu-card__allergen-label">含有アレルゲン</p>
               <% if menu.allergies.any? %>
                 <div class="menu-card__allergens">
                   <% menu.allergies.each do |a| %>
