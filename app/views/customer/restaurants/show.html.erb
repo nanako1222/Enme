@@ -135,15 +135,6 @@
         </div>
       <% end %>
 
-      <% if @restaurant.email.present? %>
-        <div class="rest-info-row">
-          <div class="rest-info-row__icon"><i class="fas fa-envelope"></i></div>
-          <div>
-            <p class="rest-info-row__label">メールアドレス</p>
-            <p class="rest-info-row__value"><%= @restaurant.email %></p>
-          </div>
-        </div>
-      <% end %>
 
       <% if @restaurant.home_page.present? %>
         <div class="rest-info-row">
