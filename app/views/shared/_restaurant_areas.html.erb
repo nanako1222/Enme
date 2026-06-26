@@ -1,1 +1,2 @@
-<%= collection_select :restaurant, :area_id, areas, :id, :area %>
+<%= collection_select :restaurant, :area_id, areas, :id, :area,
+    {}, { class: "form-select auth-form__input" } %>
