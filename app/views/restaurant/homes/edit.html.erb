@@ -6,6 +6,12 @@
   </div>
 </div>
 
+<div class="container pt-3 pb-0 text-end" style="max-width: 700px;">
+  <%= link_to restaurant_path(@restaurant), class: "btn menu-back-btn btn-sm", target: "_blank", rel: "noopener" do %>
+    <i class="fas fa-external-link-alt me-1"></i>公開ページを確認
+  <% end %>
+</div>
+
 <div class="container py-5">
   <div class="auth-card auth-card--wide mx-auto">
 
@@ -100,9 +106,9 @@
         </div>
       </div>
 
-      <%# NEWS %>
+      <%# お知らせ・新着情報 %>
       <div class="mb-4">
-        <%= f.label :news, "NEWS", class: "auth-form__label" %>
+        <%= f.label :news, "お知らせ・新着情報", class: "auth-form__label" %>
         <%= f.text_area :news, rows: 4, class: "form-control auth-form__input" %>
       </div>
 

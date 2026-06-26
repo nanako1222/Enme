@@ -2098,9 +2098,13 @@ input[type="checkbox"] {
 
 // アレルゲンチェックボックス
 .rest-allergen-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 6px;
+
+  @media (max-width: 575.98px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .rest-allergen-check {
