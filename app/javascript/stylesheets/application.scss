@@ -157,11 +157,31 @@ th { color: #cd853f; }
 
   // ─── 右カラム画像 ─────────────────────────
   &__img-wrap {
+    position: relative;
     border-radius: 16px;
     overflow: hidden;
     height: 500px;
+    margin-left: -20px; // 20px左へ寄せてivoryに近づける
 
-    @media (max-width: 991px) { height: 320px; }
+    // 左端だけごく薄いベージュを乗せて境界を溶かす
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba($beige, 0.5) 0%,
+        rgba($beige, 0.15) 8%,
+        transparent 20%
+      );
+      pointer-events: none;
+    }
+
+    @media (max-width: 991px) {
+      height: 320px;
+      margin-left: 0;
+      &::after { display: none; }
+    }
   }
 
   &__img {
