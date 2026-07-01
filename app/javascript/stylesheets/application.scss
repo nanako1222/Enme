@@ -2254,20 +2254,21 @@ input[type="checkbox"] {
   font-size: 0.82rem;
   padding: 0.25rem 0.85rem;
   border-radius: 6px;
-  font-weight: 500;
+  font-weight: 600;
   border: 1.5px solid $brown;
   color: $brown;
   background: transparent;
   text-decoration: none !important;
   transition: all 0.18s;
   display: inline-block;
+  white-space: nowrap;
 
-  &:hover { background: $brown; color: #fff; }
+  &:hover { background: rgba($brown, 0.12); color: $brown-dark; }
 
   &--danger {
     border-color: #c0392b;
     color: #c0392b;
-    &:hover { background: #c0392b; color: #fff; }
+    &:hover { background: rgba(#c0392b, 0.1); color: #9b2335; }
   }
 }
 
