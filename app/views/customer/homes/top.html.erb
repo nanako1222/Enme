@@ -1,7 +1,7 @@
 <%# ─── Hero ─────────────────────────────────────────────── %>
-<section class="top-hero">
+<section class="top-hero" style="background-image: url(<%= asset_path('top.jpg') %>);">
   <div class="container">
-    <div class="row align-items-center g-5 pt-5 pb-3">
+    <div class="row pt-5 pb-4">
       <div class="col-lg-6">
         <p class="top-hero__label">アレルギー対応飲食店検索サービス</p>
         <h1 class="top-hero__title">アレルギーがあっても、<br>安心して外食を。</h1>
@@ -32,11 +32,6 @@
             <i class="fas fa-utensils top-hero__step-icon"></i>
             <span class="top-hero__step-label">安心して外食</span>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="top-hero__img-wrap">
-          <%= image_tag "top.jpg", class: "top-hero__img", alt: "食卓風景" %>
         </div>
       </div>
     </div>
