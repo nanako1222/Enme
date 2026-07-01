@@ -1,78 +1,103 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── 管理者帯 ──────────────────────── %>
+<div class="admin-notice-band">
+  <div class="container">
+    <p><i class="fas fa-shield-alt me-1"></i>管理者ページ｜飲食店詳細</p>
+  </div>
+</div>
 
-    <% if flash[:notice] %>
-      <%= notice %>
-    <% end %>
-
-    <div class="text-center mt-5">
-      <h4 class="text-center"><strong><%= "#{@restaurant.name}の店舗詳細" %></strong></h4>
+<%# ─── ページヘッダー ─────────────────── %>
+<div class="menu-list-header">
+  <div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div>
+        <h1 class="menu-list-header__title">
+          <i class="fas fa-store me-2"></i>飲食店詳細
+        </h1>
+        <p class="menu-list-header__count"><strong><%= @restaurant.name %></strong></p>
+      </div>
+      <div class="d-flex gap-2">
+        <%= link_to admin_path, class: "btn menu-back-btn" do %>
+          <i class="fas fa-arrow-left me-1"></i>飲食店一覧に戻る
+        <% end %>
+        <%= link_to edit_admin_restaurant_path(@restaurant), class: "btn admin-auth-submit-btn" do %>
+          <i class="fas fa-pen-nib me-1"></i>編集する
+        <% end %>
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class='flashing mt-2'>
-      <p>※現在登録されているデータは架空です</p>
-    </div>
+<%# ─── 情報カード ──────────────────────── %>
+<div class="container py-4 pb-5">
+  <div class="mypage-card" style="max-width: 720px;">
 
-    <table class="table table-hover mt-4">
-      <tr>
-        <th>会員ID</th>
-        <td><%= @restaurant.id %></td>
-      </tr>
-      <tr>
-        <th>店名</th>
-        <td><%= @restaurant.name %></td>
-      </tr>
-      <tr>
-        <th>都道府県</th>
-        <td><%= @state %></td>
-      </tr>
-      <tr>
-        <th>地域エリア</th>
-        <td><%= @area %></td>
-      </tr>
-      <tr>
-        <th>それ以降の住所</th>
-        <td><%= @restaurant.address %></td>
-      </tr>
-      <tr>
-        <th>電話番号</th>
-        <td><%= @restaurant.telephone_number %></td>
-      </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= @restaurant.email %></td>
-      </tr>
-      <tr>
-        <th>定休日</th>
-        <td><%= @restaurant.regular_holiday %></td>
-      </tr>
-      <tr>
-        <th>営業時間</th>
-        <td><%= @restaurant.business_hours %></td>
-      </tr>
-      <tr>
-        <th>ホームページURL</th>
-        <td><%= @restaurant.home_page %></td>
-      </tr>
-      <tr>
-        <th>駐車場</th>
-        <td><%= @restaurant.parking %></td>
-      </tr>
-      <tr>
-        <th>会員状況</th>
-        <td>
-          <% if @restaurant.is_valid == false %>
-            <p class="restaurant_valid">退会</p>
+    <h2 class="mypage-card__section-title">
+      <i class="fas fa-id-card me-2"></i>店舗情報
+    </h2>
+
+    <dl class="mypage-dl">
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">会員ID</dt>
+        <dd class="mypage-dl__value text-muted"><%= @restaurant.id %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">店名</dt>
+        <dd class="mypage-dl__value"><%= @restaurant.name %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">都道府県</dt>
+        <dd class="mypage-dl__value"><%= @state %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">地域エリア</dt>
+        <dd class="mypage-dl__value"><%= @area %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">住所</dt>
+        <dd class="mypage-dl__value"><%= @restaurant.address.presence || "（未登録）" %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">電話番号</dt>
+        <dd class="mypage-dl__value"><%= @restaurant.telephone_number.presence || "（未登録）" %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">メールアドレス</dt>
+        <dd class="mypage-dl__value"><%= @restaurant.email %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">定休日</dt>
+        <dd class="mypage-dl__value"><%= @restaurant.regular_holiday.presence || "（未登録）" %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">営業時間</dt>
+        <dd class="mypage-dl__value"><%= @restaurant.business_hours.presence || "（未登録）" %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">ホームページ</dt>
+        <dd class="mypage-dl__value">
+          <% if @restaurant.home_page.present? %>
+            <%= link_to @restaurant.home_page, @restaurant.home_page,
+                target: "_blank", rel: "noopener", class: "rest-top-link" %>
           <% else %>
-            <p class="restaurant_valid2">有効</p>
+            （未登録）
           <% end %>
-        </td>
-      </tr>
-    </table>
-
-    <div class="mt-4 mb-5 text-center">
-      <%= link_to "編集する", edit_admin_restaurant_path(@restaurant), class: "btn btn-success active px-4" %>
-    </div>
+        </dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">駐車場</dt>
+        <dd class="mypage-dl__value"><%= @restaurant.parking.presence || "（未登録）" %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">会員状況</dt>
+        <dd class="mypage-dl__value">
+          <% if @restaurant.is_valid %>
+            <span class="admin-badge admin-badge--valid">有効</span>
+          <% else %>
+            <span class="admin-badge admin-badge--invalid">退会</span>
+          <% end %>
+        </dd>
+      </div>
+    </dl>
 
   </div>
 </div>

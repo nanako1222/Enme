@@ -1,70 +1,91 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── 管理者帯 ──────────────────────── %>
+<div class="admin-notice-band">
+  <div class="container">
+    <p><i class="fas fa-shield-alt me-1"></i>管理者ページ｜顧客詳細</p>
+  </div>
+</div>
 
-    <% if flash[:notice] %>
-      <%= notice %>
-    <% end %>
-
-    <div class="text-center mt-5">
-      <h4 class="text-center"><strong><%= "#{@customer.full_name}さんの会員詳細" %></strong></h4>
+<%# ─── ページヘッダー ─────────────────── %>
+<div class="menu-list-header">
+  <div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div>
+        <h1 class="menu-list-header__title">
+          <i class="fas fa-user me-2"></i>顧客詳細
+        </h1>
+        <p class="menu-list-header__count"><strong><%= @customer.full_name %></strong> さん</p>
+      </div>
+      <div class="d-flex gap-2">
+        <%= link_to admin_customers_path, class: "btn menu-back-btn" do %>
+          <i class="fas fa-arrow-left me-1"></i>顧客一覧に戻る
+        <% end %>
+        <%= link_to edit_admin_customer_path(@customer), class: "btn admin-auth-submit-btn" do %>
+          <i class="fas fa-pen-nib me-1"></i>編集する
+        <% end %>
+      </div>
     </div>
+  </div>
+</div>
 
-    <div class='flashing mt-2'>
-      <p>※現在登録されているデータは架空です</p>
-    </div>
+<%# ─── 情報カード ──────────────────────── %>
+<div class="container py-4 pb-5">
+  <div class="mypage-card" style="max-width: 720px;">
 
-    <table class="table table-hover mt-4">
-      <tr>
-        <th>会員ID</th>
-        <td><%= @customer.id %></td>
-      </tr>
-      <tr>
-        <th>氏名</th>
-        <td><%= @customer.full_name %></td>
-      </tr>
-      <tr>
-        <th>フリガナ</th>
-        <td><%= @customer.full_name_kana %></td>
-      </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= @customer.email %></td>
-      </tr>
-      <tr>
-        <th>都道府県</th>
-        <td><%= @state %></td>
-      </tr>
-      <tr>
-        <th>地域エリア</th>
-        <td><%= @area %></td>
-      </tr>
-      <tr>
-        <th>電話番号</th>
-        <td><%= @customer.telephone_number %></td>
-      </tr>
-      <tr>
-        <th>アレルギー一覧</th>
-        <td>
-          <% @customer.allergies.each do |allergy| %>
-            <%= allergy.allergen %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>会員状況</th>
-        <td>
-          <% if @customer.is_valid == false %>
-            <p class="customer_valid">退会</p>
+    <h2 class="mypage-card__section-title">
+      <i class="fas fa-id-card me-2"></i>基本情報
+    </h2>
+
+    <dl class="mypage-dl">
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">会員ID</dt>
+        <dd class="mypage-dl__value text-muted"><%= @customer.id %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">氏名</dt>
+        <dd class="mypage-dl__value"><%= @customer.full_name %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">フリガナ</dt>
+        <dd class="mypage-dl__value"><%= @customer.full_name_kana %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">メールアドレス</dt>
+        <dd class="mypage-dl__value"><%= @customer.email %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">都道府県</dt>
+        <dd class="mypage-dl__value"><%= @state %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">地域エリア</dt>
+        <dd class="mypage-dl__value"><%= @area %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">電話番号</dt>
+        <dd class="mypage-dl__value"><%= @customer.telephone_number.presence || "（未登録）" %></dd>
+      </div>
+      <div class="mypage-dl__row">
+        <dt class="mypage-dl__label">会員状況</dt>
+        <dd class="mypage-dl__value">
+          <% if @customer.is_valid %>
+            <span class="admin-badge admin-badge--valid">有効</span>
           <% else %>
-            <p class="customer_valid2">有効</p>
+            <span class="admin-badge admin-badge--invalid">退会</span>
           <% end %>
-        </td>
-      </tr>
-    </table>
+        </dd>
+      </div>
+    </dl>
 
-    <div class="mt-4 mb-5 text-center">
-      <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success active px-4" %>
-    </div>
+    <% if @customer.allergies.any? %>
+      <h2 class="mypage-card__section-title mt-4">
+        <i class="fas fa-exclamation-triangle me-2"></i>登録アレルゲン
+      </h2>
+      <div class="d-flex flex-wrap gap-2 mt-3">
+        <% @customer.allergies.each do |allergy| %>
+          <span class="menu-allergen-tag"><%= allergy.allergen %></span>
+        <% end %>
+      </div>
+    <% end %>
 
   </div>
 </div>

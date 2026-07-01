@@ -1,82 +1,95 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── ヒーロー ─────────────────────────── %>
+<div class="auth-hero">
+  <div class="container text-center py-4">
+    <h1 class="auth-hero__title">飲食店情報編集</h1>
+    <p class="auth-hero__sub"><%= @restaurant.name %> の情報を編集します</p>
+  </div>
+</div>
 
-    <div class="text-center mt-5">
-      <h4 class="text-center"><strong><%= "#{@restaurant.name}の店舗情報編集" %></strong></h4>
-    </div>
-
-    <% flash.each do |key, value| %>
-      <p class="alert alert-<%= key %>"><%= value %></p>
-    <% end %>
-
-    <div class='flashing mt-2'>
-      <p>※現在登録されているデータは架空です</p>
-    </div>
+<div class="container py-5">
+  <div class="auth-card auth-card--wide mx-auto">
 
     <%= form_with model: @restaurant, url: admin_restaurant_path, method: :patch do |f| %>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :会員ID, class: "col-md-4" %>
-        <div class="col-md-8"><%= @restaurant.id %></div>
+      <%# 店名 %>
+      <div class="mb-4">
+        <%= f.label :name, "店名", class: "auth-form__label" %>
+        <%= f.text_field :name, required: true, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :name, class: "col-md-4" %>
-        <%= f.text_field :name, required: true, class: "col-md-8" %>
+      <%# メールアドレス %>
+      <div class="mb-4">
+        <%= f.label :email, "メールアドレス", class: "auth-form__label" %>
+        <%= f.email_field :email, required: true, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :state_id, class: "col-md-4" %>
-        <%= f.collection_select :state_id, State.all, :id, :state, {}, { class: "col-md-8" } %>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <%= f.label :area_id, class: "col-md-4" %>
-        <div id="areas_select" class="col-md-8">
-          <%= render partial: 'shared/restaurant_areas', locals: { areas: @area } %>
+      <%# 都道府県・エリア %>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <%= f.label :state_id, "都道府県", class: "auth-form__label" %>
+          <%= f.collection_select :state_id, State.all, :id, :state,
+              { include_blank: "選択してください" },
+              { class: "form-select auth-form__input" } %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :area_id, "地域エリア", class: "auth-form__label" %>
+          <div id="areas_select">
+            <%= render partial: 'shared/restaurant_areas', locals: { areas: @area } %>
+          </div>
         </div>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :address, class: "col-md-4" %>
-        <%= f.text_field :address, required: true, class: "col-md-8" %>
+      <%# 住所 %>
+      <div class="mb-4">
+        <%= f.label :address, "住所", class: "auth-form__label" %>
+        <%= f.text_field :address, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :telephone_number, class: "col-md-4" %>
-        <%= f.text_field :telephone_number, required: true, class: "col-md-8" %>
+      <%# 電話番号 %>
+      <div class="mb-4">
+        <%= f.label :telephone_number, "電話番号", class: "auth-form__label" %>
+        <%= f.text_field :telephone_number, class: "form-control auth-form__input" %>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :email, class: "col-md-4" %>
-        <%= f.email_field :email, required: true, class: "col-md-8" %>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <%= f.label :regular_holiday, class: "col-md-4" %>
-        <%= f.text_field :regular_holiday, required: true, class: "col-md-8" %>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <%= f.label :business_hours, class: "col-md-4" %>
-        <%= f.text_field :business_hours, required: true, class: "col-md-8" %>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <p class="col-md-4 mb-0">会員状況</p>
-        <div class="col-md-8">
-          <%= f.radio_button :is_valid, true %>
-          <%= f.label :is_valid, "有効", class: "valid me-3" %>
-          <%= f.radio_button :is_valid, false %>
-          <%= f.label :is_valid, "退会", class: "valid" %>
+      <%# 定休日・営業時間 %>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <%= f.label :regular_holiday, "定休日", class: "auth-form__label" %>
+          <%= f.text_field :regular_holiday, class: "form-control auth-form__input" %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :business_hours, "営業時間", class: "auth-form__label" %>
+          <%= f.text_field :business_hours, class: "form-control auth-form__input" %>
         </div>
       </div>
 
-      <div class="mt-4 mb-5 text-center">
-        <%= f.submit '変更を保存', class: "btn btn-success active px-4" %>
+      <%# 会員状況 %>
+      <div class="mb-4">
+        <p class="auth-form__label mb-2">会員状況</p>
+        <div class="admin-valid-radio">
+          <label>
+            <%= f.radio_button :is_valid, true %>
+            <span class="admin-badge admin-badge--valid">有効</span>
+          </label>
+          <label>
+            <%= f.radio_button :is_valid, false %>
+            <span class="admin-badge admin-badge--invalid">退会</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="d-grid mt-2">
+        <%= f.submit "変更を保存", class: "btn admin-auth-submit-btn" %>
       </div>
 
     <% end %>
+
+    <hr class="auth-divider my-4">
+    <div class="text-center">
+      <%= link_to admin_restaurant_path(@restaurant), class: "btn auth-register-btn" do %>
+        <i class="fas fa-arrow-left me-1"></i>詳細に戻る
+      <% end %>
+    </div>
 
   </div>
 </div>

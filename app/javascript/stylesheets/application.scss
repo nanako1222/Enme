@@ -2150,3 +2150,114 @@ input[type="checkbox"] {
   border-radius: 6px;
   object-fit: cover;
 }
+
+// ─── Section 22: Admin management pages ──────────────────
+
+.admin-notice-band {
+  background: rgba($brown-dark, 0.07);
+  border-bottom: 1px solid rgba($brown-dark, 0.15);
+  padding: 0.45rem 0;
+
+  p {
+    font-size: 0.8rem;
+    color: $brown-dark;
+    margin: 0;
+    text-align: center;
+    font-weight: 500;
+  }
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead tr {
+    border-bottom: 2px solid rgba($brown, 0.2);
+
+    th {
+      padding: 0.65rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: $brown-dark;
+      background: rgba($brown, 0.06);
+      white-space: nowrap;
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $beige;
+    transition: background 0.15s;
+
+    &:hover { background: rgba($ivory, 0.7); }
+
+    td {
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+      color: $text-main;
+      vertical-align: middle;
+    }
+  }
+
+  a {
+    color: $brown;
+    font-weight: 500;
+    text-decoration: none;
+    &:hover { text-decoration: underline; color: $brown-dark; }
+  }
+}
+
+.admin-badge {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  &--valid  { background: rgba($green, 0.13); color: $green-dark; }
+  &--invalid { background: rgba(#c0392b, 0.1); color: #c0392b; }
+}
+
+.admin-action-btn {
+  font-size: 0.82rem;
+  padding: 0.25rem 0.85rem;
+  border-radius: 6px;
+  font-weight: 500;
+  border: 1.5px solid $brown;
+  color: $brown;
+  background: transparent;
+  text-decoration: none !important;
+  transition: all 0.18s;
+  display: inline-block;
+
+  &:hover { background: $brown; color: #fff; }
+
+  &--danger {
+    border-color: #c0392b;
+    color: #c0392b;
+    &:hover { background: #c0392b; color: #fff; }
+  }
+}
+
+.admin-valid-radio {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 0.5rem 0;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: $text-main;
+    cursor: pointer;
+    font-weight: 500;
+  }
+}
+
+.admin-allergy-form-card {
+  background: rgba($brown, 0.04);
+  border: 1px solid $beige-dark;
+  border-radius: 12px;
+  padding: 1.5rem;
+}

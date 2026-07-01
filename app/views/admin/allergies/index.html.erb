@@ -1,43 +1,79 @@
-<div class="container">
-  <div class="col-11 col-md-10 mx-auto">
+<%# ─── 管理者帯 ──────────────────────── %>
+<div class="admin-notice-band">
+  <div class="container">
+    <p><i class="fas fa-shield-alt me-1"></i>管理者ページ｜アレルゲン管理</p>
+  </div>
+</div>
 
-    <div class="text-center mt-5">
-      <h4 class="text-center"><strong>アレルゲン一覧・追加</strong></h4>
+<%# ─── ページヘッダー ─────────────────── %>
+<div class="menu-list-header">
+  <div class="container py-4">
+    <div>
+      <h1 class="menu-list-header__title">
+        <i class="fas fa-exclamation-triangle me-2"></i>アレルゲン一覧・追加
+      </h1>
+      <p class="menu-list-header__count">全 <strong><%= @allergies.total_count %></strong> 件</p>
     </div>
+  </div>
+</div>
 
-    <% flash.each do |key, value| %>
-      <p class="alert alert-<%= key %>"><%= value %></p>
-    <% end %>
+<%# ─── コンテンツ ─────────────────────── %>
+<div class="container py-4 pb-5">
+  <div class="row g-4">
 
-    <div class="row mt-4 g-5">
-      <div class="col-md-4">
+    <%# 追加フォーム %>
+    <div class="col-lg-4">
+      <div class="admin-allergy-form-card">
+        <h2 class="mypage-card__section-title mb-3">
+          <i class="fas fa-plus me-2"></i>新規追加
+        </h2>
         <%= form_with model: @allergy, url: admin_allergies_path, method: :post do |f| %>
-          <div class="row mt-3 align-items-center">
-            <%= f.label :allergen, class: "col-md-4" %>
-            <%= f.text_field :allergen, class: "col-md-8" %>
+          <div class="mb-3">
+            <%= f.label :allergen, "アレルゲン名", class: "auth-form__label" %>
+            <%= f.text_field :allergen, required: true,
+                class: "form-control auth-form__input",
+                placeholder: "例：ごま" %>
           </div>
-          <div class="mt-4 text-center">
-            <%= f.submit '新規登録', class: "btn btn-success active px-4" %>
+          <div class="d-grid">
+            <%= f.submit "追加する", class: "btn admin-auth-submit-btn" %>
           </div>
         <% end %>
       </div>
+    </div>
 
-      <div class="col-md-8">
-        <table class="table table-hover">
-          <thead class="table-secondary">
-            <th>アレルゲン</th>
-            <th></th>
-            <th></th>
-          </thead>
-          <% @allergies.each do |allergy| %>
-            <tr>
-              <td><%= allergy.allergen %></td>
-              <td><%= link_to "編集", edit_admin_allergy_path(allergy), class: "btn btn-success" %></td>
-              <td><%= link_to "削除", admin_allergy_path(allergy), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger active" %></td>
-            </tr>
-          <% end %>
-        </table>
-        <div class="text-end mt-3 mb-5"><%= paginate @allergies %></div>
+    <%# 一覧テーブル %>
+    <div class="col-lg-8">
+      <div class="mypage-card">
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>アレルゲン名</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @allergies.each do |allergy| %>
+                <tr>
+                  <td><%= allergy.allergen %></td>
+                  <td style="width:80px;">
+                    <%= link_to "編集", edit_admin_allergy_path(allergy), class: "admin-action-btn" %>
+                  </td>
+                  <td style="width:80px;">
+                    <%= link_to "削除", admin_allergy_path(allergy),
+                        method: :delete,
+                        "data-confirm": "「#{allergy.allergen}」を削除しますか？",
+                        class: "admin-action-btn admin-action-btn--danger" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+          <%= paginate @allergies %>
+        </div>
       </div>
     </div>
 

@@ -1,44 +1,66 @@
-<div class="container">
-  <div class="col-11 col-md-10 mx-auto">
+<%# ─── 管理者帯 ──────────────────────── %>
+<div class="admin-notice-band">
+  <div class="container">
+    <p><i class="fas fa-shield-alt me-1"></i>管理者ページ｜飲食店会員一覧</p>
+  </div>
+</div>
 
-    <div class="text-center mt-5">
-      <h4 class="text-center"><strong>飲食店会員一覧</strong></h4>
-    </div>
-
-    <% flash.each do |key, value| %>
-      <p class="alert alert-<%= key %>"><%= value %></p>
-    <% end %>
-
-    <div class='flashing mt-2'>
-      <p>※現在登録されているデータは架空です</p>
-    </div>
-
-    <table class="table table-hover mt-4">
-      <thead class="table-secondary">
-        <th>会員ID</th>
-        <th>店名</th>
-        <th>メールアドレス</th>
-        <th>会員状況</th>
-      </thead>
-
-      <tbody>
-        <% @restaurants.each do |restaurant| %>
-          <tr>
-            <td><%= restaurant.id %></td>
-            <td><%= link_to restaurant.name, admin_restaurant_path(restaurant.id) %></td>
-            <td><%= restaurant.email %></td>
-            <td>
-              <% if restaurant.is_valid == false %>
-                <p class="restaurant_valid">退会</p>
-              <% else %>
-                <p class="restaurant_valid2">有効</p>
-              <% end %>
-            </td>
-          </tr>
+<%# ─── ページヘッダー ─────────────────── %>
+<div class="menu-list-header">
+  <div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div>
+        <h1 class="menu-list-header__title">
+          <i class="fas fa-store me-2"></i>飲食店会員一覧
+        </h1>
+        <p class="menu-list-header__count">全 <strong><%= @restaurants.total_count %></strong> 件</p>
+      </div>
+      <div class="d-flex gap-2">
+        <%= link_to admin_customers_path, class: "btn menu-back-btn" do %>
+          <i class="fas fa-users me-1"></i>顧客一覧へ
         <% end %>
-      </tbody>
-    </table>
-    <div class="offset-5 mt-3"><%= paginate @restaurants %></div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<%# ─── テーブル ────────────────────────── %>
+<div class="container py-4 pb-5">
+  <div class="mypage-card">
+    <div class="table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>店名</th>
+            <th>メールアドレス</th>
+            <th>会員状況</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @restaurants.each do |restaurant| %>
+            <tr>
+              <td class="text-muted" style="font-size:0.82rem;"><%= restaurant.id %></td>
+              <td><strong><%= restaurant.name %></strong></td>
+              <td><%= restaurant.email %></td>
+              <td>
+                <% if restaurant.is_valid %>
+                  <span class="admin-badge admin-badge--valid">有効</span>
+                <% else %>
+                  <span class="admin-badge admin-badge--invalid">退会</span>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to "詳細", admin_restaurant_path(restaurant.id), class: "admin-action-btn" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+      <%= paginate @restaurants %>
+    </div>
   </div>
 </div>

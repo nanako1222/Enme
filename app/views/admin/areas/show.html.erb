@@ -1,20 +1,46 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── 管理者帯 ──────────────────────── %>
+<div class="admin-notice-band">
+  <div class="container">
+    <p><i class="fas fa-shield-alt me-1"></i>管理者ページ｜地域エリア一覧</p>
+  </div>
+</div>
 
-    <div class="text-center mt-5">
-      <h4 class="text-center"><strong><%= @state.state %></strong></h4>
-    </div>
-
-    <table class="table table-hover mt-4">
-      <thead class="table-secondary">
-        <th>地域エリア</th>
-      </thead>
-      <% @areas.each do |area| %>
-        <tr>
-          <td><%= area.area %></td>
-        </tr>
+<%# ─── ページヘッダー ─────────────────── %>
+<div class="menu-list-header">
+  <div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div>
+        <h1 class="menu-list-header__title">
+          <i class="fas fa-map-marker-alt me-2"></i><%= @state.state %>のエリア一覧
+        </h1>
+        <p class="menu-list-header__count">全 <strong><%= @areas.total_count %></strong> エリア</p>
+      </div>
+      <%= link_to admin_areas_index_path, class: "btn menu-back-btn" do %>
+        <i class="fas fa-arrow-left me-1"></i>都道府県一覧に戻る
       <% end %>
-    </table>
+    </div>
+  </div>
+</div>
 
+<%# ─── テーブル ────────────────────────── %>
+<div class="container py-4 pb-5">
+  <div class="mypage-card" style="max-width: 480px;">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>地域エリア名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @areas.each do |area| %>
+          <tr>
+            <td><%= area.area %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-center mt-4">
+      <%= paginate @areas %>
+    </div>
   </div>
 </div>

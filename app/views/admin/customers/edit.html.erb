@@ -1,78 +1,101 @@
-<div class="container">
-  <div class="col-11 col-md-8 mx-auto">
+<%# ─── ヒーロー ─────────────────────────── %>
+<div class="auth-hero">
+  <div class="container text-center py-4">
+    <h1 class="auth-hero__title">顧客情報編集</h1>
+    <p class="auth-hero__sub"><%= @customer.full_name %> さんの情報を編集します</p>
+  </div>
+</div>
 
-    <div class="text-center mt-5">
-      <h4 class="text-center"><strong><%= "#{@customer.full_name}さんの会員情報編集" %></strong></h4>
-    </div>
-
-    <% flash.each do |key, value| %>
-      <p class="alert alert-<%= key %>"><%= value %></p>
-    <% end %>
-
-    <div class='flashing mt-2'>
-      <p>※現在登録されているデータは架空です</p>
-    </div>
+<div class="container py-5">
+  <div class="auth-card auth-card--wide mx-auto">
 
     <%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :会員ID, class: "col-md-4" %>
-        <div class="col-md-8"><%= @customer.id %></div>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <span class="col-md-4">名前</span>
-        <%= f.label :first_name, "名", class: "col-md-1" %>
-        <%= f.text_field :first_name, required: true, class: "col-md-3" %>
-        <%= f.label :last_name, "姓", class: "col-md-1" %>
-        <%= f.text_field :last_name, required: true, class: "col-md-3" %>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <span class="col-md-4">フリガナ</span>
-        <%= f.label :first_name_kana, "名", class: "col-md-1" %>
-        <%= f.text_field :first_name_kana, required: true, class: "col-md-3" %>
-        <%= f.label :last_name_kana, "姓", class: "col-md-1" %>
-        <%= f.text_field :last_name_kana, required: true, class: "col-md-3" %>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <%= f.label :email, class: "col-md-4" %>
-        <%= f.email_field :email, required: true, class: "col-md-8" %>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <%= f.label :state_id, class: "col-md-4" %>
-        <%= f.collection_select :state_id, State.all, :id, :state, {}, { class: "col-md-8" } %>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <%= f.label :area_id, class: "col-md-4" %>
-        <div id="areas_select_customer" class="col-md-8">
-          <%= render partial: 'shared/areas', locals: { areas: @area } %>
+      <%# 名前 %>
+      <div class="mb-4">
+        <p class="auth-form__label mb-2">氏名</p>
+        <div class="d-flex gap-2">
+          <div class="flex-fill">
+            <%= f.label :last_name, "姓", class: "auth-form__label" %>
+            <%= f.text_field :last_name, required: true, class: "form-control auth-form__input" %>
+          </div>
+          <div class="flex-fill">
+            <%= f.label :first_name, "名", class: "auth-form__label" %>
+            <%= f.text_field :first_name, required: true, class: "form-control auth-form__input" %>
+          </div>
         </div>
       </div>
 
-      <div class="row mt-3 align-items-center">
-        <%= f.label :telephone_number, class: "col-md-4" %>
-        <%= f.text_field :telephone_number, required: true, class: "col-md-8" %>
-      </div>
-
-      <div class="row mt-3 align-items-center">
-        <p class="col-md-4 mb-0">会員状況</p>
-        <div class="col-md-8">
-          <%= f.radio_button :is_valid, true %>
-          <%= f.label :is_valid, "有効", class: "valid me-3" %>
-          <%= f.radio_button :is_valid, false %>
-          <%= f.label :is_valid, "退会", class: "valid" %>
+      <%# フリガナ %>
+      <div class="mb-4">
+        <p class="auth-form__label mb-2">フリガナ</p>
+        <div class="d-flex gap-2">
+          <div class="flex-fill">
+            <%= f.label :last_name_kana, "セイ", class: "auth-form__label" %>
+            <%= f.text_field :last_name_kana, required: true, class: "form-control auth-form__input" %>
+          </div>
+          <div class="flex-fill">
+            <%= f.label :first_name_kana, "メイ", class: "auth-form__label" %>
+            <%= f.text_field :first_name_kana, required: true, class: "form-control auth-form__input" %>
+          </div>
         </div>
       </div>
 
-      <div class="mt-4 mb-5 text-center">
-        <%= f.submit '変更を保存', class: "btn btn-success active px-4" %>
+      <%# メールアドレス %>
+      <div class="mb-4">
+        <%= f.label :email, "メールアドレス", class: "auth-form__label" %>
+        <%= f.email_field :email, required: true, class: "form-control auth-form__input" %>
+      </div>
+
+      <%# 都道府県・エリア %>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <%= f.label :state_id, "都道府県", class: "auth-form__label" %>
+          <%= f.collection_select :state_id, State.all, :id, :state,
+              { include_blank: "選択してください" },
+              { class: "form-select auth-form__input" } %>
+        </div>
+        <div class="col-md-6">
+          <%= f.label :area_id, "地域エリア", class: "auth-form__label" %>
+          <div id="areas_select_customer">
+            <%= render partial: 'shared/areas', locals: { areas: @area } %>
+          </div>
+        </div>
+      </div>
+
+      <%# 電話番号 %>
+      <div class="mb-4">
+        <%= f.label :telephone_number, "電話番号", class: "auth-form__label" %>
+        <%= f.text_field :telephone_number, class: "form-control auth-form__input" %>
+      </div>
+
+      <%# 会員状況 %>
+      <div class="mb-4">
+        <p class="auth-form__label mb-2">会員状況</p>
+        <div class="admin-valid-radio">
+          <label>
+            <%= f.radio_button :is_valid, true %>
+            <span class="admin-badge admin-badge--valid">有効</span>
+          </label>
+          <label>
+            <%= f.radio_button :is_valid, false %>
+            <span class="admin-badge admin-badge--invalid">退会</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="d-grid mt-2">
+        <%= f.submit "変更を保存", class: "btn admin-auth-submit-btn" %>
       </div>
 
     <% end %>
+
+    <hr class="auth-divider my-4">
+    <div class="text-center">
+      <%= link_to admin_customer_path(@customer), class: "btn auth-register-btn" do %>
+        <i class="fas fa-arrow-left me-1"></i>詳細に戻る
+      <% end %>
+    </div>
 
   </div>
 </div>
