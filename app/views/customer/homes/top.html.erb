@@ -1,48 +1,46 @@
 <%# ─── Hero ─────────────────────────────────────────────── %>
 <section class="top-hero">
-
-  <%# 全幅バナー写真 %>
-  <div class="top-hero__banner">
-    <%= image_tag "top.jpg", class: "top-hero__banner-img", alt: "食卓風景" %>
-  </div>
-
-  <%# テキスト + 4ステップ %>
-  <div class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 text-center">
+  <div class="container">
+    <div class="row align-items-center g-5 pt-5 pb-3">
+      <div class="col-lg-6">
         <p class="top-hero__label">アレルギー対応飲食店検索サービス</p>
         <h1 class="top-hero__title">アレルギーがあっても、<br>安心して外食を。</h1>
-        <p class="top-hero__desc mt-3 mx-auto">
+        <p class="top-hero__desc mt-3">
           登録したアレルゲンに合わせて、対応している飲食店を検索できます。
         </p>
-      </div>
-    </div>
 
-    <p class="top-hero__steps-label text-center mt-4">Enmeの使い方</p>
-    <div class="top-hero__steps mt-2">
-      <div class="top-hero__step-item">
-        <div class="top-hero__step-num">1</div>
-        <i class="fas fa-user-plus top-hero__step-icon"></i>
-        <span class="top-hero__step-label">会員登録</span>
+        <p class="top-hero__steps-label mt-4">Enmeの使い方</p>
+        <div class="top-hero__steps">
+          <div class="top-hero__step-item">
+            <div class="top-hero__step-num">1</div>
+            <i class="fas fa-user-plus top-hero__step-icon"></i>
+            <span class="top-hero__step-label">会員登録</span>
+          </div>
+          <div class="top-hero__step-item">
+            <div class="top-hero__step-num">2</div>
+            <i class="fas fa-clipboard-list top-hero__step-icon"></i>
+            <span class="top-hero__step-label">アレルゲン登録</span>
+          </div>
+          <div class="top-hero__step-item">
+            <div class="top-hero__step-num">3</div>
+            <i class="fas fa-search top-hero__step-icon"></i>
+            <span class="top-hero__step-label">お店を検索</span>
+          </div>
+          <div class="top-hero__step-item">
+            <div class="top-hero__step-num">4</div>
+            <i class="fas fa-utensils top-hero__step-icon"></i>
+            <span class="top-hero__step-label">安心して外食</span>
+          </div>
+        </div>
       </div>
-      <div class="top-hero__step-item">
-        <div class="top-hero__step-num">2</div>
-        <i class="fas fa-clipboard-list top-hero__step-icon"></i>
-        <span class="top-hero__step-label">アレルゲン登録</span>
-      </div>
-      <div class="top-hero__step-item">
-        <div class="top-hero__step-num">3</div>
-        <i class="fas fa-search top-hero__step-icon"></i>
-        <span class="top-hero__step-label">お店を検索</span>
-      </div>
-      <div class="top-hero__step-item">
-        <div class="top-hero__step-num">4</div>
-        <i class="fas fa-utensils top-hero__step-icon"></i>
-        <span class="top-hero__step-label">安心して外食</span>
+
+      <div class="col-lg-6">
+        <div class="top-hero__img-wrap">
+          <%= image_tag "top.jpg", class: "top-hero__img", alt: "食卓風景" %>
+        </div>
       </div>
     </div>
   </div>
-
 </section>
 
 <%# ─── Search ─────────────────────────────────────────── %>
