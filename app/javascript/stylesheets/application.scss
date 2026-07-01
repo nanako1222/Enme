@@ -185,28 +185,28 @@ th { color: #cd853f; }
     overflow: hidden;
     line-height: 0;
 
-    // デスクトップ: 左端（テキスト側）をivoryにフェード
+    // デスクトップ: 左端だけさっとフェード（人物に被らないよう短め）
     &::after {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to right,
-        $ivory 0%,
-        rgba($ivory, 0.55) 22%,
-        transparent 52%
+        rgba($ivory, 0.85) 0%,
+        rgba($ivory, 0.3) 10%,
+        transparent 25%
       );
       pointer-events: none;
     }
 
-    // モバイル: 上端（テキストの下に画像が来るので下端→上フェード不要、上端をフェード）
+    // モバイル: 上端のみ短くフェード
     @media (max-width: 991px) {
       &::after {
         background: linear-gradient(
           to bottom,
           $ivory 0%,
-          rgba($ivory, 0.4) 18%,
-          transparent 45%
+          rgba($ivory, 0.3) 12%,
+          transparent 28%
         );
       }
     }
