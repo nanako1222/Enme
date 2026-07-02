@@ -259,11 +259,10 @@ th { color: #cd853f; }
   }
 
   &__step-icon {
-    font-size: 1.1rem;
-    color: $green;
     flex-shrink: 0;
-    width: 20px;
-    text-align: center;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
   }
 
   &__step-label {
@@ -1419,7 +1418,7 @@ input[type="checkbox"] {
 }
 
 .about-owner-icon {
-  height: 1.2em;
+  height: 2em;
   width: auto;
   vertical-align: middle;
   margin-bottom: 0.15em;
