@@ -260,9 +260,8 @@ th { color: #cd853f; }
 
   &__step-icon {
     flex-shrink: 0;
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
+    height: 34px;
+    width: auto;
   }
 
   &__step-label {
