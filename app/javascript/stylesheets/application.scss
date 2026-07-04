@@ -275,13 +275,20 @@ th { color: #cd853f; }
 // ═══════════════════════════════════════════
 // 8. トップページ: 共通セクション
 // ═══════════════════════════════════════════
-.top-hero__family {
-  height: 160px;
-  width: auto;
-  margin-top: 16px;
-  display: block;
+.top-hero__img-container {
+  position: relative;
+}
 
-  @media (max-width: 991px) { height: 120px; }
+.top-hero__family {
+  position: absolute;
+  bottom: -30px;
+  left: -50px;
+  height: 220px;
+  width: auto;
+  z-index: 2;
+  filter: drop-shadow(2px 6px 10px rgba(0, 0, 0, 0.12));
+
+  @media (max-width: 991px) { display: none; }
 }
 
 //
