@@ -113,9 +113,7 @@
   <% else %>
     <%# 0件 %>
     <div class="text-center py-5">
-      <div class="search-empty-icon mb-4">
-        <i class="fas fa-search"></i>
-      </div>
+      <%= image_tag "no-result.png", class: "search-empty-img mb-3", alt: "" %>
       <h5 class="search-empty-title">条件に合うお店が見つかりませんでした</h5>
       <p class="text-muted small mt-2">検索条件を変えてお試しください</p>
       <%= link_to search_restaurants_path(customer: { allergies: @allergy_ids, state_id: @state_id, area_id: @area_id }), class: "btn search-empty-btn mt-3" do %>
