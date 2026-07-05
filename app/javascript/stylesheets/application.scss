@@ -285,8 +285,6 @@ th { color: #cd853f; }
   left: -110px;
   z-index: 2;
   display: inline-block;
-  padding: 15px 25px 10px 15px;
-  background: radial-gradient(ellipse at center, rgba(255,255,255,0.9) 40%, transparent 72%);
 
   @media (max-width: 991px) { display: none; }
 }
@@ -295,7 +293,7 @@ th { color: #cd853f; }
   height: 175px;
   width: auto;
   display: block;
-  position: relative;
+  filter: drop-shadow(0 0 14px rgba(255,255,255,1)) drop-shadow(0 0 28px rgba(255,255,255,0.8));
 }
 
 //
