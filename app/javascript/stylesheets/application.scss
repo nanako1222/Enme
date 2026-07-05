@@ -832,6 +832,13 @@ th { color: #cd853f; }
   i { color: $green; }
 }
 
+.rest-section-icon {
+  height: 1.3em;
+  width: auto;
+  vertical-align: middle;
+  margin-bottom: 0.15em;
+}
+
 .rest-section-sub {
   font-size: 0.83rem;
   color: $text-sub;
