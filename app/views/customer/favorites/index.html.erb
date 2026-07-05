@@ -10,16 +10,19 @@
 <%# ─── ページヘッダー ─────────────────────── %>
 <div class="menu-list-header">
   <div class="container py-4">
-    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
-      <div>
+    <div class="page-header-grid">
+      <div></div>
+      <div class="text-center">
         <h1 class="menu-list-header__title">
           <%= image_tag "bookmark.svg", class: "rest-section-icon me-2", alt: "" %>お気に入り
         </h1>
         <p class="menu-list-header__count">全 <strong><%= @favorites_count %></strong> 件</p>
       </div>
-      <%= link_to search_restaurants_path, class: "btn menu-back-btn" do %>
-        <i class="fas fa-search me-1"></i>飲食店を検索
-      <% end %>
+      <div class="text-end">
+        <%= link_to search_restaurants_path, class: "btn menu-back-btn" do %>
+          <i class="fas fa-search me-1"></i>飲食店を検索
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

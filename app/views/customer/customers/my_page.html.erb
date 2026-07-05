@@ -10,13 +10,16 @@
 <%# ─── ページヘッダー ─────────────────────── %>
 <div class="menu-list-header">
   <div class="container py-4">
-    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
-      <h1 class="menu-list-header__title">
+    <div class="page-header-grid">
+      <div></div>
+      <h1 class="menu-list-header__title text-center">
         <%= image_tag "mypage.svg", class: "rest-section-icon me-2", alt: "" %>マイページ
       </h1>
-      <%= link_to customers_information_edit_path, class: "btn menu-back-btn" do %>
-        <i class="fas fa-user-edit me-1"></i>情報を編集
-      <% end %>
+      <div class="text-end">
+        <%= link_to customers_information_edit_path, class: "btn menu-back-btn" do %>
+          <i class="fas fa-user-edit me-1"></i>情報を編集
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
