@@ -339,14 +339,30 @@ th { color: #cd853f; }
     }
   }
 
+  &__title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 2px solid $beige-dark;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  &__title-illust {
+    height: 90px;
+    width: auto;
+    flex-shrink: 0;
+    margin-bottom: -2px;
+  }
+
   &__card-title {
     font-size: 1.5rem;
     font-weight: 800;
     color: $brown-dark;
-    margin-bottom: 24px;
+    margin-bottom: 0;
     background: none !important;
     padding-bottom: 16px;
-    border-bottom: 2px solid $beige-dark;
+    border-bottom: none;
 
     i { color: $green; }
   }

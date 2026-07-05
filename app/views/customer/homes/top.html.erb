@@ -51,9 +51,12 @@
 <section class="top-search">
   <div class="container">
     <div class="top-search__card">
-      <h2 class="top-search__card-title">
-        <i class="fas fa-search me-2"></i>飲食店を検索する
-      </h2>
+      <div class="top-search__title-row">
+        <h2 class="top-search__card-title">
+          <i class="fas fa-search me-2"></i>飲食店を検索する
+        </h2>
+        <%= image_tag "search-person.png", class: "top-search__title-illust", alt: "" %>
+      </div>
 
     <%= form_with model: @customer, url: restaurants_path, method: :get,
                   id: "search_restaurant", local: true do |f| %>
