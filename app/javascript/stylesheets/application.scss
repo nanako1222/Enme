@@ -353,6 +353,7 @@ th { color: #cd853f; }
     width: auto;
     flex-shrink: 0;
     margin-bottom: -2px;
+    transform: scaleX(-1);
   }
 
   &__card-title {
