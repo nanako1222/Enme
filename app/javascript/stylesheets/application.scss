@@ -288,6 +288,18 @@ th { color: #cd853f; }
   z-index: 2;
   filter: drop-shadow(0 0 14px rgba(255,255,255,1)) drop-shadow(0 0 28px rgba(255,255,255,0.8));
 
+  @media (max-width: 1399px) {
+    height: 145px;
+    left: -115px;
+    bottom: -25px;
+  }
+
+  @media (max-width: 1199px) {
+    height: 115px;
+    left: -85px;
+    bottom: -20px;
+  }
+
   @media (max-width: 991px) { display: none; }
 }
 
