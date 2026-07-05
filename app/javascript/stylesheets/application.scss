@@ -1463,9 +1463,15 @@ input[type="checkbox"] {
   @media (max-width: 575.98px) { padding: 28px 20px; }
 }
 
-.about-owner-icon,
-.about-area-icon {
+.about-owner-icon {
   height: 2em;
+  width: auto;
+  vertical-align: middle;
+  margin-bottom: 0.15em;
+}
+
+.about-area-icon {
+  height: 1.4em;
   width: auto;
   vertical-align: middle;
   margin-bottom: 0.15em;
