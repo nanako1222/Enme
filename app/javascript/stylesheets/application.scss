@@ -279,21 +279,16 @@ th { color: #cd853f; }
   position: relative;
 }
 
-.top-hero__family-wrap {
+.top-hero__family {
   position: absolute;
   bottom: -35px;
   left: -110px;
-  z-index: 2;
-  display: inline-block;
-
-  @media (max-width: 991px) { display: none; }
-}
-
-.top-hero__family {
   height: 175px;
   width: auto;
-  display: block;
+  z-index: 2;
   filter: drop-shadow(0 0 14px rgba(255,255,255,1)) drop-shadow(0 0 28px rgba(255,255,255,0.8));
+
+  @media (max-width: 991px) { display: none; }
 }
 
 //
