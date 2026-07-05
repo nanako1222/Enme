@@ -789,6 +789,14 @@ th { color: #cd853f; }
   margin-bottom: 0.1em;
 }
 
+.favorite-btn .favorite-icon {
+  filter: brightness(0) saturate(100%) invert(36%) sepia(18%) saturate(800%) hue-rotate(345deg) brightness(80%);
+}
+
+.favorite-delete .favorite-icon {
+  filter: brightness(0) invert(1);
+}
+
 .favorite-btn {
   display: inline-flex;
   align-items: center;
