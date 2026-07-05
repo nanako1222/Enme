@@ -782,6 +782,13 @@ th { color: #cd853f; }
 }
 
 // ─── お気に入りボタン（既存クラス拡張） ───
+.favorite-icon {
+  height: 1em;
+  width: auto;
+  vertical-align: middle;
+  margin-bottom: 0.1em;
+}
+
 .favorite-btn {
   display: inline-flex;
   align-items: center;
