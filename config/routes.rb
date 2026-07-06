@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     resources :allergies, only: [:create, :index, :edit, :update, :destroy]
     resources :restaurants, only: [:show, :edit, :update]
     get '/' => 'homes#top'
+    get  'change_password' => 'homes#edit_password',   as: 'edit_password'
+    patch 'change_password' => 'homes#update_password', as: 'update_password'
   end
 
   namespace :restaurant do

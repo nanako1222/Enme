@@ -1,25 +1,34 @@
-<h2>Change your password</h2>
+<div class="auth-hero">
+  <div class="container text-center py-4">
+    <h1 class="auth-hero__title">パスワード再設定</h1>
+    <p class="auth-hero__sub">新しいパスワードを入力してください</p>
+  </div>
+</div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "customers/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+<div class="container py-5">
+  <div class="auth-card mx-auto">
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "customer/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="mb-4">
+        <%= f.label :password, "新しいパスワード", class: "auth-form__label" %>
+        <p class="text-muted small mb-1">半角英大文字・小文字・数字・記号を含む8文字以上</p>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password",
+            class: "form-control auth-form__input" %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :password_confirmation, "新しいパスワード（確認）", class: "auth-form__label" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password",
+            class: "form-control auth-form__input" %>
+      </div>
+
+      <div class="d-grid mt-2">
+        <%= f.submit "パスワードを変更する", class: "btn auth-submit-btn" %>
+      </div>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "customers/shared/links" %>
+</div>

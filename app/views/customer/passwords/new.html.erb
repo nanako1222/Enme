@@ -1,16 +1,32 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "customers/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="auth-hero">
+  <div class="container text-center py-4">
+    <h1 class="auth-hero__title">パスワードをお忘れの方</h1>
+    <p class="auth-hero__sub">登録済みのメールアドレスに再設定用リンクをお送りします</p>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+<div class="container py-5">
+  <div class="auth-card mx-auto">
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "customer/shared/error_messages", resource: resource %>
+
+      <div class="mb-4">
+        <%= f.label :email, "メールアドレス", class: "auth-form__label" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+            class: "form-control auth-form__input" %>
+      </div>
+
+      <div class="d-grid mt-2">
+        <%= f.submit "再設定メールを送る", class: "btn auth-submit-btn" %>
+      </div>
+    <% end %>
+
+    <hr class="auth-divider my-4">
+
+    <div class="text-center">
+      <%= link_to "ログインに戻る", new_customer_session_path, class: "auth-sub-text" %>
+    </div>
+
   </div>
-<% end %>
-
-<%= render "customers/shared/links" %>
+</div>
