@@ -1,5 +1,6 @@
 class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
+  before_action :restrict_demo_mode, only: [:edit, :update]
   def index
     @customer = Customer.new
     @customers = Customer.all.order(id: "DESC").page(params[:page]).per(10)

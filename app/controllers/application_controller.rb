@@ -1,6 +1,18 @@
 class ApplicationController < ActionController::Base
     # before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def demo_mode?
+    ENV['DEMO_MODE'] == 'true'
+  end
+  helper_method :demo_mode?
+
+  def restrict_demo_mode
+    if demo_mode?
+      redirect_back fallback_location: root_path,
+        alert: 'デモ環境のため、この操作は制限されています。'
+    end
+  end
+
   def after_sign_in_path_for(resource)
     # byebug
     case resource

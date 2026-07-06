@@ -75,6 +75,11 @@
       </header>
 
       <main>
+        <% if demo_mode? && admin_signed_in? %>
+          <div class="demo-banner">
+            <i class="fas fa-eye me-2"></i>デモ環境のため、管理者の編集・削除操作は制限されています。
+          </div>
+        <% end %>
         <% if flash[:notice] %>
           <div class="flash-notice alert alert-dismissible fade show mb-0" role="alert">
             <i class="fas fa-check-circle me-2"></i><%= flash[:notice] %>

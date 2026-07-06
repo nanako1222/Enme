@@ -2278,6 +2278,16 @@ input[type="checkbox"] {
 
 // ─── Section 22: Admin management pages ──────────────────
 
+.demo-banner {
+  background: #fff3cd;
+  border-bottom: 1px solid #ffc107;
+  color: #856404;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.55rem 1rem;
+  text-align: center;
+}
+
 .admin-notice-band {
   background: rgba($brown-dark, 0.07);
   border-bottom: 1px solid rgba($brown-dark, 0.15);

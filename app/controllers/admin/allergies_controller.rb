@@ -1,5 +1,6 @@
 class Admin::AllergiesController < ApplicationController
   before_action :authenticate_admin!
+  before_action :restrict_demo_mode, only: [:create, :edit, :update, :destroy]
 
   def index
     @allergy = Allergy.new

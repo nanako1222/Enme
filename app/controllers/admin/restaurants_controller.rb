@@ -1,5 +1,6 @@
 class Admin::RestaurantsController < ApplicationController
   before_action :authenticate_admin!
+  before_action :restrict_demo_mode, only: [:edit, :update]
   def index
     @restaurant = Restaurant.new
     @restaurants = Restaurant.all.order(id: "DESC").page(params[:page]).per(10)

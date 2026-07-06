@@ -19,8 +19,10 @@
         <%= link_to admin_customers_path, class: "btn menu-back-btn" do %>
           <i class="fas fa-arrow-left me-1"></i>顧客一覧に戻る
         <% end %>
-        <%= link_to edit_admin_customer_path(@customer), class: "btn admin-auth-submit-btn" do %>
-          <i class="fas fa-pen-nib me-1"></i>編集する
+        <% unless demo_mode? %>
+          <%= link_to edit_admin_customer_path(@customer), class: "btn admin-auth-submit-btn" do %>
+            <i class="fas fa-pen-nib me-1"></i>編集する
+          <% end %>
         <% end %>
       </div>
     </div>
