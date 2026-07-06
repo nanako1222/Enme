@@ -8,6 +8,13 @@
 
 <div class="container py-5">
   <div class="auth-card mx-auto">
+    <% if demo_mode? %>
+      <div class="demo-account-box mb-4">
+        <p class="demo-account-box__title"><i class="fas fa-key me-1"></i>デモ用アカウント</p>
+        <p class="demo-account-box__item">メール：<strong>shop@example.com</strong></p>
+        <p class="demo-account-box__item">パスワード：<strong>Demo1234!</strong></p>
+      </div>
+    <% end %>
 
     <%= form_with model: @restaurant, url: restaurant_session_path, local: true do |f| %>
 

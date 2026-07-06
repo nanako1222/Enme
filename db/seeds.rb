@@ -106,7 +106,45 @@ states_data.each_with_index do |(state_name, area_names), state_idx|
   end
 end
 
-# 6. メニュー (Menus)
+# 6. デモ用アカウント
+osaka = State.find_by(state: '大阪府')
+osaka_city = osaka.areas.find_by(area: '大阪市')
+
+demo_customer = Customer.find_or_initialize_by(email: 'demo@example.com')
+if demo_customer.new_record?
+  demo_customer.assign_attributes(
+    last_name: 'デモ', first_name: '太郎',
+    last_name_kana: 'デモ', first_name_kana: 'タロウ',
+    telephone_number: '09012345678',
+    state_id: osaka.id,
+    area_id: osaka_city.id,
+    password: 'Demo1234!',
+    password_confirmation: 'Demo1234!'
+  )
+  demo_customer.save!
+  egg = Allergy.find_by(allergen: '卵')
+  wheat = Allergy.find_by(allergen: '小麦')
+  demo_customer.allergies << [egg, wheat].compact
+end
+
+demo_restaurant = Restaurant.find_or_initialize_by(email: 'shop@example.com')
+if demo_restaurant.new_record?
+  demo_restaurant.assign_attributes(
+    name: 'デモ食堂',
+    telephone_number: '0612345678',
+    is_valid: true,
+    regular_holiday: '月曜日',
+    business_hours: '11:00〜21:00',
+    address: '大阪市北区1-1-1',
+    state_id: osaka.id,
+    area_id: osaka_city.id,
+    password: 'Demo1234!',
+    password_confirmation: 'Demo1234!'
+  )
+  demo_restaurant.save!
+end
+
+# 7. メニュー (Menus)
 menu_idx = 0
 Restaurant.all.each do |restaurant|
   3.times do
