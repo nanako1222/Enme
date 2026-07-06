@@ -17,6 +17,12 @@
             class: "form-control auth-form__input" %>
       </div>
 
+      <% if demo_mode? %>
+        <div class="alert alert-warning small py-2 mt-1 mb-3">
+          <i class="fas fa-info-circle me-1"></i>デモ環境のため、メール送信は無効です。
+        </div>
+      <% end %>
+
       <div class="d-grid mt-2">
         <%= f.submit "再設定メールを送る", class: "btn auth-submit-btn" %>
       </div>
