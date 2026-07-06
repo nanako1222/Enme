@@ -13,7 +13,7 @@ class Restaurant::MenusController < ApplicationController
     @menu = Menu.find(params[:id])
     @allergies = Allergy.all
     if @restaurant != @menu.restaurant
-      redirect_to restaurant_restaurant_menu_path(@restaurant, @menu)
+      redirect_to restaurant_restaurant_menus_path(@restaurant)
     end
   end
 
@@ -41,7 +41,7 @@ class Restaurant::MenusController < ApplicationController
   def create
     @menu = current_restaurant.menus.new(menu_params)
     if @menu.save
-      redirect_to restaurant_restaurant_menus_path(@menu.id), notice: 'メニューを新規作成しました！'
+      redirect_to restaurant_restaurant_menus_path(current_restaurant), notice: 'メニューを新規作成しました！'
     else
       @allergies = Allergy.all
       render :new

@@ -1,5 +1,6 @@
 class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
+  before_action :restrict_demo_mode, only: [:edit_password, :update_password]
 
   def top
     @restaurant = Restaurant.new
