@@ -1,4 +1,6 @@
 class Restaurant::MenusController < ApplicationController
+  before_action :authenticate_restaurant!
+
   def index
     @restaurant = current_restaurant
     @menu = Menu.new

@@ -1,6 +1,6 @@
 class Restaurant < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include PasswordComplexity
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -21,6 +21,10 @@ class Restaurant < ApplicationRecord
               end
     validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
   end
+
+  validates :home_page,
+    format: { with: /\Ahttps?:\/\/.+/, message: 'はhttpまたはhttpsで始まるURLを入力してください' },
+    allow_blank: true
 
   def get_image(width, height)
     if image.attached?

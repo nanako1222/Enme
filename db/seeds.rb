@@ -24,8 +24,8 @@ MENU_NAMES = %w[
 # 1. 管理者 (Admin)
 admin = Admin.find_or_initialize_by(email: 'aaa111@www.com')
 if admin.new_record?
-  admin.password = "testtest"
-  admin.password_confirmation = "testtest"
+  admin.password = "Admin123!"
+  admin.password_confirmation = "Admin123!"
   admin.save!
 end
 
@@ -86,7 +86,7 @@ states_data.each_with_index do |(state_name, area_names), state_idx|
 
   5.times do
     area_names.each_with_index do |_, area_idx|
-      password = "tuyukusa"
+      password = "Demo1234!"
       restaurant = Restaurant.create!(
         email: Faker::Internet.unique.email,
         telephone_number: Faker::Number.number(digits: 11),
