@@ -1,7 +1,7 @@
 module PasswordComplexity
   extend ActiveSupport::Concern
 
-  COMPLEXITY_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+\[\]{};:'",.<>?\\/|~`]).{8,}\z/
+  COMPLEXITY_REGEX = /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}\z/
 
   included do
     validate :password_complexity, if: :password_required?
