@@ -1,14 +1,12 @@
-
-
 class Customer::RestaurantsController < ApplicationController
 
   before_action :set_search_query, only: :index
+  before_action :authenticate_customer!, only: :simple_search
 
   def show
     @restaurant = Restaurant.find(params[:id])
     @state = State.find(@restaurant.state_id).state
     @area = Area.find(@restaurant.area_id).area
-    @restaurant.image
   end
 
   def index
@@ -31,13 +29,6 @@ class Customer::RestaurantsController < ApplicationController
     @selected_area_name   = Area.find(@area_id).area if @area_id.present?
   end
 
-  def create
-    @allergy_id = params[:allergy_id]
-    menu_ids = Menu.joins(:allergies).where(allergis: {id: params[:allergy_id]}).distinct.pluck(:id)
-    # menu_ids = Menu.joins(:allergies).where(allergis: {id: @allergy_id}).distinct.pluck(:id)
-    @restaurant.joins (:menus).where.not(menus:{id:menu_ids})
-  end
-
   def search
     @allergies = Allergy.all
     @customer = Customer.new
@@ -51,16 +42,6 @@ class Customer::RestaurantsController < ApplicationController
     @allergies = Allergy.all
   end
 
-  def customer_farm_area
-    if request.xhr?
-      render partial: 'areas', locals: {ms_pref_id: params[:ms_pref_id]}
-    end
-  end
-  
-  def favorite
-    @favorite_restaurants = current_customer.favorite_restaurants.includes(:customer).order(created_at: :desc)
-  end
-
   private
 
   def set_search_query
@@ -70,6 +51,3 @@ class Customer::RestaurantsController < ApplicationController
   end
 
 end
-
-#https://2fa50ee19e8141c384c19facfdbf4b5d.vfs.cloud9.ap-northeast-1.amazonaws.com
-#/restaurants?allergies[]=2&allergies[]=3&state_id=1&customer[area_id]=1&commit=%E6%A4%9C%E7%B4%A2

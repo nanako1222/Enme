@@ -68,7 +68,7 @@
         <%# アクションボタン %>
         <div class="d-flex flex-wrap gap-3 mt-4">
           <% if customer_signed_in? %>
-            <%= render 'customer/favorites/favorite', favorite: @favorite %>
+            <%= render 'customer/favorites/favorite' %>
           <% end %>
           <%= link_to restaurant_menus_path(@restaurant.id), class: "btn rest-hero__menu-btn" do %>
             <i class="fas fa-clipboard-list me-1"></i>メニューでアレルゲンを確認する

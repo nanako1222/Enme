@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'favorites/create'
-  get 'favorites/destroy'
   devise_for :customers, controllers: {
     registrations: "customer/registrations",
     sessions: 'customer/sessions'

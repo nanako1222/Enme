@@ -1,4 +1,5 @@
 class Customer::FavoritesController < ApplicationController
+  before_action :authenticate_customer!
   before_action :set_restaurant, only: [:create, :destroy]
   def create
     @favorite = Favorite.new(customer_id: current_customer.id,  restaurant_id: @restaurant.id)
