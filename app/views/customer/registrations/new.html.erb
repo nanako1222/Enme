@@ -9,6 +9,12 @@
 <div class="container py-5">
   <div class="auth-card auth-card--wide mx-auto">
 
+    <%# ─── デモ環境のご案内 ───────────────────────── %>
+    <div class="demo-account-box mb-4">
+      <p class="demo-account-box__title"><i class="fas fa-info-circle me-1"></i>デモ環境のご案内</p>
+      <p class="demo-account-box__item">本サイトはポートフォリオ用のデモサイトです。ご登録いただいた情報は、定期的なデータ初期化にともない削除されます。普段お使いのパスワードの入力はお控えください。</p>
+    </div>
+
     <%= form_with model: @customer, url: customer_registration_path,
         id: 'new_customer', class: 'new_customer', local: true do |f| %>
       <%= render "customer/shared/error_messages", resource: resource %>
