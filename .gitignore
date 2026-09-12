@@ -41,3 +41,10 @@ yarn-debug.log*
 /.env
 /vendor/*
 .DS_Store
+
+# Enme DB再作成の運用ログ
+#   正式な実行ログは ~/Library/Logs/Enme/ (リポジトリ外) に出力する。
+#   ただし launchd plist の StandardOutPath/StandardErrorPath が
+#   scripts/ 配下を指しているため、誤コミット防止として除外する。
+/scripts/*.log
+/scripts/*.log.*
